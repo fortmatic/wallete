@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script>
     <script src="constants.js"></script>
     <script src="utils.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
     <script>
         fmPhantom = new Fortmatic.Phantom('pk_test_8304D175621EA294');
         web3 = new Web3(fmPhantom.getProvider());
@@ -19,7 +19,7 @@
     <p id="status"></p>
     <div>
         <input type="text" name="email" placeholder="Enter your email">
-        <button onclick="handleLoginWithMagicLink(this)">Send Magic Link</button>
+        <button onclick="handleLoginWithMagicLink(this)">Login via Magic Link</button>
     </div>
     <div>
         <button onclick="handleGetMetadata()">Get Metadata</button>
