@@ -7,7 +7,7 @@ var byteCode = '0x608060405234801561001057600080fd5b50336000806101000a81548173ff
 var publicAdd = fmPhantom.user.getMetadata().publicAddress;
 
 
-let deploying = () => {
+let deploying = async () => {
     contract.deploy({
     })
         .send({
@@ -16,15 +16,26 @@ let deploying = () => {
             gas: '1000000',
             gasPrice: '1500'
         })
-        .then (console.log);
+        .then(console.log);
 };
 
 
 var contract = new web3.eth.Contract(abi); // need abi of smart contract 
 var deployContract = contract.new(contract.deploy);
 
+let addWhitelist = async (address) => {
+    contract.methods.addAddress(address).send({
+        from: publicAdd
+    })
+    .then(console.log);
+}
 
-
+let signContract = async () => {
+    contract.methods.signTransaction().send({
+        from: publicAdd
+    })
+    .then(console.log);
+};
 
 
 

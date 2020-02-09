@@ -1,10 +1,7 @@
 let handleLoginWithMagicLink = (e) => {
-  fmPhantom.loginWithMagicLink({ email: getInputValue(e, 'email') })
-    .then((user) => {
-      document.getElementById('status').innerHTML = 'Log in successful!'
-    })
-    .catch((err) => (document.getElementById('status').innerHTML = err));
-
+  fmPhantom.loginWithMagicLink({email: getInputValue(e, 'email')}).then((user) => {
+    document.getElementById('status').innerHTML = 'Log in successful!'
+  }).catch((err) => (document.getElementById('status').innerHTML = err));
   document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email'
 };
 
@@ -22,6 +19,3 @@ let handleGetMetadata = async () => {
   alert(JSON.stringify(metadata));
 };
 
-let deployContract = async () => {
-  
-}
