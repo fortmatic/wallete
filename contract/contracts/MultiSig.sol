@@ -7,6 +7,7 @@ contract MultiSig {
     mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
     mapping(address => bool) private signedList; // list of address that have signed the transaction
     event SignedTransact(address);
+    event AddedWhiteList(address);
 
     constructor() public {
         owner = msg.sender;
@@ -17,6 +18,7 @@ contract MultiSig {
         require(msg.sender == owner, "Sender not authorized");
         require(whiteList[newAddress] == false, "Address is already on whitelist");
         whiteList[newAddress] = true;
+        emit AddedWhiteList(newAddress);
         return "Address has been added to the whitelist";
     }
 
@@ -29,6 +31,7 @@ contract MultiSig {
         require(signedList[msg.sender] == false, "This address has already signed the transaction");
         ++N;
         signedList[msg.sender] = true;
+        emit SignedTransact(address);
         return true;
     }
     
