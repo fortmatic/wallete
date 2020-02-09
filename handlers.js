@@ -1,12 +1,12 @@
 let handleLoginWithMagicLink = (e) => {
-  fmPhantom.loginWithMagicLink({email: getInputValue(e, 'email')}).then((user) => {
+  fmPhantom.loginWithMagicLink({ email: getInputValue(e, 'email') }).then((user) => {
     document.getElementById('status').innerHTML = 'Log in successful!'
   }).catch((err) => (document.getElementById('status').innerHTML = err));
   document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email'
 };
 
 let handleGetDecentralizedIdToken = async () => {
-  if (await fmPhantom.user.isLoggedIn())  {
+  if (await fmPhantom.user.isLoggedIn()) {
     const dat = await fmPhantom.user.getIdToken();
     document.getElementById('your-id-token').innerHTML = dat;
   }
@@ -104,12 +104,12 @@ let handleERC20Transfer = (e) => {
     // Calculate contract compatible value for transfer with proper decimal points using BigNumber
     let calculatedValue = calculateHexValue(value, decimals, web3.utils.BN);
     erc20Contract
-        .methods
-        .transfer(to, calculatedValue)
-        .send({ from: placeholderAddress }, (err, txnHash) => {
+      .methods
+      .transfer(to, calculatedValue)
+      .send({ from: placeholderAddress }, (err, txnHash) => {
         console.log(err);
         console.log(txnHash);
-    });
+      });
   });
 };
 
@@ -122,12 +122,12 @@ let handleERC20Approve = (e) => {
     // Calculate contract compatible value for transfer with proper decimal points using BigNumber
     let calculatedValue = calculateHexValue(amount, decimals, web3.utils.BN);
     erc20Contract
-        .methods
-        .approve(address, calculatedValue)
-        .send({ from: placeholderAddress }, (err, txnHash) => {
+      .methods
+      .approve(address, calculatedValue)
+      .send({ from: placeholderAddress }, (err, txnHash) => {
         console.log(err);
         console.log(txnHash);
-    });
+      });
   });
 };
 
@@ -142,12 +142,12 @@ let handleERC20TransferFrom = (e) => {
     web3.eth.getAccounts().then((accounts) => {
       let calculatedValue = calculateHexValue(value, decimals, web3.utils.BN);
       erc20Contract
-          .methods
-          .transferFrom(from, to, calculatedValue)
-          .send({ from: accounts[0] }, (err, txnHash) => {
+        .methods
+        .transferFrom(from, to, calculatedValue)
+        .send({ from: accounts[0] }, (err, txnHash) => {
           console.log(err);
           console.log(txnHash);
-      });
+        });
     });
   });
 };
