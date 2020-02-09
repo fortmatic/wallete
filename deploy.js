@@ -1,6 +1,4 @@
-
 import Fortmatic from 'fortmatic';
-import { AbiCoder } from 'web3-eth-abi'; // what is this? 
 const fmPhantom = new Fortmatic.Phantom('pk_test_3F4C85DABD924AA7');
 var web3 = new Web3(fmPhantom.getProvider());
 var abi = erc20ContractAbi;
