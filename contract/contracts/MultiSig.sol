@@ -2,12 +2,19 @@ pragma solidity ^0.5.16;
 
 contract MultiSig {
     address public owner;
+    int private N;
 
-    mapping(address => bool) private signedList;
+    mapping(address => bool) private whiteList;
     event SignedTransact(address);
 
-    constructor() public {
+    function MultiSig() private {
         owner = msg.sender;
+    }
+
+    function addAddress(address newAddress) private returns (string confirmation) {
+        require(msg.sender == owner, "Sender not authorized");
+        whiteList[newAddress] = true;
+        return "Address has been added to the whitelist";
     }
 
     function checkList(address called) public returns (bool checked) {
@@ -15,7 +22,9 @@ contract MultiSig {
     }
 
     function signTransaction () public return (bool success) {
-        require(signedList[msg.sender] == false);
+        require(whiteList[msg.sender] == true, "This address is not on the whitelist");
+
         
     }
+
 }
