@@ -7,7 +7,7 @@ var byteCode = '0x608060405234801561001057600080fd5b50336000806101000a81548173ff
 var publicAdd = fmPhantom.user.getMetadata().publicAddress;
 
 
-let deploying = (byteCode, publicAdd) => {
+let deploying = () => {
     contract.deploy({
     })
         .send({
