@@ -13,3 +13,8 @@ let handleLogout = async () => {
   await fmPhantom.user.logout();
   document.getElementById('status').innerHTML = 'Login Status'
 };
+
+let handleGetMetadata = async () => {
+  const metadata = await fmPhantom.user.getMetadata();
+  alert(JSON.stringify(metadata));
+};
