@@ -2,7 +2,7 @@ pragma solidity ^0.5.16;
 
 contract MultiSig {
     address public owner;
-    uint private N; // number of signatures
+    uint256 private N; // number of signatures
 
     mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
     mapping(address => bool) private signedList; // list of address that have signed the transaction
@@ -14,9 +14,15 @@ contract MultiSig {
         N = 0;
     }
 
-    function addAddress(address newAddress) public returns (string memory confirmation) {
+    function addAddress(address newAddress)
+        public
+        returns (string memory confirmation)
+    {
         require(msg.sender == owner, "Sender not authorized");
-        require(whiteList[newAddress] == false, "Address is already on whitelist");
+        require(
+            whiteList[newAddress] == false,
+            "Address is already on whitelist"
+        );
         whiteList[newAddress] = true;
         emit AddedWhiteList(newAddress);
         return "Address has been added to the whitelist";
@@ -27,15 +33,21 @@ contract MultiSig {
     }
 
     function signTransaction() public returns (bool success) {
-        require(whiteList[msg.sender] == true, "This address is not on the whitelist");
-        require(signedList[msg.sender] == false, "This address has already signed the transaction");
+        require(
+            whiteList[msg.sender] == true,
+            "This address is not on the whitelist"
+        );
+        require(
+            signedList[msg.sender] == false,
+            "This address has already signed the transaction"
+        );
         ++N;
         signedList[msg.sender] = true;
         emit SignedTransact(msg.sender);
         return true;
     }
 
-    function returnN() public returns (uint number) {
+    function returnN() public returns (uint256 number) {
         return N;
     }
 
