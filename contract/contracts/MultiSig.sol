@@ -31,10 +31,10 @@ contract MultiSig {
         require(signedList[msg.sender] == false, "This address has already signed the transaction");
         ++N;
         signedList[msg.sender] = true;
-        emit SignedTransact(address);
+        emit SignedTransact(msg.sender);
         return true;
     }
-    
+
     function returnN() public returns (uint number) {
         return N;
     }

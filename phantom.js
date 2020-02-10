@@ -30,6 +30,8 @@ var byteCode = '0x608060405234801561001057600080fd5b50336000806101000a81548173ff
 const deploying = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
+  contract.options.address = userAddress;
+
   contract.deploy({ data: byteCode })
     .send({
       from: userAddress,
@@ -40,6 +42,8 @@ const deploying = async () => {
 };
 
 let addWhitelist = async (address) => {
+  const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+
   contract.methods.addAddress(address).send({
     from: userAddress
   })
@@ -47,15 +51,20 @@ let addWhitelist = async (address) => {
 }
 
 let signContract = async () => {
+  const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+
   contract.methods.signTransaction().send({
     from: userAddress
   })
     .then(console.log);
+
 };
 
 let checkStatus = async () => {
+  const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+
   contract.methods.returnN().call({
-      from: fmPhantom.user.getMetadata().publicAddress
+      from: userAddress
   })
   .then(console.log);
 };
