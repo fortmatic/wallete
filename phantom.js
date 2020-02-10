@@ -51,3 +51,10 @@ let signContract = async () => {
   })
     .then(console.log);
 };
+
+let checkStatus = async () => {
+  contract.methods.returnN().call({
+      from: fmPhantom.user.getMetadata().publicAddress
+  })
+  .then(console.log);
+};
