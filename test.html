@@ -7,10 +7,13 @@
     <script src="constants.js"></script>
     <script src="utils.js"></script>
     <script src="abi.js"></script>
+    
     <script>
         fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
         web3 = new Web3(fmPhantom.getProvider());
     </script>
+
+    <script src="deploy.js"></script>
 </head>
 
 <body>
@@ -33,7 +36,12 @@
     </div>
     <div>
         <button onclick="deploying()">Deploy Contract</button>
-        <button onclick="addToWhiteList()">Add Address to the Whitelist</button>
+
+        <div>
+            <input type="text" name="address" placeholder="Enter Address">
+            <button onclick="addToWhiteList()">Add Address to the Whitelist</button>
+        </div>
+    
         <button onclick="signContract()">Sign Contract</button>
         <button onclick="checkStatus()">Check Contract Status</button>
     </div>
