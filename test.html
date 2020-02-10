@@ -2,23 +2,24 @@
 
 <head>
     <title>Phantom</title>
-    <script src="phantom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fortmatic@2.0.0-beta.6/dist/fortmatic.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script>
     <script src="constants.js"></script>
     <script src="utils.js"></script>
-    <script src="deploy.js"></script>
+    <script src="abi.js"></script>
     <script>
-        fmPhantom = new Fortmatic.Phantom('pk_test_8304D175621EA294');
+        fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
         web3 = new Web3(fmPhantom.getProvider());
     </script>
 </head>
 
 <body>
+    <script src="phantom.js"></script>
+    <!-- <script src="deploy.js"></script> -->
     <h1>Fortmatic</h1>
     <p id="status"></p>
     <div>
-        <input type="text" name="email" placeholder="Enter your email">
+        <input type="text" id="user-email" placeholder="Enter your email">
         <button onclick="handleLoginWithMagicLink(this)">Login via Magic Link</button>
     </div>
     <div>
