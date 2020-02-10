@@ -3,7 +3,6 @@ let handleLoginWithMagicLink = (e) => {
     document.getElementById('status').innerHTML = 'Log in successful!'
   }).catch((err) => (document.getElementById('status').innerHTML = err));
   document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email';
-  var publicAdd = fmPhantom.user.getMetadata().publicAddress;
 };
 
 let handleIsLoggedIn = async () => {

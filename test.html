@@ -7,11 +7,14 @@
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.5-rc.0/dist/web3.min.js"></script>
     <script src="constants.js"></script>
     <script src="utils.js"></script>
-    <script src="deploy.js"></script>
+    <script src="abi.js"></script>
+    
     <script>
         fmPhantom = new Fortmatic.Phantom('pk_test_8304D175621EA294');
         web3 = new Web3(fmPhantom.getProvider());
     </script>
+
+    <script src="deploy.js"></script>
 </head>
 
 <body>
@@ -32,7 +35,12 @@
     </div>
     <div>
         <button onclick="deploying()">Deploy Contract</button>
-        <button onclick="addToWhiteList()">Add Address to the Whitelist</button>
+
+        <div>
+            <input type="text" name="address" placeholder="Enter Address">
+            <button onclick="addToWhiteList()">Add Address to the Whitelist</button>
+        </div>
+    
         <button onclick="signContract()">Sign Contract</button>
         <button onclick="checkStatus()">Check Contract Status</button>
     </div>
