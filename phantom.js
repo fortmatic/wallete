@@ -58,7 +58,8 @@ let signContract = async () => {
   contract.methods.signTransaction().send({
     from: userAddress,
     gas: 1500000,
-    gasPrice: '3000000000000'
+    gasPrice: '3000000000000',
+    value: '1000000000000000000'
   })
     .then(console.log);
 
@@ -67,8 +68,10 @@ let signContract = async () => {
 let checkStatus = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  contract.methods.checkStatus().call({
-    from: userAddress
+  contract.methods.checkStatus().send({
+    from: userAddress,
+    gas: 1500000,
+    gasPrice: '3000000000000'
   })
     .then(console.log);
 };

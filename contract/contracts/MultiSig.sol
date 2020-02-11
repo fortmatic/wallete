@@ -1,7 +1,7 @@
 pragma solidity ^0.5.16;
 
 contract MultiSig {
-    address public owner; // Will be the address of who deploys to contract
+    address payable public owner; // Will be the address of who deploys to contract
 
     mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
     uint256 private numSigs; // Keeps track of num of signatures on transaction
@@ -12,6 +12,7 @@ contract MultiSig {
     // Events to emmit
     event SignedTransact(address);
     event AddedWhiteList(address);
+    event transactionOccured(address, uint256);
 
     constructor() public {
         // Make the owner who deploys contract
@@ -45,7 +46,7 @@ contract MultiSig {
     }
 
     // Msg.sender signs transaction
-    function signTransaction() public returns (bool success) {
+    function signTransaction() public payable returns (bool success) {
         // Makes sure sender is on whitelist and has not signed yet
         require(
             whiteList[msg.sender] == true,
@@ -60,17 +61,28 @@ contract MultiSig {
         ++numSigs;
         signedList[msg.sender] = true;
         emit SignedTransact(msg.sender);
+
         return true;
     }
 
-    // Getter for number of entities signed
-    function checkStatus() public returns (string memory succes) {
-        if (2 * numSigs > numWhiteList) {
-            return "Transaction occurs";
-        } else {
-            return "Transaction not sent";
-        }
+    function contractBalance() public view returns(uint256 balance){
+        return address(this).balance;
+    }
 
+    // Getter for number of entities signed
+    function checkStatus() public returns (bool succes) {
+        // if (2 * numSigs > numWhiteList) {
+        //     return "Transaction occurs";
+        // } else {
+        //     return "Transaction not sent";
+        // }
+        uint256 transact = address(this).balance;
+
+        owner.transfer(address(this).balance);
+
+        emit transactionOccured(owner, transact);
+
+        return true;
     }
 
 }
