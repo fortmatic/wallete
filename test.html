@@ -21,7 +21,7 @@
     <p id="status"></p>
     <div>
         <input type="text" id="user-email" placeholder="Enter your email">
-        <button onclick="handleLoginWithMagicLink(this)">Login via Magic Link</button>
+        <button onclick="handleLoginWithMagicLink()">Login via Magic Link</button>
     </div>
     <div>
         <button onclick="handleGetMetadata()">Get Metadata</button>
@@ -36,7 +36,7 @@
         <button onclick="deploying()">Deploy Contract</button>
 
         <div>
-            <input type="text" name="address" placeholder="Enter Address">
+            <input type="text" id="address" placeholder="Enter Address">
             <button onclick="addToWhiteList()">Add Address to the Whitelist</button>
         </div>
     

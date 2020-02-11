@@ -40,8 +40,9 @@ const deploying = async () => {
     });
 };
 
-let addWhitelist = async (address) => {
+let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+  const address = document.getElementById('address').value
 
   contract.methods.addAddress(address).send({
     from: userAddress,
@@ -66,7 +67,7 @@ let signContract = async () => {
 let checkStatus = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  contract.methods.returnN().call({
+  contract.methods.checkStatus().call({
     from: userAddress
   })
     .then(console.log);
