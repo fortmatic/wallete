@@ -17,12 +17,13 @@ const handleIsLoggedIn = async () => {
 };
 
 const handleLogout = async () => {
-  await fmPhantom.user.logout();
+  await fmPhantom.user.logout()
+    .then(document.getElementById('status').innerHTML = 'Logged out');
 };
 
 let handleGetMetadata = async () => {
   const metadata = await fmPhantom.user.getMetadata();
-  alert(JSON.stringify(metadata));
+  document.getElementById('status').innerHTML = JSON.stringify(metadata);
 };
 
 const deploying = async () => {
@@ -37,6 +38,7 @@ const deploying = async () => {
     .on('receipt', (rec) => {
       contract.options.address = rec.contractAddress;
       console.log(rec);
+      document.getElementById('status').innerHTML = 'Contract deployed at ' + contract.options.address;
     });
 };
 
@@ -44,7 +46,7 @@ let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
   const address = document.getElementById('address').value
 
-  contract.methods.addAddress(address).send({
+  await contract.methods.addAddress(address).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
@@ -55,7 +57,7 @@ let addToWhiteList = async () => {
 let signContract = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  contract.methods.signTransaction().send({
+  await contract.methods.signTransaction().send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000',
@@ -68,7 +70,7 @@ let signContract = async () => {
 let checkStatus = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  contract.methods.checkStatus().send({
+  await contract.methods.checkStatus().send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'

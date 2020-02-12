@@ -14,20 +14,18 @@
 
 <body>
     <script src="phantom.js"></script>
-    <h1>Fortmatic</h1>
+    <h1>Fortmatic Whitelabel SDK Sign-in</h1>
     <p id="status"></p>
     <div>
         <input type="text" id="user-email" placeholder="Enter your email">
         <button onclick="handleLoginWithMagicLink()">Login via Magic Link</button>
+        <button onclick="handleLogout()">Logout</button>
     </div>
     <div>
         <button onclick="handleGetMetadata()">Get Metadata</button>
     </div>
     <div>
         <button onclick="handleIsLoggedIn()">Check Login Status</button>
-    </div>
-    <div>
-        <button onclick="handleLogout()">Logout</button>
     </div>
     <div>
         <button onclick="deploying()">Deploy Contract</button>
