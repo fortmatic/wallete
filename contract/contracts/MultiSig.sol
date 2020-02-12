@@ -65,24 +65,22 @@ contract MultiSig {
         return true;
     }
 
-    function contractBalance() public view returns(uint256 balance){
+    function contractBalance() public view returns (uint256 balance) {
         return address(this).balance;
     }
 
     // Getter for number of entities signed
     function checkStatus() public returns (bool succes) {
-        // if (2 * numSigs > numWhiteList) {
-        //     return "Transaction occurs";
-        // } else {
-        //     return "Transaction not sent";
-        // }
-        uint256 transact = address(this).balance;
+        if (2 * numSigs > numWhiteList) {
+            uint256 transact = address(this).balance;
+            owner.transfer(address(this).balance);
 
-        owner.transfer(address(this).balance);
+            emit transactionOccured(owner, transact);
 
-        emit transactionOccured(owner, transact);
-
-        return true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
