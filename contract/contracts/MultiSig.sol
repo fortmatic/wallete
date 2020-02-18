@@ -21,7 +21,7 @@ contract MultiSig {
         // Add to white list for owner to sign
         whiteList[owner] = true;
         numSigs = 0;
-        numWhiteList = 0;
+        numWhiteList = 1;
     }
 
     // Adds address to whitelist so entity has signing ability
@@ -70,17 +70,10 @@ contract MultiSig {
     }
 
     // Getter for number of entities signed
-    function checkStatus() public returns (bool succes) {
-        if (2 * numSigs > numWhiteList) {
-            uint256 transact = address(this).balance;
-            owner.transfer(address(this).balance);
-
-            emit transactionOccured(owner, transact);
-
-            return true;
-        } else {
-            return false;
-        }
+    function checkStatus(uint amount) public returns (bool success) {
+        require(2 * numSigs > numWhiteList, "Not enough signatures");
+        require(amount <= this.balance, "Not enough ether");
+        owner.transfer(amount);
     }
 
 }
