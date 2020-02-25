@@ -1,6 +1,13 @@
-const contract = new web3.eth.Contract(contractAbi); // need abi of smart contract
+import * as abi from './abi.js'
+import Web3 from 'web3';
+import Fortmatic from 'fortmatic';
 
-const handleLoginWithMagicLink = async () => {
+const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
+const web3 = new Web3(fmPhantom.getProvider());
+
+var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
+
+let handleLoginWithMagicLink = async () => {
   const email = document.getElementById('user-email').value;
 
   fmPhantom.loginWithMagicLink({ email })
@@ -12,11 +19,11 @@ const handleLoginWithMagicLink = async () => {
 };
 
 
-const handleIsLoggedIn = async () => {
+let handleIsLoggedIn = async () => {
   alert(await fmPhantom.user.isLoggedIn());
 };
 
-const handleLogout = async () => {
+let handleLogout = async () => {
   await fmPhantom.user.logout()
     .then(document.getElementById('status').innerHTML = 'Logged out');
 };
@@ -26,10 +33,10 @@ let handleGetMetadata = async () => {
   document.getElementById('status').innerHTML = JSON.stringify(metadata);
 };
 
-const deploying = async () => {
+let deploying = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  contract.deploy({ data: byteCode })
+  contract.deploy({ data: abi.byteCode })
     .send({
       from: userAddress,
       gas: 1500000,
@@ -76,4 +83,16 @@ let checkStatus = async () => {
     gasPrice: '3000000000000'
   })
     .then(console.log);
+};
+
+
+export {
+  checkStatus,
+  signContract,
+  addToWhiteList,
+  deploying,
+  handleGetMetadata,
+  handleLogout,
+  handleLoginWithMagicLink,
+  handleIsLoggedIn
 };
