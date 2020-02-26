@@ -3,6 +3,16 @@ pragma solidity ^0.5.16;
 contract MultiSig {
     address payable public owner; // Will be the address of who deploys to contract
 
+    struct transactionData {
+        address payable from;
+        address payable to;
+        uint256 amount;
+        uint256 nonceTrans;
+        uint256 threshold;
+    }
+
+    transactionData[] transactions;
+
     mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
     uint256 private numSigs; // Keeps track of num of signatures on transaction
 
@@ -10,9 +20,17 @@ contract MultiSig {
     uint256 private numWhiteList; // Keep track of num of addresses on whitelist
 
     // Events to emmit
+    event transactionCreated(address, address, uint256, uint256);
+
     event SignedTransact(address);
     event AddedWhiteList(address);
     event transactionOccured(address, uint256);
+
+    uint256 public nonce = 0;
+    uint256 public threshold;
+    // Mapping to keep track of all message hashes that have been approve by ALL REQUIRED owners
+    mapping(bytes32 => uint256) public signedMessages;
+    mapping(bytes32 => uint256) public dataViaTxHash;
 
     constructor() public {
         // Make the owner who deploys contract
@@ -45,8 +63,48 @@ contract MultiSig {
         return signedList[called];
     }
 
+    function setupTransaction(
+        address payable _paymentReciever,
+        uint256 _threshold,
+        uint256 _amount
+    ) external payable returns (bytes32) {
+        require(msg.value == _amount, "Not enough eth to send transaction");
+
+        transactions[nonce] = transactionData(
+            msg.sender,
+            _paymentReciever,
+            _amount,
+            nonce,
+            _threshold
+        );
+
+        emit transactionCreated(
+            msg.sender,
+            _paymentReciever,
+            nonce,
+            _threshold
+        );
+
+        bytes32 txHash = keccak256(
+            abi.encode(
+                transactions[nonce].to,
+                transactions[nonce].from,
+                transactions[nonce].amount,
+                transactions[nonce].nonceTrans,
+                transactions[nonce].threshold
+            )
+        );
+
+        signedMessages[txHash] = 0;
+        dataViaTxHash[txHash] = nonce;
+        signTransaction(txHash);
+
+        nonce++;
+        return txHash;
+    }
+
     // Msg.sender signs transaction
-    function signTransaction() public payable returns (bool success) {
+    function signTransaction(bytes32 txHash) public returns (bool success) {
         // Makes sure sender is on whitelist and has not signed yet
         require(
             whiteList[msg.sender] == true,
@@ -60,8 +118,15 @@ contract MultiSig {
         // Increment num of signatures on transact and approve on signedList
         ++numSigs;
         signedList[msg.sender] = true;
+        signedMessages[txHash] += 1;
         emit SignedTransact(msg.sender);
 
+        return checkStatus(txHash);
+    }
+
+    function handlePayment(bytes32 txHash) private returns (bool) {
+        address payable reciever = transactions[dataViaTxHash[txHash]].to;
+        reciever.transfer(transactions[dataViaTxHash[txHash]].amount);
         return true;
     }
 
@@ -70,10 +135,15 @@ contract MultiSig {
     }
 
     // Getter for number of entities signed
-    function checkStatus(uint amount) public returns (bool success) {
-        require(2 * numSigs > numWhiteList, "Not enough signatures");
-        require(amount <= this.balance, "Not enough ether");
-        owner.transfer(amount);
+    function checkStatus(bytes32 txHash) private returns (bool success) {
+        if (
+            signedMessages[txHash] >=
+            transactions[dataViaTxHash[txHash]].threshold
+        ) {
+            return handlePayment(txHash);
+        }
+
+        return false;
     }
 
 }

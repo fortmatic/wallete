@@ -6,7 +6,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <h1 id= "main">Fortmatic Whitelabel SDK Sign-in</h1>
+                <h1 id="main">Fortmatic Whitelabel SDK Sign-in</h1>
                 <p id="status"></p>
                 <div>
                     <input type="text" id="user-email" placeholder="Enter your email" />
@@ -16,22 +16,24 @@ class Main extends Component {
 
                 <div>
                     <button onClick={handle.handleGetMetadata}>Get Metadata</button>
-                </div>
-                <div>
                     <button onClick={handle.handleIsLoggedIn}>Check Login Status</button>
                 </div>
+
+                <button onClick={handle.deploying}>Deploy Contract</button>
+
                 <div>
-                    <button onClick={handle.deploying}>Deploy Contract</button>
-
-                    <div>
-                        <input type="text" id="address" placeholder="Enter Address" />
-                        <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
-                    </div>
-
-
-                    <button onClick={handle.signContract}>Sign Contract</button>
-                    <button onClick={handle.checkStatus}>Check Contract Status</button>
+                    <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
+                    <button onClick={handle.setupTransaction}>Start Transaction</button>
                 </div>
+
+                <div>
+                    <input type="text" id="address" placeholder="Enter Address" />
+                    <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
+                </div>
+
+                <button onClick={handle.signContract}>Sign Contract</button>
+                <button onClick={handle.checkStatus}>Check Contract Status</button>
+
             </div>
         );
     }

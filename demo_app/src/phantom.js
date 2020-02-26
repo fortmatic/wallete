@@ -5,6 +5,8 @@ import Fortmatic from 'fortmatic';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 
+var txHash;
+
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 
 let handleLoginWithMagicLink = async () => {
@@ -48,6 +50,10 @@ let deploying = async () => {
       document.getElementById('status').innerHTML = 'Contract deployed at ' + contract.options.address;
     });
 };
+
+let setupTransaction = async () => {
+  
+}
 
 let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
@@ -94,5 +100,6 @@ export {
   handleGetMetadata,
   handleLogout,
   handleLoginWithMagicLink,
-  handleIsLoggedIn
+  handleIsLoggedIn,
+  setupTransaction
 };
