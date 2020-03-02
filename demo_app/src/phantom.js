@@ -6,8 +6,10 @@ const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 
 var txHash;
+const threshold = 2;
 
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
+contract.options.address = '0x7729904B7eBd2Cb136942E14634C653665B78EF9';
 
 let handleLoginWithMagicLink = async () => {
   const email = document.getElementById('user-email').value;
@@ -52,7 +54,17 @@ let deploying = async () => {
 };
 
 let setupTransaction = async () => {
-  
+  const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+  const amount = document.getElementById('exchangeAmt').value;
+  const sendAddress = document.getElementById('sendAddress').value;
+
+  await contract.methods.setupTransaction(sendAddress, threshold, amount).send({
+    from: userAddress,
+    gas: 1500000,
+    gasPrice: '3000000000000',
+    value: amount
+  })
+    .then(console.log);
 }
 
 let addToWhiteList = async () => {
@@ -73,8 +85,7 @@ let signContract = async () => {
   await contract.methods.signTransaction().send({
     from: userAddress,
     gas: 1500000,
-    gasPrice: '3000000000000',
-    value: '1000000000000000000'
+    gasPrice: '3000000000000'
   })
     .then(console.log);
 

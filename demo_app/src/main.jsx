@@ -22,6 +22,7 @@ class Main extends Component {
                 <button onClick={handle.deploying}>Deploy Contract</button>
 
                 <div>
+                    <input type="text" id="sendAddress" placeholder="Send to Address" />
                     <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                     <button onClick={handle.setupTransaction}>Start Transaction</button>
                 </div>

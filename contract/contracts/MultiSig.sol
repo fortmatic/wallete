@@ -11,7 +11,7 @@ contract MultiSig {
         uint256 threshold;
     }
 
-    transactionData[] transactions;
+    mapping(uint256 => transactionData) private transactions;
 
     mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
     uint256 private numSigs; // Keeps track of num of signatures on transaction
@@ -127,6 +127,11 @@ contract MultiSig {
     function handlePayment(bytes32 txHash) private returns (bool) {
         address payable reciever = transactions[dataViaTxHash[txHash]].to;
         reciever.transfer(transactions[dataViaTxHash[txHash]].amount);
+
+        emit transactionOccured(
+            transactions[dataViaTxHash[txHash]].to,
+            transactions[dataViaTxHash[txHash]].amount
+        );
         return true;
     }
 
@@ -135,7 +140,7 @@ contract MultiSig {
     }
 
     // Getter for number of entities signed
-    function checkStatus(bytes32 txHash) private returns (bool success) {
+    function checkStatus(bytes32 txHash) public payable returns (bool success) {
         if (
             signedMessages[txHash] >=
             transactions[dataViaTxHash[txHash]].threshold
