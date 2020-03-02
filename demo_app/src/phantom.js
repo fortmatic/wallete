@@ -64,7 +64,12 @@ let setupTransaction = async () => {
     gasPrice: '3000000000000',
     value: amount
   })
-    .then(console.log);
+    .on('receipt', (rec) => {
+      console.log(rec);
+      txHash = rec.events.emitHash.returnValues[0];
+      console.log(txHash);
+      console.log("Transaction Hash ^");
+    });
 }
 
 let addToWhiteList = async () => {
@@ -82,7 +87,7 @@ let addToWhiteList = async () => {
 let signContract = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  await contract.methods.signTransaction().send({
+  await contract.methods.signTransaction(txHash).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
@@ -94,7 +99,7 @@ let signContract = async () => {
 let checkStatus = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  await contract.methods.checkStatus().send({
+  await contract.methods.checkStatus(txHash).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'

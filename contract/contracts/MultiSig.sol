@@ -25,6 +25,7 @@ contract MultiSig {
     event SignedTransact(address);
     event AddedWhiteList(address);
     event transactionOccured(address, uint256);
+    event emitHash(bytes32);
 
     uint256 public nonce = 0;
     uint256 public threshold;
@@ -100,6 +101,8 @@ contract MultiSig {
         signTransaction(txHash);
 
         nonce++;
+        emit emitHash(txHash);
+
         return txHash;
     }
 
