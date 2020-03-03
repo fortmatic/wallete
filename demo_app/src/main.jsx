@@ -1,3 +1,4 @@
+// import React from 'react';
 import React, { Component } from 'react';
 import * as handle from './phantom.js';
 import './main.css';
@@ -5,6 +6,15 @@ import './main.css';
 class Main extends Component {
     render() {
         return (
+            <div className="App">
+            <header className="App-header">
+            <head>
+            <script>
+            fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
+            web3 = new Web3(fmPhantom.getProvider());
+            </script>
+
+            </head>
             <div>
                 <h1 id="main">Fortmatic Whitelabel SDK Sign-in</h1>
                 <p id="status"></p>
@@ -36,6 +46,8 @@ class Main extends Component {
                 <button onClick={handle.checkStatus}>Check Contract Status</button>
 
             </div>
+            </header>
+    </div>
         );
     }
 }
