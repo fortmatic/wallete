@@ -6,7 +6,6 @@ const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 
 var txHash;
-const threshold = 2;
 
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = '0x7729904B7eBd2Cb136942E14634C653665B78EF9';
@@ -57,6 +56,7 @@ let setupTransaction = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
   const amount = document.getElementById('exchangeAmt').value;
   const sendAddress = document.getElementById('sendAddress').value;
+  const threshold = document.getElementById('threshold').value;
 
   await contract.methods.setupTransaction(sendAddress, threshold, amount).send({
     from: userAddress,
@@ -69,6 +69,8 @@ let setupTransaction = async () => {
       txHash = rec.events.emitHash.returnValues[0];
       console.log(txHash);
       console.log("Transaction Hash ^");
+
+      document.getElementById('status').innerHTML = "Transaction started";
     });
 }
 
@@ -81,7 +83,10 @@ let addToWhiteList = async () => {
     gas: 1500000,
     gasPrice: '3000000000000'
   })
-    .then(console.log);
+    .on('receipt', (rec) => {
+      console.log(rec);
+      document.getElementById('status').innerHTML = rec.events.AddedWhiteList.returnValues[0] + " added to Whitelist";
+    });
 }
 
 let signContract = async () => {
@@ -92,8 +97,16 @@ let signContract = async () => {
     gas: 1500000,
     gasPrice: '3000000000000'
   })
-    .then(console.log);
-
+    .on('receipt', (rec) => {
+      console.log(rec);
+      if (rec.events.transactionOccured != null) {
+        document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[0]
+          + " to " + rec.events.transactionOccured.returnValues[1];
+      }
+      else {
+        document.getElementById('status').innerHTML = rec.events.SignedTransact.returnValues[0] + " signed transaction";
+      }
+    });
 };
 
 let checkStatus = async () => {
@@ -107,6 +120,10 @@ let checkStatus = async () => {
     .then(console.log);
 };
 
+let contractConnect = () => {
+  contract.options.address = document.getElementById('contractAdd').value;
+  document.getElementById('status').innerHTML = 'Contract connected at ' + contract.options.address;
+}
 
 export {
   checkStatus,
@@ -117,5 +134,6 @@ export {
   handleLogout,
   handleLoginWithMagicLink,
   handleIsLoggedIn,
-  setupTransaction
+  setupTransaction,
+  contractConnect
 };
