@@ -13,10 +13,10 @@ contract MultiSig {
 
     mapping(uint256 => transactionData) private transactions;
 
-    mapping(address => bool) private whiteList; // whitelist of address that can sign transactions
+    mapping(bytes32 => mapping(address => bool)) public whiteList; // whitelist of address that can sign transactions
     uint256 private numSigs; // Keeps track of num of signatures on transaction
 
-    mapping(address => bool) private signedList; // list of address that have signed the transaction
+    mapping(bytes32 => mapping(address => bool)) public signedList; // list of address that have signed the transaction
     uint256 private numWhiteList; // Keep track of num of addresses on whitelist
 
     // Events to emmit
@@ -38,30 +38,24 @@ contract MultiSig {
         owner = msg.sender;
 
         // Add to white list for owner to sign
-        whiteList[owner] = true;
         numSigs = 0;
         numWhiteList = 1;
     }
 
     // Adds address to whitelist so entity has signing ability
-    function addAddress(address newAddress) public returns (bool success) {
+    function addAddress(address newAddress, bytes32 txHash) public returns (bool success) {
         // Requires to ensure owner adding signers
         require(msg.sender == owner, "Sender not authorized");
         require(
-            whiteList[newAddress] == false,
+            whiteList[txHash][newAddress] == false,
             "Address is already on whitelist"
         );
 
         // Give address signing ability and emit event
-        whiteList[newAddress] = true;
+        whiteList[txHash][newAddress] = true;
         emit AddedWhiteList(newAddress);
         ++numWhiteList;
         return true;
-    }
-
-    // Checks if address has signed transaction
-    function checkList(address called) public returns (bool checked) {
-        return signedList[called];
     }
 
     function setupTransaction(
@@ -98,6 +92,7 @@ contract MultiSig {
 
         signedMessages[txHash] = 0;
         dataViaTxHash[txHash] = nonce;
+        addAddress(msg.sender, txHash);
         signTransaction(txHash);
 
         nonce++;
@@ -110,17 +105,17 @@ contract MultiSig {
     function signTransaction(bytes32 txHash) public returns (bool success) {
         // Makes sure sender is on whitelist and has not signed yet
         require(
-            whiteList[msg.sender] == true,
+            whiteList[txHash][msg.sender] == true,
             "This address is not on the whitelist"
         );
         require(
-            signedList[msg.sender] == false,
+            signedList[txHash][msg.sender] == false,
             "This address has already signed the transaction"
         );
 
         // Increment num of signatures on transact and approve on signedList
         ++numSigs;
-        signedList[msg.sender] = true;
+        signedList[txHash][msg.sender] = true;
         signedMessages[txHash] += 1;
         emit SignedTransact(msg.sender);
 
