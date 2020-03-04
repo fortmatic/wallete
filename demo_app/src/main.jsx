@@ -43,7 +43,6 @@ class Main extends Component {
                 </div>
 
                 <button onClick={handle.signContract}>Sign Contract</button>
-                <button onClick={handle.checkStatus}>Check Contract Status</button>
 
             </div>
             </header>
