@@ -9,6 +9,7 @@
     "fortmatic": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-floating-button-menu": "^2.0.8",
     "react-scripts": "3.4.0",
     "web3": "^1.2.6"
   },
