@@ -11,6 +11,7 @@ contract MultiSig {
         uint256 nonceTrans;
         uint256 threshold;
     }
+    mapping(uint256 => address) private whitelistAdd; // list of addresses added to whitelist
 
     mapping(uint256 => transactionData) private transactions;
 
@@ -40,6 +41,7 @@ contract MultiSig {
 
         // Add to white list for owner to sign
         numSigs = 0;
+        whitelistAdd[numWhiteList] = owner; // add owner's address as address 0 of whitelist addresses 
         numWhiteList = 1;
     }
 
@@ -54,6 +56,7 @@ contract MultiSig {
 
         // Give address signing ability and emit event
         whiteList[txHash][newAddress] = true;
+        whitelistAdd[numWhiteList] = newAddress; // add the new address to list of whitelist addresses 
         emit AddedWhiteList(newAddress);
         ++numWhiteList;
         return true;
