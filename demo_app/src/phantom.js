@@ -130,6 +130,10 @@ let contractConnect = () => {
   document.getElementById('status').innerHTML = 'Contract connected at ' + contract.options.address;
 }
 
+let getBalance = () => {
+  document.getElementById('balance').innerHTML = contract.methods.contractBalance();
+}
+
 export {
   checkStatus,
   signContract,
@@ -141,5 +145,6 @@ export {
   handleIsLoggedIn,
   setupTransaction,
   contractConnect,
-  setTxHash
+  setTxHash,
+  getBalance
 };

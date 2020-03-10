@@ -18,10 +18,11 @@ class SignAndAdd extends Component {
                     <ul id="list">
                     </ul>
                 </div>
-                <div id="addAddress">
+                <div>
                     <input type="text" id="address" placeholder="Enter Address" />
                     <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
                 </div>
+                <br></br>
 
                 <button onClick={handle.signContract}>Sign Contract</button>
             </div>
@@ -65,6 +66,11 @@ class Vault extends Component {
     render() {
         return (
             <div className="main">
+                <div>
+                    <h1>Balance</h1>
+                    <p id="balance"></p>
+                    <button onClick={handle.getBalance}>Refresh</button>
+                </div>
                 <div id="pending">
                     <h1>Pending Transactions</h1>
                     <ul id="pendingList"></ul>

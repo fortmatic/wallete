@@ -3,6 +3,7 @@ pragma solidity ^0.5.16;
 contract MultiSig {
     address payable public owner; // Will be the address of who deploys to contract
 
+
     struct transactionData {
         address payable from;
         address payable to;
@@ -14,10 +15,10 @@ contract MultiSig {
     mapping(uint256 => transactionData) private transactions;
 
     mapping(bytes32 => mapping(address => bool)) public whiteList; // whitelist of address that can sign transactions
-    uint256 private numSigs; // Keeps track of num of signatures on transaction
+    uint256 private numWhiteList; // Keep track of num of addresses on whitelist
 
     mapping(bytes32 => mapping(address => bool)) public signedList; // list of address that have signed the transaction
-    uint256 private numWhiteList; // Keep track of num of addresses on whitelist
+    uint256 private numSigs; // Keeps track of num of signatures on transaction
 
     // Events to emmit
     event transactionCreated(address, address, uint256, uint256);

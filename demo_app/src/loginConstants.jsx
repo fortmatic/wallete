@@ -17,7 +17,6 @@ class Top extends Component {
             <div className="App">
                 <header className="App-header">
                     <h1 id="main">Whitelabel MultiSig</h1>
-                    <p id="status"></p>
                     <div id="profile">
                         <button onClick={this.openProfile} id="profBtn">Profile</button>
                     </div>
@@ -86,6 +85,7 @@ class Login extends Component {
     render() {
         return (
             <div className="login">
+                <p id="status"></p>
                 <input type="text" id="user-email" placeholder="Enter your email" />
                 <button onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</button>
                 <button onClick={handle.handleLogout}>Logout</button>
@@ -99,9 +99,11 @@ class Login extends Component {
     }
 
     async getMainPage() {
-        ReactDOM.render(<Top />, document.getElementById('constant'));
-        ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+        if (document.getElementById('status').innerHTML !== 'Logged out') {
+            ReactDOM.render(<Top />, document.getElementById('constant'));
+            ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+            ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+        }
     }
 }
 
