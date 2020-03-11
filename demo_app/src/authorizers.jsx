@@ -5,9 +5,7 @@ import * as handle from './phantom.js';
 import './main.css';
 
 import Fortmatic from 'fortmatic';
-import Web3 from 'web3';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
-const web3 = new Web3(fmPhantom.getProvider());
 
 class SignAndAdd extends Component {
     render() {
@@ -18,7 +16,7 @@ class SignAndAdd extends Component {
                     <ul id="list">
                     </ul>
                 </div>
-                <div>
+                <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
                     <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
                 </div>
@@ -66,18 +64,19 @@ class Vault extends Component {
     render() {
         return (
             <div className="main">
-                <div>
-                    <h1>Balance</h1>
-                    <p id="balance"></p>
-                    <button onClick={handle.getBalance}>Refresh</button>
-                </div>
                 <div id="pending">
                     <h1>Pending Transactions</h1>
                     <ul id="pendingList"></ul>
                     <select name="transaction" id="pendTxns"></select>
                 </div>
+
+                <div id="balDiv">
+                    <h1>Balance</h1>
+                    <p id="balance"></p>
+                    <button onClick={handle.getBalance}>Refresh</button>
+                </div>
+
                 <div id="compositionTx"></div>
-                <p id="contractBalance"></p>
             </div>
         );
     }

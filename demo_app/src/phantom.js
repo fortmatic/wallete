@@ -130,8 +130,19 @@ let contractConnect = () => {
   document.getElementById('status').innerHTML = 'Contract connected at ' + contract.options.address;
 }
 
-let getBalance = () => {
-  document.getElementById('balance').innerHTML = contract.methods.contractBalance();
+let getBalance = async () => {
+  await contract.methods.contractBalance().call()
+    .then((rec) => {
+      document.getElementById('balance').innerHTML = rec;
+    });
+}
+
+let getWhitelist = async () => {
+  var whitelist;
+  var numElements;
+
+  await contract.MultiSig.getnumWhiteList().call()
+    .then(console.log);
 }
 
 export {
@@ -146,5 +157,6 @@ export {
   setupTransaction,
   contractConnect,
   setTxHash,
-  getBalance
+  getBalance,
+  getWhitelist
 };

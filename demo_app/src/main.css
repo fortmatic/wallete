@@ -5,7 +5,7 @@
   
 .App-header {
     background-color: #282c34;
-    height: 150px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     position: fixed;
-    margin-top: 150px;
+    margin-top: 200px;
     left: 0;
     height: 100%;
     display: flex;
@@ -56,6 +56,14 @@
 #profile {
     position: absolute;
     top: 1%;
+    right: 1%;
+    text-align: right;
+}
+
+#balDiv {
+    position: absolute;
+    margin-top: 200px;
+    top: 0px;
     right: 1%;
     text-align: right;
 }

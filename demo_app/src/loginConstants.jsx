@@ -5,11 +5,9 @@ import * as handle from './phantom.js';
 import './main.css';
 
 import Fortmatic from 'fortmatic';
-import Web3 from 'web3';
 import * as authorizers from './authorizers.jsx';
 
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
-const web3 = new Web3(fmPhantom.getProvider());
 
 class Top extends Component {
     render() {
@@ -20,6 +18,7 @@ class Top extends Component {
                     <div id="profile">
                         <button onClick={this.openProfile} id="profBtn">Profile</button>
                     </div>
+                    <p id="status"></p>
                 </header>
             </div>
         );
@@ -56,7 +55,7 @@ class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <button onClick={this.getDeployPage}>Deploy</button>
-                <button onClick={this.getSignAndAdd}>Organization</button>
+                <button onClick={this.getSignAndAdd}>Whitelist</button>
                 <button onClick={this.getSetupPage}>Start Transaction</button>
                 <button onClick={this.getVault}>Vault</button>
             </div>
@@ -73,6 +72,7 @@ class Sidebar extends Component {
 
     getSignAndAdd() {
         ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
+        handle.getWhitelist();
     }
 
     getVault() {
