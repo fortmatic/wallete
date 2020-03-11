@@ -1,4 +1,5 @@
 pragma solidity ^0.5.16;
+pragma experimental ABIEncoderV2;
 
 contract MultiSig {
     address public owner; // Will be the address of who deploys to contract
@@ -39,7 +40,23 @@ contract MultiSig {
         addAddress(msg.sender); // add owner's address as address 0 of whitelist addresses
     }
 
-    function findAddress(address find) internal returns (bool success) {
+    function getWhitelistAdd()
+        public
+        view
+        returns (address[] memory whitelist)
+    {
+        return whitelistAdd;
+    }
+
+    function getPendingTx()
+        public
+        view
+        returns (transactionData[] memory pending)
+    {
+        return pendingTransactions;
+    }
+
+    function findAddress(address find) internal view returns (bool success) {
         for (uint256 index = 0; index < whitelistAdd.length; index++) {
             if (whitelistAdd[index] == find) {
                 return true;
@@ -88,7 +105,7 @@ contract MultiSig {
             _threshold
         );
 
-        bytes32 txHash = encodeTransaction(nonce);
+        bytes32 txHash = encodeTransaction(nonce, transactions);
 
         numSigs[txHash] = 0;
         signTransaction(nonce);
@@ -99,14 +116,18 @@ contract MultiSig {
         return nonce - 1;
     }
 
-    function encodeTransaction(uint256 index) internal returns (bytes32) {
+    function encodeTransaction(uint256 index, transactionData[] memory txns)
+        internal
+        pure
+        returns (bytes32)
+    {
         bytes32 tmp = keccak256(
             abi.encode(
-                transactions[index].to,
-                transactions[index].from,
-                transactions[index].amount,
-                transactions[index].nonceTrans,
-                transactions[index].threshold
+                txns[index].to,
+                txns[index].from,
+                txns[index].amount,
+                txns[index].nonceTrans,
+                txns[index].threshold
             )
         );
 
@@ -115,7 +136,7 @@ contract MultiSig {
 
     // Msg.sender signs transaction
     function signTransaction(uint256 index) public returns (bool success) {
-        bytes32 txHash = encodeTransaction(index);
+        bytes32 txHash = encodeTransaction(index, pendingTransactions);
         // Makes sure sender is on whitelist and has not signed yet
         require(
             findAddress(msg.sender),
@@ -160,7 +181,7 @@ contract MultiSig {
 
     // Getter for number of entities signed
     function checkStatus(uint256 index) public payable returns (bool success) {
-        bytes32 txHash = encodeTransaction(index);
+        bytes32 txHash = encodeTransaction(index, pendingTransactions);
         if (numSigs[txHash] >= transactions[index].threshold) {
             return handlePayment(index);
         }
