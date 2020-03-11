@@ -131,7 +131,7 @@ let contractConnect = () => {
 }
 
 let getBalance = () => {
-  document.getElementById('balance').innerHTML = contract.methods.contractBalance();
+  document.getElementById('balance').innerHTML = contract.methods.contractBalance().call();
 }
 
 export {
