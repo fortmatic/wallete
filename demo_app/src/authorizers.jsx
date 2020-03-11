@@ -22,7 +22,6 @@ class SignAndAdd extends Component {
                 </div>
                 <br></br>
 
-                <button onClick={handle.signContract}>Sign Contract</button>
             </div>
         );
     }
@@ -75,6 +74,9 @@ class Vault extends Component {
                     <p id="balance"></p>
                     <button onClick={handle.getBalance}>Refresh</button>
                 </div>
+                
+                <button onClick={handle.signContract}>Sign Contract</button>
+
 
                 <div id="compositionTx"></div>
             </div>

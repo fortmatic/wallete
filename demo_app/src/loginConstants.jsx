@@ -85,6 +85,7 @@ class Login extends Component {
     render() {
         return (
             <div className="login">
+                <h1>Fortmatic Whitelabel MultiSig</h1>
                 <p id="status"></p>
                 <input type="text" id="user-email" placeholder="Enter your email" />
                 <button onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</button>

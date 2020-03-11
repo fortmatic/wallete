@@ -8,7 +8,6 @@ const web3 = new Web3(fmPhantom.getProvider());
 var txHash;
 
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
-contract.options.address = '0x7729904B7eBd2Cb136942E14634C653665B78EF9';
 
 let handleLoginWithMagicLink = async () => {
   const email = document.getElementById('user-email').value;
@@ -42,7 +41,7 @@ let deploying = async () => {
   contract.deploy({ data: abi.byteCode })
     .send({
       from: userAddress,
-      gas: 1500000,
+      gas: 4000000,
       gasPrice: '3000000000000'
     })
     .on('receipt', (rec) => {
@@ -83,7 +82,7 @@ let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
   const address = document.getElementById('address').value
 
-  await contract.methods.addAddress(address, txHash).send({
+  await contract.methods.addAddress(address).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
@@ -95,9 +94,10 @@ let addToWhiteList = async () => {
 }
 
 let signContract = async () => {
+  var index;
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
-  await contract.methods.signTransaction(txHash).send({
+  await contract.methods.signTransaction(index).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
@@ -116,8 +116,9 @@ let signContract = async () => {
 
 let checkStatus = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
+  var index;
 
-  await contract.methods.checkStatus(txHash).send({
+  await contract.methods.checkStatus(index).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
@@ -139,10 +140,18 @@ let getBalance = async () => {
 
 let getWhitelist = async () => {
   var whitelist;
-  var numElements;
 
-  await contract.MultiSig.getnumWhiteList().call()
-    .then(console.log);
+  await contract.methods.getWhitelistAdd().call()
+    .then((rec) => {
+      whitelist = rec;
+    });
+
+  for (let i = 0; i < whitelist.length; i++) {
+    var node = document.createElement("LI");
+    var textnode = document.createTextNode(whitelist[i]);
+    node.appendChild(textnode);
+    document.getElementById("list").appendChild(node)
+  }
 }
 
 export {

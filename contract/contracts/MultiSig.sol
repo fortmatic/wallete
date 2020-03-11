@@ -14,6 +14,7 @@ contract MultiSig {
     }
 
     address[] public whitelistAdd; // list of addresses added to whitelist
+    mapping(address => bool) public whitelist;
     uint256 public numWhitlist;
 
     transactionData[] public transactions;
@@ -43,7 +44,7 @@ contract MultiSig {
     function getWhitelistAdd()
         public
         view
-        returns (address[] memory whitelist)
+        returns (address[] memory whitelistArr)
     {
         return whitelistAdd;
     }
@@ -56,24 +57,15 @@ contract MultiSig {
         return pendingTransactions;
     }
 
-    function findAddress(address find) internal view returns (bool success) {
-        for (uint256 index = 0; index < whitelistAdd.length; index++) {
-            if (whitelistAdd[index] == find) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     // Adds address to whitelist so entity has signing ability
     function addAddress(address newAddress) public returns (bool success) {
         // Requires to ensure owner adding signers
         require(msg.sender == owner, "Sender not authorized");
-        require(!findAddress(newAddress), "Already added");
+        require(whitelist[newAddress] == false, "Already added");
 
         // Give address signing ability and emit event
         whitelistAdd.push(newAddress); // add the new address to list of whitelist addresses
+        whitelist[newAddress] = true;
         numWhitlist++;
         emit AddedWhiteList(newAddress);
         return true;
@@ -139,7 +131,7 @@ contract MultiSig {
         bytes32 txHash = encodeTransaction(index, pendingTransactions);
         // Makes sure sender is on whitelist and has not signed yet
         require(
-            findAddress(msg.sender),
+            whitelist[msg.sender] == true,
             "This address is not on the whitelist"
         );
         require(
