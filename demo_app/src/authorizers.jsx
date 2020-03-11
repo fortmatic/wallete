@@ -49,11 +49,6 @@ class Setup extends Component {
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                 <input type="number" id="threshold" placeholder="Send threshold" />
                 <button onClick={handle.setupTransaction}>Start Transaction</button>
-
-                <div>
-                    <input type="text" id="txhash" placeholder="TxHash" />
-                    <button onClick={handle.setTxHash}>Connect to existing Transaction</button>
-                </div>
             </div>
         );
     }
@@ -65,8 +60,9 @@ class Vault extends Component {
             <div className="main">
                 <div id="pending">
                     <h1>Pending Transactions</h1>
-                    <ul id="pendingList"></ul>
+                    <ol id="pendingList"></ol>
                     <select name="transaction" id="pendTxns"></select>
+                    <button onClick={this.getCompTx} >Get CompositionTx</button>
                 </div>
 
                 <div id="balDiv">
@@ -74,13 +70,26 @@ class Vault extends Component {
                     <p id="balance"></p>
                     <button onClick={handle.getBalance}>Refresh</button>
                 </div>
-                
-                <button onClick={handle.signContract}>Sign Contract</button>
 
-
+                <button onClick={this.signPendingTx}>Sign Contract</button>
                 <div id="compositionTx"></div>
             </div>
         );
+    }
+
+    async getCompTx() {
+        var div = document.getElementById('compositionTx');
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+
+        var sel = document.getElementById('pendTxns');
+        handle.getComp(sel.value);
+    }
+
+    async signPendingTx() {
+        var sel = document.getElementById('pendTxns');
+        handle.signContract(sel.value);
     }
 }
 

@@ -73,11 +73,6 @@ let setupTransaction = async () => {
     });
 }
 
-let setTxHash = () => {
-  txHash = document.getElementById('threshold').value;
-  document.getElementById('status').innerHTML = "Transaction found";
-}
-
 let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
   const address = document.getElementById('address').value
@@ -93,8 +88,7 @@ let addToWhiteList = async () => {
     });
 }
 
-let signContract = async () => {
-  var index;
+let signContract = async (index) => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
   await contract.methods.signTransaction(index).send({
@@ -150,8 +144,63 @@ let getWhitelist = async () => {
     var node = document.createElement("LI");
     var textnode = document.createTextNode(whitelist[i]);
     node.appendChild(textnode);
-    document.getElementById("list").appendChild(node)
+    document.getElementById("list").appendChild(node);
   }
+}
+
+let getPending = async () => {
+  var pending;
+
+  await contract.methods.getPendingTx().call()
+    .then((rec) => {
+      pending = rec;
+    });
+
+  for (let i = 0; i < pending.length; i++) {
+    var node = document.createElement("LI");
+    var textnode = document.createTextNode(pending[i].to);
+    node.appendChild(textnode);
+    document.getElementById("pendingList").appendChild(node);
+
+    var opt = document.createElement('option');
+    opt.appendChild(document.createTextNode(i + 1));
+    opt.value = i;
+
+    document.getElementById("pendTxns").appendChild(opt);
+  }
+}
+
+let getComp = async (index) => {
+  var pending;
+
+  await contract.methods.getPendingTx().call()
+    .then((rec) => {
+      pending = rec;
+    });
+
+  var node = document.createElement("div");
+  
+  var title = document.createElement('h2');
+  title.appendChild(document.createTextNode("Composing Transactions"));
+  node.appendChild(title)
+
+  var textnode = document.createElement('p');
+  textnode.appendChild(document.createTextNode("From: " + pending[index].from));
+  node.appendChild(textnode);
+  
+  var textnode1 = document.createElement('p');
+  textnode1.appendChild(document.createTextNode("To: " + pending[index].to));
+  node.appendChild(textnode1);
+  
+  var textnode2 = document.createElement('p');
+  textnode2.appendChild(document.createTextNode("Amount: " + pending[index].amount));
+  node.appendChild(textnode2);
+  
+  var textnode3 = document.createElement('p');
+  textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].threshold));
+  node.appendChild(textnode3);
+
+  document.getElementById('compositionTx').appendChild(node);
 }
 
 export {
@@ -165,7 +214,8 @@ export {
   handleIsLoggedIn,
   setupTransaction,
   contractConnect,
-  setTxHash,
   getBalance,
-  getWhitelist
+  getWhitelist,
+  getPending,
+  getComp
 };
