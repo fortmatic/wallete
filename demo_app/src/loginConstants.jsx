@@ -92,6 +92,7 @@ class Login extends Component {
                 <button onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</button>
                 <button onClick={handle.handleLogout}>Logout</button>
                 <button onClick={handle.handleIsLoggedIn}>Check Status</button>
+                {/* <button onClick={handle.checkers}>Test</button> */}
 
                 <div className="navigation">
                     <button onClick={this.getMainPage}>Next</button>
@@ -101,11 +102,13 @@ class Login extends Component {
     }
 
     async getMainPage() {
-        if (document.getElementById('status').innerHTML !== 'Logged out') {
-            ReactDOM.render(<Top />, document.getElementById('constant'));
-            ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-            ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
-        }
+        ReactDOM.render(<Top />, document.getElementById('constant'));
+        ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+    }
+
+    checkStatus() {
+        console.log(document.getElementById('status').innerHTML);
     }
 }
 

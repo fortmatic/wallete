@@ -142,9 +142,15 @@ contract MultiSig {
         // Increment num of signatures on transact and approve on signedList
         signedList[txHash][msg.sender] = true;
         numSigs[txHash] += 1;
+
         emit SignedTransact(msg.sender);
 
         return checkStatus(index);
+    }
+
+    function getNumSigs(uint256 index) public returns (uint256 num) {
+        bytes32 txHash = encodeTransaction(index, pendingTransactions);
+        return numSigs[txHash];
     }
 
     function handlePayment(uint256 index) private returns (bool) {

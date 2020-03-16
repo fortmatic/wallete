@@ -20,6 +20,9 @@ let handleLoginWithMagicLink = async () => {
   document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email';
 };
 
+// let checkers = () => {
+//   console.log(document.getElementById('status').innerHTML);
+// }
 
 let handleIsLoggedIn = async () => {
   alert(await fmPhantom.user.isLoggedIn());
@@ -170,6 +173,13 @@ let getPending = async () => {
   }
 }
 
+let getSigs = async (index) => {
+  var num;
+  await contract.methods.getNumSigs(index).call().then((rec) => {
+    num = rec;
+  });
+}
+
 let getComp = async (index) => {
   var pending;
 
@@ -200,6 +210,10 @@ let getComp = async (index) => {
   textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].threshold));
   node.appendChild(textnode3);
 
+  var textnode4 = document.createElement('p');
+  textnode4.appendChild(document.createTextNode("Number of signatures: " + getSigs(index)));
+  node.appendChild(textnode4);
+
   document.getElementById('compositionTx').appendChild(node);
 }
 
@@ -218,4 +232,5 @@ export {
   getWhitelist,
   getPending,
   getComp
+  // checkers
 };
