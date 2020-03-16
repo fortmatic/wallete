@@ -4,9 +4,6 @@ import Fortmatic from 'fortmatic';
 
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
-
-var txHash;
-
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 
 let handleLoginWithMagicLink = async () => {
@@ -65,10 +62,6 @@ let setupTransaction = async () => {
   })
     .on('receipt', (rec) => {
       console.log(rec);
-      txHash = rec.events.emitHash.returnValues[0];
-      console.log(txHash);
-      console.log("Transaction Hash ^");
-
       document.getElementById('status').innerHTML = "Transaction started";
     });
 }
