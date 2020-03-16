@@ -61,7 +61,7 @@
   "source": "pragma solidity >=0.4.21 <0.7.0;\r\n\r\ncontract Migrations {\r\n  address public owner;\r\n  uint public last_completed_migration;\r\n\r\n  constructor() public {\r\n    owner = msg.sender;\r\n  }\r\n\r\n  modifier restricted() {\r\n    if (msg.sender == owner) _;\r\n  }\r\n\r\n  function setCompleted(uint completed) public restricted {\r\n    last_completed_migration = completed;\r\n  }\r\n}\r\n",
   "sourcePath": "C:\\Users\\spvye\\Documents\\Fortmatic\\phantom\\contract\\contracts\\Migrations.sol",
   "ast": {
-    "absolutePath": "/Users/sangillee/Documents/phantom/contract/contracts/Migrations.sol",
+    "absolutePath": "/C/Users/spvye/Documents/Fortmatic/phantom/contract/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         36
@@ -472,7 +472,7 @@
     "src": "0:364:0"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sangillee/Documents/phantom/contract/contracts/Migrations.sol",
+    "absolutePath": "/C/Users/spvye/Documents/Fortmatic/phantom/contract/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         36
@@ -888,7 +888,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-03-16T14:06:22.040Z",
+  "updatedAt": "2020-03-16T14:54:50.748Z",
   "devdoc": {
     "methods": {}
   },
