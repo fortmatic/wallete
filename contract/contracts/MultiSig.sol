@@ -96,7 +96,7 @@ contract MultiSig {
         transactions.push(tmp);
 
         bytes32 txHash = encodeTransaction(nonce, transactions);
-        pendingData memory pendingtmp = pendingData(tmp, 0, txHash, 0);
+        pendingData memory pendingtmp = pendingData(tmp, 0, txHash);
         pendingTransactions.push(pendingtmp);
 
         emit transactionCreated(
@@ -171,7 +171,7 @@ contract MultiSig {
     function checkStatus(uint256 index) public payable returns (bool success) {
         if (
             pendingTransactions[index].numSigs >=
-            pendingTransactions[index].threshold
+            pendingTransactions[index].txnData.threshold
         ) {
             return handlePayment(index);
         }
