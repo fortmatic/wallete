@@ -20,9 +20,6 @@ let handleLoginWithMagicLink = async () => {
   document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email';
 };
 
-// let checkers = () => {
-//   console.log(document.getElementById('status').innerHTML);
-// }
 
 let handleIsLoggedIn = async () => {
   alert(await fmPhantom.user.isLoggedIn());
@@ -160,9 +157,14 @@ let getPending = async () => {
     });
 
   for (let i = 0; i < pending.length; i++) {
-    var node = document.createElement("LI");
+    var node = document.createElement('li');
+    var nodeLink = document.createElement('a');
     var textnode = document.createTextNode(pending[i].to);
-    node.appendChild(textnode);
+    var link = "https://rinkeby.etherscan.io/address/" + textnode;
+    nodeLink.appendChild(textnode);
+    nodeLink.title = textnode;
+    nodeLink.href = link;
+    node.append(nodeLink);
     document.getElementById("pendingList").appendChild(node);
 
     var opt = document.createElement('option');
@@ -171,13 +173,6 @@ let getPending = async () => {
 
     document.getElementById("pendTxns").appendChild(opt);
   }
-}
-
-let getSigs = async (index) => {
-  var num;
-  await contract.methods.getNumSigs(index).call().then((rec) => {
-    num = rec;
-  });
 }
 
 let getComp = async (index) => {
@@ -210,10 +205,6 @@ let getComp = async (index) => {
   textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].threshold));
   node.appendChild(textnode3);
 
-  var textnode4 = document.createElement('p');
-  textnode4.appendChild(document.createTextNode("Number of signatures: " + getSigs(index)));
-  node.appendChild(textnode4);
-
   document.getElementById('compositionTx').appendChild(node);
 }
 
@@ -232,5 +223,4 @@ export {
   getWhitelist,
   getPending,
   getComp
-  // checkers
 };
