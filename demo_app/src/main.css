@@ -33,7 +33,20 @@
     width: 20%;
     overflow-y: auto;
 }
-
+.sidebarBtn{
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    border: 12px #282c34 solid;
+    color: white;
+    background-color: #282c34;
+    padding: 10px;
+    transition: all 0.2s;
+    text-align: center;
+}
 .main {
     margin-left: 20.5%;
 }
@@ -45,8 +58,149 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    height: 230px;
+    text-align: center;
+}
+input,
+textarea {
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    display: block;
+    margin: 0;
+    border-radius: 7px;
+    border: 2px #282c34 solid;
+    background-color: white;
+    padding: 10px 20px;
+    width: 100%;
+    color: #282c34;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+input {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+.log1{
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 180px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    border: 3px lightgray solid;
+    color:  #282c34;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+.log1:hover {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
 }
 
+.log2{
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    margin-left: 180px;
+    margin-top: -48px;
+    /* left: 180px;
+    top: 150px; */
+    width: 100px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    border: 3px lightgray solid;
+    color:  #282c34;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+.log2:hover {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+}
+
+.log3{
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    margin-left: 350px;
+    margin-top: -38px;
+    /* margin-bottom: 10px; */
+    /* left: 340px;
+    top: 150px; */
+    width: 100px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    border: 3px lightgray solid;
+    color:  #282c34;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+.log3:hover {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+}
+.Lognext {
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    margin-left: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* left: 180px;
+    top: 200px; */
+    width: 100px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    border: 3px lightgray solid;
+    color:  #282c34;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+.Lognext:hover {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+}
+.profileButton {
+    text-align: center;
+    display: block;
+    width: 50px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    border: 12px white solid;
+    border-radius: 50px;
+    color: black;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+}
 #addAddress {
     position: absolute;
     right: 1%;
@@ -54,7 +208,7 @@
 }
 
 #profile {
-    position: absolute;
+    position: fixed;
     top: 1%;
     right: 1%;
     text-align: right;
