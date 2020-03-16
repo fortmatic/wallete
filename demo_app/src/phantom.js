@@ -157,16 +157,16 @@ let getPending = async () => {
     });
 
   for (let i = 0; i < pending.length; i++) {
-    var txhash;
-    await contract.methods.getEncoding(i).call().then((rec) => {
-      txhash = rec;
-    });
+    // var txhash;
+    // await contract.methods.getEncoding(i).call().then((rec) => {
+    //   txhash = rec;
+    // });
     
 
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
-    var textnode = document.createTextNode(txhash);
-    var link = "https://rinkeby.etherscan.io/address/" + txhash;
+    var textnode = document.createTextNode(pending[i].to);
+    var link = "https://rinkeby.etherscan.io/address/" + pending[i].to;
     nodeLink.appendChild(textnode);
     nodeLink.title = textnode;
     nodeLink.href = link;
@@ -183,7 +183,6 @@ let getPending = async () => {
 
 let getComp = async (index) => {
   var pending;
-
   await contract.methods.getPendingTx().call()
     .then((rec) => {
       pending = rec;
@@ -210,6 +209,16 @@ let getComp = async (index) => {
   var textnode3 = document.createElement('p');
   textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].threshold));
   node.appendChild(textnode3);
+
+  // var sigs;
+  // await contract.methods.getTransactionSigs().call()
+  //   .then((rec) => {
+  //     sigs = rec;
+  //   });
+
+  // var textnode4 = document.createElement('p');
+  // textnode4.appendChild(document.createTextNode("Number of signatures: " + sigs[index]));
+  // node.appendChild(textnode4);
 
   document.getElementById('compositionTx').appendChild(node);
 }

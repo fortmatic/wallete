@@ -19,10 +19,11 @@ contract MultiSig {
 
     transactionData[] public transactions;
     transactionData[] public pendingTransactions;
+    uint256[] public transactionSigs;
     uint256 public numPendingTx;
 
     mapping(bytes32 => mapping(address => bool)) public signedList; // list of address that have signed the transaction
-    mapping(bytes32 => uint256) numSigs;
+    mapping(bytes32 => uint256) public numSigs;
 
     // Events to emmit
     event transactionCreated(address, address, uint256, uint256);
@@ -57,6 +58,10 @@ contract MultiSig {
         return pendingTransactions;
     }
 
+    function getTransactionSigs() public view returns (uint256[] memory sigs) {
+        return transactionSigs;
+    }
+
     // Adds address to whitelist so entity has signing ability
     function addAddress(address newAddress) public returns (bool success) {
         // Requires to ensure owner adding signers
@@ -76,7 +81,8 @@ contract MultiSig {
         uint256 _threshold,
         uint256 _amount
     ) external payable returns (uint256) {
-        require(msg.value == _amount, "Not enough eth to send transaction");
+        require(msg.sender.balance >= _amount, "Not enough eth to send transaction");
+        require(whitelist[msg.sender] == true, "Not authorized to make transaction");
 
         transactionData memory tmp = transactionData(
             msg.sender,
@@ -88,6 +94,7 @@ contract MultiSig {
 
         transactions.push(tmp);
         pendingTransactions.push(tmp);
+        transactionSigs.push(1);
         numPendingTx++;
 
         emit transactionCreated(
@@ -106,10 +113,6 @@ contract MultiSig {
         emit emitHash(txHash);
 
         return nonce - 1;
-    }
-
-    function getEncoding(uint256 index) public returns (bytes32) {
-        return encodeTransaction(index, pendingTransactions);
     }
 
     function encodeTransaction(uint256 index, transactionData[] memory txns)
@@ -146,15 +149,11 @@ contract MultiSig {
         // Increment num of signatures on transact and approve on signedList
         signedList[txHash][msg.sender] = true;
         numSigs[txHash] += 1;
+        transactionSigs[index] += 1;
 
         emit SignedTransact(msg.sender);
 
         return checkStatus(index);
-    }
-
-    function getNumSigs(uint256 index) public returns (uint256 num) {
-        bytes32 txHash = encodeTransaction(index, pendingTransactions);
-        return numSigs[txHash];
     }
 
     function handlePayment(uint256 index) private returns (bool) {
@@ -168,10 +167,13 @@ contract MultiSig {
 
         for (uint256 i = index; i < pendingTransactions.length - 1; i++) {
             pendingTransactions[i] = pendingTransactions[i + 1];
+            transactionSigs[i] = transactionSigs[i + 1];
         }
 
         delete pendingTransactions[pendingTransactions.length - 1];
+        delete transactionSigs[transactionSigs.length - 1];
         pendingTransactions.length--;
+        transactionSigs.length--;
         numPendingTx--;
 
         return true;
