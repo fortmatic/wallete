@@ -16,7 +16,7 @@ class Top extends Component {
                 <header className="App-header">
                     <h1 id="main">Whitelabel MultiSig</h1>
                     <div id="profile">
-                        <button onClick={this.openProfile} id="profBtn">Profile</button>
+                        <a className = "profileButton"onClick={this.openProfile} id="profBtn">Profile</a>
                     </div>
                     <p id="status"></p>
                 </header>
@@ -27,7 +27,7 @@ class Top extends Component {
     openProfile = async () => {
         const element = (
             <div>
-                <button onClick={this.closeProfile} id="profBtn">Profile</button>
+                <a onClick={this.closeProfile} id="profBtn">Profile</a>
                 <p id="username"></p>
                 <p id="address"></p>
             </div>
@@ -42,7 +42,7 @@ class Top extends Component {
     closeProfile = () => {
         const element = (
             <div>
-                <button onClick={this.openProfile} id="profBtn">Profile</button>
+                <a className = "profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
             </div>
         );
 
@@ -54,10 +54,10 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar">
-                <button onClick={this.getDeployPage}>Deploy</button>
-                <button onClick={this.getSignAndAdd}>Whitelist</button>
-                <button onClick={this.getSetupPage}>Start Transaction</button>
-                <button onClick={this.getVault}>Vault</button>
+                <a className = "sidebarBtn" onClick={this.getDeployPage}>Deploy</a>
+                <a className = "sidebarBtn" onClick={this.getSignAndAdd}>Whitelist </a>
+                <a className = "sidebarBtn" onClick={this.getSetupPage}>Start Transaction </a>
+                <a className = "sidebarBtn" onClick={this.getVault}>Vault </a> 
             </div>
         );
     }
@@ -89,26 +89,23 @@ class Login extends Component {
                 <h1>Fortmatic Whitelabel MultiSig</h1>
                 <p id="status"></p>
                 <input type="text" id="user-email" placeholder="Enter your email" />
-                <button onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</button>
-                <button onClick={handle.handleLogout}>Logout</button>
-                <button onClick={handle.handleIsLoggedIn}>Check Status</button>
-                {/* <button onClick={handle.checkers}>Test</button> */}
+                <a className = "log1" onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</a>
+                <a className = "log2" onClick={handle.handleLogout}>Logout</a>
+                <a className = "log3" onClick={handle.handleIsLoggedIn}>Check Status</a>
 
                 <div className="navigation">
-                    <button onClick={this.getMainPage}>Next</button>
+                    <a className = "Lognext" onClick={this.getMainPage}>Next</a>
                 </div>
             </div>
         );
     }
 
     async getMainPage() {
-        ReactDOM.render(<Top />, document.getElementById('constant'));
-        ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
-    }
-
-    checkStatus() {
-        console.log(document.getElementById('status').innerHTML);
+        if (document.getElementById('status').innerHTML !== 'Logged out') {
+            ReactDOM.render(<Top />, document.getElementById('constant'));
+            ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+            ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+        }
     }
 }
 
