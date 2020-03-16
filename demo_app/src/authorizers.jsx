@@ -5,9 +5,7 @@ import * as handle from './phantom.js';
 import './main.css';
 
 import Fortmatic from 'fortmatic';
-import Web3 from 'web3';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
-const web3 = new Web3(fmPhantom.getProvider());
 
 class SignAndAdd extends Component {
     render() {
@@ -22,8 +20,8 @@ class SignAndAdd extends Component {
                     <input type="text" id="address" placeholder="Enter Address" />
                     <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
                 </div>
+                <br></br>
 
-                <button onClick={handle.signContract}>Sign Contract</button>
             </div>
         );
     }
@@ -51,11 +49,6 @@ class Setup extends Component {
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                 <input type="number" id="threshold" placeholder="Send threshold" />
                 <button onClick={handle.setupTransaction}>Start Transaction</button>
-
-                <div>
-                    <input type="text" id="txhash" placeholder="TxHash" />
-                    <button onClick={handle.setTxHash}>Connect to existing Transaction</button>
-                </div>
             </div>
         );
     }
@@ -67,13 +60,36 @@ class Vault extends Component {
             <div className="main">
                 <div id="pending">
                     <h1>Pending Transactions</h1>
-                    <ul id="pendingList"></ul>
+                    <ol id="pendingList"></ol>
                     <select name="transaction" id="pendTxns"></select>
+                    <button onClick={this.getCompTx} >Get CompositionTx</button>
                 </div>
+
+                <div id="balDiv">
+                    <h1>Balance</h1>
+                    <p id="balance"></p>
+                    <button onClick={handle.getBalance}>Refresh</button>
+                </div>
+
+                <button onClick={this.signPendingTx}>Sign Transaction</button>
                 <div id="compositionTx"></div>
-                <p id="contractBalance"></p>
             </div>
         );
+    }
+
+    async getCompTx() {
+        var div = document.getElementById('compositionTx');
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+
+        var sel = document.getElementById('pendTxns');
+        handle.getComp(sel.value);
+    }
+
+    async signPendingTx() {
+        var sel = document.getElementById('pendTxns');
+        handle.signContract(sel.value);
     }
 }
 
