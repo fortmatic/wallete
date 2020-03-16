@@ -157,10 +157,16 @@ let getPending = async () => {
     });
 
   for (let i = 0; i < pending.length; i++) {
+    var txhash;
+    await contract.methods.getEncoding(i).call().then((rec) => {
+      txhash = rec;
+    });
+    
+
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
-    var textnode = document.createTextNode(pending[i].to);
-    var link = "https://rinkeby.etherscan.io/address/" + textnode;
+    var textnode = document.createTextNode(txhash);
+    var link = "https://rinkeby.etherscan.io/address/" + txhash;
     nodeLink.appendChild(textnode);
     nodeLink.title = textnode;
     nodeLink.href = link;

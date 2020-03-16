@@ -108,6 +108,10 @@ contract MultiSig {
         return nonce - 1;
     }
 
+    function getEncoding(uint256 index) public returns (bytes32) {
+        return encodeTransaction(index, pendingTransactions);
+    }
+
     function encodeTransaction(uint256 index, transactionData[] memory txns)
         internal
         pure
