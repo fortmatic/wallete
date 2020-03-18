@@ -16,9 +16,9 @@ class Top extends Component {
                 <header className="App-header">
                     <h1 id="main">Whitelabel MultiSig</h1>
                     <div id="profile">
-                        <a className = "profileButton"onClick={this.openProfile} id="profBtn">Profile</a>
+                        <a className = "profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
                     </div>
-                    <p id="status"></p>
+                    <p className ="connected" id="status"></p>
                 </header>
             </div>
         );
@@ -27,7 +27,7 @@ class Top extends Component {
     openProfile = async () => {
         const element = (
             <div>
-                <a onClick={this.closeProfile} id="profBtn">Profile</a>
+                <a className = "profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
                 <p id="username"></p>
                 <p id="address"></p>
             </div>
