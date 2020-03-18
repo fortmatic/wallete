@@ -18,7 +18,7 @@ class SignAndAdd extends Component {
                 </div>
                 <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
-                    <button onClick={handle.addToWhiteList}>Add Address to the Whitelist</button>
+                    <a className = "otherBtn"onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
                 </div>
                 <br></br>
 
@@ -31,10 +31,10 @@ class Deploy extends Component {
     render() {
         return (
             <div className="main">
-                <button onClick={handle.deploying}>Deploy Contract</button>
+                <a className="otherBtn" onClick={handle.deploying}>Deploy Contract</a>
                 <div>
                     <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
-                    <button onClick={handle.contractConnect}>Connect to Contract</button>
+                    <a className = "otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
                 </div>
             </div>
         );
@@ -48,7 +48,7 @@ class Setup extends Component {
                 <input type="text" id="sendAddress" placeholder="Send to Address" />
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                 <input type="number" id="threshold" placeholder="Send threshold" />
-                <button onClick={handle.setupTransaction}>Start Transaction</button>
+                <a className= "otherBtn"onClick={handle.setupTransaction}>Start Transaction</a>
             </div>
         );
     }
@@ -62,16 +62,16 @@ class Vault extends Component {
                     <h1>Pending Transactions</h1>
                     <ol id="pendingList"></ol>
                     <select name="transaction" id="pendTxns"></select>
-                    <button onClick={this.getCompTx} >Get CompositionTx</button>
+                    <a className="cmpBtn" onClick={this.getCompTx} >Get CompositionTx</a>
                 </div>
 
                 <div id="balDiv">
                     <h1>Balance</h1>
                     <p id="balance"></p>
-                    <button onClick={handle.getBalance}>Refresh</button>
+                    <a className="refreshBtn" onClick={handle.getBalance}>Refresh</a>
                 </div>
 
-                <button onClick={this.signPendingTx}>Sign Contract</button>
+                <a className="otherBtn" onClick={this.signPendingTx}>Sign Contract</a>
                 <div id="compositionTx"></div>
             </div>
         );
