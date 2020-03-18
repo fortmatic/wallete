@@ -161,7 +161,7 @@ let getPending = async () => {
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
     var textnode = document.createTextNode(pending[i].txHash)
-    var link = "https://rinkeby.etherscan.io/address/" + pending[i].txnData.to;
+    var link = "https://etherscan.io/address/" + pending[i].txHash;
     nodeLink.appendChild(textnode);
     nodeLink.title = textnode;
     nodeLink.href = link;
