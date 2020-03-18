@@ -5,6 +5,7 @@ import Fortmatic from 'fortmatic';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
+contract.options.address = '0xF773A20529C04F5D6CFD2404522a7F3114737D59';
 
 let handleLoginWithMagicLink = async () => {
   const email = document.getElementById('user-email').value;
@@ -128,6 +129,11 @@ let getBalance = async () => {
 let getWhitelist = async () => {
   var whitelist;
 
+  var list = document.getElementById('list');
+  while (list != null && list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+
   await contract.methods.getWhitelistAdd().call()
     .then((rec) => {
       whitelist = rec;
@@ -149,17 +155,13 @@ let getPending = async () => {
       pending = rec;
     });
 
-  for (let i = 0; i < pending.length; i++) {
-    // var txhash;
-    // await contract.methods.getEncoding(i).call().then((rec) => {
-    //   txhash = rec;
-    // });
-    
+  console.log(pending);
 
+  for (let i = 0; i < pending.length; i++) {
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
-    var textnode = document.createTextNode(pending[i].to);
-    var link = "https://rinkeby.etherscan.io/address/" + pending[i].to;
+    var textnode = document.createTextNode(pending[i].txHash)
+    var link = "https://rinkeby.etherscan.io/address/" + pending[i].txnData.to;
     nodeLink.appendChild(textnode);
     nodeLink.title = textnode;
     nodeLink.href = link;
@@ -182,36 +184,30 @@ let getComp = async (index) => {
     });
 
   var node = document.createElement("div");
-  
+
   var title = document.createElement('h2');
   title.appendChild(document.createTextNode("Composing Transactions"));
   node.appendChild(title)
 
   var textnode = document.createElement('p');
-  textnode.appendChild(document.createTextNode("From: " + pending[index].from));
+  textnode.appendChild(document.createTextNode("From: " + pending[index].txnData.from));
   node.appendChild(textnode);
-  
+
   var textnode1 = document.createElement('p');
-  textnode1.appendChild(document.createTextNode("To: " + pending[index].to));
+  textnode1.appendChild(document.createTextNode("To: " + pending[index].txnData.to));
   node.appendChild(textnode1);
-  
+
   var textnode2 = document.createElement('p');
-  textnode2.appendChild(document.createTextNode("Amount: " + pending[index].amount));
+  textnode2.appendChild(document.createTextNode("Amount: " + pending[index].txnData.amount));
   node.appendChild(textnode2);
-  
+
   var textnode3 = document.createElement('p');
-  textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].threshold));
+  textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].txnData.threshold));
   node.appendChild(textnode3);
 
-  // var sigs;
-  // await contract.methods.getTransactionSigs().call()
-  //   .then((rec) => {
-  //     sigs = rec;
-  //   });
-
-  // var textnode4 = document.createElement('p');
-  // textnode4.appendChild(document.createTextNode("Number of signatures: " + sigs[index]));
-  // node.appendChild(textnode4);
+  var textnode4 = document.createElement('p');
+  textnode4.appendChild(document.createTextNode("Number of Signatures: " + pending[index].numSigs));
+  node.appendChild(textnode4);
 
   document.getElementById('compositionTx').appendChild(node);
 }

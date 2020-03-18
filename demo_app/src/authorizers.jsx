@@ -71,7 +71,7 @@ class Vault extends Component {
                     <a className="refreshBtn" onClick={handle.getBalance}>Refresh</a>
                 </div>
 
-                <a className="otherBtn" onClick={this.signPendingTx}>Sign Contract</a>
+                <a className="otherBtn" onClick={this.signPendingTx}>Sign Transaction</a>
                 <div id="compositionTx"></div>
             </div>
         );
