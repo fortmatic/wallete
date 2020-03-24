@@ -78,6 +78,8 @@ class Sidebar extends Component {
     getVault() {
         ReactDOM.render(<authorizers.Vault />, document.getElementById('root'));
         handle.getPending();
+
+        window.setInterval(handle.getBalance(), 5000);
     }
 }
 
