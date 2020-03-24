@@ -79,12 +79,32 @@ textarea {
     border: 2px #282c34 solid;
     background-color: white;
     padding: 10px 20px;
+    width: 50%;
+    color: #282c34;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    align-items: center;
+}
+
+#user-email, #address {
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    display: block;
+    margin: 0;
+    border-radius: 7px;
+    border: 2px #282c34 solid;
+    background-color: white;
+    padding: 10px 20px;
     width: 100%;
     color: #282c34;
     margin-bottom: 10px;
     box-sizing: border-box;
     transition: all 0.2s;
+    align-items: center;
 }
+
 input {
     font-size: 16px;
     font-weight: 600;

@@ -53,7 +53,8 @@ let setupTransaction = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
   const amount = document.getElementById('exchangeAmt').value;
   const sendAddress = document.getElementById('sendAddress').value;
-  const threshold = document.getElementById('threshold').value;
+  //const threshold = document.getElementById('threshold').value;
+  const threshold = 3;
 
   await contract.methods.setupTransaction(sendAddress, threshold, amount).send({
     from: userAddress,
@@ -127,6 +128,7 @@ let getBalance = async () => {
 }
 
 let getWhitelist = async () => {
+  document.getElementById("thing").innerHTML = 'Whitelist of ' + contract.options.address;
   var whitelist;
 
   var list = document.getElementById('list');

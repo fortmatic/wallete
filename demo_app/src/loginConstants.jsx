@@ -29,14 +29,14 @@ class Top extends Component {
             <div>
                 <a className = "profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
                 <p id="username"></p>
-                <p id="address"></p>
+                <p id="userAddress"></p>
             </div>
         );
 
         await ReactDOM.render(element, document.getElementById('profile'));
 
         document.getElementById('username').innerHTML = (await fmPhantom.user.getMetadata()).email;
-        document.getElementById('address').innerHTML = (await fmPhantom.user.getMetadata()).publicAddress;
+        document.getElementById('userAddress').innerHTML = (await fmPhantom.user.getMetadata()).publicAddress;
     }
 
     closeProfile = () => {
@@ -70,8 +70,8 @@ class Sidebar extends Component {
         ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
     }
 
-    getSignAndAdd() {
-        ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
+    async getSignAndAdd() {
+        await ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
         handle.getWhitelist();
     }
 

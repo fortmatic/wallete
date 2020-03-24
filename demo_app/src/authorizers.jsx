@@ -12,13 +12,13 @@ class SignAndAdd extends Component {
         return (
             <div className="main">
                 <div id="whitelist">
-                    <h1>Addresses on Whitelist</h1>
+                    <h1 id="thing">Addresses on Whitelist</h1>
                     <ul id="list">
                     </ul>
                 </div>
                 <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
-                    <a className = "otherBtn"onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
+                    <a className="otherBtn" onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
                 </div>
                 <br></br>
 
@@ -34,7 +34,7 @@ class Deploy extends Component {
                 <a className="otherBtn" onClick={handle.deploying}>Deploy Contract</a>
                 <div>
                     <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
-                    <a className = "otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
+                    <a className="otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
                 </div>
             </div>
         );
@@ -47,8 +47,8 @@ class Setup extends Component {
             <div className="main">
                 <input type="text" id="sendAddress" placeholder="Send to Address" />
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
-                <input type="number" id="threshold" placeholder="Send threshold" />
-                <a className= "otherBtn"onClick={handle.setupTransaction}>Start Transaction</a>
+                {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
+                <a className="otherBtn" onClick={handle.setupTransaction}>Start Transaction</a>
             </div>
         );
     }
