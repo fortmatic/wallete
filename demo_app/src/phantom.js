@@ -215,6 +215,8 @@ let getPending = async () => {
         nodeLink2.append(button2);
         button2.addEventListener("click", 
           async function() {
+            document.getElementById("pendingList").innerHTML = "";
+            getPending();
             var div = document.getElementById('compositionTx');
             while (div.firstChild) {
               div.removeChild(div.firstChild);
