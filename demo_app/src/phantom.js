@@ -179,20 +179,43 @@ let getPending = async () => {
 
   for (let i = 0; i < pending.length; i++) {
     var node = document.createElement('li');
-    var nodeLink = document.createElement('a');
-    var textnode = document.createTextNode(txnHash[i])
-    var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
-    nodeLink.appendChild(textnode);
-    nodeLink.title = textnode;
-    nodeLink.href = link;
-    node.append(nodeLink);
+    // var nodeLink = document.createElement('a');
+    // var textnode = document.createTextNode(txnHash[i])
+    // var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
+    // nodeLink.appendChild(textnode);
+    // nodeLink.title = textnode;
+    // nodeLink.href = link;
+    // node.append(nodeLink);
+
+    var button = document.createElement('button');
+    button.innerHTML = txnHash;
+
+    node.append(button);
+    button.addEventListener("click", 
+      async function() {
+        var div = document.getElementById('compositionTx');
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+
+        getComp(i);
+
+        var nodeLink = document.createElement('a');
+        var textnode = document.createTextNode("View on Etherscan")
+        var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
+        nodeLink.appendChild(textnode);
+        nodeLink.title = textnode;
+        nodeLink.href = link;
+        node.append(nodeLink);
+      })
+
     document.getElementById("pendingList").appendChild(node);
 
-    var opt = document.createElement('option');
-    opt.appendChild(document.createTextNode(i + 1));
-    opt.value = i;
+    // var opt = document.createElement('option');
+    // opt.appendChild(document.createTextNode(i + 1));
+    // opt.value = i;
 
-    document.getElementById("pendTxns").appendChild(opt);
+    // document.getElementById("pendTxns").appendChild(opt);
   }
 }
 

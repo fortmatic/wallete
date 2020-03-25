@@ -61,8 +61,8 @@ class Vault extends Component {
                 <div id="pending">
                     <h1>Pending Transactions</h1>
                     <ol id="pendingList"></ol>
-                    <select name="transaction" id="pendTxns"></select>
-                    <a className="cmpBtn" onClick={this.getCompTx} >Get CompositionTx</a>
+                    {/* <select name="transaction" id="pendTxns"></select> */}
+                    {/* <a className="cmpBtn" onClick={this.getCompTx} >Get CompositionTx</a> */}
                 </div>
 
                 <div id="balDiv">
@@ -77,15 +77,15 @@ class Vault extends Component {
         );
     }
 
-    async getCompTx() {
-        var div = document.getElementById('compositionTx');
-        while (div.firstChild) {
-            div.removeChild(div.firstChild);
-        }
+    // async getCompTx() {
+    //     var div = document.getElementById('compositionTx');
+    //     while (div.firstChild) {
+    //         div.removeChild(div.firstChild);
+    //     }
 
-        var sel = document.getElementById('pendTxns');
-        handle.getComp(sel.value);
-    }
+    //     var sel = document.getElementById('pendTxns');
+    //     handle.getComp(sel.value);
+    // }
 
     async signPendingTx() {
         var sel = document.getElementById('pendTxns');
