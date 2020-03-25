@@ -64,7 +64,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar">
-                <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a>
+                {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
                 <a className="sidebarBtn" onClick={this.getSignAndAdd}>Whitelist </a>
                 <a className="sidebarBtn" onClick={this.getSetupPage}>Start Transaction </a>
                 <a className="sidebarBtn" onClick={this.getVault}>Vault </a>

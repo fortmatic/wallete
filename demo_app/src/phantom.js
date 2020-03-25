@@ -161,6 +161,11 @@ let getWhitelist = async () => {
 }
 
 let getPending = async () => {
+  var list = document.getElementById('pendingList');
+  while (list != null && list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+
   var pending;
   var txnHash;
 
@@ -188,41 +193,42 @@ let getPending = async () => {
     // node.append(nodeLink);
 
     var button = document.createElement('button');
-    button.innerHTML = txnHash;
+    button.innerHTML = txnHash[i];
 
     nodeLink.append(button);
-    button.addEventListener("click", 
-      async function() {
+
+    button.addEventListener("click",
+      async function () {
         var div = document.getElementById('compositionTx');
         while (div.firstChild) {
-            div.removeChild(div.firstChild);
+          div.removeChild(div.firstChild);
         }
 
-        getComp(i);
+        await getComp(i);
+        var compositionNode = document.getElementById('compositionTx');
 
-        var nodeLink = document.createElement('a');
+        var etherLink = document.createElement('a');
         var textnode = document.createTextNode("View on Etherscan")
-        var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
-        nodeLink.appendChild(textnode);
-        nodeLink.title = textnode;
-        nodeLink.href = link;
-        node.append(nodeLink);
+        var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
+        etherLink.appendChild(textnode);
+        etherLink.title = textnode;
+        etherLink.href = link;
+        compositionNode.append(etherLink);
 
         var button2 = document.createElement('button');
         button2.innerHTML = "close";
 
         var nodeLink2 = document.createElement('a');
         nodeLink2.append(button2);
-        button2.addEventListener("click", 
-          async function() {
-            document.getElementById("pendingList").innerHTML = "";
-            getPending();
+        button2.addEventListener("click",
+          async function () {
             var div = document.getElementById('compositionTx');
             while (div.firstChild) {
               div.removeChild(div.firstChild);
             }
           })
-        node.append(nodeLink2);
+        
+        compositionNode.append(nodeLink2);
         document.getElementById("pendingList").appendChild(node);
       })
     node.append(nodeLink);
