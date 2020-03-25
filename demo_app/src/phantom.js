@@ -179,7 +179,7 @@ let getPending = async () => {
 
   for (let i = 0; i < pending.length; i++) {
     var node = document.createElement('li');
-    // var nodeLink = document.createElement('a');
+    var nodeLink = document.createElement('a');
     // var textnode = document.createTextNode(txnHash[i])
     // var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
     // nodeLink.appendChild(textnode);
@@ -190,7 +190,7 @@ let getPending = async () => {
     var button = document.createElement('button');
     button.innerHTML = txnHash;
 
-    node.append(button);
+    nodeLink.append(button);
     button.addEventListener("click", 
       async function() {
         var div = document.getElementById('compositionTx');
@@ -207,7 +207,23 @@ let getPending = async () => {
         nodeLink.title = textnode;
         nodeLink.href = link;
         node.append(nodeLink);
+
+        var button2 = document.createElement('button');
+        button2.innerHTML = "close";
+
+        var nodeLink2 = document.createElement('a');
+        nodeLink2.append(button2);
+        button2.addEventListener("click", 
+          async function() {
+            var div = document.getElementById('compositionTx');
+            while (div.firstChild) {
+              div.removeChild(div.firstChild);
+            }
+          })
+        node.append(nodeLink2);
+        document.getElementById("pendingList").appendChild(node);
       })
+    node.append(nodeLink);
 
     document.getElementById("pendingList").appendChild(node);
 
