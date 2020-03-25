@@ -29,6 +29,7 @@ contract MultiSig {
     // Arrays for transactions
     transactionData[] public transactions;
     pendingData[] public pendingTransactions;
+    string[] public ethTxHashes;
 
     // Events to emmit
     event transactionCreated(address, address, uint256, uint256);
@@ -53,12 +54,25 @@ contract MultiSig {
         return whitelistAdd;
     }
 
-    function getPendingTx() public view returns (pendingData[] memory pending) {
+    function getPendingTx()
+        external
+        view
+        returns (pendingData[] memory pending)
+    {
         return pendingTransactions;
     }
 
-    function contractBalance() public view returns (uint256 balance) {
+    function contractBalance() external view returns (uint256 balance) {
         return address(this).balance;
+    }
+
+    function getHashes() external view returns (string[] memory hashes) {
+        return ethTxHashes;
+    }
+
+    function setHash(string memory txHash) public returns (bool success) {
+        ethTxHashes.push(txHash);
+        return true;
     }
 
     // Adds address to whitelist so entity has signing ability
@@ -86,18 +100,23 @@ contract MultiSig {
             "This address is not an the whitelist"
         );
 
-        transactionData memory tmp = transactionData(
-            msg.sender,
-            _paymentReciever,
-            _amount,
-            nonce,
-            _threshold
+        transactions.push(
+            transactionData(
+                msg.sender,
+                _paymentReciever,
+                _amount,
+                nonce,
+                _threshold
+            )
         );
-        transactions.push(tmp);
 
-        bytes32 txHash = encodeTransaction(nonce, transactions);
-        pendingData memory pendingtmp = pendingData(tmp, 0, txHash);
-        pendingTransactions.push(pendingtmp);
+        pendingTransactions.push(
+            pendingData(
+                transactions[nonce],
+                0,
+                encodeTransaction(nonce, transactions)
+            )
+        );
 
         emit transactionCreated(
             msg.sender,
@@ -160,9 +179,11 @@ contract MultiSig {
 
         for (uint256 i = index; i < pendingTransactions.length - 1; i++) {
             pendingTransactions[i] = pendingTransactions[i + 1];
+            ethTxHashes[i] = ethTxHashes[i + 1];
         }
 
         delete pendingTransactions[pendingTransactions.length - 1];
+        delete ethTxHashes[ethTxHashes.length - 1];
         pendingTransactions.length--;
 
         return true;

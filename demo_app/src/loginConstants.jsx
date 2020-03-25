@@ -16,9 +16,9 @@ class Top extends Component {
                 <header className="App-header">
                     <h1 id="main">Whitelabel MultiSig</h1>
                     <div id="profile">
-                        <a className = "profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
+                        <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
                     </div>
-                    <p className ="connected" id="status"></p>
+                    <p className="connected" id="status"></p>
                 </header>
             </div>
         );
@@ -27,7 +27,7 @@ class Top extends Component {
     openProfile = async () => {
         const element = (
             <div>
-                <a className = "profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
+                <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
                 <p id="username"></p>
                 <p id="userAddress"></p>
             </div>
@@ -42,7 +42,7 @@ class Top extends Component {
     closeProfile = () => {
         const element = (
             <div>
-                <a className = "profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
+                <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
             </div>
         );
 
@@ -54,10 +54,10 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar">
-                <a className = "sidebarBtn" onClick={this.getDeployPage}>Deploy</a>
-                <a className = "sidebarBtn" onClick={this.getSignAndAdd}>Whitelist </a>
-                <a className = "sidebarBtn" onClick={this.getSetupPage}>Start Transaction </a>
-                <a className = "sidebarBtn" onClick={this.getVault}>Vault </a> 
+                <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a>
+                <a className="sidebarBtn" onClick={this.getSignAndAdd}>Whitelist </a>
+                <a className="sidebarBtn" onClick={this.getSetupPage}>Start Transaction </a>
+                <a className="sidebarBtn" onClick={this.getVault}>Vault </a>
             </div>
         );
     }
@@ -91,12 +91,12 @@ class Login extends Component {
                 <h1>Fortmatic Whitelabel MultiSig</h1>
                 <p id="status"></p>
                 <input type="text" id="user-email" placeholder="Enter your email" />
-                <a className = "log1" onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</a>
-                <a className = "log2" onClick={handle.handleLogout}>Logout</a>
-                <a className = "log3" onClick={handle.handleIsLoggedIn}>Check Status</a>
+                <a className="log1" onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</a>
+                <a className="log2" onClick={handle.handleLogout}>Logout</a>
+                <a className="log3" onClick={handle.handleIsLoggedIn}>Check Status</a>
 
                 <div className="navigation">
-                    <a className = "Lognext" onClick={this.getMainPage}>Next</a>
+                    <a className="Lognext" onClick={this.getMainPage}>Next</a>
                 </div>
             </div>
         );
