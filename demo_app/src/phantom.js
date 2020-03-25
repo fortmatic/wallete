@@ -5,7 +5,8 @@ import Fortmatic from 'fortmatic';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
-contract.options.address = '0xF773A20529C04F5D6CFD2404522a7F3114737D59';
+contract.options.address = '0xb21E4D8cDcb6D0a5f61c6dcb9486F590027e569E';
+
 
 let handleLoginWithMagicLink = async () => {
   const email = document.getElementById('user-email').value;
@@ -56,6 +57,8 @@ let setupTransaction = async () => {
   //const threshold = document.getElementById('threshold').value;
   const threshold = 3;
 
+  var txnHash;
+
   await contract.methods.setupTransaction(sendAddress, threshold, amount).send({
     from: userAddress,
     gas: 1500000,
@@ -64,8 +67,16 @@ let setupTransaction = async () => {
   })
     .on('receipt', (rec) => {
       console.log(rec);
+      txnHash = rec.transactionHash;
       document.getElementById('status').innerHTML = "Transaction started";
     });
+
+  await contract.methods.setHash(txnHash).send({
+    from: userAddress,
+    gas: 1500000,
+    gasPrice: '3000000000000'
+  })
+    .then(console.log);
 }
 
 let addToWhiteList = async () => {
@@ -151,19 +162,26 @@ let getWhitelist = async () => {
 
 let getPending = async () => {
   var pending;
+  var txnHash;
 
   await contract.methods.getPendingTx().call()
     .then((rec) => {
       pending = rec;
     });
 
+  await contract.methods.getHashes().call()
+    .then((rec) => {
+      txnHash = rec;
+    });
+
   console.log(pending);
+  console.log(txnHash);
 
   for (let i = 0; i < pending.length; i++) {
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
-    var textnode = document.createTextNode(pending[i].txHash)
-    var link = "https://etherscan.io/address/" + pending[i].txHash;
+    var textnode = document.createTextNode(txnHash[i])
+    var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
     nodeLink.appendChild(textnode);
     nodeLink.title = textnode;
     nodeLink.href = link;
