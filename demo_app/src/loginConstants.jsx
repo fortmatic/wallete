@@ -14,6 +14,7 @@ class Top extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+                    <a className="logoutBtn" onClick={this.logout}>Logout</a>
                     <h1 id="main">Whitelabel MultiSig</h1>
                     <div id="profile">
                         <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
@@ -24,30 +25,39 @@ class Top extends Component {
         );
     }
 
-    openProfile = async () => {
-        const element = (
-            <div>
-                <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
-                <p id="username"></p>
-                <p id="userAddress"></p>
-            </div>
-        );
+    async logout() {
+        await fmPhantom.user.logout()
+            .then((rec) => {
+                ReactDOM.render(<Login />, document.getElementById('root'));
+                ReactDOM.render(<div></div>, document.getElementById('sidebar'));
+                ReactDOM.render(<div></div>, document.getElementById('constant'));
+        });
+}
 
-        await ReactDOM.render(element, document.getElementById('profile'));
+openProfile = async () => {
+    const element = (
+        <div>
+            <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
+            <p id="username"></p>
+            <p id="userAddress"></p>
+        </div>
+    );
 
-        document.getElementById('username').innerHTML = (await fmPhantom.user.getMetadata()).email;
-        document.getElementById('userAddress').innerHTML = (await fmPhantom.user.getMetadata()).publicAddress;
-    }
+    await ReactDOM.render(element, document.getElementById('profile'));
 
-    closeProfile = () => {
-        const element = (
-            <div>
-                <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
-            </div>
-        );
+    document.getElementById('username').innerHTML = (await fmPhantom.user.getMetadata()).email;
+    document.getElementById('userAddress').innerHTML = (await fmPhantom.user.getMetadata()).publicAddress;
+}
 
-        ReactDOM.render(element, document.getElementById('profile'));
-    }
+closeProfile = () => {
+    const element = (
+        <div>
+            <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
+        </div>
+    );
+
+    ReactDOM.render(element, document.getElementById('profile'));
+}
 }
 
 class Sidebar extends Component {
@@ -83,32 +93,54 @@ class Sidebar extends Component {
     }
 }
 
+let makeMainPage = async () => {
+    ReactDOM.render(<Top />, document.getElementById('constant'));
+    ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+    ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+}
 
 class Login extends Component {
     render() {
         return (
             <div className="login">
                 <h1>Fortmatic Whitelabel MultiSig</h1>
-                <p id="status"></p>
+                <p id="status">Please login</p>
                 <input type="text" id="user-email" placeholder="Enter your email" />
-                <a className="log1" onClick={handle.handleLoginWithMagicLink}>Login via Magic Link</a>
-                <a className="log2" onClick={handle.handleLogout}>Logout</a>
-                <a className="log3" onClick={handle.handleIsLoggedIn}>Check Status</a>
-
-                <div className="navigation">
-                    <a className="Lognext" onClick={this.getMainPage}>Next</a>
-                </div>
+                <a className="log1" onClick={this.loginAndMain}>Login</a>
             </div>
         );
     }
 
-    async getMainPage() {
-        if (document.getElementById('status').innerHTML !== 'Logged out') {
-            ReactDOM.render(<Top />, document.getElementById('constant'));
-            ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-            ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+    async loginAndMain() {
+        const email = document.getElementById('user-email').value;
+
+        await fmPhantom.loginWithMagicLink({ email })
+            .catch((err) => (document.getElementById('status').innerHTML = "Incorrect Login"));
+        
+        if (await fmPhantom.user.isLoggedIn()) {
+            makeMainPage();
         }
     }
 }
 
-export default Login;
+class First extends Component {
+    render() {
+        return (
+            <div className="login">
+                <h1>Fortmatic Whitelabel MultiSig</h1>
+                <a className="Lognext" onClick={this.checkLogin}>Login</a>
+            </div>
+        );
+    }
+
+    async checkLogin() {
+        if (await fmPhantom.user.isLoggedIn()) {
+            makeMainPage();
+            return;
+        }
+
+        ReactDOM.render(<Login />, document.getElementById('root'));
+    }
+}
+
+export default First;

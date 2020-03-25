@@ -187,11 +187,7 @@ input {
     position: relative;
     display: block;
     border-radius: 10px;
-    margin-left: 180px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    /* left: 180px;
-    top: 200px; */
+    margin: auto;
     width: 100px;
     cursor: pointer;
     font-size: 10px;
@@ -328,4 +324,28 @@ input {
     top: 0px;
     right: 1%;
     text-align: right;
+}
+
+.logoutBtn {
+    position: fixed;
+    text-align: center;
+    display: block;
+    top: 1%;
+    left: 1%;
+    width: auto;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    border: 5px white solid;
+    border-radius: 10px;
+    color: white;
+    background-color: #282c34;
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+    background-color: white;
+    color: black;
+    text-align: center;
 }

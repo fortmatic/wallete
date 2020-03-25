@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Login from './loginConstants';
+import First from './loginConstants';
 
 
-
-ReactDOM.render(<Login />, document.getElementById('root'));
+ReactDOM.render(<First />, document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change
