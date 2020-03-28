@@ -1,39 +1,78 @@
+body, html {
+    height: 100%;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
 }
   
 .App-header {
-    background-color: #282c34;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    font-size: 20px;
+    color: rgb(57, 50, 156);
+    padding-left: 20px;
 }
+#username, #userAddress {
+    color: gray;
+}
+#nav {
+    width:600px;
+    margin:0 auto;
+    list-style:none;
+    display: inline-block;
+    background-color: transparent;
+    opacity: 0.7;
+}
+#nav li {
+    float:left;
+}
+#nav a {
+    display:block;
+    text-align:center;
+    width:160px; /* fixed width */
+    text-decoration:none; 
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px;
+    color: black;
+    
+}
+#nav a:hover {
+    color: rgb(74, 116, 230);
+} 
   
 .sidebar {
+    background-color: transparent;
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.5;
-    color: var(--ic-brand-font-color-dark);
-    -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     position: fixed;
-    margin-top: 200px;
-    left: 0;
-    height: 100%;
+    margin-top: 100px;
+    height: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     z-index: 100;
-    background-color: #f0f0f0;
-    width: 20%;
-    overflow-y: auto;
+    width: 100%;
+
 }
-.sidebarBtn{
+.bigBlock{
+    display: block;
+    border-radius: 10px;
+    background-color: rgb(231, 236, 242);
+    opacity: 0.7;
+    position: relative;
+    box-sizing: border-box;
+    width: 80%;
+    height: 550px;
+    margin-left: 55px;
+    margin-bottom: 1px;
+}
+/* .sidebarBtn{
     display: block;
     border-radius: 10px;
     margin-top: 10px;
@@ -53,13 +92,29 @@
     background-color: #282c34;
     color: white;
     text-align: center;
-}
+} */
 .main {
-    margin-left: 20.5%;
+    margin-left: 10%;
+    margin-top: 10%;
+    font-size: 12px;
 }
-
 .login {
-    border: 3px solid rgb(45, 0, 128);
+    /* border: 3px solid rgb(45, 0, 128); */
+    background-image: url("loginImage.png");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* height: 230px; */
+    width: 100%;
+    text-align: center;
+}
+.loginBox {
     padding: 1%;
     position: absolute;
     left: 50%;
@@ -71,10 +126,10 @@
 input,
 textarea {
     position: relative;
-    margin-right: 20px;
+    left: 25%;
+    top: 10%;
     text-align: center;
     display: block;
-    margin: 0;
     border-radius: 7px;
     border: 2px #282c34 solid;
     background-color: white;
@@ -87,9 +142,28 @@ textarea {
     align-items: center;
 }
 
-#user-email, #address {
+#user-email {
     position: relative;
     margin-right: 20px;
+    text-align: center;
+    display: block;
+    margin: 0;
+    border-radius: 7px;
+    border: 2px #282c34 solid;
+    background-color: white;
+    padding: 10px 20px;
+    width: 100%;
+    left: 1%;
+    color: #282c34;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    align-items: center;
+
+}
+#address {
+    position: relative;
+    left: -3%;    
     text-align: center;
     display: block;
     margin: 0;
@@ -127,6 +201,8 @@ input {
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
+    left: 30%;
+    top: 15%;
 }
 .log1:hover {
     background-color: lightgray;
@@ -215,16 +291,15 @@ input {
     cursor: pointer;
     font-size: 20px;
     font-weight: 700;
-    border: 5px white solid;
     border-radius: 10px;
     color: white;
-    background-color: #282c34;
+    background-color: rgb(57, 50, 156);
     padding: 10px;
     transition: all 0.2s;
 }
 .profileButton:hover {
-    background-color: white;
-    color: black;
+    background-color: lightgray;
+    color: rgb(57, 50, 156);
     text-align: center;
 }
 
@@ -237,7 +312,7 @@ input {
     position: relative;
     display: block;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     margin-right: 180px;
     width: 150px;
@@ -306,7 +381,7 @@ input {
 }
 #profile {
     position: fixed;
-    top: 9%;
+    top: 5%;
     right: 1%;
     text-align: right;
     font-size: 20px;
@@ -330,22 +405,21 @@ input {
     position: fixed;
     text-align: center;
     display: block;
-    top: 1%;
-    left: 1%;
+    top: 18%;
+    right: 1%;
     width: auto;
     cursor: pointer;
     font-size: 20px;
     font-weight: 700;
-    border: 5px white solid;
     border-radius: 10px;
     color: white;
-    background-color: #282c34;
+    background-color: rgb(57, 50, 156);
     padding: 10px;
     transition: all 0.2s;
 }
 
 .logoutBtn:hover {
-    background-color: white;
-    color: black;
+    background-color: lightgray;
+    color: rgb(57, 50, 156);
     text-align: center;
 }
