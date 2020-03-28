@@ -2,7 +2,7 @@ import * as abi from './abi.js'
 import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
 
-const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
+const fmPhantom = new Fortmatic.Phantom('pk_test_27AE3AE76B3471E0');
 const web3 = new Web3(fmPhantom.getProvider());
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = '0xb21E4D8cDcb6D0a5f61c6dcb9486F590027e569E';

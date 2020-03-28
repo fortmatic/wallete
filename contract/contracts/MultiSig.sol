@@ -6,8 +6,13 @@ contract MultiSig {
     address public owner;
     uint256 public nonce;
 
+    struct whitelistData {
+        address whiteAdd;
+        string email;
+    }
+
     // WhiteList info
-    address[] public whitelistAdd;
+    whitelistData[] public whitelistAdd;
     mapping(address => bool) public whitelist;
 
     // Structs for transactions
@@ -37,19 +42,19 @@ contract MultiSig {
     event AddedWhiteList(address);
     event transactionOccured(address, uint256);
 
-    constructor() public {
+    constructor(string memory name) public {
         // Make the owner address that deploys contract
         owner = msg.sender;
         nonce = 0;
 
         // Add to white list for owner to sign
-        addAddress(msg.sender);
+        addAddress(msg.sender, name);
     }
 
     function getWhitelistAdd()
         public
         view
-        returns (address[] memory whitelistArr)
+        returns (whitelistData[] memory whitelistArr)
     {
         return whitelistAdd;
     }
@@ -76,13 +81,16 @@ contract MultiSig {
     }
 
     // Adds address to whitelist so entity has signing ability
-    function addAddress(address newAddress) public returns (bool success) {
+    function addAddress(address newAddress, string memory name)
+        public
+        returns (bool success)
+    {
         // Requires to ensure owner adding signers
         require(msg.sender == owner, "Sender not authorized");
         require(whitelist[newAddress] == false, "Already added");
 
         // Give address signing ability and emit event
-        whitelistAdd.push(newAddress); // add the new address to list of whitelist addresses
+        whitelistAdd.push(whitelistData(newAddress, name)); // add the new address to list of whitelist addresses
         whitelist[newAddress] = true;
 
         emit AddedWhiteList(newAddress);
@@ -177,13 +185,16 @@ contract MultiSig {
             pendingTransactions[index].txnData.amount
         );
 
-        for (uint256 i = index; i < pendingTransactions.length - 1; i++) {
-            pendingTransactions[i] = pendingTransactions[i + 1];
-            ethTxHashes[i] = ethTxHashes[i + 1];
-        }
+        pendingTransactions[index] = pendingTransactions[pendingTransactions
+            .length -
+            1];
+
+        ethTxHashes[index] = ethTxHashes[ethTxHashes.length - 1];
 
         delete pendingTransactions[pendingTransactions.length - 1];
         delete ethTxHashes[ethTxHashes.length - 1];
+
+        ethTxHashes.length--;
         pendingTransactions.length--;
 
         return true;
