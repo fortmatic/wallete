@@ -11,17 +11,17 @@ class SignAndAdd extends Component {
     render() {
         return (
             <div className="main">
+                <div className= "bigBlock">
                 <div id="whitelist">
                     <h1 id="thing">Addresses on Whitelist</h1>
-                    <ul id="list">
-                    </ul>
+                    <ul id="list"></ul>
                 </div>
                 <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
                     <a className="otherBtn" onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
                 </div>
                 <br></br>
-
+                </div>
             </div>
         );
     }
@@ -31,10 +31,12 @@ class Deploy extends Component {
     render() {
         return (
             <div className="main">
-                <a className="otherBtn" onClick={handle.deploying}>Deploy Contract</a>
-                <div>
-                    <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
-                    <a className="otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
+                <div className= "bigBlock">
+                    <a className="otherBtn" onClick={handle.deploying}>Deploy Contract</a>
+                    <div>
+                        <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
+                        <a className="otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
+                    </div>
                 </div>
             </div>
         );
@@ -45,10 +47,12 @@ class Setup extends Component {
     render() {
         return (
             <div className="main">
+                <div className = "bigBlock">
                 <input type="text" id="sendAddress" placeholder="Send to Address" />
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                 {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                 <a className="otherBtn" onClick={handle.setupTransaction}>Start Transaction</a>
+                </div>
             </div>
         );
     }
@@ -58,6 +62,7 @@ class Vault extends Component {
     render() {
         return (
             <div className="main">
+                <div className = "bigBlock">
                 <div id="pending">
                     <h1>Pending Transactions</h1>
                     <ol id="pendingList"></ol>
@@ -73,6 +78,7 @@ class Vault extends Component {
 
                 <a className="otherBtn" onClick={this.signPendingTx}>Sign Transaction</a>
                 <div id="compositionTx"></div>
+                </div>
             </div>
         );
     }
