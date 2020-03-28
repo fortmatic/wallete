@@ -14,7 +14,6 @@ class Top extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <a className="logoutBtn" onClick={this.logout}>Logout</a>
                     <h1 id="main">Whitelabel MultiSig</h1>
                     <div id="profile">
                         <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
@@ -40,6 +39,7 @@ openProfile = async () => {
             <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
             <p id="username"></p>
             <p id="userAddress"></p>
+            <a className="logoutBtn" onClick={this.logout}>Logout</a>
         </div>
     );
 
@@ -60,15 +60,18 @@ closeProfile = () => {
 }
 }
 
+
 class Sidebar extends Component {
     render() {
         return (
-            <div className="sidebar">
+             <div className="sidebar">
+                <ul id= "nav">
                 {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
-                <a className="sidebarBtn" onClick={this.getSignAndAdd}>Whitelist </a>
-                <a className="sidebarBtn" onClick={this.getSetupPage}>Start Transaction </a>
-                <a className="sidebarBtn" onClick={this.getVault}>Vault </a>
-            </div>
+                    <li><a  onClick={this.getSignAndAdd}>Whitelist </a></li>
+                    <li><a  onClick={this.getSetupPage}>Start Transaction </a></li>
+                    <li><a  onClick={this.getVault}>Vault </a></li>
+                </ul>
+             </div>
         );
     }
 
@@ -76,9 +79,9 @@ class Sidebar extends Component {
         ReactDOM.render(<authorizers.Setup />, document.getElementById('root'));
     }
 
-    getDeployPage() {
-        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
-    }
+    // getDeployPage() {
+    //     ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+    // }
 
     async getSignAndAdd() {
         await ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
@@ -100,14 +103,21 @@ let makeMainPage = async () => {
 }
 
 class Login extends Component {
+
     render() {
+        // if (fmPhantom.user.isLoggedIn()) {
+        //     makeMainPage();
+        //     ReactDOM.render(<Login />, document.getElementById('root'));
+        // }
         return (
-            <div className="login">
-                <h1>Fortmatic Whitelabel MultiSig</h1>
-                <p id="status">Please login</p>
-                <input type="text" id="user-email" placeholder="Enter your email" />
-                <a className="log1" onClick={this.loginAndMain}>Login</a>
-            </div>
+                <div className="login">
+                    <div className= "loginBox"> 
+                        <h1>Fortmatic MultiSig</h1>
+                        <p id="status">Please login</p>
+                    <input type="text" id="user-email" placeholder="Enter your email" />
+                    <a className="log1" onClick={this.loginAndMain}>Login</a>
+                    </div>
+                </div>
         );
     }
 
@@ -123,24 +133,24 @@ class Login extends Component {
     }
 }
 
-class First extends Component {
-    render() {
-        return (
-            <div className="login">
-                <h1>Fortmatic Whitelabel MultiSig</h1>
-                <a className="Lognext" onClick={this.checkLogin}>Login</a>
-            </div>
-        );
-    }
+// class First extends Component {
+//     render() {
+//         return (
+//             <div className="login">
+//                 <h1>Fortmatic Whitelabel MultiSig</h1>
+//                 <a className="Lognext" onClick={this.checkLogin}>Login</a>
+//             </div>
+//         );
+//     }
 
-    async checkLogin() {
-        if (await fmPhantom.user.isLoggedIn()) {
-            makeMainPage();
-            return;
-        }
+//     async checkLogin() {
+//         if (await fmPhantom.user.isLoggedIn()) {
+//             makeMainPage();
+//             return;
+//         }
 
-        ReactDOM.render(<Login />, document.getElementById('root'));
-    }
-}
+//         ReactDOM.render(<Login />, document.getElementById('root'));
+//     }
+// }
 
-export default First;
+export default Login;
