@@ -18,6 +18,7 @@ class SignAndAdd extends Component {
                 </div>
                 <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
+                    {/* <input type="text" id="name" placeholder="Account Name"/> */}
                     <a className="otherBtn" onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
                 </div>
                 <br></br>

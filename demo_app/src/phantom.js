@@ -2,7 +2,7 @@ import * as abi from './abi.js'
 import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
 
-const fmPhantom = new Fortmatic.Phantom('pk_test_27AE3AE76B3471E0');
+const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
 var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = '0x737b4D07e54f19810E5b6214A377dD233eCc3E49';
@@ -81,16 +81,17 @@ let setupTransaction = async () => {
 
 let addToWhiteList = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
-  const address = document.getElementById('address').value
+  const address = document.getElementById('address').value;
+  const acctName = document.getElementById('name').value;
 
-  await contract.methods.addAddress(address).send({
+  await contract.methods.addAddress(address, acctName).send({
     from: userAddress,
     gas: 1500000,
     gasPrice: '3000000000000'
   })
     .on('receipt', (rec) => {
       console.log(rec);
-      document.getElementById('status').innerHTML = rec.events.AddedWhiteList.returnValues[0] + " added to Whitelist";
+      document.getElementById('status').innerHTML = address + " added to Whitelist";
     });
 }
 
@@ -150,6 +151,7 @@ let getWhitelist = async () => {
   await contract.methods.getWhitelistAdd().call()
     .then((rec) => {
       whitelist = rec;
+      console.log(whitelist);
     });
 
   for (let i = 0; i < whitelist.length; i++) {

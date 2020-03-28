@@ -96,7 +96,9 @@ class Sidebar extends Component {
 let makeMainPage = async () => {
     ReactDOM.render(<Top />, document.getElementById('constant'));
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-    ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+    
+    await ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
+    handle.getWhitelist();
 }
 
 class Login extends Component {
