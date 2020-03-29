@@ -14,7 +14,7 @@ class Top extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 id="main">Whitelabel MultiSig</h1>
+                    <h1 id="main"> <div className = "logo_box">WHITELABEL MULTISIG</div></h1>
                     <div id="profile">
                         <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
                     </div>
