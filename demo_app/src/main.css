@@ -75,9 +75,19 @@ body, html {
     margin: 0 6em;
 
 }
+#pendingList {
+    display:block;
+    text-align:center;
+    width:280px; /* fixed width */
+    text-decoration:none; 
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    background-color: transparent; 
+}
 #pendingList li {
     padding: 0.5em;
-    margin: 0 7em;
+    margin: 0 6em;
 }
 #compositionTx {
     position: relative;
@@ -87,8 +97,9 @@ body, html {
     box-sizing: content-box;
     border-radius: 10px;
     border: 1px gray solid;
-    width: 500px;
-    top: -5%;
+    width: 450px;
+    top: -8%;
+    left: 4%;
     text-align: center;
 }
 .sidebar {
@@ -378,7 +389,7 @@ input {
     cursor: pointer;
     font-size: 13px;
     font-weight: 700;
-    border: 3px #282c34 solid;
+    border: 2px #282c34 solid;
     color:  black;
     background-color: white;
     padding: 10px;
@@ -402,7 +413,7 @@ input {
     cursor: pointer;
     font-size: 15px;
     font-weight: 700;
-    border: 3px #282c34 solid;
+    border: 2px #282c34 solid;
     color:  black;
     background-color: white;
     padding: 10px;
@@ -424,7 +435,7 @@ input {
     cursor: pointer;
     font-size: 15px;
     font-weight: 700;
-    border: 3px #282c34 solid;
+    border: 2px #282c34 solid;
     color:  black;
     background-color: white;
     padding: 10px;
