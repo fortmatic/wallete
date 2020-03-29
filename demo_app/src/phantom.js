@@ -155,7 +155,7 @@ let getWhitelist = async () => {
     });
 
   for (let i = 0; i < whitelist.length; i++) {
-    var node = document.createElement("LI");
+    var node = document.createElement("li");
     var textnode = document.createTextNode(whitelist[i]);
     node.appendChild(textnode);
     document.getElementById("list").appendChild(node);
@@ -196,6 +196,10 @@ let getPending = async () => {
 
     var button = document.createElement('button');
     button.innerHTML = txnHash[i];
+    button.style.backgroundColor= "white";
+    button.style.borderRadius = "3px";
+    button.style.fontSize = "13px";
+
 
     nodeLink.append(button);
 
@@ -210,7 +214,7 @@ let getPending = async () => {
         var compositionNode = document.getElementById('compositionTx');
 
         var etherLink = document.createElement('a');
-        var textnode = document.createTextNode("View on Etherscan")
+        var textnode = document.createTextNode("View on Etherscan ")
         var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
         etherLink.appendChild(textnode);
         etherLink.title = textnode;
@@ -219,6 +223,8 @@ let getPending = async () => {
 
         var button2 = document.createElement('button');
         button2.innerHTML = "close";
+        button2.style.backgroundColor = "whitesmoke";
+        button2.style.borderRadius ="3px";
 
         var nodeLink2 = document.createElement('a');
         nodeLink2.append(button2);
