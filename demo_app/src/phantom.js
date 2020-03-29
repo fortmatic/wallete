@@ -215,7 +215,7 @@ let getPending = async () => {
         var compositionNode = document.getElementById('compositionTx');
 
         var etherLink = document.createElement('a');
-        var textnode = document.createTextNode("View on Etherscan ")
+        var textnode = document.createTextNode("View on Etherscan")
         var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
         etherLink.appendChild(textnode);
         etherLink.title = textnode;
