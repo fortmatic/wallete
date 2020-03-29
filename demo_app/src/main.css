@@ -20,7 +20,7 @@ body, html {
 .logo_box {
     box-sizing: content-box;
     border-radius: 10px;
-    border: 5px gray solid;
+    border: 1px gray solid;
     width: 500px;
     text-align: center;
 }
@@ -33,8 +33,11 @@ body, html {
     margin:0 auto;
     list-style:none;
     display: inline-block;
+    position: relative;
     background-color: transparent;
     opacity: 0.7;
+    transition: 0.3s;
+    margin-bottom: 10px;
 }
 #nav li {
     float:left;
@@ -49,13 +52,12 @@ body, html {
     padding: 20px;
     color: black;
     background-color: transparent;
-
-
 }
 #nav a:hover {
     color: rgb(57, 50, 156);
     
 } 
+
 #list {
     display:block;
     text-align:center;
@@ -72,6 +74,22 @@ body, html {
     padding: 0.5em;
     margin: 0 6em;
 
+}
+#pendingList li {
+    padding: 0.5em;
+    margin: 0 7em;
+}
+#compositionTx {
+    position: relative;
+    margin: 0 10.5em;
+}
+.compBox {
+    box-sizing: content-box;
+    border-radius: 10px;
+    border: 1px gray solid;
+    width: 500px;
+    top: -5%;
+    text-align: center;
 }
 .sidebar {
     background-color: transparent;
@@ -122,30 +140,23 @@ body, html {
     font-size: 30px;
     margin-left: 300px;
     text-align: center;
+    padding-bottom: 10px;
     /* border: 10px red solid; */
     border-bottom: 5px black solid;
 }
-/* .sidebarBtn{
-    display: block;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 700;
-    border: 5px #282c34 solid;
-    color: black;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
+
+.head_boxPD {
+    box-sizing: content-box;
+    width: 57%;
+    margin-top: 16px;
+    font-size: 30px;
+    margin-left: 100px;
     text-align: center;
+    padding-bottom: 10px;
+    /* border: 10px red solid; */
+    border-bottom: 5px black solid;
 }
-.sidebarBtn:hover{
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-} */
+
 .main {
     margin-left: 10%;
     margin-top: 10%;
@@ -214,7 +225,6 @@ textarea {
 
 }
 #address {
-    font-family: 'Courier New', Courier, monospace;
     position: relative;
     background-color: rgb(231, 236, 242);
     text-align: center;
@@ -361,13 +371,36 @@ input {
 .otherBtn{
     position: relative;
     display: block;
-    border-radius: 10px;
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-right: 180px;
+    margin-right: 150px;
+    width: 250px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    border: 3px #282c34 solid;
+    color:  black;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+    align-items: center;
+}
+.otherBtn:hover {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}
+.signTran{
+    position: relative;
+    display: block;
+    padding-top: 20px;
+    left: 76%;
+    top: 2%;
     width: 150px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 700;
     border: 3px #282c34 solid;
     color:  black;
@@ -377,7 +410,29 @@ input {
     transition-duration: 0.4s;
     text-align: center;
 }
-.otherBtn:hover {
+.signTran:hover {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}
+.stTran{
+    position: relative;
+    display: block;
+    left: 38%;
+    top: 13%;
+    width: 200px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    border: 3px #282c34 solid;
+    color:  black;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+.stTran:hover {
     background-color: #282c34;
     color: white;
     text-align: center;
@@ -445,9 +500,10 @@ input {
 }
 #balDiv {
     position: absolute;
-    margin-top: 200px;
+    margin-top: 10px;
+    font-size: 13px;
     top: 0px;
-    right: 1%;
+    right: 6%;
     text-align: right;
 }
 
