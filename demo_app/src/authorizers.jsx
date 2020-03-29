@@ -13,8 +13,10 @@ class SignAndAdd extends Component {
             <div className="main">
                 <div className= "bigBlock">
                 <div id="whitelist">
-                    <h1 id="thing">Addresses on Whitelist</h1>
-                    <ul id="list"></ul>
+                <div className = "head_box"> 
+                    <h1 id="thing"> Addresses on Whitelist</h1>
+                    </div>
+                    <ol id="list"></ol>
                 </div>
                 <div id="addAddress">
                     <input type="text" id="address" placeholder="Enter Address" />
@@ -49,7 +51,8 @@ class Setup extends Component {
         return (
             <div className="main">
                 <div className = "bigBlock">
-                <input type="text" id="sendAddress" placeholder="Send to Address" />
+                    <h1 className= "head_boxST"> Start Transaction</h1>
+                <input type="text" id="sendAddress" placeholder="Send to Address" /> 
                 <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                 {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                 <a className="otherBtn" onClick={handle.setupTransaction}>Start Transaction</a>
