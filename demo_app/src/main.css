@@ -8,18 +8,40 @@ body, html {
 }
   
 .App-header {
+    font-family: 'Courier New', Courier, monospace;
     text-align: left;
     align-items: left;
     justify-content: left;
+    margin-top: -20px;
+    margin-left: 10px;
     font-size: 20px;
     color: rgb(57, 50, 156);
-    padding-left: 20px;
 }
+.logo_box {
+    box-sizing: content-box;
+    border-radius: 10px;
+    border: 8px lightgray solid;
+    width: 500px;
+    text-align: center;
+}
+/* .logo_box {
+    display: block;
+    border: 10px lightgray solid;
+    background-color: red;
+    border-radius: 10px;
+    position: relative;
+    left: 1%;
+    width: 240px;
+    height: 80px;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 30px;
+} */
 #username, #userAddress {
     color: gray;
 }
 #nav {
-    width:600px;
+    width:1000px;
     margin:0 auto;
     list-style:none;
     display: inline-block;
@@ -32,32 +54,35 @@ body, html {
 #nav a {
     display:block;
     text-align:center;
-    width:160px; /* fixed width */
+    width:280px; /* fixed width */
     text-decoration:none; 
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
     padding: 20px;
     color: black;
-    
+    background-color: transparent;
 }
 #nav a:hover {
     color: rgb(74, 116, 230);
+    
 } 
   
 .sidebar {
     background-color: transparent;
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.5;
     box-sizing: border-box;
     position: fixed;
-    margin-top: 100px;
+    margin-top: 120px;
     height: 10%;
+    left: 12%;
     display: flex;
     flex-direction: row;
-    z-index: 100;
-    width: 100%;
+    /* z-index: 100; */
+    width: 75%;
+    align-items: center;
 
 }
 .bigBlock{
@@ -287,10 +312,10 @@ input {
     display: block;
     top: 1%;
     right: 1%;
-    width: 60px;
+    width: 70px;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 650;
     border-radius: 10px;
     color: white;
     background-color: rgb(57, 50, 156);
@@ -409,7 +434,7 @@ input {
     right: 1%;
     width: auto;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 700;
     border-radius: 10px;
     color: white;
