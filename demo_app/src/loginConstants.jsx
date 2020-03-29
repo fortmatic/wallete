@@ -105,10 +105,10 @@ let makeMainPage = async () => {
 class Login extends Component {
 
     render() {
-        // if (fmPhantom.user.isLoggedIn()) {
-        //     makeMainPage();
-        //     ReactDOM.render(<Login />, document.getElementById('root'));
-        // }
+        if (fmPhantom.user.isLoggedIn()) {
+            makeMainPage();
+            // ReactDOM.render(<Login />, document.getElementById('root'));
+        }
         return (
                 <div className="login">
                     <div className= "loginBox"> 
