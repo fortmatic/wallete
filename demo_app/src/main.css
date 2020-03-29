@@ -217,6 +217,7 @@ textarea {
 }
 
 #user-email {
+    font-family: 'Courier New', Courier, monospace;
     position: relative;
     margin-right: 20px;
     text-align: center;
@@ -272,7 +273,7 @@ input {
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-    left: 30%;
+    left: 32%;
     top: 15%;
 }
 .log1:hover {
