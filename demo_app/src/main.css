@@ -20,23 +20,11 @@ body, html {
 .logo_box {
     box-sizing: content-box;
     border-radius: 10px;
-    border: 8px lightgray solid;
+    border: 5px gray solid;
     width: 500px;
     text-align: center;
 }
-/* .logo_box {
-    display: block;
-    border: 10px lightgray solid;
-    background-color: red;
-    border-radius: 10px;
-    position: relative;
-    left: 1%;
-    width: 240px;
-    height: 80px;
-    text-align: center;
-    margin-top: 20px;
-    padding-bottom: 30px;
-} */
+
 #username, #userAddress {
     color: gray;
 }
@@ -61,12 +49,30 @@ body, html {
     padding: 20px;
     color: black;
     background-color: transparent;
+
+
 }
 #nav a:hover {
-    color: rgb(74, 116, 230);
+    color: rgb(57, 50, 156);
     
 } 
-  
+#list {
+    display:block;
+    text-align:center;
+    width:280px; /* fixed width */
+    text-decoration:none; 
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px;
+    color: black;
+    background-color: transparent; 
+    left: 30%;
+}
+#list li {
+    padding: 0.5em;
+    margin: 0 6em;
+
+}
 .sidebar {
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
@@ -88,6 +94,7 @@ body, html {
 .bigBlock{
     display: block;
     border-radius: 10px;
+    border: 30px rgb(231, 236, 242) solid;
     background-color: rgb(231, 236, 242);
     opacity: 0.7;
     position: relative;
@@ -96,6 +103,27 @@ body, html {
     height: 550px;
     margin-left: 55px;
     margin-bottom: 1px;
+}
+.head_box {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    box-sizing: content-box;
+    font-size: 11px;
+    width: 80%;
+    margin-left: 100px;
+    text-align: center;
+    /* border: 10px red solid; */
+    border-bottom: 5px black solid;
+}
+.head_boxST {
+    box-sizing: content-box;
+    width: 40%;
+    margin-top: 15px;
+    font-size: 30px;
+    margin-left: 300px;
+    text-align: center;
+    /* border: 10px red solid; */
+    border-bottom: 5px black solid;
 }
 /* .sidebarBtn{
     display: block;
@@ -155,9 +183,8 @@ textarea {
     top: 10%;
     text-align: center;
     display: block;
-    border-radius: 7px;
     border: 2px #282c34 solid;
-    background-color: white;
+    background-color: rgb(231, 236, 242);
     padding: 10px 20px;
     width: 50%;
     color: #282c34;
@@ -187,19 +214,17 @@ textarea {
 
 }
 #address {
+    font-family: 'Courier New', Courier, monospace;
     position: relative;
-    left: -3%;    
+    background-color: rgb(231, 236, 242);
     text-align: center;
     display: block;
-    margin: 0;
-    border-radius: 7px;
-    border: 2px #282c34 solid;
-    background-color: white;
+    color: rgb(57, 50, 156);
+    border: 2px black solid;
+    left: -0.5%;    
     padding: 10px 20px;
     width: 100%;
-    color: #282c34;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    font-size: 20px;
     transition: all 0.2s;
     align-items: center;
 }
