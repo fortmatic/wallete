@@ -196,9 +196,10 @@ let getPending = async () => {
 
     var button = document.createElement('button');
     button.innerHTML = txnHash[i];
-    button.style.backgroundColor= "white";
+    button.style.backgroundColor= "whitesmoke";
     button.style.borderRadius = "3px";
     button.style.fontSize = "13px";
+    button.style.fontWeight = "5px";
 
 
     nodeLink.append(button);
