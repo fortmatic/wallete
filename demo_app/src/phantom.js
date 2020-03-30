@@ -154,11 +154,19 @@ let getWhitelist = async () => {
       console.log(whitelist);
     });
 
+  var table = document.getElementById("list");
+
   for (let i = 0; i < whitelist.length; i++) {
-    var node = document.createElement("li");
-    var textnode = document.createTextNode(whitelist[i]);
-    node.appendChild(textnode);
-    document.getElementById("list").appendChild(node);
+    var row = table.insertRow(0);
+
+    var name = row.insertCell(0);
+    var address = row.insertCell(1);
+
+    name.innerHTML = whitelist[i].email;
+    address.innerHTML = whitelist[i].whiteAdd;
+
+    name.setAttribute("class", "whitelistName");
+    address.setAttribute("class", "address");
   }
 }
 
@@ -184,6 +192,8 @@ let getPending = async () => {
   console.log(pending);
   console.log(txnHash);
 
+  var table = document.getElementById("pendingList");
+
   for (let i = 0; i < pending.length; i++) {
     var node = document.createElement('li');
     var nodeLink = document.createElement('a');
@@ -194,15 +204,25 @@ let getPending = async () => {
     // nodeLink.href = link;
     // node.append(nodeLink);
 
+    var row = table.insertRow(0);
+
+    var hash = row.insertCell(0);
+    var to = row.insertCell(1);
+    var amount = row.insertCell(2);
+
+    hash.innerHTML = txnHash[i];
+    to.innerHTML = pending[i].txnData.to;
+    amount.innerHTML = pending[i].txnData.amount;
+
     var button = document.createElement('button');
-    button.innerHTML = txnHash[i];
-    button.style.backgroundColor= "whitesmoke";
+    button.innerHTML = "More Info";
+    button.style.backgroundColor = "whitesmoke";
     button.style.borderRadius = "3px";
     button.style.fontSize = "13px";
     button.style.fontWeight = "5px";
 
-
-    nodeLink.append(button);
+    var btnViewHash = row.insertCell(3);
+    btnViewHash = button;
 
     button.addEventListener("click",
       async function () {
@@ -225,7 +245,7 @@ let getPending = async () => {
         var button2 = document.createElement('button');
         button2.innerHTML = "close";
         button2.style.backgroundColor = "whitesmoke";
-        button2.style.borderRadius ="3px";
+        button2.style.borderRadius = "3px";
 
         var nodeLink2 = document.createElement('a');
         nodeLink2.append(button2);
@@ -236,7 +256,7 @@ let getPending = async () => {
               div.removeChild(div.firstChild);
             }
           })
-        
+
         compositionNode.append(nodeLink2);
         document.getElementById("pendingList").appendChild(node);
       })
