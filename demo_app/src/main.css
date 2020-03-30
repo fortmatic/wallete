@@ -81,13 +81,31 @@ body, html {
     width:280px; /* fixed width */
     text-decoration:none; 
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 200;
     color: black;
     background-color: transparent; 
+}
+#bar{
+    width: 33%;
+    font-size: 15px;
+
+}
+#bar1{
+    border-right: 1px black solid;
+    width: 53%;
+    font-size: 15px;
+
+}
+#bar2{
+    border-left: 1px black solid;
+    width: 12%;
+    font-size: 15px;
+
 }
 #pendingList li {
     padding: 0.5em;
     margin: 0 6em;
+    list-style-type: none;
 }
 #compositionTx {
     position: relative;
@@ -96,9 +114,9 @@ body, html {
 .compBox {
     box-sizing: content-box;
     border-radius: 10px;
-    border: 1px gray solid;
+    border: 1px darkgray solid;
     width: 450px;
-    top: -8%;
+    top: -8.5%;
     left: 4%;
     text-align: center;
 }
@@ -414,7 +432,7 @@ input {
     position: relative;
     display: block;
     padding-top: 20px;
-    left: 76%;
+    left: 78%;
     top: 2%;
     width: 150px;
     cursor: pointer;
@@ -520,8 +538,8 @@ input {
     position: absolute;
     margin-top: 10px;
     font-size: 13px;
-    top: 0px;
-    right: 6%;
+    top: -3%;
+    right: 5%;
     text-align: right;
 }
 
