@@ -80,7 +80,7 @@ body, html {
     text-align:center;
     width:280px; /* fixed width */
     text-decoration:none; 
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     color: black;
     background-color: transparent; 
@@ -391,7 +391,6 @@ input {
 .otherBtn{
     position: relative;
     display: block;
-    margin-top: 20px;
     width: 180px;
     cursor: pointer;
     font-size: 13px;
@@ -399,12 +398,12 @@ input {
     border: 2px #282c34 solid;
     color:  black;
     background-color: white;
-    padding: 5px;
+    padding: 4px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
     left: 78%;
-    top: 35.5%;
+    top: 40%;
 }
 .otherBtn:hover {
     background-color: #282c34;
