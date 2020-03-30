@@ -241,7 +241,7 @@ textarea {
     background-color: rgb(231, 236, 242);
     text-align: center;
     display: block;
-    color: rgb(57, 50, 156);
+    color: black;
     border: 2px black solid;
     left: -0.5%;    
     padding: 10px 20px;
@@ -377,27 +377,34 @@ input {
 
 #addAddress {
     position: absolute;
-    right: 1%;
-    bottom: 1%;
+    bottom:5%;
+    right: 2%;
+    width: 500px;
+
+}
+#name {
+    position: relative;
+    bottom:5%;
+    left: -0.5%;
+    width: 300px;
 }
 .otherBtn{
     position: relative;
     display: block;
     margin-top: 20px;
-    margin-bottom: 10px;
-    margin-right: 150px;
-    width: 250px;
+    width: 180px;
     cursor: pointer;
     font-size: 13px;
     font-weight: 700;
     border: 2px #282c34 solid;
     color:  black;
     background-color: white;
-    padding: 10px;
+    padding: 5px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-    align-items: center;
+    left: 78%;
+    top: 35.5%;
 }
 .otherBtn:hover {
     background-color: #282c34;
@@ -544,6 +551,7 @@ input {
 
 
 table {
+    margin-top: 30px;
     width: 100%;
     border:  1px solid black;
 }
@@ -557,6 +565,7 @@ table {
 .whitelistAddress {
     font-size: 20px;
     font-weight: 700;
+    margin: 0 10.5em;    
 }
 .address {
     font-size: 20px;
