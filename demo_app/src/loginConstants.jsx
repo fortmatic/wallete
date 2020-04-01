@@ -67,6 +67,7 @@ class Sidebar extends Component {
             <div className="sidebar">
                 <ul id="nav">
                     {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
+                    <li><a >Assets</a></li>
                     <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
                     <li><a onClick={this.getSetupPage}>Start Transaction </a></li>
                     <li><a onClick={this.getVault}>Vault </a></li>

@@ -29,11 +29,11 @@ body, html {
     color: gray;
 }
 #nav {
-    width:1000px;
+    width:100%;
     margin:0 auto;
     list-style:none;
     display: inline-block;
-    position: relative;
+    position: absolute;
     background-color: transparent;
     opacity: 0.7;
     transition: 0.3s;
@@ -127,14 +127,13 @@ body, html {
     font-weight: normal;
     line-height: 1.5;
     box-sizing: border-box;
-    position: fixed;
+    position: absolute;
     margin-top: 120px;
     height: 10%;
-    left: 12%;
     display: flex;
     flex-direction: row;
     /* z-index: 100; */
-    width: 75%;
+    width: 100%;
     align-items: center;
 
 }
@@ -521,7 +520,7 @@ input {
     text-align: center;
 }
 #profile {
-    position: fixed;
+    position: absolute;
     top: 5%;
     right: 1%;
     text-align: right;
@@ -591,4 +590,10 @@ table {
 
     width: 80%;
     right: 1%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1%;
 }

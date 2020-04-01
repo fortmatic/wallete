@@ -195,8 +195,8 @@ let getPending = async () => {
   var table = document.getElementById("pendingList");
 
   for (let i = 0; i < pending.length; i++) {
-    var node = document.createElement('li');
-    var nodeLink = document.createElement('a');
+    // var node = document.createElement('li');
+    // var nodeLink = document.createElement('a');
     // var textnode = document.createTextNode(txnHash[i])
     // var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
     // nodeLink.appendChild(textnode);
@@ -207,22 +207,25 @@ let getPending = async () => {
     var row = table.insertRow(0);
 
     var hash = row.insertCell(0);
-    var to = row.insertCell(1);
-    var amount = row.insertCell(2);
+    hash.setAttribute("id", "rowCol1");
 
-    hash.innerHTML = txnHash[i];
+    var to = row.insertCell(1);
+    to.setAttribute("id", "rowCol2");
+
+    var amount = row.insertCell(2);
+    amount.setAttribute("id", "rowCol3");
+
     to.innerHTML = pending[i].txnData.to;
     amount.innerHTML = pending[i].txnData.amount;
 
     var button = document.createElement('button');
-    button.innerHTML = "More Info";
+    button.innerHTML = txnHash[i];
     button.style.backgroundColor = "whitesmoke";
     button.style.borderRadius = "3px";
     button.style.fontSize = "13px";
     button.style.fontWeight = "5px";
 
-    var btnViewHash = row.insertCell(3);
-    btnViewHash = button;
+    hash.appendChild(button);
 
     button.addEventListener("click",
       async function () {
@@ -258,11 +261,11 @@ let getPending = async () => {
           })
 
         compositionNode.append(nodeLink2);
-        document.getElementById("pendingList").appendChild(node);
+        //document.getElementById("pendingList").appendChild(node);
       })
-    node.append(nodeLink);
+    //node.append(nodeLink);
 
-    document.getElementById("pendingList").appendChild(node);
+    //document.getElementById("pendingList").appendChild(node);
 
     // var opt = document.createElement('option');
     // opt.appendChild(document.createTextNode(i + 1));

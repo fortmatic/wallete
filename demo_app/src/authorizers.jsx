@@ -32,7 +32,7 @@ class SignAndAdd extends Component {
                     </div>
                     <div id="addAddress">
                         <input type="text" id="address" placeholder="Enter Address" />
-                        <input type="text" id="name" placeholder="Account Name"/>
+                        <input type="text" id="name" placeholder="Account Name" />
                     </div>
                     <a className="otherBtn" onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
                     <br></br>
@@ -87,15 +87,14 @@ class Vault extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th id = "bar1">Tx Hash</th>
-                                    <th id = "bar">To</th>
-                                    <th id = "bar2">Amount</th>
+                                    <th id="bar1">Tx Hash</th>
+                                    <th id="bar">To</th>
+                                    <th id="bar2">Amount</th>
                                 </tr>
-                                <tbody id="pendingList">
-                                    
-                                </tbody>
-
                             </thead>
+                            <tbody id="pendingList">
+                                
+                            </tbody>
                         </table>
                     </div>
 
