@@ -59,10 +59,9 @@ body, html {
     
 } 
 
-#list {
-    display:block;
+ #list {
     text-align:center;
-    width:280px; /* fixed width */
+    width:280px; 
     text-decoration:none; 
     font-size: 20px;
     font-weight: 700;
@@ -74,18 +73,8 @@ body, html {
 #list li {
     padding: 0.5em;
     margin: 0 6em;
+}
 
-}
-#pendingList {
-    display:block;
-    text-align:center;
-    width:280px; /* fixed width */
-    text-decoration:none; 
-    font-size: 13px;
-    font-weight: 200;
-    color: black;
-    background-color: transparent; 
-}
 #bar{
     width: 33%;
     font-size: 15px;

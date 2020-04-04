@@ -14,14 +14,14 @@ export default class Assets extends Component {
             <div className="main">
                 <div className="bigBlock">
                     <h1 id="thing">On Contract </h1>
-                    <table>
+                    <table id="table">
                         <thead>
                             <tr>
                                 <th>Assets</th>
                                 <th>Balance</th>
                             </tr>
                         </thead>
-                        <tbody id="body"></tbody>
+                        <tbody id="list"></tbody>
                     </table>
                 </div>
             </div>
@@ -38,7 +38,7 @@ export default class Assets extends Component {
             </tr>
         );
         
-        ReactDOM.render(element, document.getElementById('body'));
+        ReactDOM.render(element, document.getElementById('list'));
         console.log('rendered');
     }
 };

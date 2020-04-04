@@ -92,7 +92,7 @@ class Vault extends Component {
                                     <th id="bar2">Amount</th>
                                 </tr>
                             </thead>
-                            <tbody id="pendingList">
+                            <tbody id="list">
                                 
                             </tbody>
                         </table>

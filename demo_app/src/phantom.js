@@ -183,7 +183,7 @@ let getPending = async () => {
   console.log(pending);
   console.log(txnHash);
 
-  var table = document.getElementById("pendingList");
+  var table = document.getElementById("list");
 
   for (let i = 0; i < pending.length; i++) {
     // var node = document.createElement('li');
