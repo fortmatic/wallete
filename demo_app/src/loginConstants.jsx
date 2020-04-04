@@ -6,6 +6,7 @@ import './main.css';
 
 import Fortmatic from 'fortmatic';
 import * as authorizers from './authorizers.jsx';
+import Assets from './assets.jsx';
 
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 
@@ -67,7 +68,7 @@ class Sidebar extends Component {
             <div className="sidebar">
                 <ul id="nav">
                     {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
-                    <li><a >Assets</a></li>
+                    <li><a onClick={this.getAssets}>Assets</a></li>
                     <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
                     <li><a onClick={this.getSetupPage}>Start Transaction </a></li>
                     <li><a onClick={this.getVault}>Vault </a></li>
@@ -83,6 +84,10 @@ class Sidebar extends Component {
     // getDeployPage() {
     //     ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
     // }
+
+    async getAssets() {
+        await ReactDOM.render(<Assets />, document.getElementById('root'));
+    }
 
     async getSignAndAdd() {
         await ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
@@ -101,8 +106,7 @@ export let makeMainPage = async () => {
     ReactDOM.render(<Top />, document.getElementById('constant'));
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
 
-    await ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
-    handle.getWhitelist();
+    await ReactDOM.render(<Assets />, document.getElementById('root'));
 }
 
 export class Login extends Component {

@@ -4,7 +4,7 @@ import Fortmatic from 'fortmatic';
 
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 const web3 = new Web3(fmPhantom.getProvider());
-var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
+export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = '0x737b4D07e54f19810E5b6214A377dD233eCc3E49';
 
 
@@ -176,19 +176,10 @@ let getPending = async () => {
     list.removeChild(list.firstChild);
   }
 
-  var pending;
-  var txnHash;
+  var pending = await contract.methods.getPendingTx().call();
 
-  await contract.methods.getPendingTx().call()
-    .then((rec) => {
-      pending = rec;
-    });
-
-  await contract.methods.getHashes().call()
-    .then((rec) => {
-      txnHash = rec;
-    });
-
+  var txnHash = await contract.methods.getHashes().call();
+    
   console.log(pending);
   console.log(txnHash);
 
@@ -276,11 +267,7 @@ let getPending = async () => {
 }
 
 let getComp = async (index) => {
-  var pending;
-  await contract.methods.getPendingTx().call()
-    .then((rec) => {
-      pending = rec;
-    });
+  var pending = await contract.methods.getPendingTx().call();
 
   var node = document.createElement("div");
 
