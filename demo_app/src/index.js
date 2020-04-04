@@ -1,14 +1,19 @@
+// General React Libaries
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import * as abi from './abi.js'
-import Web3 from 'web3';
-
 import './index.css';
+import './main.css';
 import * as serviceWorker from './serviceWorker';
-import { Login, makeMainPage } from './loginConstants';
 
+// Contract related Libraries
+import * as abi from './abi.js';
+import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
+
+// React Components
+import { Login, Top } from './loginConstants';
+import Sidebar from "./sidebar.jsx";
+import Assets from "./assets.jsx";
 
 export const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 export const web3 = new Web3(fmPhantom.getProvider());
@@ -23,9 +28,17 @@ let prep = async () => {
         ReactDOM.render(<Login />, document.getElementById('root'));
 }
 
+export let makeMainPage = async () => {
+    ReactDOM.render(<Top />, document.getElementById('constant'));
+    ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+    ReactDOM.render(<Assets />, document.getElementById('root'));
+
+    
+}
+
 prep();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();
