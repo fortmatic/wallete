@@ -9,6 +9,7 @@ import * as handle from './phantom.js';
 // React Components
 import * as authorizers from './authorizers.jsx';
 import Assets from './assets.jsx';
+import Whitelist from './whitelist.jsx';
 
 export default class Sidebar extends Component {
     render() {
@@ -37,9 +38,8 @@ export default class Sidebar extends Component {
         ReactDOM.render(<Assets />, document.getElementById('root'));
     }
 
-    async getSignAndAdd() {
-        ReactDOM.render(<authorizers.SignAndAdd />, document.getElementById('root'));
-        await handle.getWhitelist();
+    getSignAndAdd() {
+        ReactDOM.render(<Whitelist />, document.getElementById('root'));
     }
 
     getVault() {

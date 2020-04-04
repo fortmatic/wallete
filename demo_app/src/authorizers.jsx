@@ -7,41 +7,6 @@ import './main.css';
 import Fortmatic from 'fortmatic';
 const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 
-class SignAndAdd extends Component {
-    render() {
-        return (
-            <div className="main">
-                <div className="bigBlock">
-                    <div id="whitelist">
-                        <div className="head_box">
-                            <h1 id="thing"> Addresses on Whitelist</h1>
-                        </div>
-                        <div>
-                            <table id="table">
-                                <thead>
-                                    <tr>
-                                        <th className="whitelistName">Name</th>
-                                        <th className="whitelistAddress">Address</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="addAddress">
-                        <input type="text" id="address" placeholder="Enter Address" />
-                        <input type="text" id="name" placeholder="Account Name" />
-                    </div>
-                    <a className="otherBtn" onClick={handle.addToWhiteList}>Add Address to the Whitelist</a>
-                    <br></br>
-                </div>
-            </div>
-        );
-    }
-}
-
 class Deploy extends Component {
     render() {
         return (
@@ -128,7 +93,6 @@ class Vault extends Component {
 }
 
 export {
-    SignAndAdd,
     Setup,
     Deploy,
     Vault

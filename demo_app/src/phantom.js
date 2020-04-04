@@ -79,22 +79,6 @@ let setupTransaction = async () => {
     .then(console.log);
 }
 
-let addToWhiteList = async () => {
-  const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
-  const address = document.getElementById('address').value;
-  const acctName = document.getElementById('name').value;
-
-  await contract.methods.addAddress(address, acctName).send({
-    from: userAddress,
-    gas: 1500000,
-    gasPrice: '3000000000000'
-  })
-    .on('receipt', (rec) => {
-      console.log(rec);
-      document.getElementById('status').innerHTML = address + " added to Whitelist";
-    });
-}
-
 let signContract = async (index) => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
@@ -137,37 +121,6 @@ let getBalance = async () => {
     .then((rec) => {
       document.getElementById('balance').innerHTML = rec;
     });
-}
-
-let getWhitelist = async () => {
-  document.getElementById("thing").innerHTML = 'Whitelist of ' + contract.options.address;
-  var whitelist;
-
-  var list = document.getElementById('list');
-  while (list != null && list.hasChildNodes()) {
-    list.removeChild(list.firstChild);
-  }
-
-  await contract.methods.getWhitelistAdd().call()
-    .then((rec) => {
-      whitelist = rec;
-      console.log(whitelist);
-    });
-
-  var table = document.getElementById("list");
-
-  for (let i = 0; i < whitelist.length; i++) {
-    var row = table.insertRow(0);
-
-    var name = row.insertCell(0);
-    var address = row.insertCell(1);
-
-    name.innerHTML = whitelist[i].email;
-    address.innerHTML = whitelist[i].whiteAdd;
-
-    name.setAttribute("class", "whitelistName");
-    address.setAttribute("class", "address");
-  }
 }
 
 let getPending = async () => {
@@ -301,7 +254,6 @@ let getComp = async (index) => {
 export {
   checkStatus,
   signContract,
-  addToWhiteList,
   deploying,
   handleGetMetadata,
   handleLogout,
@@ -310,7 +262,6 @@ export {
   setupTransaction,
   contractConnect,
   getBalance,
-  getWhitelist,
   getPending,
   getComp
 };
