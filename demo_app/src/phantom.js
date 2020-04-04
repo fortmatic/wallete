@@ -8,32 +8,6 @@ export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of sma
 contract.options.address = '0x737b4D07e54f19810E5b6214A377dD233eCc3E49';
 
 
-let handleLoginWithMagicLink = async () => {
-  const email = document.getElementById('user-email').value;
-
-  fmPhantom.loginWithMagicLink({ email })
-    .then((user) => {
-      document.getElementById('status').innerHTML = 'Log in successful!'
-    })
-    .catch((err) => (document.getElementById('status').innerHTML = err));
-  document.getElementById('status').innerHTML = 'Magic Link Sent, Please Check your email';
-};
-
-
-let handleIsLoggedIn = async () => {
-  alert(await fmPhantom.user.isLoggedIn());
-};
-
-let handleLogout = async () => {
-  await fmPhantom.user.logout()
-    .then(document.getElementById('status').innerHTML = 'Logged out');
-};
-
-let handleGetMetadata = async () => {
-  const metadata = await fmPhantom.user.getMetadata();
-  document.getElementById('status').innerHTML = JSON.stringify(metadata);
-};
-
 let deploying = async () => {
   const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
 
@@ -116,13 +90,6 @@ let contractConnect = () => {
   document.getElementById('status').innerHTML = 'Contract connected at ' + contract.options.address;
 }
 
-let getBalance = async () => {
-  await contract.methods.contractBalance().call()
-    .then((rec) => {
-      document.getElementById('balance').innerHTML = rec;
-    });
-}
-
 let getPending = async () => {
   var list = document.getElementById('pendingList');
   while (list != null && list.hasChildNodes()) {
@@ -132,7 +99,7 @@ let getPending = async () => {
   var pending = await contract.methods.getPendingTx().call();
 
   var txnHash = await contract.methods.getHashes().call();
-    
+
   console.log(pending);
   console.log(txnHash);
 
@@ -255,13 +222,8 @@ export {
   checkStatus,
   signContract,
   deploying,
-  handleGetMetadata,
-  handleLogout,
-  handleLoginWithMagicLink,
-  handleIsLoggedIn,
   setupTransaction,
   contractConnect,
-  getBalance,
   getPending,
   getComp
 };

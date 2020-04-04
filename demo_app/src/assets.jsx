@@ -6,7 +6,7 @@ import * as index from './index.js';
 export default class Assets extends Component {
     async componentDidMount() {
         document.getElementById('thing').innerHTML = 'On contract ' + index.contract.options.address;
-        this.getData();
+        window.setInterval(this.getData(), 10000);
     }
 
     render() {
@@ -37,8 +37,7 @@ export default class Assets extends Component {
                 <td>{balance}</td>
             </tr>
         );
-        
+
         ReactDOM.render(element, document.getElementById('list'));
-        console.log('rendered');
     }
 };

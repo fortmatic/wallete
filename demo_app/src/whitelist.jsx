@@ -1,5 +1,9 @@
+// General React libraries
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
+// Blockies library
+import blockies from 'ethereum-blockies';
 
 import * as index from './index.js';
 
@@ -20,6 +24,7 @@ export default class SignAndAdd extends Component {
                             <table id="table">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th className="whitelistName">Name</th>
                                         <th className="whitelistAddress">Address</th>
                                     </tr>
@@ -32,8 +37,8 @@ export default class SignAndAdd extends Component {
                     <div id="addAddress">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
+                        <a className="otherBtn" onClick={this.addToWhiteList}>Add Address to the Whitelist</a>
                     </div>
-                    <a className="otherBtn" onClick={this.addToWhiteList}>Add Address to the Whitelist</a>
                     <br></br>
                 </div>
             </div>
@@ -48,9 +53,16 @@ export default class SignAndAdd extends Component {
         for (let i = 0; i < whitelist.length; i++) {
             var row = table.insertRow(0);
 
-            var name = row.insertCell(0);
-            var address = row.insertCell(1);
+            var icon = blockies.create({
+                seed: whitelist[i].whiteAdd,
+                size: 10
+            });
 
+            var logo = row.insertCell(0);
+            var name = row.insertCell(1);
+            var address = row.insertCell(2);
+
+            logo.appendChild(icon);
             name.innerHTML = whitelist[i].email;
             address.innerHTML = whitelist[i].whiteAdd;
 
