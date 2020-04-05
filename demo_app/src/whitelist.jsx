@@ -34,7 +34,7 @@ export default class SignAndAdd extends Component {
                             </table>
                         </div>
                     </div>
-                    <div id="addAddress">
+                    <div className = "rowInput">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
                         <a className="otherBtn" onClick={this.addToWhiteList}>Add Address</a>
