@@ -24,7 +24,37 @@ body, html {
     width: 500px;
     text-align: center;
 }
-
+#sendAddress {
+    border-radius: 10px;
+    position: relative;
+    text-align: left;
+    display: block;
+    color: black;
+    padding: 13px;
+    left: -0.2%;
+    margin-top: 75px;
+    width: 45%;
+    /* font-size: 20px; */
+    transition: all 0.2s;
+    align-items: left;
+    background-color: #fafbfc;
+}
+#sendAddress:hover {
+    border-color: rgb(57, 50, 156);
+}
+#exchangeAmt {
+    border-radius: 10px;
+    position: relative;
+    left: 46%;
+    width: 38%;
+    text-align: left;
+    background-color: #fafbfc;
+    padding: 13px;
+    margin-top: -57px;
+}
+#exchangeAmt:hover {
+    border-color: rgb(57, 50, 156);
+}
 #username, #userAddress {
     color: gray;
 }
@@ -38,6 +68,8 @@ body, html {
     opacity: 0.7;
     transition: 0.3s;
     margin-bottom: 10px;
+    top: -10%;
+    border-radius: 10px;
     cursor: pointer;
 }
 #nav li {
@@ -52,6 +84,7 @@ body, html {
     font-weight: 600;
     padding: 20px;
     color: black;
+    border-radius: 10px;
     background-color: transparent;
 }
 #nav a:hover {
@@ -105,9 +138,9 @@ body, html {
     box-sizing: content-box;
     border-radius: 10px;
     border: 1px darkgray solid;
-    width: 450px;
+    width: 100%;
     top: -8.5%;
-    left: 4%;
+    left: -13%;
     text-align: center;
 }
 .sidebar {
@@ -117,11 +150,13 @@ body, html {
     font-weight: normal;
     line-height: 1.5;
     box-sizing: border-box;
+    border-radius: 10px;
     position: absolute;
     margin-top: 120px;
     height: 10%;
     display: flex;
     flex-direction: row;
+    left: 12%;
     /* z-index: 100; */
     width: 100%;
     align-items: center;
@@ -152,24 +187,26 @@ body, html {
     border-bottom: 5px black solid;
 }
 .head_boxST {
+    position: relative;
     box-sizing: content-box;
-    width: 40%;
-    margin-top: 15px;
+    width: 30%;
+    margin-top: 20px;
     font-size: 30px;
-    margin-left: 300px;
+    margin-left: 0px;
     text-align: center;
-    padding-bottom: 10px;
-    /* border: 10px red solid; */
+    top: 10%;
+    /* padding-bottom: 10px; */
     border-bottom: 5px black solid;
+
 }
 
 .head_boxPD {
     box-sizing: content-box;
-    width: 57%;
+    width: 38%;
     margin-top: 16px;
     font-size: 30px;
-    margin-left: 100px;
-    text-align: center;
+    margin-left: 0px;
+    text-align: left;
     padding-bottom: 10px;
     /* border: 10px red solid; */
     border-bottom: 5px black solid;
@@ -243,20 +280,6 @@ textarea {
     align-items: center;
 
 }
-#address {
-    position: relative;
-    text-align: center;
-    display: block;
-    color: black;
-    border: 2px black solid;
-    left: -0.5%;    
-    padding: 10px 20px;
-    width: 100%;
-    font-size: 20px;
-    transition: all 0.2s;
-    align-items: center;
-    background-color: #fafbfc;
-}
 
 input {
     font-size: 16px;
@@ -289,77 +312,6 @@ input {
     text-align: center;
 }
 
-.log2{
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin-left: 180px;
-    margin-top: -48px;
-    /* left: 180px;
-    top: 150px; */
-    width: 100px;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 700;
-    border: 3px lightgray solid;
-    color:  #282c34;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-.log2:hover {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-}
-
-.log3{
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin-left: 350px;
-    margin-top: -38px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 700;
-    border: 3px lightgray solid;
-    color:  #282c34;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-.log3:hover {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-}
-.Lognext {
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin: auto;
-    width: 100px;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 700;
-    border: 3px lightgray solid;
-    color:  #282c34;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-.Lognext:hover {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-}
 .profileButton {
     position: fixed;
     text-align: center;
@@ -383,23 +335,47 @@ input {
 }
 
 #addAddress {
-    position: absolute;
-    bottom:5%;
-    right: 2%;
+    position: relative;
+    top: 30%;
+    left: 2%;
     width: 500px;
-
 }
 #name {
+    border-radius: 10px;
+    position: absolute;
+    left: 46%;
+    width: 40%;
+    text-align: left;
+    background-color: #fafbfc;
+    padding: 12.5px;
+    top: 87%;
+}
+#name:hover {
+    border-color: rgb(57, 50, 156);
+}
+#address {
+    border-radius: 10px;
     position: relative;
-    bottom:5%;
-    left: -0.5%;
-    width: 300px;
+    text-align: left;
+    display: block;
+    color: black;
+    padding: 10px 20px;
+    left: -0.2%;
+    margin-top: 200px;
+    width: 45%;
+    font-size: 20px;
+    transition: all 0.2s;
+    align-items: left;
     background-color: #fafbfc;
 }
+#address:hover {
+    border-color: rgb(57, 50, 156);
+}
+
 .otherBtn{
-    position: relative;
+    position: absolute;
     /* display: block; */
-    width: 180px;
+    width: 120px;
     cursor: pointer;
     font-weight: 700;
     border: 2px #282c34 solid;
@@ -407,13 +383,13 @@ input {
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-    left: 78%;
-    top: 40%;
+    left: 87%;
+    bottom: 4%;
     background-color: rgb(57, 50, 156);
     font-size: 16px;
     border-radius: 10px;
     opacity: 1 !important;
-    padding: 10px;
+    padding: 11px;
 }
 
 .otherBtn:hover {
@@ -446,25 +422,28 @@ input {
     text-align: center;
 }
 .stTran{
+
     position: relative;
     display: block;
-    left: 38%;
-    top: 13%;
-    width: 200px;
     cursor: pointer;
+    border: 2px #282c34 solid;
+    border-radius: 10px;
+    left: 85%;
+    top: -11.5%;
+    width: 150px;
     font-size: 15px;
     font-weight: 700;
     border: 2px #282c34 solid;
-    color:  black;
-    background-color: white;
-    padding: 10px;
+    color:  white;
+    background-color: rgb(57, 50, 156);
+    padding: 5px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
 }
 .stTran:hover {
-    background-color: #282c34;
-    color: white;
+    background-color: lightgray;
+    color: rgb(57, 50, 156);
     text-align: center;
 }
 .cmpBtn {
@@ -578,11 +557,6 @@ table {
     font-weight: 700;
     margin: 0 10.5em;    
 }
-.address {
-    font-size: 20px;
-    font-weight: 700;
-    width: 80%;
-}
 
 td, th {
     border: 1px solid #dddddd;
@@ -595,7 +569,8 @@ th {
 }
 
 .sidebar li.active {
-    background-color: rgb(57, 50, 156);
+    background-color: rgb(140, 135, 211);
+
 }
 
 li.active a{
