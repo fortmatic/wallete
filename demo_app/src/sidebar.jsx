@@ -28,7 +28,7 @@ export default class Sidebar extends Component {
 
     getSetupPage() {
         ReactDOM.render(<authorizers.Setup />, document.getElementById('root'));
-        handle.getPending();
+        await handle.getPending();
     }
 
     getDeployPage() {

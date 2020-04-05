@@ -9,7 +9,7 @@ import * as index from './index.js';
 
 export default class SignAndAdd extends Component {
     async componentDidMount() {
-        this.getWhitelist();
+        await this.getWhitelist();
     }
 
     render() {
@@ -37,7 +37,7 @@ export default class SignAndAdd extends Component {
                     <div id="addAddress">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
-                        <a className="otherBtn" onClick={this.addToWhiteList}>Add Address</a>
+                        <a className="otherBtn" onClick={await this.addToWhiteList}>Add Address</a>
                     </div>
                 </div>
             </div>
