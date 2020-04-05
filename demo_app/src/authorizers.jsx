@@ -50,7 +50,7 @@ class Setup extends Component {
                     <input type="text" id="sendAddress" placeholder="Send to Address" />
                     <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                     {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
-                    <a className="stTran" onClick={await handle.setupTransaction}>Transactions</a>
+                    <a className="stTran" onClick={handle.setupTransaction}>Transactions</a>
 
                     {/* <div id="balDiv">
                         <h1>Balance</h1>
@@ -113,10 +113,10 @@ class Vault extends Component {
     //     handle.getComp(sel.value);
     // }
 
-    async signPendingTx() {
-        var sel = document.getElementById('pendTxns');
-        handle.signContract(sel.value);
-    }
+    // async signPendingTx() {
+    //     var sel = document.getElementById('pendTxns');
+    //     handle.signContract(sel.value);
+    // }
 }
 
 export {

@@ -156,6 +156,20 @@ let getPending = async () => {
           etherLink.title = textnode;
           etherLink.href = link;
           compositionNode.append(etherLink);
+
+          var brake = document.createElement('br');
+          compositionNode.append(brake);
+          var brake2 = document.createElement('br');
+          compositionNode.append(brake2);
+
+          var button2 = document.createElement('button');
+          button2.innerHTML = "Sign Transaction";
+          button2.style.backgroundColor = "whitesmoke";
+          button2.style.borderRadius = "2px";
+          button2.style.fontSize = "10px";
+          button2.style.fontWeight = "3px";
+          compositionNode.append(button2);
+          button2.addEventListener("click", await signContract(i));
           
           open = 1;
         }
