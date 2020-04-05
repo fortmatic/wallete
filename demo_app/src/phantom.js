@@ -140,7 +140,8 @@ let getPending = async () => {
 
     button.addEventListener("click",
       async function () {
-        if (open === 0) {
+        if (open == 0) {
+          open = 1;
           var div = document.getElementById('compositionTx');
           while (div.firstChild) {
             div.removeChild(div.firstChild);
@@ -170,16 +171,13 @@ let getPending = async () => {
           button2.style.fontWeight = "3px";
           compositionNode.append(button2);
           button2.addEventListener("click", await signContract(i));
-          
-          open = 1;
         }
-        else if (open === 1) {
+        else if (open == 1) {
+          open = 0;
           var div = document.getElementById('compositionTx');
           while (div.firstChild) {
             div.removeChild(div.firstChild);
           }
-
-          open = 0;
         }
       })
   }
@@ -190,9 +188,9 @@ let getComp = async (index) => {
 
   var node = document.createElement("div");
 
-  var title = document.createElement('h2');
-  title.appendChild(document.createTextNode("Composing Transactions"));
-  node.appendChild(title)
+  // var title = document.createElement('h2');
+  // title.appendChild(document.createTextNode("Composing Transactions"));
+  // node.appendChild(title)
 
   var textnode = document.createElement('p');
   textnode.appendChild(document.createTextNode("From: " + pending[index].txnData.from));
@@ -202,16 +200,12 @@ let getComp = async (index) => {
   textnode1.appendChild(document.createTextNode("To: " + pending[index].txnData.to));
   node.appendChild(textnode1);
 
-  var textnode2 = document.createElement('p');
-  textnode2.appendChild(document.createTextNode("Amount: " + pending[index].txnData.amount));
-  node.appendChild(textnode2);
-
-  var textnode3 = document.createElement('p');
-  textnode3.appendChild(document.createTextNode("Threshold: " + pending[index].txnData.threshold));
-  node.appendChild(textnode3);
+  // var textnode2 = document.createElement('p');
+  // textnode2.appendChild(document.createTextNode("Amount: " + pending[index].txnData.amount));
+  // node.appendChild(textnode2);
 
   var textnode4 = document.createElement('p');
-  textnode4.appendChild(document.createTextNode("Number of Signatures: " + pending[index].numSigs));
+  textnode4.appendChild(document.createTextNode("Number of Signatures: " + pending[index].numSigs + "/" + pending[index].txnData.threshold));
   node.appendChild(textnode4);
 
   document.getElementById('compositionTx').appendChild(node);
