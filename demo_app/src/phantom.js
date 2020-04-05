@@ -106,15 +106,6 @@ let getPending = async () => {
   var table = document.getElementById("list");
 
   for (let i = 0; i < pending.length; i++) {
-    // var node = document.createElement('li');
-    // var nodeLink = document.createElement('a');
-    // var textnode = document.createTextNode(txnHash[i])
-    // var link = "https://rinkeby.etherscan.io/tx/" + txnHash;
-    // nodeLink.appendChild(textnode);
-    // nodeLink.title = textnode;
-    // nodeLink.href = link;
-    // node.append(nodeLink);
-
     var row = table.insertRow(0);
 
     var hash = row.insertCell(0);
@@ -126,63 +117,57 @@ let getPending = async () => {
     var amount = row.insertCell(2);
     amount.setAttribute("id", "rowCol3");
 
-    to.innerHTML = pending[i].txnData.to;
+    for (let j = 0; j < 10; ++j) {
+      to.innerHTML += pending[i].txnData.to[j]
+    }
+    to.innerHTML += "...";
+
     amount.innerHTML = pending[i].txnData.amount;
 
     var button = document.createElement('button');
-    button.innerHTML = txnHash[i];
+    for (let j = 0; j < 10; ++j) {
+      button.innerHTML += txnHash[i][j];
+    }
+    button.innerHTML += "...";
     button.style.backgroundColor = "whitesmoke";
     button.style.borderRadius = "3px";
     button.style.fontSize = "13px";
     button.style.fontWeight = "5px";
 
     hash.appendChild(button);
+    
+    var open = 0;
 
     button.addEventListener("click",
       async function () {
-        var div = document.getElementById('compositionTx');
-        while (div.firstChild) {
-          div.removeChild(div.firstChild);
+        if (open === 0) {
+          var div = document.getElementById('compositionTx');
+          while (div.firstChild) {
+            div.removeChild(div.firstChild);
+          }
+
+          await getComp(i);
+          var compositionNode = document.getElementById('compositionTx');
+
+          var etherLink = document.createElement('a');
+          var textnode = document.createTextNode("View on Etherscan")
+          var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
+          etherLink.appendChild(textnode);
+          etherLink.title = textnode;
+          etherLink.href = link;
+          compositionNode.append(etherLink);
+          
+          open = 1;
         }
+        else if (open === 1) {
+          var div = document.getElementById('compositionTx');
+          while (div.firstChild) {
+            div.removeChild(div.firstChild);
+          }
 
-        await getComp(i);
-        var compositionNode = document.getElementById('compositionTx');
-
-        var etherLink = document.createElement('a');
-        var textnode = document.createTextNode("View on Etherscan")
-        var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
-        etherLink.appendChild(textnode);
-        etherLink.title = textnode;
-        etherLink.href = link;
-        compositionNode.append(etherLink);
-
-        var button2 = document.createElement('button');
-        button2.innerHTML = "close";
-        button2.style.backgroundColor = "whitesmoke";
-        button2.style.borderRadius = "3px";
-
-        var nodeLink2 = document.createElement('a');
-        nodeLink2.append(button2);
-        button2.addEventListener("click",
-          async function () {
-            var div = document.getElementById('compositionTx');
-            while (div.firstChild) {
-              div.removeChild(div.firstChild);
-            }
-          })
-
-        compositionNode.append(nodeLink2);
-        //document.getElementById("pendingList").appendChild(node);
+          open = 0;
+        }
       })
-    //node.append(nodeLink);
-
-    //document.getElementById("pendingList").appendChild(node);
-
-    // var opt = document.createElement('option');
-    // opt.appendChild(document.createTextNode(i + 1));
-    // opt.value = i;
-
-    // document.getElementById("pendTxns").appendChild(opt);
   }
 }
 

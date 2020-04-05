@@ -19,8 +19,8 @@ export default class Sidebar extends Component {
                     {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
                     <li className="active"><a onClick={this.getAssets}>Assets</a></li>
                     <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                    <li><a onClick={this.getSetupPage}>Start Transaction </a></li>
-                    <li><a onClick={this.getVault}>Vault </a></li>
+                    <li><a onClick={this.getSetupPage}>Transactions</a></li>
+                    {/* <li><a onClick={this.getVault}>Vault </a></li> */}
                 </ul>
             </div>
         );
@@ -28,6 +28,7 @@ export default class Sidebar extends Component {
 
     getSetupPage() {
         ReactDOM.render(<authorizers.Setup />, document.getElementById('root'));
+        handle.getPending();
     }
 
     getDeployPage() {
@@ -42,8 +43,8 @@ export default class Sidebar extends Component {
         ReactDOM.render(<Whitelist />, document.getElementById('root'));
     }
 
-    getVault() {
-        ReactDOM.render(<authorizers.Vault />, document.getElementById('root'));
-        handle.getPending();
-    }
+    // getVault() {
+    //     ReactDOM.render(<authorizers.Vault />, document.getElementById('root'));
+    //     handle.getPending();
+    // }
 }
