@@ -50,7 +50,7 @@ class Setup extends Component {
                     <input type="text" id="sendAddress" placeholder="Send to Address" />
                     <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                     {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
-                    <a className="stTran" onClick={handle.setupTransaction}>Transactions</a>
+                    <a className="stTran" onClick={handle.setupTransaction}>Sign Transaction</a>
 
                     {/* <div id="balDiv">
                         <h1>Balance</h1>
