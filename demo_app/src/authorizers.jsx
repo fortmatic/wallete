@@ -42,15 +42,15 @@ class Setup extends Component {
                                 </tr>
                             </thead>
                             <tbody id="list">
-
                             </tbody>
                         </table>
+                        <div className="compBox" id="compositionTx"></div>
                     </div>
-                    <h1 className="head_boxST">Transactions</h1>
+                    <h1 className="head_boxST">New Transaction</h1>
                     <input type="text" id="sendAddress" placeholder="Send to Address" />
                     <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                     {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
-                    <a className="stTran" onClick={handle.setupTransaction}>Sign Transaction</a>
+                    <a className="stTran" onClick={handle.setupTransaction}>Start Transactions</a>
 
                     {/* <div id="balDiv">
                         <h1>Balance</h1>
@@ -59,7 +59,6 @@ class Setup extends Component {
                     </div> */}
 
                     {/* <a className="signTran" onClick={this.signPendingTx}>Sign Transaction</a> */}
-                    <div className="compBox" id="compositionTx"></div>
                 </div>
             </div>
         );
