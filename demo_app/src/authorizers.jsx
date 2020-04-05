@@ -52,13 +52,13 @@ class Vault extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th id="bar1">Tx Hash</th>
-                                    <th id="bar">To</th>
-                                    <th id="bar2">Amount</th>
+                                    <th >Tx Hash</th>
+                                    <th >To</th>
+                                    <th >Amount</th>
                                 </tr>
                             </thead>
                             <tbody id="list">
-                                
+
                             </tbody>
                         </table>
                     </div>

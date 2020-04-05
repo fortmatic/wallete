@@ -37,9 +37,8 @@ export default class SignAndAdd extends Component {
                     <div id="addAddress">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
-                        <a className="otherBtn" onClick={this.addToWhiteList}>Add Address to the Whitelist</a>
+                        <a className="otherBtn" onClick={this.addToWhiteList}>Add Address</a>
                     </div>
-                    <br></br>
                 </div>
             </div>
         );
@@ -67,7 +66,7 @@ export default class SignAndAdd extends Component {
             address.innerHTML = whitelist[i].whiteAdd;
 
             name.setAttribute("class", "whitelistName");
-            address.setAttribute("class", "address");
+            address.setAttribute("class", "whitelistAddress");
         }
     }
 

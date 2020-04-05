@@ -245,7 +245,6 @@ textarea {
 }
 #address {
     position: relative;
-    background-color: rgb(231, 236, 242);
     text-align: center;
     display: block;
     color: black;
@@ -256,6 +255,7 @@ textarea {
     font-size: 20px;
     transition: all 0.2s;
     align-items: center;
+    background-color: #fafbfc;
 }
 
 input {
@@ -394,29 +394,34 @@ input {
     bottom:5%;
     left: -0.5%;
     width: 300px;
+    background-color: #fafbfc;
 }
 .otherBtn{
     position: relative;
-    display: block;
+    /* display: block; */
     width: 180px;
     cursor: pointer;
-    font-size: 13px;
     font-weight: 700;
     border: 2px #282c34 solid;
-    color:  black;
-    background-color: white;
-    padding: 4px;
+    color: white;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
     left: 78%;
     top: 40%;
+    background-color: rgb(57, 50, 156);
+    font-size: 16px;
+    border-radius: 10px;
+    opacity: 1 !important;
+    padding: 10px;
 }
+
 .otherBtn:hover {
-    background-color: #282c34;
-    color: white;
     text-align: center;
+    background-color: lightgray;
+    color: rgb(57, 50, 156);
 }
+
 .signTran{
     position: relative;
     display: block;
@@ -584,11 +589,16 @@ td, th {
     text-align: left;
 }
 
+th {
+    font-size: 20px;
+    font-weight: 700;
+}
+
 .sidebar li.active {
     background-color: rgb(57, 50, 156);
 }
 
-li.active, a{
+li.active a{
     color: white;
 }
 
