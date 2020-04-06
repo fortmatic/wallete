@@ -136,12 +136,12 @@ let getPending = async () => {
 
     hash.appendChild(button);
     
-    var open = 0;
+    var open = -1;
 
     button.addEventListener("click",
       async function () {
-        if (open == 0) {
-          open = 1;
+        if (open != i) {
+          open = i;
           var div = document.getElementById('compositionTx');
           while (div.firstChild) {
             div.removeChild(div.firstChild);
@@ -172,8 +172,8 @@ let getPending = async () => {
           compositionNode.append(button2);
           button2.addEventListener("click", await signContract(i));
         }
-        else if (open == 1) {
-          open = 0;
+        else if (open == i) {
+          open = -1;
           var div = document.getElementById('compositionTx');
           while (div.firstChild) {
             div.removeChild(div.firstChild);
@@ -191,6 +191,12 @@ let getComp = async (index) => {
   // var title = document.createElement('h2');
   // title.appendChild(document.createTextNode("Composing Transactions"));
   // node.appendChild(title)
+
+  var txnHash = await contract.methods.getHashes().call();
+
+  var textnode0 = document.createElement('p');
+  textnode0.appendChild(document.createTextNode("Transaction Hash: " + txnHash[index]));
+  node.appendChild(textnode0);
 
   var textnode = document.createElement('p');
   textnode.appendChild(document.createTextNode("From: " + pending[index].txnData.from));
