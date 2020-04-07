@@ -61,18 +61,20 @@ body, html {
     color: gray;
 }
 #nav {
-    width:100%;
-    margin:0 auto;
-    list-style:none;
-    display: inline-block;
-    position: absolute;
+    padding-left: 0%;
+    margin: 0 auto;
+    list-style: none;
+    /* display: inline-block; */
+    position: relative;
     background-color: transparent;
-    opacity: 0.7;
+    /* opacity: 0.7; */
     transition: 0.3s;
-    margin-bottom: 10px;
-    top: -10%;
-    border-radius: 10px;
+    /* margin-bottom: 10px; */
+    /* top: -10%; */
+    /* border-radius: 10px; */
     cursor: pointer;
+    /* left: 50%; */
+    /* margin-left: -500px;*/
 }
 #nav li {
     float:left;
@@ -154,11 +156,11 @@ body, html {
     box-sizing: border-box;
     border-radius: 10px;
     position: absolute;
-    margin-top: 120px;
-    height: 10%;
+    top: 120px;
+    height: auto;
     display: flex;
     flex-direction: row;
-    left: 12%;
+    left: auto;
     /* z-index: 100; */
     width: 100%;
     align-items: center;
@@ -569,9 +571,8 @@ th {
     font-weight: 700;
 }
 
-.sidebar li.active {
+li.active {
     background-color: rgb(140, 135, 211);
-
 }
 
 li.active a{

@@ -32,8 +32,6 @@ export let makeMainPage = async () => {
     ReactDOM.render(<Top />, document.getElementById('constant'));
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
     ReactDOM.render(<Assets />, document.getElementById('root'));
-
-    
 }
 
 prep();

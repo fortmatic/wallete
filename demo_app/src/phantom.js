@@ -154,7 +154,7 @@ let getPending = async () => {
           var textnode = document.createTextNode("View on Etherscan")
           var link = "https://rinkeby.etherscan.io/tx/" + txnHash[i];
           etherLink.appendChild(textnode);
-          etherLink.title = textnode;
+          //etherLink.title = textnode;
           etherLink.href = link;
           compositionNode.append(etherLink);
 

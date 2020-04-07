@@ -16,30 +16,59 @@ export default class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <ul id="nav">
-                    {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
-                    <li className="active"><a onClick={this.getAssets}>Assets</a></li>
-                    <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                    <li><a onClick={this.getSetupPage}>Transactions</a></li>
-                    {/* <li><a onClick={this.getVault}>Vault </a></li> */}
+                    <div>
+                        {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
+                        <li className="active"><a onClick={this.getAssets}>Assets</a></li>
+                        <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
+                        <li><a onClick={this.getSetupPage}>Transactions</a></li>
+                        {/* <li><a onClick={this.getVault}>Vault </a></li> */}
+                    </div>
                 </ul>
             </div>
         );
     }
 
-    getSetupPage() {
+    getSetupPage = () => {
+        const element = (
+            <div>
+                <li><a onClick={this.getAssets}>Assets</a></li>
+                <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
+                <li className="active"><a onClick={this.getSetupPage}>Transactions</a></li>
+            </div>
+        );
+
+        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<authorizers.Setup />, document.getElementById('root'));
         handle.getPending();
     }
 
-    getDeployPage() {
+    getDeployPage = () => {
         ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
     }
 
-    getAssets() {
+    getAssets = () => {
+        const element = (
+            <div>
+                <li className="active"><a onClick={this.getAssets}>Assets</a></li>
+                <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
+                <li><a onClick={this.getSetupPage}>Transactions</a></li>
+            </div>
+        );
+
+        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Assets />, document.getElementById('root'));
     }
 
-    getSignAndAdd() {
+    getSignAndAdd = () => {
+        const element = (
+            <div>
+                <li><a onClick={this.getAssets}>Assets</a></li>
+                <li className="active"><a onClick={this.getSignAndAdd}>Whitelist </a></li>
+                <li ><a onClick={this.getSetupPage}>Transactions</a></li>
+            </div>
+        );
+
+        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Whitelist />, document.getElementById('root'));
     }
 
