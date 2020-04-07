@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    overflow-x: hidden;
 }
 
 .App-logo {
@@ -45,6 +46,7 @@ body, html {
 #exchangeAmt {
     border-radius: 10px;
     position: relative;
+    display: block;
     left: 46%;
     width: 38%;
     text-align: left;
@@ -171,7 +173,7 @@ body, html {
     position: relative;
     box-sizing: border-box;
     width: 80%;
-    height: 550px;
+    height: 600px;
     margin-left: 55px;
     margin-bottom: 1px;
 }
@@ -348,20 +350,20 @@ input {
     text-align: left;
     background-color: #fafbfc;
     padding: 12.5px;
-    top: 87%;
+    top: 85%;
 }
 #name:hover {
     border-color: rgb(57, 50, 156);
 }
 #address {
     border-radius: 10px;
-    position: relative;
+    position: absolute;
     text-align: left;
     display: block;
     color: black;
     padding: 10px 20px;
     left: -0.2%;
-    margin-top: 200px;
+    top: 85%;
     width: 45%;
     font-size: 20px;
     transition: all 0.2s;
@@ -383,8 +385,8 @@ input {
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-    left: 87%;
-    bottom: 4%;
+
+    bottom: -25px;
     background-color: rgb(57, 50, 156);
     font-size: 16px;
     border-radius: 10px;
@@ -427,7 +429,7 @@ input {
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-    left: 85%;
+    /* left: 85%; */
     top: -12%;
     width: 150px;
     font-size: 15px;

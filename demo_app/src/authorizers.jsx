@@ -47,10 +47,13 @@ class Setup extends Component {
                         <div className="compBox" id="compositionTx"></div>
                     </div>
                     <h1 className="head_boxST">New Transaction</h1>
-                    <input type="text" id="sendAddress" placeholder="Send to Address" />
-                    <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
-                    {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
-                    <a className="stTran" onClick={handle.setupTransaction}>Start Transaction</a>
+                    
+                    <div>
+                        <input type="text" id="sendAddress" placeholder="Send to Address" />
+                        <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
+                        {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
+                        <a className="stTran" onClick={handle.setupTransaction}>Start Transaction</a>
+                    </div>
 
                     {/* <div id="balDiv">
                         <h1>Balance</h1>
