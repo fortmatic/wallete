@@ -36,7 +36,7 @@ html {
     color: black;
     padding: 13px;
     left: -0.2%;
-    margin-top: 100px;
+    margin-top: 30px;
     width: 45%;
     /* font-size: 20px; */
     transition: all 0.2s;
@@ -154,7 +154,7 @@ html {
     flex-direction: column;
 }
 
-.sidebar {
+#sidebar {
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1rem;
@@ -162,8 +162,8 @@ html {
     line-height: 1.5;
     box-sizing: border-box;
     border-radius: 10px;
-    position: absolute;
-    top: 120px;
+    position: relative;
+    top: 25px;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -203,7 +203,7 @@ html {
     position: relative;
     box-sizing: content-box;
     width: 30%;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 30px;
     margin-left: 0px;
     text-align: center;
@@ -226,7 +226,7 @@ html {
 
 .main {
     margin-left: 10%;
-    margin-top: 10%;
+    margin-top: 70px;
     font-size: 12px;
 }
 
