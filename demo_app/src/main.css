@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     height: 100%;
     overflow-x: hidden;
 }
@@ -7,7 +8,7 @@ body, html {
     height: 40vmin;
     pointer-events: none;
 }
-  
+
 .App-header {
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
@@ -18,6 +19,7 @@ body, html {
     font-size: 20px;
     color: rgb(57, 50, 156);
 }
+
 .logo_box {
     box-sizing: content-box;
     border-radius: 10px;
@@ -25,6 +27,7 @@ body, html {
     width: 500px;
     text-align: center;
 }
+
 #sendAddress {
     border-radius: 10px;
     position: relative;
@@ -40,9 +43,11 @@ body, html {
     align-items: left;
     background-color: #fafbfc;
 }
+
 #sendAddress:hover {
     border-color: rgb(57, 50, 156);
 }
+
 #exchangeAmt {
     border-radius: 10px;
     position: relative;
@@ -54,12 +59,16 @@ body, html {
     padding: 13px;
     margin-top: -57px;
 }
+
 #exchangeAmt:hover {
     border-color: rgb(57, 50, 156);
 }
-#username, #userAddress {
+
+#username,
+#userAddress {
     color: gray;
 }
+
 #nav {
     padding-left: 0%;
     margin: 0 auto;
@@ -76,14 +85,17 @@ body, html {
     /* left: 50%; */
     /* margin-left: -500px;*/
 }
+
 #nav li {
-    float:left;
+    float: left;
 }
+
 #nav a {
-    display:block;
-    text-align:center;
-    width:280px; /* fixed width */
-    text-decoration:none; 
+    display: block;
+    text-align: center;
+    width: 280px;
+    /* fixed width */
+    text-decoration: none;
     font-size: 25px;
     font-weight: 600;
     padding: 20px;
@@ -91,58 +103,57 @@ body, html {
     border-radius: 10px;
     background-color: transparent;
 }
+
 #nav a:hover {
     color: rgb(57, 50, 156);
-    
-} 
+}
 
- #list {
-    text-align:center;
-    width:280px; 
-    text-decoration:none; 
+#list {
+    text-align: center;
+    width: 280px;
+    text-decoration: none;
     font-size: 20px;
     font-weight: 700;
     padding: 20px;
     color: black;
-    background-color: transparent; 
+    background-color: transparent;
     left: 30%;
 }
+
 #list li {
     padding: 0.5em;
     margin: 0 6em;
 }
 
-#bar{
+#bar {
     width: 33%;
     font-size: 15px;
-
 }
-#bar1{
+
+#bar1 {
     border-right: 1px black solid;
     width: 53%;
     font-size: 15px;
-
 }
-#bar2{
+
+#bar2 {
     border-left: 1px black solid;
     width: 12%;
     font-size: 15px;
+}
 
-}
-#pendingList li {
-    padding: 0.5em;
-    margin: 0 6em;
-    list-style-type: none;
-}
-.compBox {
-    box-sizing: content-box;
-    border-radius: 10px;
-    border: 5px darkgray solid;
+#pending {
+    font-family: 'Courier New', Courier, monospace;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    line-height: 1.42857;
+    text-rendering: optimizeLegibility;
     width: 100%;
-    top: -8.5%;
-    left: -13%;
-    text-align: center;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
 }
+
 .sidebar {
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
@@ -160,9 +171,9 @@ body, html {
     /* z-index: 100; */
     width: 100%;
     align-items: center;
-
 }
-.bigBlock{
+
+.bigBlock {
     display: block;
     border-radius: 10px;
     border: 30px rgb(231, 236, 242) solid;
@@ -171,10 +182,11 @@ body, html {
     position: relative;
     box-sizing: border-box;
     width: 80%;
-    height: 600px;
+    height: 100%;
     margin-left: 55px;
     margin-bottom: 1px;
 }
+
 .head_box {
     font-family: 'Courier New', Courier, monospace;
     color: black;
@@ -186,6 +198,7 @@ body, html {
     /* border: 10px red solid; */
     border-bottom: 5px black solid;
 }
+
 .head_boxST {
     position: relative;
     box-sizing: content-box;
@@ -197,7 +210,6 @@ body, html {
     top: 10%;
     /* padding-bottom: 10px; */
     border-bottom: 5px black solid;
-
 }
 
 .head_boxPD {
@@ -217,10 +229,11 @@ body, html {
     margin-top: 10%;
     font-size: 12px;
 }
+
 .login {
     /* border: 3px solid rgb(45, 0, 128); */
     background-image: url("loginImage.png");
-    height: 100%; 
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -233,6 +246,7 @@ body, html {
     width: 100%;
     text-align: center;
 }
+
 .loginBox {
     padding: 1%;
     position: absolute;
@@ -242,6 +256,7 @@ body, html {
     height: 230px;
     text-align: center;
 }
+
 input,
 textarea {
     position: relative;
@@ -278,7 +293,6 @@ textarea {
     box-sizing: border-box;
     transition: all 0.2s;
     align-items: center;
-
 }
 
 input {
@@ -286,7 +300,8 @@ input {
     font-weight: 600;
     text-align: center;
 }
-.log1{
+
+.log1 {
     position: relative;
     display: block;
     border-radius: 10px;
@@ -297,7 +312,7 @@ input {
     font-size: 10px;
     font-weight: 700;
     border: 3px lightgray solid;
-    color:  #282c34;
+    color: #282c34;
     background-color: white;
     padding: 10px;
     transition: all 0.2s;
@@ -306,6 +321,7 @@ input {
     left: 32%;
     top: 15%;
 }
+
 .log1:hover {
     background-color: lightgray;
     color: black;
@@ -328,6 +344,7 @@ input {
     padding: 10px;
     transition: all 0.2s;
 }
+
 .profileButton:hover {
     background-color: lightgray;
     color: rgb(57, 50, 156);
@@ -340,6 +357,7 @@ input {
     left: 2%;
     width: 500px;
 }
+
 #name {
     border-radius: 10px;
     position: absolute;
@@ -350,9 +368,11 @@ input {
     padding: 12.5px;
     top: 85%;
 }
+
 #name:hover {
     border-color: rgb(57, 50, 156);
 }
+
 #address {
     border-radius: 10px;
     position: absolute;
@@ -368,11 +388,12 @@ input {
     align-items: left;
     background-color: #fafbfc;
 }
+
 #address:hover {
     border-color: rgb(57, 50, 156);
 }
 
-.otherBtn{
+.otherBtn {
     position: absolute;
     /* display: block; */
     width: 120px;
@@ -383,7 +404,6 @@ input {
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-
     bottom: -25px;
     background-color: rgb(57, 50, 156);
     font-size: 16px;
@@ -398,7 +418,7 @@ input {
     color: rgb(57, 50, 156);
 }
 
-.signTran{
+.signTran {
     position: relative;
     display: block;
     padding-top: 20px;
@@ -409,19 +429,21 @@ input {
     font-size: 15px;
     font-weight: 700;
     border: 2px #282c34 solid;
-    color:  black;
+    color: black;
     background-color: white;
     padding: 10px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
 }
+
 .signTran:hover {
     background-color: #282c34;
     color: white;
     text-align: center;
 }
-.stTran{
+
+.stTran {
     position: relative;
     display: block;
     cursor: pointer;
@@ -433,18 +455,20 @@ input {
     font-size: 15px;
     font-weight: 700;
     border: 2px #282c34 solid;
-    color:  white;
+    color: white;
     background-color: rgb(57, 50, 156);
     padding: 5px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
 }
+
 .stTran:hover {
     background-color: lightgray;
     color: rgb(57, 50, 156);
     text-align: center;
 }
+
 .cmpBtn {
     position: relative;
     display: block;
@@ -457,19 +481,21 @@ input {
     font-size: 10px;
     font-weight: 700;
     border: 3px #282c34 solid;
-    color:  black;
+    color: black;
     background-color: white;
     padding: 3px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
 }
+
 .cmpBtn:hover {
     background-color: #282c34;
     color: white;
     text-align: center;
 }
-.refreshBtn{
+
+.refreshBtn {
     position: relative;
     display: block;
     border-radius: 10px;
@@ -480,18 +506,20 @@ input {
     font-size: 15px;
     font-weight: 700;
     border: 3px #282c34 solid;
-    color:  #282c34;
+    color: #282c34;
     background-color: white;
     padding: 10px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
 }
+
 .refreshBtn:hover {
     background-color: #282c34;
     color: white;
     text-align: center;
 }
+
 #profile {
     position: absolute;
     top: 5%;
@@ -499,6 +527,7 @@ input {
     text-align: right;
     font-size: 20px;
 }
+
 .connected {
     position: fixed;
     top: 18%;
@@ -506,6 +535,7 @@ input {
     text-align: left;
     font-size: 20px;
 }
+
 #balDiv {
     position: absolute;
     margin-top: 10px;
@@ -538,11 +568,10 @@ input {
     text-align: center;
 }
 
-
 table {
     margin-top: 30px;
     width: 100%;
-    border:  1px solid black;
+    border: 1px solid black;
 }
 
 .whitelistName {
@@ -554,10 +583,11 @@ table {
 .whitelistAddress {
     font-size: 20px;
     font-weight: 700;
-    margin: 0 10.5em;    
+    margin: 0 10.5em;
 }
 
-td, th {
+td,
+th {
     border: 1px solid #dddddd;
     text-align: left;
 }
@@ -571,10 +601,23 @@ li.active {
     background-color: rgb(140, 135, 211);
 }
 
-li.active a{
+li.active a {
     color: white;
 }
 
 canvas {
     border-radius: 50%;
+}
+
+a.composition {
+    background-color: rgb(57, 50, 156);
+    color: white;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 3px;
+}
+
+a.composition:hover {
+    color: rgb(57, 50, 156);
+    background-color: lightgrey;
 }
