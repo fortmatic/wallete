@@ -28,7 +28,7 @@ html {
     text-align: center;
 }
 
-#sendAddress {
+#address {
     border-radius: 10px;
     position: relative;
     text-align: left;
@@ -44,7 +44,7 @@ html {
     background-color: #fafbfc;
 }
 
-#sendAddress:hover {
+#address:hover {
     border-color: rgb(57, 50, 156);
 }
 
@@ -360,56 +360,38 @@ input {
 
 #name {
     border-radius: 10px;
-    position: absolute;
+    position: relative;
+    display: block;
     left: 46%;
-    width: 40%;
+    width: 38%;
     text-align: left;
     background-color: #fafbfc;
-    padding: 12.5px;
-    top: 85%;
+    padding: 13px;
+    margin-top: -57px;
 }
 
 #name:hover {
     border-color: rgb(57, 50, 156);
 }
 
-#address {
-    border-radius: 10px;
-    position: absolute;
-    text-align: left;
-    display: block;
-    color: black;
-    padding: 10px 20px;
-    left: -0.2%;
-    top: 85%;
-    width: 45%;
-    font-size: 20px;
-    transition: all 0.2s;
-    align-items: left;
-    background-color: #fafbfc;
-}
-
-#address:hover {
-    border-color: rgb(57, 50, 156);
-}
-
 .otherBtn {
-    position: absolute;
-    /* display: block; */
-    width: 120px;
+    position: relative;
+    display: block;
     cursor: pointer;
+    border: 2px #282c34 solid;
+    border-radius: 10px;
+    /* left: 85%; */
+    top: -12%;
+    width: 120px;
+    font-size: 15px;
     font-weight: 700;
     border: 2px #282c34 solid;
     color: white;
+    background-color: rgb(57, 50, 156);
+    padding: 11px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
-    bottom: -25px;
-    background-color: rgb(57, 50, 156);
-    font-size: 16px;
-    border-radius: 10px;
-    opacity: 1 !important;
-    padding: 11px;
 }
 
 .otherBtn:hover {
@@ -620,4 +602,8 @@ a.composition {
 a.composition:hover {
     color: rgb(57, 50, 156);
     background-color: lightgrey;
+}
+
+.rowInput {
+    position: relative;
 }

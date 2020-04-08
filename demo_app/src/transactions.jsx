@@ -117,7 +117,7 @@ export class Transactions extends Component {
                     <h1 className="head_boxST">New Transaction</h1>
 
                     <div>
-                        <input type="text" id="sendAddress" placeholder="Send to Address" />
+                        <input type="text" id="address" placeholder="Send to Address" />
                         <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <a className="stTran" onClick={this.setupTransaction}>Start Transaction</a>
