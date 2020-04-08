@@ -167,10 +167,12 @@ html {
     height: auto;
     display: flex;
     flex-direction: row;
-    left: auto;
+    left: 50%;
+    margin-left: -480px;
     /* z-index: 100; */
-    width: 100%;
+    width: 75%;
     align-items: center;
+
 }
 
 .bigBlock {
