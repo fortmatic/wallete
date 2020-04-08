@@ -134,14 +134,10 @@ body, html {
     margin: 0 6em;
     list-style-type: none;
 }
-#compositionTx {
-    position: relative;
-    margin: 0 10.5em;
-}
 .compBox {
     box-sizing: content-box;
     border-radius: 10px;
-    border: 1px darkgray solid;
+    border: 5px darkgray solid;
     width: 100%;
     top: -8.5%;
     left: -13%;

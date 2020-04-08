@@ -9,9 +9,11 @@
     "ethereum-blockies": "^0.1.1",
     "fortmatic": "^2.0.0",
     "react": "^16.12.0",
+    "react-data-table-component": "^6.4.0",
     "react-dom": "^16.12.0",
     "react-floating-button-menu": "^2.0.8",
     "react-scripts": "3.4.0",
+    "styled-components": "^5.1.0",
     "web3": "^1.2.6"
   },
   "scripts": {

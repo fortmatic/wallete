@@ -10,6 +10,7 @@ import * as handle from './phantom.js';
 import * as authorizers from './authorizers.jsx';
 import Assets from './assets.jsx';
 import Whitelist from './whitelist.jsx';
+import {Transactions, getPending} from './transactions.jsx';
 
 export default class Sidebar extends Component {
     render() {
@@ -20,7 +21,7 @@ export default class Sidebar extends Component {
                         {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
                         <li className="active"><a onClick={this.getAssets}>Assets</a></li>
                         <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                        <li><a onClick={this.getSetupPage}>Transactions</a></li>
+                        <li><a onClick={this.getTransactions}>Transactions</a></li>
                         {/* <li><a onClick={this.getVault}>Vault </a></li> */}
                     </div>
                 </ul>
@@ -28,22 +29,18 @@ export default class Sidebar extends Component {
         );
     }
 
-    getSetupPage = () => {
+    getTransactions = async () => {
         const element = (
             <div>
                 <li><a onClick={this.getAssets}>Assets</a></li>
                 <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li className="active"><a onClick={this.getSetupPage}>Transactions</a></li>
+                <li className="active"><a onClick={this.getTransactions}>Transactions</a></li>
             </div>
         );
 
+        await getPending();
         ReactDOM.render(element, document.getElementById('nav'));
-        ReactDOM.render(<authorizers.Setup />, document.getElementById('root'));
-        handle.getPending();
-    }
-
-    getDeployPage = () => {
-        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+        ReactDOM.render(<Transactions />, document.getElementById('root'));
     }
 
     getAssets = () => {
@@ -51,7 +48,7 @@ export default class Sidebar extends Component {
             <div>
                 <li className="active"><a onClick={this.getAssets}>Assets</a></li>
                 <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li><a onClick={this.getSetupPage}>Transactions</a></li>
+                <li><a onClick={this.getTransactions}>Transactions</a></li>
             </div>
         );
 
@@ -64,12 +61,16 @@ export default class Sidebar extends Component {
             <div>
                 <li><a onClick={this.getAssets}>Assets</a></li>
                 <li className="active"><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li ><a onClick={this.getSetupPage}>Transactions</a></li>
+                <li ><a onClick={this.getTransactions}>Transactions</a></li>
             </div>
         );
 
         ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Whitelist />, document.getElementById('root'));
+    }
+
+    getDeployPage = () => {
+        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
     }
 
     // getVault() {

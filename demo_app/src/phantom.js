@@ -97,7 +97,6 @@ let getPending = async () => {
   }
 
   var pending = await contract.methods.getPendingTx().call();
-
   var txnHash = await contract.methods.getHashes().call();
 
   console.log(pending);
