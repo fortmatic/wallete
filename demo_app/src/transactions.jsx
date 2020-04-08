@@ -21,15 +21,18 @@ export class Transactions extends Component {
     columns = [
         {
             name: 'Tx hash',
-            selector: 'txHash'
+            selector: 'txHash',
+            sortable: false
         },
         {
             name: 'To',
-            selector: 'to'
+            selector: 'to',
+            sortable: true
         },
         {
             name: 'Amount',
-            selector: 'amt'
+            selector: 'amt',
+            sortable: true
         }
     ]
 
@@ -44,7 +47,7 @@ export class Transactions extends Component {
                             data={data}
                             expandOnRowClicked
                             expandableRows
-                            expandableRowsComponent={this.composition}/>
+                            expandableRowsComponent={<this.composition />} />
                     </div>
                     <h1 className="head_boxST">New Transaction</h1>
 
@@ -59,10 +62,32 @@ export class Transactions extends Component {
         );
     }
 
-    composition = async () => {
-        
+    composition = ({ data }) => {
+        const index = data.id;
+        const link = "https://rinkeby.etherscan.io/tx/" + txnHash[index];
+
+        return (
+            <div>
+                <p>Transaction Hash: {txnHash[index]}</p>
+                <p>From: {pending[index].txnData.from}</p>
+                <p>To: {pending[index].txnData.to}</p>
+                <p>Number of Signatures: {pending[index].numSigs}/{pending[index].txnData.threshold}</p>
+                <button onClick={this.signContract(index)}>Sign Transaction</button>
+                <a href={link}>View on Etherscan</a>
+                <p id="status"></p>
+            </div>
+        );
     }
 
+    signContract = async (i) => {
+        const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+
+        await index.contract.methods.signTransaction(i).send({
+            from: userAddress,
+            gas: 1500000,
+            gasPrice: '3000000000000'
+        })
+    }
 }
 
 export let getPending = async () => {
