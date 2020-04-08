@@ -45,7 +45,7 @@ export class Top extends Component {
             </div>
         );
 
-        ReactDOM.render(element, document.getElementById('profile'));
+        await ReactDOM.render(element, document.getElementById('profile'));
 
         document.getElementById('username').innerHTML = (await index.fmPhantom.user.getMetadata()).email;
         document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;

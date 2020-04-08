@@ -137,8 +137,10 @@ export class Transactions extends Component {
                 <p>From: {pending[index].txnData.from}</p>
                 <p>To: {pending[index].txnData.to}</p>
                 <p>Number of Signatures: {pending[index].numSigs}/{pending[index].txnData.threshold}</p>
-                <button onClick={this.signContract(index)}>Sign Transaction</button>
                 <a href={link}>View on Etherscan</a>
+                <br></br>
+                <br></br>
+                <button onClick={this.signContract(index)}>Sign Transaction</button>
                 <p id="status"></p>
             </div>
         );
