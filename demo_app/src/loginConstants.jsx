@@ -9,6 +9,8 @@ import * as handle from './phantom.js';
 // React components
 import * as authorizers from './authorizers.jsx';
 import Assets from './assets.jsx';
+//blockies
+import Blockies from 'react-blockies';
 
 
 export class Top extends Component {
@@ -18,7 +20,12 @@ export class Top extends Component {
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WHITELABEL MULTISIG</div></h1>
                     <div id="profile">
-                        <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
+                    <a className = "identicon" onClick={this.openProfile} id="profBtn">
+                        <Blockies 
+                            size= {5}
+                            scale = {10}/>
+                        </a>
+                        {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
                     </div>
                     <p className="connected" id="status"></p>
                 </header>
@@ -37,11 +44,19 @@ export class Top extends Component {
 
     openProfile = async () => {
         const element = (
-            <div>
-                <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a>
-                <a className="logoutBtn" onClick={this.logout}>Logout</a>
+            <div >
+                <a className = "identicon" onClick={this.closeProfile} id="profBtn">
+                        <Blockies 
+                            size= {5}
+                            scale = {10}>
+                        </Blockies>
+                        </a>
+                {/* <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a> */}
+                <div className = "profileBox">
                 <p id="username"></p>
                 <p id="userAddress"></p>
+                <a className="logoutBtn" onClick={this.logout} id = "logoutBtn">Logout</a>
+                </div>
             </div>
         );
 
@@ -54,7 +69,13 @@ export class Top extends Component {
     closeProfile = () => {
         const element = (
             <div>
-                <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a>
+                <a className = "identicon" onClick={this.openProfile} id="profBtn">
+                        <Blockies 
+                            size= {5}
+                            scale = {10}>
+                        </Blockies>
+                        </a>
+                {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
             </div>
         );
 

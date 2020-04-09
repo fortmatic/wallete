@@ -11,11 +11,7 @@ html {
 
 .App-header {
     font-family: 'Courier New', Courier, monospace;
-    text-align: left;
-    align-items: left;
-    justify-content: left;
-    margin-top: -20px;
-    margin-left: 10px;
+    text-align: center;
     font-size: 20px;
     color: rgb(57, 50, 156);
 }
@@ -23,8 +19,11 @@ html {
 .logo_box {
     box-sizing: content-box;
     border-radius: 10px;
-    border: 1px gray solid;
+    border: 3px gray solid;
     width: 500px;
+    margin-top: -17px;
+    margin-left: 450px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -37,7 +36,7 @@ html {
     padding: 13px;
     left: -0.2%;
     margin-top: 30px;
-    width: 45%;
+    width: 50%;
     /* font-size: 20px; */
     transition: all 0.2s;
     align-items: left;
@@ -52,8 +51,8 @@ html {
     border-radius: 10px;
     position: relative;
     display: block;
-    left: 46%;
-    width: 38%;
+    left: 50%;
+    width: 50%;
     text-align: left;
     background-color: #fafbfc;
     padding: 13px;
@@ -64,9 +63,17 @@ html {
     border-color: rgb(57, 50, 156);
 }
 
-#username,
+#username {
+    color: gray;
+    font-size: 15px;
+    font-weight: 800;
+    position: relative;
+}
 #userAddress {
     color: gray;
+    font-size: 11px;
+    font-weight: 800;
+    position: relative;
 }
 
 #nav {
@@ -169,9 +176,10 @@ html {
     flex-direction: row;
     left: 50%;
     margin-left: -480px;
-    /* z-index: 100; */
+    z-index: 50;
     width: 75%;
     align-items: center;
+
 
 }
 
@@ -364,8 +372,8 @@ input {
     border-radius: 10px;
     position: relative;
     display: block;
-    left: 46%;
-    width: 38%;
+    left: 50%;
+    width: 50%;
     text-align: left;
     background-color: #fafbfc;
     padding: 13px;
@@ -382,7 +390,7 @@ input {
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-    /* left: 85%; */
+    left: 85%;
     top: -12%;
     width: 120px;
     font-size: 15px;
@@ -433,7 +441,7 @@ input {
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-    /* left: 85%; */
+    left: 83.2%;
     top: -12%;
     width: 150px;
     font-size: 15px;
@@ -506,7 +514,7 @@ input {
 
 #profile {
     position: absolute;
-    top: 5%;
+    top: 1%;
     right: 1%;
     text-align: right;
     font-size: 20px;
@@ -529,27 +537,21 @@ input {
     text-align: right;
 }
 
-.logoutBtn {
-    position: fixed;
+#logoutBtn {
+    position: relative;
     text-align: center;
-    display: block;
-    top: 18%;
-    right: 1%;
     width: auto;
     cursor: pointer;
     font-size: 15px;
     font-weight: 700;
-    border-radius: 10px;
-    color: white;
-    background-color: rgb(57, 50, 156);
-    padding: 10px;
+    color: black;
+    text-decoration: underline;
     transition: all 0.2s;
 }
 
 .logoutBtn:hover {
-    background-color: lightgray;
     color: rgb(57, 50, 156);
-    text-align: center;
+    text-decoration: underline;
 }
 
 table {
@@ -608,4 +610,22 @@ a.composition:hover {
 
 .rowInput {
     position: relative;
+}
+
+.profileBox {
+    position: relative;
+    display: block;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px white solid;
+    margin-top: 15px;
+    z-index: 100;
+    box-shadow: 8px 5px 20px #888888
+}
+.identicon {
+    width: 50px;
+    height: 50px;
 }
