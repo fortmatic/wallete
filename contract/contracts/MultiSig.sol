@@ -86,7 +86,7 @@ contract MultiSig {
         returns (bool success)
     {
         // Requires to ensure owner adding signers
-        require(msg.sender == owner, "Sender not authorized");
+        require(whitelist[msg.sender] == true, "Sender not authorized");
         require(whitelist[newAddress] == false, "Already added");
 
         // Give address signing ability and emit event
