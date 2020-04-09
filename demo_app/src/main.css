@@ -594,7 +594,12 @@ li.active a {
 canvas {
     border-radius: 50%;
 }
-
+.composition {
+    display: block;
+    box-sizing: content-box;
+    background-color: red;
+    padding-left: 30px;
+}
 a.composition {
     background-color: rgb(57, 50, 156);
     color: white;

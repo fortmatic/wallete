@@ -68,7 +68,8 @@ const style = {
     expanderRow: {
         style: {
             fontSize: '15px',
-            fontWeight: 700
+            fontWeight: 700,
+            paddingLeft: '65px'
         }
     }
 }

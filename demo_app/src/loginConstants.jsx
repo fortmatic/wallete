@@ -20,11 +20,11 @@ export class Top extends Component {
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WHITELABEL MULTISIG</div></h1>
                     <div id="profile">
-                    <a className = "identicon" onClick={this.openProfile} id="profBtn">
+                    <a className = "identicon" onClick={this.openProfile} id="profBtn">	
                         <Blockies 
                             size= {5}
                             scale = {10}/>
-                        </a>
+                        	</a>
                         {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
                     </div>
                     <p className="connected" id="status"></p>
