@@ -34,6 +34,7 @@ export default class SignAndAdd extends Component {
                             </table>
                         </div>
                     </div>
+                    <p className="connected" id="status"></p>
                     <div className = "rowInput">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />

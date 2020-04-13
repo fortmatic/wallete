@@ -27,7 +27,6 @@ export class Top extends Component {
                         	</a>
                         {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
                     </div>
-                    <p className="connected" id="status"></p>
                 </header>
             </div>
         );

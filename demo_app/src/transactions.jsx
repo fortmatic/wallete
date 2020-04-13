@@ -116,12 +116,12 @@ export class Transactions extends Component {
                         </Card>
                     </div>
                     <h1 className="head_boxST">New Transaction</h1>
-
+                    <p className="connected" id="status"></p>
                     <div>
                         <input type="text" id="address" placeholder="Send to Address" />
                         <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
-                        <a className="stTran" onClick={this.setupTransaction}>Start Transaction</a>
+                        <a className="stTran" onClick={this.startTransaction}>Start Transaction</a>
                     </div>
                 </div>
             </div>
@@ -149,19 +149,23 @@ export class Transactions extends Component {
 
     startTransaction = async () => {
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const amount = document.getElementById('exchangeAmt').value * Math.pow(10, 18);
-        const sendAddress = document.getElementById('sendAddress').value;
+        const amount = document.getElementById('exchangeAmt').value;
+        const sendAddress = document.getElementById('address').value;
         //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
-
+        
+        console.log(amount);
         var txnHash;
 
-        await index.contract.methods.setupTransaction(sendAddress, threshold, amount).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '3000000000000',
-            value: amount
-        })
+        const transactAmt = index.web3.utils.toWei(amount, "ether");
+        console.log(transactAmt);
+
+        await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '30000000000',
+                value: transactAmt
+            })
             .on('receipt', (rec) => {
                 console.log(rec);
                 txnHash = rec.transactionHash;
@@ -171,9 +175,8 @@ export class Transactions extends Component {
         await index.contract.methods.setHash(txnHash).send({
             from: userAddress,
             gas: 1500000,
-            gasPrice: '3000000000000'
-        })
-            .then(console.log);
+            gasPrice: '30000000000'
+        }).then(console.log);
     }
 
     signContract = async (i) => {
