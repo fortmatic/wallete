@@ -1,6 +1,7 @@
 pragma solidity ^0.5.16;
 pragma experimental ABIEncoderV2;
 
+
 contract MultiSig {
     // Basic Contract data for ownership and nonce
     address public owner;
@@ -51,6 +52,14 @@ contract MultiSig {
         addAddress(msg.sender, name);
     }
 
+    function getAllTransactions()
+        public
+        view
+        returns (transactionData[] memory transArr)
+    {
+        return transactions;
+    }
+
     function getWhitelistAdd()
         public
         view
@@ -86,7 +95,7 @@ contract MultiSig {
         returns (bool success)
     {
         // Requires to ensure owner adding signers
-        require(whitelist[msg.sender] == true, "Sender not authorized");
+        require(whitelist[msg.sender] == true || owner == msg.sender, "Sender not authorized");
         require(whitelist[newAddress] == false, "Already added");
 
         // Give address signing ability and emit event
@@ -186,8 +195,7 @@ contract MultiSig {
         );
 
         pendingTransactions[index] = pendingTransactions[pendingTransactions
-            .length -
-            1];
+            .length - 1];
 
         ethTxHashes[index] = ethTxHashes[ethTxHashes.length - 1];
 
@@ -210,5 +218,4 @@ contract MultiSig {
 
         return false;
     }
-
 }

@@ -19,7 +19,7 @@ export const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 export const web3 = new Web3(fmPhantom.getProvider());
 
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
-contract.options.address = '0x737b4D07e54f19810E5b6214A377dD233eCc3E49';
+contract.options.address = '0x38c367A6C4ccB6B1E8421121F257EF8b1c659069';
 
 let prep = async () => {
     if (await fmPhantom.user.isLoggedIn())
