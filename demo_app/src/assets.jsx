@@ -29,7 +29,7 @@ export default class Assets extends Component {
     }
 
     async getData() {
-        const balance = await index.contract.methods.contractBalance().call();
+        const balance = await index.contract.methods.contractBalance().call() / Math.pow(10, 18) + " Eth";
 
         const element = (
             <tr>

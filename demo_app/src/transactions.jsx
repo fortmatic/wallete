@@ -119,7 +119,7 @@ export class Transactions extends Component {
 
                     <div>
                         <input type="text" id="address" placeholder="Send to Address" />
-                        <input type="number" id="exchangeAmt" placeholder="Transaction amount" />
+                        <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <a className="stTran" onClick={this.setupTransaction}>Start Transaction</a>
                     </div>
@@ -149,7 +149,7 @@ export class Transactions extends Component {
 
     startTransaction = async () => {
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const amount = document.getElementById('exchangeAmt').value;
+        const amount = document.getElementById('exchangeAmt').value * Math.pow(10, 18);
         const sendAddress = document.getElementById('sendAddress').value;
         //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
@@ -203,7 +203,7 @@ export let getPending = async () => {
 
     for (let i = 0; i < pending.length; ++i) {
         data.push({
-            id: i, txHash: txnHash[i], to: pending[i].txnData.to, amt: pending[i].txnData.amount
+            id: i, txHash: txnHash[i], to: pending[i].txnData.to, amt: pending[i].txnData.amount / Math.pow(10, 18) + " Eth"
         })
     }
 
