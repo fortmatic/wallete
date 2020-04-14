@@ -141,7 +141,7 @@ export class Transactions extends Component {
                 <a href={link}>View on Etherscan</a>
                 <br></br>
                 <br></br>
-                <button onClick={this.signContract(index)}>Sign Transaction</button>
+                <button onClick={() => this.signContract(index)}>Sign Transaction</button>
                 <p id="status"></p>
             </div>
         );
