@@ -190,8 +190,8 @@ export class Transactions extends Component {
             .on('receipt', (rec) => {
                 console.log(rec);
                 if (rec.events.transactionOccured != null) {
-                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[0]
-                        + " to " + rec.events.transactionOccured.returnValues[1];
+                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[1] / Math.pow(10, 18) + "Eth"
+                        + " to " + rec.events.transactionOccured.returnValues[0];
                 }
                 else {
                     document.getElementById('status').innerHTML = rec.events.SignedTransact.returnValues[0] + " signed transaction";
