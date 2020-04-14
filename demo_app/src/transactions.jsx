@@ -201,9 +201,9 @@ export class Transactions extends Component {
 }
 
 export let getPending = async () => {
-    pending = await index.contract.methods.getPendingTx().call();
-    txnHash = await index.contract.methods.getHashes().call();
+    pending = await index.contract.methods.getTransactions().call();
 
+    // modify id to nonce
     for (let i = 0; i < pending.length; ++i) {
         data.push({
             id: i, txHash: txnHash[i], to: pending[i].txnData.to, amt: pending[i].txnData.amount / Math.pow(10, 18) + " Eth"

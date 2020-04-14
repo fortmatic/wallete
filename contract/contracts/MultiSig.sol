@@ -14,7 +14,7 @@ contract MultiSig {
 
     // WhiteList info
     whitelistData[] public whitelistAdd;
-    mapping(address => bool) public whitelist;
+    mapping(address => bool) whitelist;
 
     // Structs for transactions
     struct transactionData {
@@ -23,19 +23,14 @@ contract MultiSig {
         uint256 amount;
         uint256 nonceTrans;
         uint256 threshold;
-    }
-
-    struct pendingData {
-        transactionData txnData;
         uint256 numSigs;
-        bytes32 txHash;
+        string txHash;
+        bool complete;
     }
-    mapping(bytes32 => mapping(address => bool)) signedList;
+    mapping(uint256 => mapping(address => bool)) signedList;
 
     // Arrays for transactions
     transactionData[] public transactions;
-    pendingData[] public pendingTransactions;
-    string[] public ethTxHashes;
 
     // Events to emmit
     event transactionCreated(address, address, uint256, uint256);
@@ -52,7 +47,7 @@ contract MultiSig {
         addAddress(msg.sender, name);
     }
 
-    function getAllTransactions()
+    function getTransactions()
         public
         view
         returns (transactionData[] memory transArr)
@@ -68,24 +63,12 @@ contract MultiSig {
         return whitelistAdd;
     }
 
-    function getPendingTx()
-        external
-        view
-        returns (pendingData[] memory pending)
-    {
-        return pendingTransactions;
-    }
-
     function contractBalance() external view returns (uint256 balance) {
         return address(this).balance;
     }
 
-    function getHashes() external view returns (string[] memory hashes) {
-        return ethTxHashes;
-    }
-
-    function setHash(string memory txHash) public returns (bool success) {
-        ethTxHashes.push(txHash);
+    function setHash(string memory txHash_in) public returns (bool success) {
+        transactions[transactions.length - 1].txHash = txHash_in;
         return true;
     }
 
@@ -95,7 +78,10 @@ contract MultiSig {
         returns (bool success)
     {
         // Requires to ensure owner adding signers
-        require(whitelist[msg.sender] == true || owner == msg.sender, "Sender not authorized");
+        require(
+            whitelist[msg.sender] == true || owner == msg.sender,
+            "Sender not authorized"
+        );
         require(whitelist[newAddress] == false, "Already added");
 
         // Give address signing ability and emit event
@@ -123,15 +109,10 @@ contract MultiSig {
                 _paymentReciever,
                 _amount,
                 nonce,
-                _threshold
-            )
-        );
-
-        pendingTransactions.push(
-            pendingData(
-                transactions[nonce],
+                _threshold,
                 0,
-                encodeTransaction(nonce, transactions)
+                "",
+                false
             )
         );
 
@@ -141,79 +122,58 @@ contract MultiSig {
             nonce,
             _threshold
         );
-        signTransaction(pendingTransactions.length - 1);
+        signTransaction(transactions.length - 1);
 
         nonce++;
         return nonce - 1;
     }
 
-    function encodeTransaction(uint256 index, transactionData[] memory txns)
-        internal
-        pure
-        returns (bytes32)
-    {
-        require(index < txns.length, "Index is out of bounds");
-        bytes32 tmp = keccak256(
-            abi.encode(
-                txns[index].to,
-                txns[index].from,
-                txns[index].amount,
-                txns[index].nonceTrans,
-                txns[index].threshold
-            )
-        );
-
-        return tmp;
-    }
-
     // Msg.sender signs transaction
     function signTransaction(uint256 index) public returns (bool success) {
         // Makes sure sender is on whitelist and has not signed yet
-        require(index < pendingTransactions.length, "Index is out of bounds");
+        require(
+            transactions[index].complete == false,
+            "Transaction has already been sent"
+        );
+        require(index < transactions.length, "Index is out of bounds");
         require(
             whitelist[msg.sender] == true,
             "This address is not on the whitelist"
         );
         require(
-            signedList[pendingTransactions[index].txHash][msg.sender] == false,
+            signedList[transactions[index].nonceTrans][msg.sender] == false,
             "This address has already signed the transaction"
         );
 
         // Increment num of signatures on transact and approve on signedList
-        signedList[pendingTransactions[index].txHash][msg.sender] = true;
-        pendingTransactions[index].numSigs += 1;
+        signedList[transactions[index].nonceTrans][msg.sender] = true;
+        transactions[index].numSigs += 1;
         emit SignedTransact(msg.sender);
 
         return checkStatus(index);
     }
 
     function handlePayment(uint256 index) private returns (bool) {
-        require(index < pendingTransactions.length, "Index is out of bounds");
-        address payable reciever = pendingTransactions[index].txnData.to;
-        reciever.transfer(pendingTransactions[index].txnData.amount);
+        require(
+            transactions[index].complete == false,
+            "Transaction has already been sent"
+        );
+        require(index < transactions.length, "Index is out of bounds");
+        address payable reciever = transactions[index].to;
+        reciever.transfer(transactions[index].amount);
 
         emit transactionOccured(
-            pendingTransactions[index].txnData.to,
-            pendingTransactions[index].txnData.amount
+            transactions[index].to,
+            transactions[index].amount
         );
-
-        pendingTransactions[index] = pendingTransactions[pendingTransactions
-            .length - 1];
-
-        ethTxHashes[index] = ethTxHashes[ethTxHashes.length - 1];
-
-        pendingTransactions.pop();
-        ethTxHashes.pop();
+        transactions[index].complete = true;
 
         return true;
     }
 
     function checkStatus(uint256 index) public payable returns (bool success) {
-        require(index < pendingTransactions.length, "Index is out of bounds");
-        if (
-            pendingTransactions[index].numSigs >=
-            pendingTransactions[index].txnData.threshold
-        ) {
+        require(index < transactions.length, "Index is out of bounds");
+        if (transactions[index].numSigs >= transactions[index].threshold) {
             return handlePayment(index);
         }
 
