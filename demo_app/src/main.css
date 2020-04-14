@@ -521,9 +521,9 @@ input {
 }
 
 .connected {
-    position: fixed;
-    top: 18%;
-    left: 1%;
+    position: relative;
+    /* top: 18%;
+    left: 1%; */
     text-align: left;
     font-size: 20px;
 }

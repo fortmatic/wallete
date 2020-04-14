@@ -116,11 +116,11 @@ export class Transactions extends Component {
                         </Card>
                     </div>
                     <h1 className="head_boxST">New Transaction</h1>
-                    <p className="connected" id="status"></p>
                     <div>
                         <input type="text" id="address" placeholder="Send to Address" />
                         <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
+                        <p className="connected" id="status"></p>
                         <a className="stTran" onClick={this.startTransaction}>Start Transaction</a>
                     </div>
                 </div>
