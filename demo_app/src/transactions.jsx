@@ -11,8 +11,6 @@ import Card from '@material-ui/core/Card';
 
 var data = [];
 var pending;
-var txnHash;
-
 
 createTheme('Fortmatic', {
     text: {
@@ -94,6 +92,11 @@ export class Transactions extends Component {
             name: 'Amount',
             selector: 'amt',
             sortable: true
+        },
+        {
+            name: 'Status',
+            selector: 'status',
+            sortable: false
         }
     ]
 
@@ -130,14 +133,26 @@ export class Transactions extends Component {
 
     composition = ({ data }) => {
         const index = data.id;
-        const link = "https://rinkeby.etherscan.io/tx/" + txnHash[index];
+        const link = "https://rinkeby.etherscan.io/tx/" + pending[index].txHash;
+
+        if (pending[index].complete) {
+            return (
+                <div className="compostion">
+                    <p>Transaction Hash: {pending[index].txHash}</p>
+                    <p>From: {pending[index].from}</p>
+                    <p>To: {pending[index].to}</p>
+                    <a href={link}>View on Etherscan</a>
+                    <p id="status">Tx has been sent</p>
+                </div>
+            );
+        }
 
         return (
             <div className="compostion">
-                <p>Transaction Hash: {txnHash[index]}</p>
-                <p>From: {pending[index].txnData.from}</p>
-                <p>To: {pending[index].txnData.to}</p>
-                <p>Number of Signatures: {pending[index].numSigs}/{pending[index].txnData.threshold}</p>
+                <p>Transaction Hash: {pending[index].txHash}</p>
+                <p>From: {pending[index].from}</p>
+                <p>To: {pending[index].to}</p>
+                <p>Number of Signatures: {pending[index].numSigs}/{pending[index].threshold}</p>
                 <a href={link}>View on Etherscan</a>
                 <br></br>
                 <br></br>
@@ -153,7 +168,7 @@ export class Transactions extends Component {
         const sendAddress = document.getElementById('address').value;
         //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
-        
+
         console.log(amount);
         var txnHash;
 
@@ -161,11 +176,11 @@ export class Transactions extends Component {
         console.log(transactAmt);
 
         await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
-                from: userAddress,
-                gas: 1500000,
-                gasPrice: '30000000000',
-                value: transactAmt
-            })
+            from: userAddress,
+            gas: 1500000,
+            gasPrice: '30000000000',
+            value: transactAmt
+        })
             .on('receipt', (rec) => {
                 console.log(rec);
                 txnHash = rec.transactionHash;
@@ -190,7 +205,7 @@ export class Transactions extends Component {
             .on('receipt', (rec) => {
                 console.log(rec);
                 if (rec.events.transactionOccured != null) {
-                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[1] / Math.pow(10, 18) + "Eth"
+                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[1] / Math.pow(10, 18) + " Eth"
                         + " to " + rec.events.transactionOccured.returnValues[0];
                 }
                 else {
@@ -202,12 +217,16 @@ export class Transactions extends Component {
 
 export let getPending = async () => {
     pending = await index.contract.methods.getTransactions().call();
+    console.log(pending);
 
-    // modify id to nonce
     for (let i = 0; i < pending.length; ++i) {
         data.push({
-            id: i, txHash: txnHash[i], to: pending[i].txnData.to, amt: pending[i].txnData.amount / Math.pow(10, 18) + " Eth"
-        })
+            id: pending[i].nonceTrans,
+            txHash: pending[i].txHash,
+            to: pending[i].to,
+            amt: pending[i].amount / Math.pow(10, 18) + " Eth",
+            status: (pending[i].complete) ? 'Done' : "Pending"
+        });
     }
 
     console.log(data);
