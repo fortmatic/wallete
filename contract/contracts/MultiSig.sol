@@ -141,7 +141,7 @@ contract MultiSig {
             nonce,
             _threshold
         );
-        signTransaction(nonce);
+        signTransaction(pendingTransactions.length - 1);
 
         nonce++;
         return nonce - 1;
@@ -152,6 +152,7 @@ contract MultiSig {
         pure
         returns (bytes32)
     {
+        require(index < txns.length, "Index is out of bounds");
         bytes32 tmp = keccak256(
             abi.encode(
                 txns[index].to,
@@ -168,6 +169,7 @@ contract MultiSig {
     // Msg.sender signs transaction
     function signTransaction(uint256 index) public returns (bool success) {
         // Makes sure sender is on whitelist and has not signed yet
+        require(index < pendingTransactions.length, "Index is out of bounds");
         require(
             whitelist[msg.sender] == true,
             "This address is not on the whitelist"
@@ -186,6 +188,7 @@ contract MultiSig {
     }
 
     function handlePayment(uint256 index) private returns (bool) {
+        require(index < pendingTransactions.length, "Index is out of bounds");
         address payable reciever = pendingTransactions[index].txnData.to;
         reciever.transfer(pendingTransactions[index].txnData.amount);
 
@@ -199,16 +202,14 @@ contract MultiSig {
 
         ethTxHashes[index] = ethTxHashes[ethTxHashes.length - 1];
 
-        delete pendingTransactions[pendingTransactions.length - 1];
-        delete ethTxHashes[ethTxHashes.length - 1];
-
-        ethTxHashes.length--;
-        pendingTransactions.length--;
+        pendingTransactions.pop();
+        ethTxHashes.pop();
 
         return true;
     }
 
     function checkStatus(uint256 index) public payable returns (bool success) {
+        require(index < pendingTransactions.length, "Index is out of bounds");
         if (
             pendingTransactions[index].numSigs >=
             pendingTransactions[index].txnData.threshold
