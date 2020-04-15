@@ -125,6 +125,7 @@ export class Transactions extends Component {
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <p className="connected" id="status"></p>
                         <a className="stTran" onClick={this.startTransaction}>Start Transaction</a>
+                        <p className = "connected" id = "message"></p>
                     </div>
                 </div>
             </div>
@@ -175,7 +176,7 @@ export class Transactions extends Component {
         const transactAmt = index.web3.utils.toWei(amount, "ether");
         console.log(transactAmt);
 
-        document.getElementById('status').innerHTML = "Starting transaction...";
+        document.getElementById('message').innerHTML = "Starting transaction...";
 
         await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
             from: userAddress,
@@ -192,7 +193,9 @@ export class Transactions extends Component {
             from: userAddress,
             gas: 1500000,
             gasPrice: '30000000000'
-        }).on('receipt', document.getElementById('status').innerHTML = "Transaction started");
+        }).on('receipt', () => {
+            document.getElementById('message').innerHTML = "Transaction started: " + amount + " Eth to " + sendAddress;
+        });
     }
 
     signContract = async (i) => {
