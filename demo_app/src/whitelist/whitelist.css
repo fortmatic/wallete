@@ -31,9 +31,6 @@
     height: 30%;
     text-align: center;
 }
-.hash {
-    font-size: 10px;
-}
 
 #floater {
     position: fixed; /* Sit on top of the page content */
