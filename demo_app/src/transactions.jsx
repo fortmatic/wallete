@@ -107,7 +107,7 @@ export class Transactions extends Component {
                     <div id="pending">
                         <Card>
                             <DataTable
-                                title="Pending Transactions"
+                                title="Transactions"
                                 columns={this.columns}
                                 data={data}
                                 expandOnRowClicked
@@ -175,6 +175,8 @@ export class Transactions extends Component {
         const transactAmt = index.web3.utils.toWei(amount, "ether");
         console.log(transactAmt);
 
+        document.getElementById('status').innerHTML = "Starting transaction...";
+
         await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
             from: userAddress,
             gas: 1500000,
@@ -196,6 +198,8 @@ export class Transactions extends Component {
 
     signContract = async (i) => {
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+
+        document.getElementById('status').innerHTML = "Signing transaction...";
 
         await index.contract.methods.signTransaction(i).send({
             from: userAddress,

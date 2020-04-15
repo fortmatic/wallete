@@ -76,6 +76,8 @@ export default class SignAndAdd extends Component {
         const address = document.getElementById('address').value;
         const acctName = document.getElementById('name').value;
 
+        document.getElementById('status').innerHTML = "Adding " + address + " to Whitelist...";
+
         await index.contract.methods.addAddress(address, acctName).send({
             from: userAddress,
             gas: 1500000,
