@@ -72,13 +72,36 @@ export default class SignAndAdd extends Component {
         }
     }
 
-    Adding(success) {
+    Adding(success, datum) {
         document.getElementById("floater").style.display = "block";
         if (success == null) {
+            if (datum == null) {
+                return (
+                    <div className="loader">
+                        <h2>Transacting on Blockchain</h2>
+                        <div className="spinner"></div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="loader">
+                        <h2>Transacting on Blockchain</h2>
+                        <p>Hash is {datum}</p>
+                        <div className="spinner"></div>
+                    </div>
+                );
+            }
+        }
+
+        if (success == true && datum == true) {
             return (
                 <div className="loader">
-                    <h2>Transacting on Blockchain</h2>
-                    <div className="spinner"></div>
+                    <h2>Successfully added</h2>
+                    <p>{datum}</p>
+                    <a className="exitLoad" onClick={() => {
+                        ReactDOM.render(<div></div>, document.getElementById('floater'));
+                        document.getElementById("floater").style.display = "none";
+                    }}>Close</a>
                 </div>
             );
         }
@@ -86,7 +109,7 @@ export default class SignAndAdd extends Component {
         return (
             <div className="loader">
                 <h2>Unable to Add Address</h2>
-                <p>{success}</p>
+                <p>{datum}</p>
                 <a className="exitLoad" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
@@ -96,7 +119,7 @@ export default class SignAndAdd extends Component {
     }
 
     addToWhiteList = async () => {
-        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+        ReactDOM.render(this.Adding(null, null), document.getElementById('floater'));
 
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const address = document.getElementById('address').value;
@@ -108,6 +131,9 @@ export default class SignAndAdd extends Component {
                 gas: 1500000,
                 gasPrice: '3000000000000'
             })
+                .on('transactionHash', (hash) =>
+                    ReactDOM.render(this.Adding(null, hash), document.getElementById('floater')))
+
                 .on('receipt', (rec) => {
                     document.getElementById('status').innerHTML = address + " added to Whitelist";
                 })
@@ -115,7 +141,8 @@ export default class SignAndAdd extends Component {
         } catch (err) {
             console.log("error caught");
             const fail = "Error Occured";
-            ReactDOM.render(this.Adding(fail), document.getElementById('floater'));
+            ReactDOM.render(this.Adding(null, fail), document.getElementById('floater'));
         }
+        ReactDOM.render(this.Adding(true, address), document.getElementById('floater'));
     }
 }
