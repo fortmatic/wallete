@@ -9,7 +9,7 @@ import * as handle from './phantom.js';
 // React Components
 import * as authorizers from './authorizers.jsx';
 import Assets from './assets.jsx';
-import Whitelist from './whitelist.jsx';
+import Whitelist from './whitelist/whitelist.jsx';
 import { Transactions, getPending } from './transactions.jsx';
 
 export default class Sidebar extends Component {

@@ -186,14 +186,13 @@ export class Transactions extends Component {
             .on('receipt', (rec) => {
                 console.log(rec);
                 txnHash = rec.transactionHash;
-                document.getElementById('status').innerHTML = "Transaction started";
             });
 
         await index.contract.methods.setHash(txnHash).send({
             from: userAddress,
             gas: 1500000,
             gasPrice: '30000000000'
-        }).then(console.log);
+        }).on('receipt', document.getElementById('status').innerHTML = "Transaction started");
     }
 
     signContract = async (i) => {
