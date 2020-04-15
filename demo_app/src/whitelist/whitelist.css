@@ -19,14 +19,17 @@
     border: 30px rgb(231, 236, 242) solid;
     border-radius: 10px;
     display: block;
+    box-sizing: content-box;
+    padding: 10px;
     position: fixed;
     background-color: rgb(231, 236, 242);
     box-shadow: black;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 25%;
-    height: 25%;
+    width: 45%;
+    height: 30%;
+    text-align: center;
 }
 
 #floater {
