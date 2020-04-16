@@ -1,4 +1,4 @@
-// General React components
+// General React components.
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
