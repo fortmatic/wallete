@@ -12,20 +12,22 @@ import Assets from './assets.jsx';
 //blockies
 import Blockies from 'react-blockies';
 
-
 export class Top extends Component {
-    render() {
+    render () {
+
+        const mySeed = index.fmPhantom.user.getMetadata().publicAddress;
         return (
             <div className="App">
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
                     <div id="profile">
-                    <a className = "identicon" onClick={this.openProfile} id="profBtn">	
+                    <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
                         <Blockies 
-                            size= {5}
-                            scale = {10}/>
-                        	</a>
-                        {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
+                        seed={mySeed}
+                        size= {5}
+                        scale = {10}>
+                        </Blockies>
+                    </a>
                     </div>
                 </header>
             </div>
@@ -42,15 +44,16 @@ export class Top extends Component {
     }
 
     openProfile = async () => {
+        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const element = (
             <div >
                 <a className = "identicon" onClick={this.closeProfile} id="profBtn">
                         <Blockies 
+                            seed={mySeed}
                             size= {5}
                             scale = {10}>
                         </Blockies>
                         </a>
-                {/* <a className="profileButton" onClick={this.closeProfile} id="profBtn">Profile</a> */}
                 <div className = "profileBox">
                 <p id="username"></p>
                 <p id="userAddress"></p>
@@ -60,26 +63,51 @@ export class Top extends Component {
         );
 
         await ReactDOM.render(element, document.getElementById('profile'));
-
+        
         document.getElementById('username').innerHTML = (await index.fmPhantom.user.getMetadata()).email;
         document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;
     }
 
-    closeProfile = () => {
+    hoverProfile = async () => {
+        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const element = (
-            <div>
-                <a className = "identicon" onClick={this.openProfile} id="profBtn">
+            <div >
+                <a className = "identicon" onMouseLeave={this.closeProfile} onClick={this.openProfile} id="profBtn">
                         <Blockies 
+                            seed={mySeed}
                             size= {5}
                             scale = {10}>
                         </Blockies>
                         </a>
-                {/* <a className="profileButton" onClick={this.openProfile} id="profBtn">Profile</a> */}
+                <div className = "profileBox">
+                <p id="username"></p>
+                <p id="userAddress"></p>
+                </div>
+            </div>
+        );
+
+        await ReactDOM.render(element, document.getElementById('profile'));
+        document.getElementById('username').innerHTML = (await index.fmPhantom.user.getMetadata()).email;
+        document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;
+    }
+
+    closeProfile = async () => {
+        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const element = (
+            <div>
+                <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
+                    <Blockies 
+                        seed= {mySeed}
+                        size= {5}
+                        scale = {10}>
+                    </Blockies>
+                </a>
             </div>
         );
 
         ReactDOM.render(element, document.getElementById('profile'));
     }
+ 
 }
 
 export class Login extends Component {

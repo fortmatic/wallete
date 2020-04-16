@@ -78,15 +78,15 @@ export default class SignAndAdd extends Component {
             if (datum == null) {
                 return (
                     <div className="loader">
-                        <h2>Adding to Whitelist</h2>
+                        <h2>Transacting on Blockchain</h2>
                         <div className="spinner"></div>
                     </div>
                 );
             } else {
                 return (
                     <div className="loader">
-                        <h2>Adding to Whitelist</h2>
-                        <p>Hash is {datum}</p>
+                        <h2>Transacting on Blockchain</h2>
+                        <p >Hash is {datum}</p>
                         <div className="spinner"></div>
                     </div>
                 );
@@ -96,7 +96,7 @@ export default class SignAndAdd extends Component {
         if (success == true && datum == true) {
             return (
                 <div className="loader">
-                    <h2>Successfully Added to Whitelist</h2>
+                    <h2>Successfully added</h2>
                     <p>{datum}</p>
                     <a className="exitLoad" onClick={() => {
                         ReactDOM.render(<div></div>, document.getElementById('floater'));
