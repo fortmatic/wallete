@@ -18,7 +18,6 @@ import Assets from "./assets.jsx";
 export const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 export const web3 = new Web3(fmPhantom.getProvider());
 
-export const mySeed = fmPhantom.user.getMetadata().publicAddress;
 
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = '0x86907340099D5D94A1D5C85683ED3C1c4416F961';
@@ -35,6 +34,7 @@ export let makeMainPage = async () => {
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
     ReactDOM.render(<Assets />, document.getElementById('root'));
 }
+
 
 prep();
 
