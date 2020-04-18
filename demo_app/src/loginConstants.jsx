@@ -40,7 +40,8 @@ export class Top extends Component {
     }
 
     setSeed = async () => {
-        return (await index.fmPhantom.user.getMetadata).publicAddress;
+        var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        return mySeed;
     }
 
     container = React.createRef();
