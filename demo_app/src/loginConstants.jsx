@@ -27,7 +27,7 @@ export class Top extends Component {
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
                     <div id="profile">
                         {this.blockieS}
-                    <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
+                    <a className = "identicon" onClick={this.openProfile} id="profBtn">
                         <Blockies
                         seed={mySeed}
                         size= {5}
@@ -40,6 +40,25 @@ export class Top extends Component {
             </div>
         );
     }
+
+    profileBox = React.createRef();
+    state = {
+        open: false,
+    };
+    componentDidMount() {
+        document.addEventListener("mousedown", this.closeProfile);
+    }
+    componentWillUnmount() {
+      document.removeEventListener("mousedown", this.closeProfile);
+    }
+    handleClickOutside = event => {
+        if (this.profileBox.current) {
+          this.setState({
+            open: false,
+          });
+        }
+      };
+
 
     // blockieS = async () => {
     //     var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
@@ -61,6 +80,11 @@ export class Top extends Component {
     }
 
     openProfile = async () => {
+        this.setState(state => {
+            return{
+                open: !state.open,
+            };
+        })
         const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const element = (
             <div >
@@ -72,10 +96,10 @@ export class Top extends Component {
                             >
                         </Blockies>
                         </a>
-                <div className = "profileBox">
+                <div className = "profileBox"  ref={this.profileBox}>
                 <p id="username"></p>
                 <p id="userAddress"></p>
-                <a className="logoutBtn" onClick={this.logout} id = "logoutBtn">Logout</a>
+                <a className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
                 </div>
             </div>
         );
@@ -114,7 +138,7 @@ export class Top extends Component {
         const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const element = (
             <div>
-                <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
+                <a className = "identicon" onClick={this.openProfile} id="profBtn">
                     <Blockies 
                         seed= {mySeed}
                         size= {5}
