@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // General function libraries
-import * as index from './index.js';
-import * as handle from './phantom.js';
+// import * as index from './index.js';
+// import * as handle from './phantom.js';
 
 // React Components
 import * as authorizers from './authorizers.jsx';
@@ -19,9 +19,9 @@ export default class Sidebar extends Component {
                 <ul id="nav">
                     <div>
                         {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
-                        <li className="active"><a onClick={this.getAssets}>Assets</a></li>
-                        <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                        <li><a onClick={this.getTransactions}>Transactions</a></li>
+                        <li className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>
+                        <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                        <li><a onClick={this.getTransactions} href="!#">Transactions</a></li>
                         {/* <li><a onClick={this.getVault}>Vault </a></li> */}
                     </div>
                 </ul>
@@ -32,9 +32,9 @@ export default class Sidebar extends Component {
     getTransactions = async () => {
         const element = (
             <div>
-                <li><a onClick={this.getAssets}>Assets</a></li>
-                <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li className="active"><a onClick={this.getTransactions}>Transactions</a></li>
+                <li><a onClick={this.getAssets} href="!#">Assets</a></li>
+                <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                <li className="active"><a onClick={this.getTransactions} href="!#">Transactions</a></li>
             </div>
         );
 
@@ -46,9 +46,9 @@ export default class Sidebar extends Component {
     getAssets = () => {
         const element = (
             <div>
-                <li className="active"><a onClick={this.getAssets}>Assets</a></li>
-                <li><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li><a onClick={this.getTransactions}>Transactions</a></li>
+                <li className="active"><a onClick={this.getAssets} href="!#" >Assets</a></li>
+                <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                <li><a onClick={this.getTransactions} href="!#">Transactions</a></li>
             </div>
         );
 
@@ -59,9 +59,9 @@ export default class Sidebar extends Component {
     getSignAndAdd = () => {
         const element = (
             <div>
-                <li><a onClick={this.getAssets}>Assets</a></li>
-                <li className="active"><a onClick={this.getSignAndAdd}>Whitelist </a></li>
-                <li ><a onClick={this.getTransactions}>Transactions</a></li>
+                <li><a onClick={this.getAssets} href="!#">Assets</a></li>
+                <li className="active"><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                <li ><a onClick={this.getTransactions} href="!#">Transactions</a></li>
             </div>
         );
 

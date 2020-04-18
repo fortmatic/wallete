@@ -22,12 +22,12 @@ export class Top extends Component {
     render () {
         const mySeed = (index.fmPhantom.user.getMetadata()).publicAddress;
         return (
-            <div className="App">
+            <div className="App">   
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
                     <div id="profile">
                         {this.blockieS}
-                    <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
+                    <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn" >
                         <Blockies
                         seed={mySeed}
                         size= {5}
