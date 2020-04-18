@@ -12,10 +12,10 @@ class Deploy extends Component {
         return (
             <div className="main">
                 <div className="bigBlock">
-                    <a className="otherBtn" onClick={handle.deploying}>Deploy Contract</a>
+                    <a className="otherBtn" onClick={handle.deploying} href="!#">Deploy Contract</a>
                     <div>
                         <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
-                        <a className="otherBtn" onClick={handle.contractConnect}>Connect to Contract</a>
+                        <a className="otherBtn" onClick={handle.contractConnect} href="!#">Connect to Contract</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ class Vault extends Component {
                         <a className="refreshBtn" onClick={handle.getBalance}>Refresh</a>
                     </div> */}
 
-                    <a className="signTran" onClick={this.signPendingTx}>Sign Transaction</a>
+                    <a className="signTran" onClick={this.signPendingTx} href="!#">Sign Transaction</a>
                     <div className="compBox" id="compositionTx"></div>
                 </div>
             </div>
