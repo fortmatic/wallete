@@ -255,10 +255,17 @@ html {
     padding: 1%;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 47%;
     transform: translate(-50%, -50%);
+    font-size: 20px;
     height: 230px;
     text-align: center;
+    color: rgb(57, 50, 156);
+    text-shadow: 2px 2px lightskyblue;
+}
+
+#status {
+    text-shadow: none;
 }
 
 input,
@@ -324,6 +331,7 @@ input {
     text-align: center;
     left: 32%;
     top: 15%;
+    text-shadow: none;
 }
 
 .log1:hover {
@@ -597,6 +605,9 @@ a.composition:hover {
 .identicon {
     width: 50px;
     height: 50px;
+    /* background-color: red; */
+    display: box;
+    box-sizing: content-box;
 }
 
 

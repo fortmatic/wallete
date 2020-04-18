@@ -4,28 +4,35 @@ import ReactDOM from 'react-dom';
 
 // Function libraries
 import * as index from "./index.js";
-import * as handle from './phantom.js';
+// import * as handle from './phantom.js';
 
 // React components
-import * as authorizers from './authorizers.jsx';
-import Assets from './assets.jsx';
+// import * as authorizers from './authorizers.jsx';
+// import Assets from './assets.jsx';
 //blockies
 import Blockies from 'react-blockies';
+import blockies from 'ethereum-blockies';
+
+
 
 export class Top extends Component {
+    // async componentDidMount() {
+    //     await this.blockieS;
+    // }
     render () {
-
-        const mySeed = index.fmPhantom.user.getMetadata().publicAddress;
+        const mySeed = (index.fmPhantom.user.getMetadata()).publicAddress;
         return (
             <div className="App">
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
                     <div id="profile">
+                        {this.blockieS}
                     <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
-                        <Blockies 
+                        <Blockies
                         seed={mySeed}
                         size= {5}
-                        scale = {10}>
+                        scale = {10}
+                        >
                         </Blockies>
                     </a>
                     </div>
@@ -33,6 +40,16 @@ export class Top extends Component {
             </div>
         );
     }
+
+    // blockieS = async () => {
+    //     var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+    //     var icon = blockies.create({
+    //         seed: mySeed,
+    //         size: 10,
+    //         scale:10
+    //     });
+    //     document.getElementById("identicon").append(icon);
+    // }
 
     logout = async () => {
         await index.fmPhantom.user.logout()
@@ -48,10 +65,11 @@ export class Top extends Component {
         const element = (
             <div >
                 <a className = "identicon" onClick={this.closeProfile} id="profBtn">
-                        <Blockies 
+                        <Blockies
                             seed={mySeed}
                             size= {5}
-                            scale = {10}>
+                            scale = {10}
+                            >
                         </Blockies>
                         </a>
                 <div className = "profileBox">
@@ -76,7 +94,8 @@ export class Top extends Component {
                         <Blockies 
                             seed={mySeed}
                             size= {5}
-                            scale = {10}>
+                            scale = {10}
+                            >
                         </Blockies>
                         </a>
                 <div className = "profileBox">
@@ -99,7 +118,8 @@ export class Top extends Component {
                     <Blockies 
                         seed= {mySeed}
                         size= {5}
-                        scale = {10}>
+                        scale = {10}
+                        >
                     </Blockies>
                 </a>
             </div>
@@ -115,7 +135,7 @@ export class Login extends Component {
         return (
             <div className="login">
                 <div className="loginBox">
-                    <h1>Fortmatic MultiSig</h1>
+                    <h1>WALLETTE</h1>
                     <p id="status">Please login</p>
                     <input type="text" id="user-email" placeholder="Enter your email" />
                     <a className="log1" onClick={this.loginAndMain}>Login</a>
