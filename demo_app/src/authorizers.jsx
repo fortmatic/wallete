@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 import * as handle from './phantom.js';
 import './main.css';
 
-import Fortmatic from 'fortmatic';
-const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
+// import Fortmatic from 'fortmatic';
+// const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 
 class Deploy extends Component {
     render() {
