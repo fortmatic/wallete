@@ -24,8 +24,8 @@ export class Top extends Component {
             <div className="App">
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
-                    <div id="profile" ref={node => this.node = node}>
-                    <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={this.container}>
+                    <div id="profile">
+                    <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={node => this.node = node}>
                         <Blockies
                         seed={mySeed}
                         size= {5}
@@ -35,6 +35,7 @@ export class Top extends Component {
                     </a>
                     </div>
                 </header>
+                <p ref={this.container}></p>
             </div>
         );
     }
@@ -46,12 +47,6 @@ export class Top extends Component {
 
     container = React.createRef();
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
-    componentWillUnmount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
     handleClick = (e) => {
         if (!this.node.contains(e.target) && !this.container.current.contains(e.target)) {
             this.closeProfile();
@@ -59,6 +54,8 @@ export class Top extends Component {
     }
 
     logout = async () => {
+        document.removeEventListener('mousedown', this.handleClick, false);
+
         await index.fmPhantom.user.logout()
             .then((rec) => {
                 ReactDOM.render(<Login />, document.getElementById('root'));
@@ -68,10 +65,12 @@ export class Top extends Component {
     }
 
     openProfile = async () => {
+        document.addEventListener('mousedown', this.handleClick, false);
+
         var mySeed = this.setSeed.toString();
         const element = (
             <div >
-                <a href="!#" className = "identicon" onClick={this.closeProfile} id="profBtn" ref={this.container}>
+                <a href="!#" className = "identicon" onClick={this.closeProfile} id="profBtn" ref={node => this.node = node}>
                         <Blockies
                             seed={mySeed}
                             size= {5}
@@ -79,10 +78,10 @@ export class Top extends Component {
                             >
                         </Blockies>
                         </a>
-                <div className = "profileBox" ref={node => this.node = node}>
+                <div className = "profileBox" ref={this.container}>
                 <p id="username"></p>
                 <p id="userAddress"></p>
-                <a href="!#" className="logoutBtn" onClick={this.logout} id = "logoutBtn">Logout</a>
+                <a href="!#" className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
                 </div>
             </div>
         );
@@ -94,10 +93,12 @@ export class Top extends Component {
     }
 
     closeProfile = async () => {
+        document.removeEventListener('mousedown', this.handleClick, false);
+
         var mySeed = this.setSeed.toString();
         const element = (
-            <div ref={node => this.node = node}>
-                <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={this.container}>
+            <div>
+                <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={node => this.node = node}>
                     <Blockies 
                         seed= {mySeed}
                         size= {5}
@@ -105,6 +106,7 @@ export class Top extends Component {
                         >
                     </Blockies>
                 </a>
+                <p ref={this.container}></p>
             </div>
         );
 
