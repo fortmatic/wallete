@@ -11,7 +11,6 @@ import * as index from "./index.js";
 // import Assets from './assets.jsx';
 //blockies
 import Blockies from 'react-blockies';
-import blockies from 'ethereum-blockies';
 
 
 
@@ -20,14 +19,13 @@ export class Top extends Component {
     //     await this.blockieS;
     // }
     render () {
-        const mySeed = (index.fmPhantom.user.getMetadata()).publicAddress;
+        var mySeed = this.setSeed.toString();
         return (
             <div className="App">
                 <header className="App-header">
                     <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
-                    <div id="profile">
-                        {this.blockieS}
-                    <a className = "identicon" onClick={this.openProfile} id="profBtn">
+                    <div id="profile" ref={node => this.node = node}>
+                    <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={this.container}>
                         <Blockies
                         seed={mySeed}
                         size= {5}
@@ -41,24 +39,23 @@ export class Top extends Component {
         );
     }
 
-    profileBox = React.createRef();
-    state = {
-        open: false,
-    };
-    componentDidMount() {
-        document.addEventListener("mousedown", this.closeProfile);
+    setSeed = async () => {
+        return (await index.fmPhantom.user.getMetadata).publicAddress;
+    }
+
+    container = React.createRef();
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClick, false);
     }
     componentWillUnmount() {
-      document.removeEventListener("mousedown", this.closeProfile);
+        document.addEventListener('mousedown', this.handleClick, false);
     }
-    handleClickOutside = event => {
-        if (this.profileBox.current) {
-          this.setState({
-            open: false,
-          });
+    handleClick = (e) => {
+        if (!this.node.contains(e.target) && !this.container.current.contains(e.target)) {
+            this.closeProfile();
         }
-      };
-
+    }
 
     // blockieS = async () => {
     //     var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
@@ -80,15 +77,10 @@ export class Top extends Component {
     }
 
     openProfile = async () => {
-        this.setState(state => {
-            return{
-                open: !state.open,
-            };
-        })
-        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        var mySeed = this.setSeed.toString();
         const element = (
             <div >
-                <a className = "identicon" onClick={this.closeProfile} id="profBtn">
+                <a href="!#" className = "identicon" onClick={this.closeProfile} id="profBtn" ref={this.container}>
                         <Blockies
                             seed={mySeed}
                             size= {5}
@@ -96,10 +88,10 @@ export class Top extends Component {
                             >
                         </Blockies>
                         </a>
-                <div className = "profileBox"  ref={this.profileBox}>
+                <div className = "profileBox" ref={node => this.node = node}>
                 <p id="username"></p>
                 <p id="userAddress"></p>
-                <a className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
+                <a href="!#" className="logoutBtn" onClick={this.logout} id = "logoutBtn">Logout</a>
                 </div>
             </div>
         );
@@ -110,35 +102,11 @@ export class Top extends Component {
         document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;
     }
 
-    hoverProfile = async () => {
-        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const element = (
-            <div >
-                <a className = "identicon" onMouseLeave={this.closeProfile} onClick={this.openProfile} id="profBtn">
-                        <Blockies 
-                            seed={mySeed}
-                            size= {5}
-                            scale = {10}
-                            >
-                        </Blockies>
-                        </a>
-                <div className = "profileBox">
-                <p id="username"></p>
-                <p id="userAddress"></p>
-                </div>
-            </div>
-        );
-
-        await ReactDOM.render(element, document.getElementById('profile'));
-        document.getElementById('username').innerHTML = (await index.fmPhantom.user.getMetadata()).email;
-        document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;
-    }
-
     closeProfile = async () => {
-        const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        var mySeed = this.setSeed.toString();
         const element = (
-            <div>
-                <a className = "identicon" onClick={this.openProfile} id="profBtn">
+            <div ref={node => this.node = node}>
+                <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={this.container}>
                     <Blockies 
                         seed= {mySeed}
                         size= {5}
@@ -162,7 +130,7 @@ export class Login extends Component {
                     <h1>WALLETTE</h1>
                     <p id="status">Please login</p>
                     <input type="text" id="user-email" placeholder="Enter your email" />
-                    <a className="log1" onClick={this.loginAndMain}>Login</a>
+                    <a href="!#" className="log1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
         );
