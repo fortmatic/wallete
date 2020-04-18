@@ -1,6 +1,6 @@
 // General React components
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from './index.js';
@@ -124,7 +124,7 @@ export class Transactions extends Component {
                         <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <p className="connected" id="status"></p>
-                        <a className="stTran" onClick={this.startTransaction}>Start Transaction</a>
+                        <a className="stTran" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className = "connected" id = "message"></p>
                     </div>
                 </div>

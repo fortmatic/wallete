@@ -39,7 +39,7 @@ export default class SignAndAdd extends Component {
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
                         <p className="connected" id="status"></p>
-                        <a className="otherBtn" onClick={this.addToWhiteList}>Add Address</a>
+                        <a className="otherBtn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
                     </div>
                 </div>
             </div>
@@ -93,12 +93,12 @@ export default class SignAndAdd extends Component {
             }
         }
 
-        if (success == true && datum == true) {
+        if (success === true && datum === true) {
             return (
                 <div className="loader">
                     <h2>Successfully added</h2>
                     <p>{datum}</p>
-                    <a className="exitLoad" onClick={() => {
+                    <a href="!#" className="exitLoad" onClick={() => {
                         ReactDOM.render(<div></div>, document.getElementById('floater'));
                         document.getElementById("floater").style.display = "none";
                     }}>Close</a>
@@ -110,7 +110,7 @@ export default class SignAndAdd extends Component {
             <div className="loader">
                 <h2>Unable to Add Address</h2>
                 <p>{datum}</p>
-                <a className="exitLoad" onClick={() => {
+                <a href="!#" className="exitLoad" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>
