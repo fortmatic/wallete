@@ -57,16 +57,6 @@ export class Top extends Component {
         }
     }
 
-    // blockieS = async () => {
-    //     var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
-    //     var icon = blockies.create({
-    //         seed: mySeed,
-    //         size: 10,
-    //         scale:10
-    //     });
-    //     document.getElementById("identicon").append(icon);
-    // }
-
     logout = async () => {
         await index.fmPhantom.user.logout()
             .then((rec) => {
