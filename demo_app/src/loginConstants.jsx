@@ -16,11 +16,11 @@ import blockies from 'ethereum-blockies';
 
 
 export class Top extends Component {
-    async componentDidMount() {
-        await this.blockieS;
-    }
+    // async componentDidMount() {
+    //     await this.blockieS;
+    // }
     render () {
-        // const mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const mySeed = (index.fmPhantom.user.getMetadata()).publicAddress;
         return (
             <div className="App">
                 <header className="App-header">
@@ -29,10 +29,9 @@ export class Top extends Component {
                         {this.blockieS}
                     <a className = "identicon" onClick={this.openProfile} onMouseEnter={this.hoverProfile} id="profBtn">
                         <Blockies
-                        // seed={this.blockieS}
-                        // // seed={this.blockieS}
-                        // size= {5}
-                        // scale = {10}
+                        seed={mySeed}
+                        size= {5}
+                        scale = {10}
                         >
                         </Blockies>
                     </a>
@@ -42,15 +41,15 @@ export class Top extends Component {
         );
     }
 
-    blockieS = async () => {
-        var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        var icon = blockies.create({
-            seed: mySeed,
-            size: 5,
-            scale:10
-        });
-        document.getElementById("identicon").append(icon);
-    }
+    // blockieS = async () => {
+    //     var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
+    //     var icon = blockies.create({
+    //         seed: mySeed,
+    //         size: 10,
+    //         scale:10
+    //     });
+    //     document.getElementById("identicon").append(icon);
+    // }
 
     logout = async () => {
         await index.fmPhantom.user.logout()
