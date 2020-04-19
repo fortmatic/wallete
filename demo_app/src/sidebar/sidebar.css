@@ -1,0 +1,58 @@
+#sidebar {
+    background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: relative;
+    top: 25px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    left: 50%;
+    margin-left: -480px;
+    z-index: 50;
+    width: 75%;
+    align-items: center;
+}
+
+li.active {
+    background-color: rgb(140, 135, 211);
+}
+
+li.active a {
+    color: white;
+}
+
+#nav {
+    padding-left: 0%;
+    margin: 0 auto;
+    list-style: none;
+    position: relative;
+    background-color: transparent;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#nav li {
+    float: left;
+}
+
+#nav a {
+    display: block;
+    text-align: center;
+    width: 280px;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 20px;
+    color: black;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#nav a:hover {
+    color: rgb(57, 50, 156);
+}

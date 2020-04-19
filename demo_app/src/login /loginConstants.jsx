@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // Function libraries
-import * as index from "./index.js";
+import * as index from "../index.js";
+import './login.css';
 // import * as handle from './phantom.js';
 
 // React components
@@ -11,6 +12,7 @@ import * as index from "./index.js";
 // import Assets from './assets.jsx';
 //blockies
 import Blockies from 'react-blockies';
+// import blockies from 'ethereum-blockies';
 
 
 

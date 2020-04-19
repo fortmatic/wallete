@@ -5,12 +5,13 @@ import ReactDOM from 'react-dom';
 // General function libraries
 // import * as index from './index.js';
 // import * as handle from './phantom.js';
+import './sidebar.css';
 
 // React Components
-import * as authorizers from './authorizers.jsx';
-import Assets from './assets.jsx';
-import Whitelist from './whitelist/whitelist.jsx';
-import { Transactions, getPending } from './transactions.jsx';
+import * as authorizers from '../authorizers/authorizers.jsx';
+import Assets from '../assets/assets.jsx';
+import Whitelist from '../whitelist/whitelist.jsx';
+import { Transactions, getPending } from '../transactions/transactions.jsx';
 
 export default class Sidebar extends Component {
     render() {

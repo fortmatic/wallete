@@ -95,3 +95,71 @@
     background-color: lightgray;
     color: rgb(57, 50, 156);
 }
+
+.head_box {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    box-sizing: content-box;
+    font-size: 11px;
+    width: 80%;
+    margin-left: 100px;
+    text-align: center;
+    border-bottom: 5px black solid;
+}
+
+#name {
+    border-radius: 10px;
+    position: relative;
+    display: block;
+    left: 50%;
+    width: 50%;
+    text-align: left;
+    background-color: #fafbfc;
+    padding: 13px;
+    margin-top: -57px;
+}
+
+#name:hover {
+    border-color: rgb(57, 50, 156);
+}
+
+.whitelistName {
+    width: 40%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.whitelistAddress {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 10.5em;
+}
+
+.rowInput {
+    position: relative;
+}
+#addAddress {
+    position: relative;
+    top: 30%;
+    left: 2%;
+    width: 500px;
+}
+
+#address {
+    border-radius: 10px;
+    position: relative;
+    text-align: left;
+    display: block;
+    color: black;
+    padding: 13px;
+    left: -0.2%;
+    margin-top: 30px;
+    width: 50%;
+    transition: all 0.2s;
+    align-items: left;
+    background-color: #fafbfc;
+}
+
+#address:hover {
+    border-color: rgb(57, 50, 156);
+}

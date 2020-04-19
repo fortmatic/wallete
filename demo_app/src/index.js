@@ -11,9 +11,11 @@ import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
 
 // React Components
-import { Login, Top } from './loginConstants';
-import Sidebar from "./sidebar.jsx";
-import Assets from "./assets.jsx";
+import { Login, Top } from './login /loginConstants';
+import Sidebar from "./sidebar/sidebar.jsx";
+import Assets from "./assets/assets.jsx";
+
+// import blockies from 'ethereum-blockies';
 
 export const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 export const web3 = new Web3(fmPhantom.getProvider());
@@ -35,8 +37,18 @@ export let makeMainPage = async () => {
     ReactDOM.render(<Assets />, document.getElementById('root'));
 }
 
+// export let mySEEED = async () => {
+//     var mySeed = (await fmPhantom.user.getMetadata()).publicAddress;
+//     var icon = blockies.create({
+//                 seed: mySeed,
+//                 size: 5,
+//                 scale:10
+//             });
+//     document.getElementById("profBtn").append(icon);
+// }
 
 prep();
+// mySEEED();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

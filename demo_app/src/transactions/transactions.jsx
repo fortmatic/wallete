@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 
 // General function libraries
-import * as index from './index.js';
-
+import * as index from '../index.js';
+import './transactions.css';
 // Libraries for table
 import DataTable, { createTheme } from 'react-data-table-component';
 import Card from '@material-ui/core/Card';

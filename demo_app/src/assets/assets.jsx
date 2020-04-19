@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import * as index from './index.js';
+import * as index from '../index.js';
+import './assets.css';
 
 export default class Assets extends Component {
     async componentDidMount() {
