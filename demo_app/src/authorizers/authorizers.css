@@ -1,0 +1,47 @@
+#pending {
+    font-family: 'Courier New', Courier, monospace;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    line-height: 1.42857;
+    text-rendering: optimizeLegibility;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head_boxPD {
+    box-sizing: content-box;
+    width: 38%;
+    margin-top: 16px;
+    font-size: 30px;
+    margin-left: 0px;
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 5px black solid;
+}
+
+.signTran {
+    position: relative;
+    display: block;
+    padding-top: 20px;
+    left: 78%;
+    top: 2%;
+    width: 150px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    border: 2px #282c34 solid;
+    color: black;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+
+.signTran:hover {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+}

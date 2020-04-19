@@ -1,0 +1,158 @@
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.App-header {
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px lightskyblue;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    color: rgb(57, 50, 156);
+}
+
+#profile {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    text-align: right;
+    font-size: 20px;
+}
+
+.identicon {
+    width: 50px;
+    height: 50px;
+
+}
+
+.profileBox {
+    position: relative;
+    display: block;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px white solid;
+    margin-top: 15px;
+    z-index: 100;
+    box-shadow: 8px 5px 20px #888888
+}
+
+#username {
+    color: gray;
+    font-size: 15px;
+    font-weight: 800;
+    position: relative;
+    text-shadow: none;
+
+}
+#userAddress {
+    color: gray;
+    font-size: 11px;
+    font-weight: 800;
+    position: relative;
+    text-shadow: none;
+}
+
+#logoutBtn {
+    position: relative;
+    text-align: center;
+    width: auto;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: black;
+    transition: all 0.2s;
+    text-shadow: none;
+
+}
+
+.logoutBtn:hover {
+    color: rgb(57, 50, 156);
+    text-decoration: underline;
+}
+
+.loginBox {
+    padding: 1%;
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    height: 230px;
+    text-align: center;
+    color: rgb(57, 50, 156);
+    text-shadow: 2px 2px lightskyblue;
+}
+
+.login {
+    /* border: 3px solid rgb(45, 0, 128); */
+    background-image: url("loginImage.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* height: 230px; */
+    width: 100%;
+    text-align: center;
+}
+
+#status {
+    text-shadow: none;
+}
+
+#user-email {
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    margin-right: 20px;
+    text-align: center;
+    display: block;
+    margin: 0;
+    border-radius: 7px;
+    border: 2px #282c34 solid;
+    background-color: white;
+    padding: 10px 20px;
+    width: 100%;
+    left: 1%;
+    color: #282c34;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    align-items: center;
+}
+
+.log1 {
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 180px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    border: 3px lightgray solid;
+    color: #282c34;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+    left: 32%;
+    top: 15%;
+    text-shadow: none;
+}
+
+.log1:hover {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+}
+

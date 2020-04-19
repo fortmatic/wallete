@@ -4,111 +4,6 @@ html {
     overflow-x: hidden;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-.App-header {
-    font-family: 'Courier New', Courier, monospace;
-    text-shadow: 2px 2px lightskyblue;
-    font-weight: bold;
-    text-align: center;
-    font-size: 25px;
-    color: rgb(57, 50, 156);
-}
-
-#address {
-    border-radius: 10px;
-    position: relative;
-    text-align: left;
-    display: block;
-    color: black;
-    padding: 13px;
-    left: -0.2%;
-    margin-top: 30px;
-    width: 50%;
-    /* font-size: 20px; */
-    transition: all 0.2s;
-    align-items: left;
-    background-color: #fafbfc;
-}
-
-#address:hover {
-    border-color: rgb(57, 50, 156);
-}
-
-#exchangeAmt {
-    border-radius: 10px;
-    position: relative;
-    display: block;
-    left: 50%;
-    width: 50%;
-    text-align: left;
-    background-color: #fafbfc;
-    padding: 13px;
-    margin-top: -57px;
-}
-
-#exchangeAmt:hover {
-    border-color: rgb(57, 50, 156);
-}
-
-#username {
-    color: gray;
-    font-size: 15px;
-    font-weight: 800;
-    position: relative;
-    text-shadow: none;
-
-}
-#userAddress {
-    color: gray;
-    font-size: 11px;
-    font-weight: 800;
-    position: relative;
-    text-shadow: none;
-}
-
-#nav {
-    padding-left: 0%;
-    margin: 0 auto;
-    list-style: none;
-    /* display: inline-block; */
-    position: relative;
-    background-color: transparent;
-    /* opacity: 0.7; */
-    transition: 0.3s;
-    /* margin-bottom: 10px; */
-    /* top: -10%; */
-    /* border-radius: 10px; */
-    cursor: pointer;
-    /* left: 50%; */
-    /* margin-left: -500px;*/
-}
-
-#nav li {
-    float: left;
-}
-
-#nav a {
-    display: block;
-    text-align: center;
-    width: 280px;
-    /* fixed width */
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 600;
-    padding: 20px;
-    color: black;
-    border-radius: 10px;
-    background-color: transparent;
-}
-
-#nav a:hover {
-    color: rgb(57, 50, 156);
-}
-
 #list {
     text-align: center;
     width: 280px;
@@ -143,40 +38,6 @@ html {
     font-size: 15px;
 }
 
-#pending {
-    font-family: 'Courier New', Courier, monospace;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 700;
-    line-height: 1.42857;
-    text-rendering: optimizeLegibility;
-    width: 100%;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-}
-
-#sidebar {
-    background-color: transparent;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    font-weight: normal;
-    line-height: 1.5;
-    box-sizing: border-box;
-    border-radius: 10px;
-    position: relative;
-    top: 25px;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    left: 50%;
-    margin-left: -480px;
-    z-index: 50;
-    width: 75%;
-    align-items: center;
-
-
-}
-
 .bigBlock {
     display: block;
     border-radius: 10px;
@@ -191,357 +52,35 @@ html {
     margin-bottom: 1px;
 }
 
-.head_box {
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
-    box-sizing: content-box;
-    font-size: 11px;
-    width: 80%;
-    margin-left: 100px;
-    text-align: center;
-    /* border: 10px red solid; */
-    border-bottom: 5px black solid;
-}
-
-.head_boxST {
-    position: relative;
-    box-sizing: content-box;
-    width: 30%;
-    margin-top: 30px;
-    font-size: 30px;
-    margin-left: 0px;
-    text-align: center;
-    top: 10%;
-    /* padding-bottom: 10px; */
-    border-bottom: 5px black solid;
-}
-
-.head_boxPD {
-    box-sizing: content-box;
-    width: 38%;
-    margin-top: 16px;
-    font-size: 30px;
-    margin-left: 0px;
-    text-align: left;
-    padding-bottom: 10px;
-    /* border: 10px red solid; */
-    border-bottom: 5px black solid;
-}
-
 .main {
     margin-left: 10%;
     margin-top: 70px;
     font-size: 12px;
 }
 
-.login {
-    /* border: 3px solid rgb(45, 0, 128); */
-    background-image: url("loginImage.png");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 1%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /* height: 230px; */
-    width: 100%;
-    text-align: center;
-}
-
-.loginBox {
-    padding: 1%;
-    position: absolute;
-    left: 50%;
-    top: 47%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    height: 230px;
-    text-align: center;
-    color: rgb(57, 50, 156);
-    text-shadow: 2px 2px lightskyblue;
-}
-
-#status {
-    text-shadow: none;
-}
-
-input,
-textarea {
+input, textarea {
     position: relative;
-    left: 25%;
+    left: 50%;
     top: 10%;
     text-align: center;
+    border-radius: 10px;
     display: block;
     border: 2px #282c34 solid;
-    background-color: rgb(231, 236, 242);
-    padding: 10px 20px;
+    padding: 13px 20px;
     width: 50%;
     color: #282c34;
     margin-bottom: 10px;
     box-sizing: border-box;
     transition: all 0.2s;
     align-items: center;
-}
-
-#user-email {
-    font-family: 'Courier New', Courier, monospace;
-    position: relative;
-    margin-right: 20px;
-    text-align: center;
-    display: block;
-    margin: 0;
-    border-radius: 7px;
-    border: 2px #282c34 solid;
     background-color: white;
-    padding: 10px 20px;
-    width: 100%;
-    left: 1%;
-    color: #282c34;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    transition: all 0.2s;
-    align-items: center;
+    margin-top: -57px;
 }
 
 input {
     font-size: 16px;
     font-weight: 600;
     text-align: center;
-}
-
-.log1 {
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    margin-right: 180px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 700;
-    border: 3px lightgray solid;
-    color: #282c34;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-    left: 32%;
-    top: 15%;
-    text-shadow: none;
-}
-
-.log1:hover {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-}
-
-.profileButton {
-    position: fixed;
-    text-align: center;
-    display: block;
-    top: 1%;
-    right: 1%;
-    width: 70px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 650;
-    border-radius: 10px;
-    color: white;
-    background-color: rgb(57, 50, 156);
-    padding: 10px;
-    transition: all 0.2s;
-}
-
-
-#addAddress {
-    position: relative;
-    top: 30%;
-    left: 2%;
-    width: 500px;
-}
-
-#name {
-    border-radius: 10px;
-    position: relative;
-    display: block;
-    left: 50%;
-    width: 50%;
-    text-align: left;
-    background-color: #fafbfc;
-    padding: 13px;
-    margin-top: -57px;
-}
-
-#name:hover {
-    border-color: rgb(57, 50, 156);
-}
-
-.signTran {
-    position: relative;
-    display: block;
-    padding-top: 20px;
-    left: 78%;
-    top: 2%;
-    width: 150px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px #282c34 solid;
-    color: black;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-
-.signTran:hover {
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-}
-
-.stTran {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    border: 2px #282c34 solid;
-    border-radius: 10px;
-    left: 83.2%;
-    top: -12%;
-    width: 150px;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px #282c34 solid;
-    color: white;
-    background-color: rgb(57, 50, 156);
-    padding: 5px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-
-.stTran:hover {
-    background-color: lightgray;
-    color: rgb(57, 50, 156);
-    text-align: center;
-}
-
-.cmpBtn {
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    margin-left: 50px;
-    margin-top: -20px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 700;
-    border: 3px #282c34 solid;
-    color: black;
-    background-color: white;
-    padding: 3px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-
-.cmpBtn:hover {
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-}
-
-.refreshBtn {
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    margin-left: 350px;
-    margin-top: -10px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    border: 3px #282c34 solid;
-    color: #282c34;
-    background-color: white;
-    padding: 10px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-
-.refreshBtn:hover {
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-}
-
-#profile {
-    position: absolute;
-    top: 1%;
-    right: 1%;
-    text-align: right;
-    font-size: 20px;
-}
-
-.connected {
-    position: relative;
-    /* top: 18%;
-    left: 1%; */
-    text-align: left;
-    font-size: 20px;
-}
-
-#balDiv {
-    position: absolute;
-    margin-top: 10px;
-    font-size: 13px;
-    top: -3%;
-    right: 5%;
-    text-align: right;
-}
-
-#logoutBtn {
-    position: relative;
-    text-align: center;
-    width: auto;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    color: black;
-    transition: all 0.2s;
-    text-shadow: none;
-
-}
-
-.logoutBtn:hover {
-    color: rgb(57, 50, 156);
-    text-decoration: underline;
-}
-
-table {
-    margin-top: 30px;
-    width: 100%;
-    border: 1px solid black;
-}
-
-.whitelistName {
-    width: 40%;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.whitelistAddress {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 10.5em;
 }
 
 td,
@@ -555,57 +94,12 @@ th {
     font-weight: 700;
 }
 
-li.active {
-    background-color: rgb(140, 135, 211);
-}
-
-li.active a {
-    color: white;
-}
-
 canvas {
     border-radius: 50%;
-}
-.composition {
-    display: block;
-    box-sizing: content-box;
-    background-color: red;
-    padding-left: 30px;
-}
-a.composition {
-    background-color: rgb(57, 50, 156);
-    color: white;
-    border-radius: 2px;
-    font-size: 10px;
-    font-weight: 3px;
-}
-
-a.composition:hover {
-    color: rgb(57, 50, 156);
-    background-color: lightgrey;
 }
 
 .rowInput {
     position: relative;
-}
-
-.profileBox {
-    position: relative;
-    display: block;
-    box-sizing: content-box;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px white solid;
-    margin-top: 15px;
-    z-index: 100;
-    box-shadow: 8px 5px 20px #888888
-}
-.identicon {
-    width: 50px;
-    height: 50px;
-
 }
 
 

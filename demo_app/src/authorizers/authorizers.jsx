@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 
-import * as handle from './phantom.js';
-import './main.css';
+import * as handle from '../phantom.js';
+import '../main.css';
+import './authorizers.css';
 
 // import Fortmatic from 'fortmatic';
 // const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
