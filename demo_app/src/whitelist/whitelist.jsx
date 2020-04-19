@@ -93,6 +93,7 @@ export default class SignAndAdd extends Component {
     }
 
     Success(datum) {
+        document.getElementById("floater").style.display = "block";
         return (
             <div className="loader">
                 <h2>Successfully added</h2>
@@ -106,6 +107,7 @@ export default class SignAndAdd extends Component {
     }
 
     Fail(datum, msg) {
+        document.getElementById("floater").style.display = "block";
         console.log(msg);
         return (
             <div className="loader" >
@@ -150,6 +152,7 @@ export default class SignAndAdd extends Component {
 
         } catch (err) {
             console.log("error caught");
+            console.log(err);
             const fail = "Something went wrong on Blockchain";
             ReactDOM.render(this.Fail(null, fail), document.getElementById('floater'));
         }

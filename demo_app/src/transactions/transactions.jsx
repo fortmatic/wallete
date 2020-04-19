@@ -1,6 +1,6 @@
 // General React components
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from '../index.js';
@@ -125,7 +125,7 @@ export class Transactions extends Component {
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <p className="connected" id="status"></p>
                         <a className="stTran" onClick={this.startTransaction} href="!#">Start Transaction</a>
-                        <p className = "connected" id = "message"></p>
+                        <p className="connected" id="message"></p>
                     </div>
                 </div>
             </div>
@@ -163,12 +163,77 @@ export class Transactions extends Component {
         );
     }
 
+    Adding(datum) {
+        document.getElementById("floater").style.display = "block";
+        if (datum == null) {
+            return (
+                <div className="loader">
+                    <h2>Transacting on Blockchain</h2>
+                    <div className="spinner"></div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="loader">
+                    <h2>Transacting on Blockchain</h2>
+                    <p >Hash is {datum}</p>
+                    <div className="spinner"></div>
+                </div>
+            );
+        }
+    }
+
+    Fail(title, datum, msg) {
+        document.getElementById("floater").style.display = "block";
+        console.log(msg);
+        return (
+            <div className="loader" >
+                <h2>{title}</h2>
+                <p>{datum}</p>
+                <p>{msg}</p>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
+    }
+
+    SuccessStart(address, amount, txnHash) {
+        document.getElementById("floater").style.display = "block";
+        const link = "https://rinkeby.etherscan.io/tx/" + txnHash;
+
+        return (
+            <div className="loader">
+                <h2>Successfully Started Transaction</h2>
+                <p>To: {address}</p>
+                <p>Amount: {amount}</p>
+                <a href={link}>View on EtherScan</a>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
+    }
+
     startTransaction = async () => {
+        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const amount = document.getElementById('exchangeAmt').value;
         const sendAddress = document.getElementById('address').value;
         //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
+
+        try {
+            if (sendAddress == "" || amount == "") throw "Invalid Inupts";
+        }
+        catch (err) {
+            console.log(err);
+            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
+            return;
+        }
 
         console.log(amount);
         var txnHash;
@@ -176,26 +241,32 @@ export class Transactions extends Component {
         const transactAmt = index.web3.utils.toWei(amount, "ether");
         console.log(transactAmt);
 
-        document.getElementById('message').innerHTML = "Starting transaction...";
+        try {
+            await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '30000000000',
+                value: transactAmt
+            })
+                .on('transactionHash', (hash) => {
+                    txnHash = hash;
+                    ReactDOM.render(this.Adding(hash), document.getElementById('floater'));
+                });
 
-        await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '30000000000',
-            value: transactAmt
-        })
-            .on('receipt', (rec) => {
-                console.log(rec);
-                txnHash = rec.transactionHash;
+            await index.contract.methods.setHash(txnHash).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '30000000000'
             });
+        } catch (err) {
+            console.log("error caught");
+            console.log(err);
+            const fail = "Something went wrong on Blockchain";
+            ReactDOM.render(this.Fail("Unable to start transaction", null, fail), document.getElementById('floater'));
+            return;
+        }
 
-        await index.contract.methods.setHash(txnHash).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '30000000000'
-        }).on('receipt', () => {
-            document.getElementById('message').innerHTML = "Transaction started: " + amount + " Eth to " + sendAddress;
-        });
+        ReactDOM.render(this.SuccessStart(sendAddress, amount, txnHash), document.getElementById('floater'));
     }
 
     signContract = async (i) => {
