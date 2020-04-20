@@ -269,26 +269,52 @@ export class Transactions extends Component {
         ReactDOM.render(this.SuccessStart(sendAddress, amount, txnHash), document.getElementById('floater'));
     }
 
+    SuccessSigned(txnHash, msg) {
+        document.getElementById("floater").style.display = "block";
+
+        return (
+            <div className="loader">
+                <h2>Successfully Signed Transaction</h2>
+                <p>Hash: {txnHash}</p>
+                <p>{msg}</p>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
+    }
+
     signContract = async (i) => {
+        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        let msg = "";
 
-        document.getElementById('status').innerHTML = "Signing transaction...";
+        try {
+            await index.contract.methods.signTransaction(i).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '3000000000000'
+            })
+                .on('transactionHash', (hash) =>
+                    ReactDOM.render(this.Adding(hash), document.getElementById('floater')))
 
-        await index.contract.methods.signTransaction(i).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '3000000000000'
-        })
-            .on('receipt', (rec) => {
-                console.log(rec);
-                if (rec.events.transactionOccured != null) {
-                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[1] / Math.pow(10, 18) + " Eth"
-                        + " to " + rec.events.transactionOccured.returnValues[0];
-                }
-                else {
-                    document.getElementById('status').innerHTML = rec.events.SignedTransact.returnValues[0] + " signed transaction";
-                }
-            });
+                .on('receipt', (rec) => {
+                    console.log(rec);
+                    if (rec.events.transactionOccured != null) {
+                        msg = "Transaction completed";
+                    }
+                });
+        } catch (err) {
+            console.log("error caught");
+            console.log(err);
+            const fail = "Something went wrong on Blockchain";
+            ReactDOM.render(this.Fail("Unable to sign transaction", null, fail), document.getElementById('floater'));
+            return;
+        }
+
+        ReactDOM.render(this.SuccessSigned(data[i].txHash, msg), document.getElementById('floater'));
     }
 }
 
