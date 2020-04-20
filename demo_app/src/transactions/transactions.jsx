@@ -176,7 +176,7 @@ export class Transactions extends Component {
             return (
                 <div className="loader">
                     <h2>Transacting on Blockchain</h2>
-                    <p >Hash is {datum}</p>
+                    <p >Hash: {datum}</p>
                     <div className="spinner"></div>
                 </div>
             );
@@ -275,7 +275,7 @@ export class Transactions extends Component {
         return (
             <div className="loader">
                 <h2>Successfully Signed Transaction</h2>
-                <p>Hash: {txnHash}</p>
+                <p>For Hash {txnHash}</p>
                 <p>{msg}</p>
                 <a href="!#" className="exitLoad" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
