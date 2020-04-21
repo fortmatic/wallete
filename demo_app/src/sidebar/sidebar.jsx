@@ -20,9 +20,9 @@ export default class Sidebar extends Component {
                 <ul id="nav">
                     <div>
                         {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
-                        <li className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>
-                        <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                        <li><a onClick={this.getTransactions} href="!#">Transactions</a></li>
+                        <li id="Assets" className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>
+                        <li id="Whitelist" ><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                        <li id="Transactions"><a onClick={this.getTransactions} href="!#">Transactions</a></li>
                         {/* <li><a onClick={this.getVault}>Vault </a></li> */}
                     </div>
                 </ul>
@@ -31,42 +31,27 @@ export default class Sidebar extends Component {
     }
 
     getTransactions = async () => {
-        const element = (
-            <div>
-                <li><a onClick={this.getAssets} href="!#">Assets</a></li>
-                <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                <li className="active"><a onClick={this.getTransactions} href="!#">Transactions</a></li>
-            </div>
-        );
+        document.getElementById('Assets').setAttribute('class', '');
+        document.getElementById('Whitelist').setAttribute('class', '');
+        document.getElementById('Transactions').setAttribute('class', 'active');
 
         await getPending();
-        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Transactions />, document.getElementById('root'));
     }
 
     getAssets = () => {
-        const element = (
-            <div>
-                <li className="active"><a onClick={this.getAssets} href="!#" >Assets</a></li>
-                <li><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                <li><a onClick={this.getTransactions} href="!#">Transactions</a></li>
-            </div>
-        );
+        document.getElementById('Assets').setAttribute('class', 'active');
+        document.getElementById('Whitelist').setAttribute('class', '');
+        document.getElementById('Transactions').setAttribute('class', '');
 
-        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Assets />, document.getElementById('root'));
     }
 
     getSignAndAdd = () => {
-        const element = (
-            <div>
-                <li><a onClick={this.getAssets} href="!#">Assets</a></li>
-                <li className="active"><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                <li ><a onClick={this.getTransactions} href="!#">Transactions</a></li>
-            </div>
-        );
+        document.getElementById('Assets').setAttribute('class', '');
+        document.getElementById('Whitelist').setAttribute('class', 'active');
+        document.getElementById('Transactions').setAttribute('class', '');
 
-        ReactDOM.render(element, document.getElementById('nav'));
         ReactDOM.render(<Whitelist />, document.getElementById('root'));
     }
 
