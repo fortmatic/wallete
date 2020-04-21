@@ -243,7 +243,8 @@ export class Transactions extends Component {
 
         try {
             const status = await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).call({
-                from: userAddress
+                from: userAddress,
+                value: transactAmt
             });
 
             if (status != "Transaction Started") {
