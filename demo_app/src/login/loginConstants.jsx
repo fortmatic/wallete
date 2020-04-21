@@ -29,6 +29,15 @@ export class Top extends Component {
         this.setState({ userAddress: user_in });
         this.setState({ username: address_in });
 
+        this.setState({
+            icon: <Blockies
+                seed={this.state.userAddress}
+                size={5}
+                scale={10}
+            >
+            </Blockies>
+        });
+
         document.addEventListener('mousedown', this.handleClick, false);
     }
 
@@ -82,12 +91,7 @@ export class Top extends Component {
         return (
             <div >
                 <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
-                    <Blockies
-                        seed={this.state.userAddress}
-                        size={5}
-                        scale={10}
-                    >
-                    </Blockies>
+                    {this.state.icon}
                 </a>
                 <div className="profileBox" ref={this.container}>
                     <p id="username">{this.state.username}</p>
@@ -102,12 +106,7 @@ export class Top extends Component {
         return (
             <div>
                 <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
-                    <Blockies
-                        seed={this.state.userAddress}
-                        size={5}
-                        scale={10}
-                    >
-                    </Blockies>
+                    {this.state.icon}
                 </a>
                 <p ref={this.container}></p>
             </div>
