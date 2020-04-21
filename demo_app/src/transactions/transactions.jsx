@@ -125,7 +125,7 @@ export class Transactions extends Component {
                         {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <p className="connected" id="status"></p>
                         <a className="stTran" onClick={this.startTransaction} href="!#">Start Transaction</a>
-                        <p className = "connected" id = "message"></p>
+                        <p className="connected" id="message"></p>
                     </div>
                 </div>
             </div>

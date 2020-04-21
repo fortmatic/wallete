@@ -28,13 +28,19 @@ let prep = async () => {
     if (await fmPhantom.user.isLoggedIn())
         makeMainPage();
     else
-        ReactDOM.render(<Login />, document.getElementById('root'));
+        makeLoginPage();
 }
 
-export let makeMainPage = async () => {
+export let makeMainPage = () => {
     ReactDOM.render(<Top />, document.getElementById('constant'));
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
     ReactDOM.render(<Assets />, document.getElementById('root'));
+}
+
+export let makeLoginPage = () => {
+    ReactDOM.render(<Login />, document.getElementById('root'));
+    ReactDOM.render(<div></div>, document.getElementById('constant'));
+    ReactDOM.render(<div></div>, document.getElementById('sidebar'));
 }
 
 // export let mySEEED = async () => {

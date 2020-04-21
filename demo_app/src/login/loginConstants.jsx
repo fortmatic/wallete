@@ -1,6 +1,5 @@
 // General React Libraries
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // Function libraries
 import * as index from "../index.js";
@@ -17,24 +16,29 @@ import Blockies from 'react-blockies';
 
 
 export class Top extends Component {
-    // async componentDidMount() {
-    //     await this.blockieS;
-    // }
-    render () {
-        var mySeed = this.setSeed.toString();
+    state = {
+        userAddress: "",
+        username: "",
+        open: false
+    };
+
+    async componentDidMount() {
+        const user_in = (await index.fmPhantom.user.getMetadata()).email;
+        const address_in = (await index.fmPhantom.user.getMetadata()).publicAddress;
+
+        this.setState({ userAddress: user_in });
+        this.setState({ username: address_in });
+
+        document.addEventListener('mousedown', this.handleClick, false);
+    }
+
+    render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 id="main"> <div className = "logo_box">WALLETTE</div></h1>
+                    <h1 id="main"> <div className="logo_box">WALLETTE</div></h1>
                     <div id="profile">
-                    <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={node => this.node = node}>
-                        <Blockies
-                        seed={mySeed}
-                        size= {5}
-                        scale = {10}
-                        >
-                        </Blockies>
-                    </a>
+                        {this.handleState()}
                     </div>
                 </header>
                 <p ref={this.container}></p>
@@ -42,16 +46,26 @@ export class Top extends Component {
         );
     }
 
-    setSeed = async () => {
-        var mySeed = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        return mySeed;
-    }
-
     container = React.createRef();
 
+    handleState = () => {
+        if (this.state.open) {
+            return this.openProfile();
+        } else {
+            return this.closeProfile();
+        }
+    }
+
+    switchState = () => {
+        if (this.state.open)
+            this.setState({ open: false });
+        else
+            this.setState({ open: true });
+    }
+
     handleClick = (e) => {
-        if (!this.node.contains(e.target) && !this.container.current.contains(e.target)) {
-            this.closeProfile();
+        if (!this.node.contains(e.target) && !this.container.current.contains(e.target) && this.state.open) {
+            this.setState({ open: false });
         }
     }
 
@@ -60,61 +74,46 @@ export class Top extends Component {
 
         await index.fmPhantom.user.logout()
             .then((rec) => {
-                ReactDOM.render(<Login />, document.getElementById('root'));
-                ReactDOM.render(<div></div>, document.getElementById('sidebar'));
-                ReactDOM.render(<div></div>, document.getElementById('constant'));
+                index.makeLoginPage();
             });
     }
 
-    openProfile = async () => {
-        document.addEventListener('mousedown', this.handleClick, false);
-
-        var mySeed = this.setSeed.toString();
-        const element = (
+    openProfile = () => {
+        return (
             <div >
-                <a href="!#" className = "identicon" onClick={this.closeProfile} id="profBtn" ref={node => this.node = node}>
-                        <Blockies
-                            seed={mySeed}
-                            size= {5}
-                            scale = {10}
-                            >
-                        </Blockies>
-                        </a>
-                <div className = "profileBox" ref={this.container}>
-                <p id="username"></p>
-                <p id="userAddress"></p>
-                <a href="!#" className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
+                <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
+                    <Blockies
+                        seed={this.state.userAddress}
+                        size={5}
+                        scale={10}
+                    >
+                    </Blockies>
+                </a>
+                <div className="profileBox" ref={this.container}>
+                    <p id="username">{this.state.username}</p>
+                    <p id="userAddress">{this.state.userAddress}</p>
+                    <a href="!#" className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
                 </div>
             </div>
         );
-
-        await ReactDOM.render(element, document.getElementById('profile'));
-        
-        document.getElementById('username').innerHTML = (await index.fmPhantom.user.getMetadata()).email;
-        document.getElementById('userAddress').innerHTML = (await index.fmPhantom.user.getMetadata()).publicAddress;
     }
 
-    closeProfile = async () => {
-        document.removeEventListener('mousedown', this.handleClick, false);
-
-        var mySeed = this.setSeed.toString();
-        const element = (
+    closeProfile = () => {
+        return (
             <div>
-                <a href="!#" className = "identicon" onClick={this.openProfile} id="profBtn" ref={node => this.node = node}>
-                    <Blockies 
-                        seed= {mySeed}
-                        size= {5}
-                        scale = {10}
-                        >
+                <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
+                    <Blockies
+                        seed={this.state.userAddress}
+                        size={5}
+                        scale={10}
+                    >
                     </Blockies>
                 </a>
                 <p ref={this.container}></p>
             </div>
         );
-
-        ReactDOM.render(element, document.getElementById('profile'));
     }
- 
+
 }
 
 export class Login extends Component {
