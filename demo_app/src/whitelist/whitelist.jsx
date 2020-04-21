@@ -139,6 +139,9 @@ export default class SignAndAdd extends Component {
         }
 
         try {
+            await index.contract.methods.addAddress(address, acctName).call()
+                .then(console.log);
+            
             await index.contract.methods.addAddress(address, acctName).send({
                 from: userAddress,
                 gas: 1500000,
@@ -153,6 +156,7 @@ export default class SignAndAdd extends Component {
         } catch (err) {
             console.log("error caught");
             console.log(err);
+
             const fail = "Something went wrong on Blockchain";
             ReactDOM.render(this.Fail(null, fail), document.getElementById('floater'));
         }

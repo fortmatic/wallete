@@ -48,7 +48,7 @@ contract MultiSig {
     }
 
     function getTransactions()
-        public
+        external
         view
         returns (transactionData[] memory transArr)
     {
@@ -56,7 +56,7 @@ contract MultiSig {
     }
 
     function getWhitelistAdd()
-        public
+        external
         view
         returns (whitelistData[] memory whitelistArr)
     {
@@ -75,33 +75,33 @@ contract MultiSig {
     // Adds address to whitelist so entity has signing ability
     function addAddress(address newAddress, string memory name)
         public
-        returns (bool success)
+        returns (string memory status)
     {
-        // Requires to ensure owner adding signers
-        require(
-            whitelist[msg.sender] == true || owner == msg.sender,
-            "Sender not authorized"
-        );
-        require(whitelist[newAddress] == false, "Already added");
+        // If statements to ensure owner adding signers
+        if (whitelist[msg.sender] == false && owner != msg.sender)
+            return "Sender not authorized";
+
+        if (whitelist[newAddress] == true) return "Already added";
 
         // Give address signing ability and emit event
         whitelistAdd.push(whitelistData(newAddress, name)); // add the new address to list of whitelist addresses
         whitelist[newAddress] = true;
 
         emit AddedWhiteList(newAddress);
-        return true;
+        return "Added";
     }
 
     function setupTransaction(
         address payable _paymentReciever,
         uint256 _threshold,
         uint256 _amount
-    ) external payable returns (uint256) {
+    ) external payable returns (string memory status) {
         require(msg.value == _amount, "Not enough eth to send transaction");
-        require(
-            whitelist[msg.sender] == true,
-            "This address is not an the whitelist"
-        );
+
+        if (whitelist[msg.sender] == false) {
+            msg.sender.transfer(_amount);
+            return "This address is not on the whitelist";
+        }
 
         transactions.push(
             transactionData(
@@ -125,25 +125,26 @@ contract MultiSig {
         signTransaction(transactions.length - 1);
 
         nonce++;
-        return nonce - 1;
+        return "Transaction Started";
     }
 
     // Msg.sender signs transaction
-    function signTransaction(uint256 index) public returns (bool success) {
+    function signTransaction(uint256 index)
+        public
+        returns (string memory status)
+    {
         // Makes sure sender is on whitelist and has not signed yet
-        require(
-            transactions[index].complete == false,
-            "Transaction has already been sent"
-        );
-        require(index < transactions.length, "Index is out of bounds");
-        require(
-            whitelist[msg.sender] == true,
-            "This address is not on the whitelist"
-        );
-        require(
-            signedList[transactions[index].nonceTrans][msg.sender] == false,
-            "This address has already signed the transaction"
-        );
+        if (index > transactions.length || index < 0)
+            return "Index is out of bounds";
+
+        if (transactions[index].complete == true)
+            return "Transaction has already been sent";
+
+        if (whitelist[msg.sender] == false)
+            return "This address is not on the whitelist";
+
+        if (signedList[transactions[index].nonceTrans][msg.sender] == true)
+            return "This address has already signed the transaction";
 
         // Increment num of signatures on transact and approve on signedList
         signedList[transactions[index].nonceTrans][msg.sender] = true;
@@ -153,12 +154,16 @@ contract MultiSig {
         return checkStatus(index);
     }
 
-    function handlePayment(uint256 index) private returns (bool) {
-        require(
-            transactions[index].complete == false,
-            "Transaction has already been sent"
-        );
-        require(index < transactions.length, "Index is out of bounds");
+    function handlePayment(uint256 index)
+        private
+        returns (string memory status)
+    {
+        if (index > transactions.length || index < 0)
+            return "Index is out of bounds";
+
+        if (transactions[index].complete == true)
+            return "Transaction has already been sent";
+
         address payable reciever = transactions[index].to;
         reciever.transfer(transactions[index].amount);
 
@@ -168,15 +173,21 @@ contract MultiSig {
         );
         transactions[index].complete = true;
 
-        return true;
+        return "Transaction Completed";
     }
 
-    function checkStatus(uint256 index) public payable returns (bool success) {
-        require(index < transactions.length, "Index is out of bounds");
+    function checkStatus(uint256 index)
+        public
+        payable
+        returns (string memory status)
+    {
+        if (index > transactions.length || index < 0)
+            return "Index is out of bounds";
+
         if (transactions[index].numSigs >= transactions[index].threshold) {
             return handlePayment(index);
         }
 
-        return false;
+        return "Signed";
     }
 }
