@@ -242,6 +242,14 @@ export class Transactions extends Component {
         console.log(transactAmt);
 
         try {
+            const status = await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).call({
+                from: userAddress
+            });
+
+            if (status != "Transaction Started") {
+                throw status;
+            }
+
             await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
                 from: userAddress,
                 gas: 1500000,
@@ -261,8 +269,7 @@ export class Transactions extends Component {
         } catch (err) {
             console.log("error caught");
             console.log(err);
-            const fail = "Something went wrong on Blockchain";
-            ReactDOM.render(this.Fail("Unable to start transaction", null, fail), document.getElementById('floater'));
+            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
             return;
         }
 
@@ -292,6 +299,14 @@ export class Transactions extends Component {
         let msg = "";
 
         try {
+            const status = await index.contract.methods.signTransaction(i).call({
+                from: userAddress
+            });
+            
+            if (status != "Signed" || status != "Transaction Completed") {
+                throw status;
+            }
+
             await index.contract.methods.signTransaction(i).send({
                 from: userAddress,
                 gas: 1500000,
@@ -309,8 +324,7 @@ export class Transactions extends Component {
         } catch (err) {
             console.log("error caught");
             console.log(err);
-            const fail = "Something went wrong on Blockchain";
-            ReactDOM.render(this.Fail("Unable to sign transaction", null, fail), document.getElementById('floater'));
+            ReactDOM.render(this.Fail("Unable to sign transaction", null, err), document.getElementById('floater'));
             return;
         }
 

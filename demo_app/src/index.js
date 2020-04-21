@@ -22,7 +22,7 @@ export const web3 = new Web3(fmPhantom.getProvider());
 
 
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
-contract.options.address = '0xd60BA051DE05017e7DBCd68E597Da3c2eEe8D7DA';
+contract.options.address = '0xf703EE3A38fE097545C6b6b555faf6216584bf91';
 
 let prep = async () => {
     if (await fmPhantom.user.isLoggedIn())
