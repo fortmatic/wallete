@@ -7,7 +7,7 @@ import './assets.css';
 export default class Assets extends Component {
     async componentDidMount() {
         document.getElementById('thing').innerHTML = 'On contract ' + index.contract.options.address;
-        window.setInterval(this.getData(), 10000);
+        this.getData();
     }
 
     render() {
