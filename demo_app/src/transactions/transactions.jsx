@@ -1,6 +1,6 @@
 // General React components
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from '../index.js';
@@ -163,12 +163,77 @@ export class Transactions extends Component {
         );
     }
 
+    Adding(datum) {
+        document.getElementById("floater").style.display = "block";
+        if (datum == null) {
+            return (
+                <div className="loader">
+                    <h2>Transacting on Blockchain</h2>
+                    <div className="spinner"></div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="loader">
+                    <h2>Transacting on Blockchain</h2>
+                    <p >Hash: {datum}</p>
+                    <div className="spinner"></div>
+                </div>
+            );
+        }
+    }
+
+    Fail(title, datum, msg) {
+        document.getElementById("floater").style.display = "block";
+        console.log(msg);
+        return (
+            <div className="loader" >
+                <h2>{title}</h2>
+                <p>{datum}</p>
+                <p>{msg}</p>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
+    }
+
+    SuccessStart(address, amount, txnHash) {
+        document.getElementById("floater").style.display = "block";
+        const link = "https://rinkeby.etherscan.io/tx/" + txnHash;
+
+        return (
+            <div className="loader">
+                <h2>Successfully Started Transaction</h2>
+                <p>To: {address}</p>
+                <p>Amount: {amount}</p>
+                <a href={link}>View on EtherScan</a>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
+    }
+
     startTransaction = async () => {
+        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const amount = document.getElementById('exchangeAmt').value;
         const sendAddress = document.getElementById('address').value;
         //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
+
+        try {
+            if (sendAddress == "" || amount == "") throw "Invalid Inupts";
+        }
+        catch (err) {
+            console.log(err);
+            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
+            return;
+        }
 
         console.log(amount);
         var txnHash;
@@ -176,48 +241,95 @@ export class Transactions extends Component {
         const transactAmt = index.web3.utils.toWei(amount, "ether");
         console.log(transactAmt);
 
-        document.getElementById('message').innerHTML = "Starting transaction...";
-
-        await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '30000000000',
-            value: transactAmt
-        })
-            .on('receipt', (rec) => {
-                console.log(rec);
-                txnHash = rec.transactionHash;
+        try {
+            const status = await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).call({
+                from: userAddress,
+                value: transactAmt
             });
 
-        await index.contract.methods.setHash(txnHash).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '30000000000'
-        }).on('receipt', () => {
-            document.getElementById('message').innerHTML = "Transaction started: " + amount + " Eth to " + sendAddress;
-        });
+            if (status != "Transaction Started") {
+                throw status;
+            }
+
+            await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '30000000000',
+                value: transactAmt
+            })
+                .on('transactionHash', (hash) => {
+                    txnHash = hash;
+                    ReactDOM.render(this.Adding(hash), document.getElementById('floater'));
+                });
+
+            await index.contract.methods.setHash(txnHash).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '30000000000'
+            });
+        } catch (err) {
+            console.log("error caught");
+            console.log(err);
+            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
+            return;
+        }
+
+        ReactDOM.render(this.SuccessStart(sendAddress, amount, txnHash), document.getElementById('floater'));
+    }
+
+    SuccessSigned(txnHash, msg) {
+        document.getElementById("floater").style.display = "block";
+
+        return (
+            <div className="loader">
+                <h2>Successfully Signed Transaction</h2>
+                <p>For Hash {txnHash}</p>
+                <p>{msg}</p>
+                <a href="!#" className="exitLoad" onClick={() => {
+                    ReactDOM.render(<div></div>, document.getElementById('floater'));
+                    document.getElementById("floater").style.display = "none";
+                }}>Close</a>
+            </div>
+        );
     }
 
     signContract = async (i) => {
+        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        let msg = "";
 
-        document.getElementById('status').innerHTML = "Signing transaction...";
-
-        await index.contract.methods.signTransaction(i).send({
-            from: userAddress,
-            gas: 1500000,
-            gasPrice: '3000000000000'
-        })
-            .on('receipt', (rec) => {
-                console.log(rec);
-                if (rec.events.transactionOccured != null) {
-                    document.getElementById('status').innerHTML = "Transacted " + rec.events.transactionOccured.returnValues[1] / Math.pow(10, 18) + " Eth"
-                        + " to " + rec.events.transactionOccured.returnValues[0];
-                }
-                else {
-                    document.getElementById('status').innerHTML = rec.events.SignedTransact.returnValues[0] + " signed transaction";
-                }
+        try {
+            const status = await index.contract.methods.signTransaction(i).call({
+                from: userAddress
             });
+            
+            if (status != "Signed" || status != "Transaction Completed") {
+                throw status;
+            }
+
+            await index.contract.methods.signTransaction(i).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '3000000000000'
+            })
+                .on('transactionHash', (hash) =>
+                    ReactDOM.render(this.Adding(hash), document.getElementById('floater')))
+
+                .on('receipt', (rec) => {
+                    console.log(rec);
+                    if (rec.events.transactionOccured != null) {
+                        msg = "Transaction completed";
+                    }
+                });
+        } catch (err) {
+            console.log("error caught");
+            console.log(err);
+            ReactDOM.render(this.Fail("Unable to sign transaction", null, err), document.getElementById('floater'));
+            return;
+        }
+
+        ReactDOM.render(this.SuccessSigned(data[i].txHash, msg), document.getElementById('floater'));
     }
 }
 
