@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // General function libraries
-// import * as index from './index.js';
-// import * as handle from './phantom.js';
 import './sidebar.css';
 
 // React Components
@@ -19,11 +17,9 @@ export default class Sidebar extends Component {
             <div className="sidebar">
                 <ul id="nav">
                     <div>
-                        {/* <a className="sidebarBtn" onClick={this.getDeployPage}>Deploy</a> */}
                         <li id="Assets" className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>
                         <li id="Whitelist" ><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
                         <li id="Transactions"><a onClick={this.getTransactions} href="!#">Transactions</a></li>
-                        {/* <li><a onClick={this.getVault}>Vault </a></li> */}
                     </div>
                 </ul>
             </div>
@@ -58,9 +54,4 @@ export default class Sidebar extends Component {
     getDeployPage = () => {
         ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
     }
-
-    // getVault() {
-    //     ReactDOM.render(<authorizers.Vault />, document.getElementById('root'));
-    //     handle.getPending();
-    // }
 }

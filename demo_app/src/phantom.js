@@ -28,7 +28,6 @@ let setupTransaction = async() => {
     const userAddress = (await fmPhantom.user.getMetadata()).publicAddress;
     const amount = document.getElementById('exchangeAmt').value;
     const sendAddress = document.getElementById('sendAddress').value;
-    //const threshold = document.getElementById('threshold').value;
     const threshold = 3;
 
     var txnHash;
