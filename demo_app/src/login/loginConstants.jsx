@@ -4,14 +4,9 @@ import React, { Component } from 'react';
 // Function libraries
 import * as index from "../index.js";
 import './login.css';
-// import * as handle from './phantom.js';
 
 // React components
-// import * as authorizers from './authorizers.jsx';
-// import Assets from './assets.jsx';
-//blockies
 import Blockies from 'react-blockies';
-// import blockies from 'ethereum-blockies';
 
 
 

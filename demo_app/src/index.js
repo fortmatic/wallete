@@ -43,18 +43,7 @@ export let makeLoginPage = () => {
     ReactDOM.render(<div></div>, document.getElementById('sidebar'));
 }
 
-// export let mySEEED = async () => {
-//     var mySeed = (await fmPhantom.user.getMetadata()).publicAddress;
-//     var icon = blockies.create({
-//                 seed: mySeed,
-//                 size: 5,
-//                 scale:10
-//             });
-//     document.getElementById("profBtn").append(icon);
-// }
-
 prep();
-// mySEEED();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

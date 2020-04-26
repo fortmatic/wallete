@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 
 import * as handle from '../phantom.js';
 import '../main.css';
 import './authorizers.css';
-
-// import Fortmatic from 'fortmatic';
-// const fmPhantom = new Fortmatic.Phantom('pk_test_0DBC72C8476764F8');
 
 class Deploy extends Component {
     render() {
@@ -31,9 +27,6 @@ class Vault extends Component {
                 <div className="bigBlock">
                     <div id="pending">
                         <h1 className="head_boxPD">Pending Transactions</h1>
-                        {/* <ol id="pendingList"></ol> */}
-                        {/* <select name="transaction" id="pendTxns"></select> */}
-                        {/* <a className="cmpBtn" onClick={this.getCompTx} >Get CompositionTx</a> */}
                         <table>
                             <thead>
                                 <tr>
@@ -48,33 +41,12 @@ class Vault extends Component {
                         </table>
                     </div>
 
-                    {/* <div id="balDiv">
-                        <h1>Balance</h1>
-                        <p id="balance"></p>
-                        <a className="refreshBtn" onClick={handle.getBalance}>Refresh</a>
-                    </div> */}
-
                     <a className="signTran" onClick={this.signPendingTx} href="!#">Sign Transaction</a>
                     <div className="compBox" id="compositionTx"></div>
                 </div>
             </div>
         );
     }
-
-    // async getCompTx() {
-    //     var div = document.getElementById('compositionTx');
-    //     while (div.firstChild) {
-    //         div.removeChild(div.firstChild);
-    //     }
-
-    //     var sel = document.getElementById('pendTxns');
-    //     handle.getComp(sel.value);
-    // }
-
-    // async signPendingTx() {
-    //     var sel = document.getElementById('pendTxns');
-    //     handle.signContract(sel.value);
-    // }
 }
 
 export {

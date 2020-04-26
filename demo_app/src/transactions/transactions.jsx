@@ -111,7 +111,6 @@ export class Transactions extends Component {
                                 columns={this.columns}
                                 data={data}
                                 expandOnRowClicked
-                                //theme="Fortmatic"
                                 customStyles={style}
                                 highlightOnHover
                                 expandableRows
@@ -122,7 +121,6 @@ export class Transactions extends Component {
                     <div>
                         <input type="text" id="address" placeholder="Send to Address" />
                         <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
-                        {/* <input type="number" id="threshold" placeholder="Send threshold" /> */}
                         <p className="connected" id="status"></p>
                         <a className="stTran" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
@@ -223,7 +221,6 @@ export class Transactions extends Component {
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
         const amount = document.getElementById('exchangeAmt').value;
         const sendAddress = document.getElementById('address').value;
-        //const threshold = document.getElementById('threshold').value;
         const threshold = 3;
 
         try {
