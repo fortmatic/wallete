@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './sidebar.css';
 
 // React Components
-import * as authorizers from '../authorizers.jsx';
+import * as authorizers from '../authorizers/authorizers.jsx';
 import Assets from '../assets/assets.jsx';
 import Whitelist from '../whitelist/whitelist.jsx';
 import { Transactions, getPending } from '../transactions/transactions.jsx';
@@ -14,7 +14,7 @@ import { Transactions, getPending } from '../transactions/transactions.jsx';
 export default class Sidebar extends Component {
     render() {
         return (
-            <div className="sidebar">
+            <div className="side-bar">
                 <ul id="nav">
                     <div>
                         <li id="Assets" className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>

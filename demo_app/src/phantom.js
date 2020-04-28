@@ -1,4 +1,4 @@
-import * as abi from './abi.js'
+import * as abi from './constants/abi.js'
 import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
 

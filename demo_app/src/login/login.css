@@ -26,7 +26,7 @@
 
 }
 
-.profileBox {
+.profile-Box {
     position: relative;
     display: block;
     box-sizing: content-box;
@@ -48,7 +48,7 @@
     text-shadow: none;
 
 }
-#userAddress {
+#user-Address {
     color: gray;
     font-size: 11px;
     font-weight: 800;
@@ -56,7 +56,7 @@
     text-shadow: none;
 }
 
-#logoutBtn {
+#logout-Btn {
     position: relative;
     text-align: center;
     width: auto;
@@ -69,12 +69,12 @@
 
 }
 
-.logoutBtn:hover {
+.logout-Btn:hover {
     color: rgb(57, 50, 156);
     text-decoration: underline;
 }
 
-.loginBox {
+.login-Box {
     padding: 1%;
     position: absolute;
     left: 50%;
@@ -89,7 +89,7 @@
 
 .login {
     /* border: 3px solid rgb(45, 0, 128); */
-    background-image: url("loginImage.png");
+    background-image: url("../Asset/loginImage.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -128,7 +128,7 @@
     align-items: center;
 }
 
-.log1 {
+.log-1 {
     position: relative;
     display: block;
     border-radius: 10px;
@@ -150,7 +150,7 @@
     text-shadow: none;
 }
 
-.log1:hover {
+.log-1:hover {
     background-color: lightgray;
     color: black;
     text-align: center;

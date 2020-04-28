@@ -26,19 +26,19 @@ html {
     font-size: 15px;
 }
 
-#bar1 {
+#bar-1 {
     border-right: 1px black solid;
     width: 53%;
     font-size: 15px;
 }
 
-#bar2 {
+#bar-2 {
     border-left: 1px black solid;
     width: 12%;
     font-size: 15px;
 }
 
-.bigBlock {
+.big-block {
     display: block;
     border-radius: 10px;
     border: 30px rgb(231, 236, 242) solid;
@@ -98,7 +98,7 @@ canvas {
     border-radius: 50%;
 }
 
-.rowInput {
+.row-Input {
     position: relative;
 }
 

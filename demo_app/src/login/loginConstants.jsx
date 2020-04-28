@@ -88,10 +88,10 @@ export class Top extends Component {
                 <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
                     {this.state.icon}
                 </a>
-                <div className="profileBox" ref={this.container}>
+                <div className="profile-Box" ref={this.container}>
                     <p id="username">{this.state.username}</p>
-                    <p id="userAddress">{this.state.userAddress}</p>
-                    <a href="!#" className="logoutBtn" onClick={this.logout} id="logoutBtn">Logout</a>
+                    <p id="user-Address">{this.state.userAddress}</p>
+                    <a href="!#" className="logout-Btn" onClick={this.logout} id="logout-Btn">Logout</a>
                 </div>
             </div>
         );
@@ -114,11 +114,11 @@ export class Login extends Component {
     render() {
         return (
             <div className="login">
-                <div className="loginBox">
+                <div className="login-Box">
                     <h1>WALLETTE</h1>
                     <p id="status">Please login</p>
                     <input type="text" id="user-email" placeholder="Enter your email" />
-                    <a href="!#" className="log1" onClick={this.loginAndMain}>Login</a>
+                    <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
         );

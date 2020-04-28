@@ -16,9 +16,9 @@ export default class SignAndAdd extends Component {
     render() {
         return (
             <div className="main">
-                <div className="bigBlock">
+                <div className="big-block">
                     <div id="whitelist">
-                        <div className="head_box">
+                        <div className="head-box">
                             <h1 id="thing"> Addresses on Whitelist</h1>
                         </div>
                         <div>
@@ -26,8 +26,8 @@ export default class SignAndAdd extends Component {
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th className="whitelistName">Name</th>
-                                        <th className="whitelistAddress">Address</th>
+                                        <th className="whitelist-Name">Name</th>
+                                        <th className="whitelist-Address">Address</th>
                                     </tr>
                                 </thead>
                                 <tbody id="list">
@@ -35,11 +35,11 @@ export default class SignAndAdd extends Component {
                             </table>
                         </div>
                     </div>
-                    <div className="rowInput">
+                    <div className="row-Input">
                         <input type="text" id="address" placeholder="Enter Address" />
                         <input type="text" id="name" placeholder="Account Name" />
                         <p className="connected" id="status"></p>
-                        <a className="otherBtn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
+                        <a className="other-Btn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@ export default class SignAndAdd extends Component {
             name.innerHTML = whitelist[i].email;
             address.innerHTML = whitelist[i].whiteAdd;
 
-            name.setAttribute("class", "whitelistName");
-            address.setAttribute("class", "whitelistAddress");
+            name.setAttribute("class", "whitelist-Name");
+            address.setAttribute("class", "whitelist-Address");
         }
     }
 
@@ -98,7 +98,7 @@ export default class SignAndAdd extends Component {
             <div className="loader">
                 <h2>Successfully added</h2>
                 <p>{datum}</p>
-                <a href="!#" className="exitLoad" onClick={() => {
+                <a href="!#" className="exit-Load" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>
@@ -114,7 +114,7 @@ export default class SignAndAdd extends Component {
                 <h2>Unable to Add Address</h2>
                 <p>{datum}</p>
                 <p>{msg}</p>
-                <a href="!#" className="exitLoad" onClick={() => {
+                <a href="!#" className="exit-Load" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>

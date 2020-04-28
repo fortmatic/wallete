@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './sidebar.css';
 
 // React Components
-import * as authorizers from '../authorizers.jsx';
+import * as authorizers from '../authorizers/authorizers.jsx';
 import Assets from '../assets/assets.jsx';
 import Whitelist from '../whitelist/whitelist.jsx';
 import { Transactions, getPending } from '../transactions/transactions.jsx';

@@ -103,7 +103,7 @@ export class Transactions extends Component {
     render() {
         return (
             <div className="main">
-                <div className="bigBlock">
+                <div className="big-block">
                     <div id="pending">
                         <Card>
                             <DataTable
@@ -117,12 +117,12 @@ export class Transactions extends Component {
                                 expandableRowsComponent={<this.composition />} />
                         </Card>
                     </div>
-                    <h1 className="head_boxST">New Transaction</h1>
+                    <h1 className="head-boxST">New Transaction</h1>
                     <div>
                         <input type="text" id="address" placeholder="Send to Address" />
-                        <input type="number" id="exchangeAmt" placeholder="Transaction amount (Eth)" />
+                        <input type="number" id="exchange-Amt" placeholder="Transaction amount (Eth)" />
                         <p className="connected" id="status"></p>
-                        <a className="stTran" onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <a className="st-Tran" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
                     </div>
                 </div>
@@ -219,7 +219,7 @@ export class Transactions extends Component {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const amount = document.getElementById('exchangeAmt').value;
+        const amount = document.getElementById('exchange-Amt').value;
         const sendAddress = document.getElementById('address').value;
         const threshold = 3;
 

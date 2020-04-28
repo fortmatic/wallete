@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.head_boxPD {
+.head-boxPD {
     box-sizing: content-box;
     width: 38%;
     margin-top: 16px;
@@ -21,7 +21,7 @@
     border-bottom: 5px black solid;
 }
 
-.signTran {
+.sign-Tran {
     position: relative;
     display: block;
     padding-top: 20px;
@@ -40,7 +40,7 @@
     text-align: center;
 }
 
-.signTran:hover {
+.sign-Tran:hover {
     background-color: #282c34;
     color: white;
     text-align: center;

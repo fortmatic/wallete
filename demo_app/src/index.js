@@ -6,13 +6,13 @@ import './main.css';
 import * as serviceWorker from './serviceWorker';
 
 // Contract related Libraries
-import * as abi from './abi.js';
+import * as abi from './constants/abi.js';
 import Web3 from 'web3';
 import Fortmatic from 'fortmatic';
 
 // React Components
 import { Login, Top } from './login/loginConstants';
-import Sidebar from "./sidebar/sidebar.jsx";
+import Sidebar from "./components/sidebar/sidebar.jsx";
 import Assets from "./assets/assets.jsx";
 
 // import blockies from 'ethereum-blockies';
