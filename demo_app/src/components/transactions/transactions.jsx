@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // General function libraries
-import * as index from '../index.js';
+import * as index from '../../index.js';
 import './transactions.css';
 // Libraries for table
 import DataTable, { createTheme } from 'react-data-table-component';
@@ -224,7 +224,8 @@ export class Transactions extends Component {
         const threshold = 3;
 
         try {
-            if (sendAddress == "" || amount == "") throw "Invalid Inupts";
+            let message = "Invalid Inputs";
+            if (sendAddress === "" || amount === "") throw message;
         }
         catch (err) {
             console.log(err);
@@ -244,7 +245,7 @@ export class Transactions extends Component {
                 value: transactAmt
             });
 
-            if (status != "Transaction Started") {
+            if (status !== "Transaction Started") {
                 throw status;
             }
 
@@ -301,7 +302,7 @@ export class Transactions extends Component {
                 from: userAddress
             });
             
-            if (status != "Signed" || status != "Transaction Completed") {
+            if (status !== "Signed" || status !== "Transaction Completed") {
                 throw status;
             }
 

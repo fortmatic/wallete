@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import * as handle from '../../phantom.js';
-import '../main.css';
+import '../../main.css';
 import './authorizers.css';
 
 class Deploy extends Component {

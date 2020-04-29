@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 // Blockies library
 import blockies from 'ethereum-blockies';
 
-import * as index from '../index.js';
+import * as index from '../../index.js';
 import './whitelist.css';
 
 export default class SignAndAdd extends Component {
@@ -130,7 +130,8 @@ export default class SignAndAdd extends Component {
         const acctName = document.getElementById('name').value;
 
         try {
-            if (address == "" || acctName == "") throw "Invalid Inupts";
+            let message = "Invalid Inputs";
+            if (address === "" || acctName === "") throw message;
         }
         catch (err) {
             console.log(err);
@@ -143,7 +144,7 @@ export default class SignAndAdd extends Component {
                 from: userAddress
             });
 
-            if (status != "Added") {
+            if (status !== "Added") {
                 throw status;
             }
 
