@@ -108,7 +108,7 @@
     text-shadow: none;
 }
 
-#user-email {
+.user-email {
     font-family: 'Courier New', Courier, monospace;
     position: relative;
     margin-right: 20px;
@@ -126,6 +126,10 @@
     box-sizing: border-box;
     transition: all 0.2s;
     align-items: center;
+}
+
+.user-email:hover {
+    border-color: rgb(57, 50, 156);
 }
 
 .log-1 {

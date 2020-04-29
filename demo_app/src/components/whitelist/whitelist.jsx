@@ -9,6 +9,18 @@ import * as index from '../../index.js';
 import './whitelist.css';
 
 export default class SignAndAdd extends Component {
+    state = {
+        address: "",
+        name: ""
+    };
+
+    constructor() {
+        super();
+
+        this.handleAddress = this.handleAddress.bind(this);
+        this.handleName = this.handleName.bind(this);
+    }
+
     async componentDidMount() {
         await this.getWhitelist();
     }
@@ -36,14 +48,29 @@ export default class SignAndAdd extends Component {
                         </div>
                     </div>
                     <div className="row-Input">
-                        <input type="text" id="address" placeholder="Enter Address" />
-                        <input type="text" id="name" placeholder="Account Name" />
+                        <input className="address" type="text" placeholder="Enter Address"
+                            value={this.state.address} onChange={this.handleAddress} />
+                        <input className="name" type="text" placeholder="Account Name"
+                            value={this.state.name} onChange={this.handleName} />
                         <p className="connected" id="status"></p>
                         <a className="other-Btn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
                     </div>
                 </div>
             </div>
         );
+    }
+
+
+    handleAddress = (event) => {
+        this.setState({
+            address: event.target.value
+        });
+    }
+
+    handleName = (event) => {
+        this.setState({
+            name: event.target.value
+        })
     }
 
     getWhitelist = async () => {
@@ -126,8 +153,8 @@ export default class SignAndAdd extends Component {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const address = document.getElementById('address').value;
-        const acctName = document.getElementById('name').value;
+        const address = this.state.address;
+        const acctName = this.state.name;
 
         try {
             let message = "Invalid Inputs";
