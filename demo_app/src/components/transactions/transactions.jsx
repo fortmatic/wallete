@@ -189,7 +189,7 @@ export class Transactions extends Component {
                 <h2>{title}</h2>
                 <p>{datum}</p>
                 <p>{msg}</p>
-                <a href="!#" className="exitLoad" onClick={() => {
+                <a href="!#" className="exit-Load" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>
@@ -207,7 +207,7 @@ export class Transactions extends Component {
                 <p>To: {address}</p>
                 <p>Amount: {amount}</p>
                 <a href={link}>View on EtherScan</a>
-                <a href="!#" className="exitLoad" onClick={() => {
+                <a href="!#" className="exit-Load" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>
@@ -283,7 +283,7 @@ export class Transactions extends Component {
                 <h2>Successfully Signed Transaction</h2>
                 <p>For Hash {txnHash}</p>
                 <p>{msg}</p>
-                <a href="!#" className="exitLoad" onClick={() => {
+                <a href="!#" className="exit-Load" onClick={() => {
                     ReactDOM.render(<div></div>, document.getElementById('floater'));
                     document.getElementById("floater").style.display = "none";
                 }}>Close</a>
@@ -302,7 +302,7 @@ export class Transactions extends Component {
                 from: userAddress
             });
             
-            if (status !== "Signed" || status !== "Transaction Completed") {
+            if (status !== "Signed" && status !== "Transaction Completed") {
                 throw status;
             }
 

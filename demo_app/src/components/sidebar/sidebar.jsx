@@ -14,7 +14,7 @@ import { Transactions, getPending } from '../transactions/transactions.jsx';
 export default class Sidebar extends Component {
     render() {
         return (
-            <div className="side-bar">
+            <div className="sidebar">
                 <ul id="nav">
                     <div>
                         <li id="Assets" className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>

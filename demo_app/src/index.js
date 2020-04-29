@@ -26,18 +26,18 @@ contract.options.address = '0xf703EE3A38fE097545C6b6b555faf6216584bf91';
 
 let prep = async () => {
     if (await fmPhantom.user.isLoggedIn())
-        makeMainPage();
+        renderMainPage();
     else
-        makeLoginPage();
+        renderLoginPage();
 }
 
-export let makeMainPage = () => {
+export let renderMainPage = () => {
     ReactDOM.render(<Top />, document.getElementById('constant'));
     ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
     ReactDOM.render(<Assets />, document.getElementById('root'));
 }
 
-export let makeLoginPage = () => {
+export let renderLoginPage = () => {
     ReactDOM.render(<Login />, document.getElementById('root'));
     ReactDOM.render(<div></div>, document.getElementById('constant'));
     ReactDOM.render(<div></div>, document.getElementById('sidebar'));
