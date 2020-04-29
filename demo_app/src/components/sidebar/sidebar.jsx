@@ -1,6 +1,5 @@
 // General React components
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // General function libraries
 import './sidebar.css';

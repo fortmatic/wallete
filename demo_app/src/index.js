@@ -22,13 +22,9 @@ contract.options.address = '0xf703EE3A38fE097545C6b6b555faf6216584bf91';
 
 class App extends React.Component {
     state = {
-        LoginStatus: false,
+        LoginStatus: fmPhantom.user.isLoggedIn(),
         mainElement: Assets
     };
-
-    async componentWillMount() {
-        this.setState({ LoginStatus: await fmPhantom.user.isLoggedIn() })
-    }
 
     handleLoginStatus = status => {
         this.setState({ LoginStatus: status });

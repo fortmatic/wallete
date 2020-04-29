@@ -8,8 +8,6 @@ import './login.css';
 // React components
 import Blockies from 'react-blockies';
 
-
-
 export class Top extends Component {
     state = {
         userAddress: "",
