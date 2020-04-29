@@ -5,8 +5,14 @@ import * as index from '../../index.js';
 import './assets.css';
 
 export default class Assets extends Component {
+    state = {
+        contractAddress: ""
+    }
+
     async componentDidMount() {
-        document.getElementById('thing').innerHTML = 'On contract ' + index.contract.options.address;
+        this.setState({
+            contractAddress: index.contract.options.address
+        })
         this.getData();
     }
 
@@ -14,7 +20,7 @@ export default class Assets extends Component {
         return (
             <div className="main">
                 <div className="big-block">
-                    <h1 id="thing">On Contract </h1>
+                    <h1 >On Contract {this.state.contractAddress} </h1>
                     <table id="table">
                         <thead>
                             <tr>

@@ -107,7 +107,7 @@
     border-bottom: 5px black solid;
 }
 
-#name {
+.name {
     border-radius: 10px;
     position: relative;
     display: block;
@@ -119,7 +119,7 @@
     margin-top: -57px;
 }
 
-#name:hover {
+.name:hover {
     border-color: rgb(57, 50, 156);
 }
 
@@ -145,7 +145,7 @@
     width: 500px;
 }
 
-#address {
+.address {
     border-radius: 10px;
     position: relative;
     text-align: left;
@@ -160,6 +160,6 @@
     background-color: #fafbfc;
 }
 
-#address:hover {
+.address:hover {
     border-color: rgb(57, 50, 156);
 }

@@ -73,6 +73,18 @@ const style = {
 }
 
 export class Transactions extends Component {
+    state = {
+        exchangeAmt: "",
+        address: ""
+    }
+
+    constructor() {
+        super();
+
+        this.handleExchangeAmt = this.handleExchangeAmt.bind(this);
+        this.handleAddress = this.handleAddress.bind(this);
+    }
+
     componentWillUnmount() {
         data = [];
     }
@@ -119,8 +131,10 @@ export class Transactions extends Component {
                     </div>
                     <h1 className="head-boxST">New Transaction</h1>
                     <div>
-                        <input type="text" id="address" placeholder="Send to Address" />
-                        <input type="number" id="exchange-Amt" placeholder="Transaction amount (Eth)" />
+                        <input type="text" className="address" placeholder="Send to Address"
+                            value={this.state.address} onChange={this.handleAddress} />
+                        <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
+                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
                         <p className="connected" id="status"></p>
                         <a className="st-Tran" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
@@ -128,6 +142,18 @@ export class Transactions extends Component {
                 </div>
             </div>
         );
+    }
+
+    handleExchangeAmt = (event) => {
+        this.setState({
+            exchangeAmt: event.target.value
+        });
+    }
+
+    handleAddress = (event) => {
+        this.setState({
+            address: event.target.value
+        })
     }
 
     composition = ({ data }) => {
@@ -219,8 +245,8 @@ export class Transactions extends Component {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
         const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
-        const amount = document.getElementById('exchange-Amt').value;
-        const sendAddress = document.getElementById('address').value;
+        const amount = this.state.exchangeAmt;
+        const sendAddress = this.state.address;
         const threshold = 3;
 
         try {

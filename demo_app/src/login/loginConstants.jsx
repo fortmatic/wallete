@@ -7,7 +7,6 @@ import './login.css';
 
 // React components
 import Blockies from 'react-blockies';
-import blockies from 'ethereum-blockies';
 
 
 
@@ -86,7 +85,7 @@ export class Top extends Component {
     openProfile = () => {
         return (
             <div >
-                <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
+                <a href="!#" className="identicon" onClick={this.switchState} ref={node => this.node = node}>
                     {this.state.icon}
                 </a>
                 <div className="profile-Box" ref={this.container}>
@@ -101,7 +100,7 @@ export class Top extends Component {
     closeProfile = () => {
         return (
             <div>
-                <a href="!#" className="identicon" onClick={this.switchState} id="profBtn" ref={node => this.node = node}>
+                <a href="!#" className="identicon" onClick={this.switchState} ref={node => this.node = node}>
                     {this.state.icon}
                 </a>
                 <p ref={this.container}></p>
@@ -121,7 +120,6 @@ export class Login extends Component {
         super();
         
         this.handleEmail = this.handleEmail.bind(this);
-        this.handleStatus = this.handleStatus.bind(this);
     }
 
     render() {
@@ -129,8 +127,8 @@ export class Login extends Component {
             <div className="login">
                 <div className="login-Box">
                     <h1>WALLETTE</h1>
-                    <p id="status">Please login</p>
-                    <input type="text" id="user-email" placeholder="Enter your email" value={this.state.email}
+                    <p value={this.state.status}>Please login</p>
+                    <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
                         onChange={this.handleEmail} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
