@@ -76,10 +76,9 @@ export class Top extends Component {
     logout = async () => {
         document.removeEventListener('mousedown', this.handleClick, false);
 
-        await index.fmPhantom.user.logout()
-            .then((rec) => {
-                index.renderLoginPage();
-            });
+        await index.fmPhantom.user.logout();
+
+        this.props.changeStatus(await index.fmPhantom.user.isLoggedIn());
     }
 
     openProfile = () => {
@@ -118,7 +117,7 @@ export class Login extends Component {
 
     constructor() {
         super();
-        
+
         this.handleEmail = this.handleEmail.bind(this);
     }
 
@@ -152,8 +151,7 @@ export class Login extends Component {
                 })
             ));
 
-            if (await index.fmPhantom.user.isLoggedIn()) {
-            index.renderMainPage();
-        }
+
+        this.props.changeStatus(await index.fmPhantom.user.isLoggedIn());
     }
 }
