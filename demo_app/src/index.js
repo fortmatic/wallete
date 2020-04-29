@@ -13,7 +13,7 @@ import Fortmatic from 'fortmatic';
 // React Components
 import { Login, Top } from './login/loginConstants';
 import Sidebar from "./components/sidebar/sidebar.jsx";
-import Assets from "./assets/assets.jsx";
+import Assets from "./components/assets/assets.jsx";
 
 // import blockies from 'ethereum-blockies';
 
