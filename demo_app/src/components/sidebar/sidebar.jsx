@@ -6,20 +6,28 @@ import ReactDOM from 'react-dom';
 import './sidebar.css';
 
 // React Components
-import * as authorizers from '../authorizers/authorizers.jsx';
 import Assets from '../assets/assets.jsx';
 import Whitelist from '../whitelist/whitelist.jsx';
 import { Transactions, getPending } from '../transactions/transactions.jsx';
 
 export default class Sidebar extends Component {
+    state = {
+        assetsActive: "active",
+        whitelistActive: "",
+        txActive: ""
+    };
+
     render() {
         return (
-            <div className="sidebar">
+            <div className="sidebar" id="sidebar">
                 <ul id="nav">
                     <div>
-                        <li id="Assets" className="active"><a onClick={this.getAssets} href="!#">Assets</a></li>
-                        <li id="Whitelist" ><a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                        <li id="Transactions"><a onClick={this.getTransactions} href="!#">Transactions</a></li>
+                        <li id="Assets" className={this.state.assetsActive}>
+                            <a onClick={this.getAssets} href="!#">Assets</a></li>
+                        <li id="Whitelist" className={this.state.whitelistActive}>
+                            <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                        <li id="Transactions" className={this.state.txActive}>
+                            <a onClick={this.getTransactions} href="!#">Transactions</a></li>
                     </div>
                 </ul>
             </div>
@@ -27,31 +35,33 @@ export default class Sidebar extends Component {
     }
 
     getTransactions = async () => {
-        document.getElementById('Assets').setAttribute('class', '');
-        document.getElementById('Whitelist').setAttribute('class', '');
-        document.getElementById('Transactions').setAttribute('class', 'active');
+        this.setState({
+            assetsActive: "",
+            whitelistActive: "",
+            txActive: "active"
+        });
 
         await getPending();
-        ReactDOM.render(<Transactions />, document.getElementById('root'));
+        this.props.changePage(Transactions);
     }
 
     getAssets = () => {
-        document.getElementById('Assets').setAttribute('class', 'active');
-        document.getElementById('Whitelist').setAttribute('class', '');
-        document.getElementById('Transactions').setAttribute('class', '');
+        this.setState({
+            assetsActive: "active",
+            whitelistActive: "",
+            txActive: ""
+        });
 
-        ReactDOM.render(<Assets />, document.getElementById('root'));
+        this.props.changePage(Assets);
     }
 
     getSignAndAdd = () => {
-        document.getElementById('Assets').setAttribute('class', '');
-        document.getElementById('Whitelist').setAttribute('class', 'active');
-        document.getElementById('Transactions').setAttribute('class', '');
+        this.setState({
+            assetsActive: "",
+            whitelistActive: "active",
+            txActive: ""
+        });
 
-        ReactDOM.render(<Whitelist />, document.getElementById('root'));
-    }
-
-    getDeployPage = () => {
-        ReactDOM.render(<authorizers.Deploy />, document.getElementById('root'));
+        this.props.changePage(Whitelist);
     }
 }

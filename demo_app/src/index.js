@@ -22,7 +22,8 @@ contract.options.address = '0xf703EE3A38fE097545C6b6b555faf6216584bf91';
 
 class App extends React.Component {
     state = {
-        LoginStatus: false
+        LoginStatus: false,
+        mainElement: Assets
     };
 
     async componentWillMount() {
@@ -33,18 +34,24 @@ class App extends React.Component {
         this.setState({ LoginStatus: status });
     }
 
+    handlePageChange = newPage => {
+        this.setState({ mainElement: newPage });
+    }
+
     render() {
         if (this.state.LoginStatus)
             return (
                 <div>
-                    <Top changeStatus={this.handleLoginStatus}/>
-                    <Sidebar />
-                    <Assets />
+                    <Top changeStatus={this.handleLoginStatus} />
+                    <Sidebar changePage={this.handlePageChange}/>
+                    <div id="main">
+                        <this.state.mainElement />
+                    </div>
                 </div>
             );
 
         else
-            return (<Login changeStatus={this.handleLoginStatus}/>);
+            return (<Login changeStatus={this.handleLoginStatus} />);
     }
 }
 
