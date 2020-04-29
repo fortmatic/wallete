@@ -7,6 +7,7 @@ import './login.css';
 
 // React components
 import Blockies from 'react-blockies';
+import blockies from 'ethereum-blockies';
 
 
 
@@ -78,7 +79,7 @@ export class Top extends Component {
 
         await index.fmPhantom.user.logout()
             .then((rec) => {
-                index.makeLoginPage();
+                index.renderLoginPage();
             });
     }
 
@@ -111,27 +112,50 @@ export class Top extends Component {
 }
 
 export class Login extends Component {
+    state = {
+        email: "",
+        status: ""
+    };
+
+    constructor() {
+        super();
+        
+        this.handleEmail = this.handleEmail.bind(this);
+        this.handleStatus = this.handleStatus.bind(this);
+    }
+
     render() {
         return (
             <div className="login">
                 <div className="login-Box">
                     <h1>WALLETTE</h1>
                     <p id="status">Please login</p>
-                    <input type="text" id="user-email" placeholder="Enter your email" />
+                    <input type="text" id="user-email" placeholder="Enter your email" value={this.state.email}
+                        onChange={this.handleEmail} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
         );
     }
 
-    async loginAndMain() {
-        const email = document.getElementById('user-email').value;
+    handleEmail = (event) => {
+        this.setState({
+            email: event.target.value
+        });
+    }
+
+    loginAndMain = async () => {
+        const email = this.state.email;
 
         await index.fmPhantom.loginWithMagicLink({ email })
-            .catch((err) => (document.getElementById('status').innerHTML = "Incorrect Login"));
+            .catch((err) => (
+                this.setState({
+                    status: "Incorrect Login"
+                })
+            ));
 
-        if (await index.fmPhantom.user.isLoggedIn()) {
-            index.makeMainPage();
+            if (await index.fmPhantom.user.isLoggedIn()) {
+            index.renderMainPage();
         }
     }
 }
