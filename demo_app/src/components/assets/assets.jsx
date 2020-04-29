@@ -13,7 +13,7 @@ export default class Assets extends Component {
     render() {
         return (
             <div className="main">
-                <div className="bigBlock">
+                <div className="big-block">
                     <h1 id="thing">On Contract </h1>
                     <table id="table">
                         <thead>
