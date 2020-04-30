@@ -22,9 +22,16 @@ contract.options.address = constants.contractAddress;
 
 class App extends React.Component {
     state = {
-        LoginStatus: constants.fmPhantom.user.isLoggedIn(),
+        LoginStatus: false,
         mainElement: Assets
     };
+
+    async componentDidMount() {
+        const loginStatus = (await constants.fmPhantom.user.isLoggedIn());
+        this.setState({
+            LoginStatus: loginStatus
+        });
+    }
 
     handleLoginStatus = status => {
         this.setState({ LoginStatus: status });
@@ -35,8 +42,8 @@ class App extends React.Component {
     }
 
     render() {
-        if (this.state.LoginStatus)
-            return (
+        return (
+            (this.state.LoginStatus) ? (
                 <div>
                     <Top changeStatus={this.handleLoginStatus} />
                     <Sidebar changePage={this.handlePageChange}/>
@@ -44,10 +51,11 @@ class App extends React.Component {
                         <this.state.mainElement />
                     </div>
                 </div>
-            );
-
-        else
-            return (<Login changeStatus={this.handleLoginStatus} />);
+            ) :
+            (
+                <Login changeStatus={this.handleLoginStatus} />
+            )
+        );
     }
 }
 

@@ -126,7 +126,7 @@ export class Login extends Component {
                     <h1>WALLETTE</h1>
                     <p value={this.state.status}>Please login</p>
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
-                        onChange={this.handleEmail} />
+                        onChange={this.handleEmail} z/>
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
