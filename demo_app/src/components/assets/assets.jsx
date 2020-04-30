@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import * as index from '../../index.js';
 import './assets.css';
 
 export default class Assets extends Component {
     state = {
-        contractAddress: ""
+        contractAddress: "",
+        data: <tr></tr>
     }
 
     async componentDidMount() {
@@ -28,7 +28,9 @@ export default class Assets extends Component {
                                 <th>Balance</th>
                             </tr>
                         </thead>
-                        <tbody id="list"></tbody>
+                        <tbody id="list">
+                            {this.state.data}
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -45,6 +47,6 @@ export default class Assets extends Component {
             </tr>
         );
 
-        ReactDOM.render(element, document.getElementById('list'));
+        this.setState({ data: element });
     }
 };
