@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from '../../index.js';
+import * as constants from '../../constants/constants.js';
 import './transactions.css';
 // Libraries for table
 import DataTable, { createTheme } from 'react-data-table-component';
@@ -244,7 +245,7 @@ export class Transactions extends Component {
     startTransaction = async () => {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
-        const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
         const amount = this.state.exchangeAmt;
         const sendAddress = this.state.address;
         const threshold = 3;
@@ -320,7 +321,7 @@ export class Transactions extends Component {
     signContract = async (i) => {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
-        const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
         let msg = "";
 
         try {
