@@ -30,11 +30,15 @@
     width: 45%;
     height: 30%;
     text-align: center;
+
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-size: 11px;
 }
 
 #floater {
     position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
     top: 0;

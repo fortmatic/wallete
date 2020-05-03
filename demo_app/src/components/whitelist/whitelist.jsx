@@ -9,10 +9,16 @@ import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.css';
 
+import Loader from '../loader/loader.jsx';
+
 export default class SignAndAdd extends Component {
     state = {
         address: "",
-        name: ""
+        name: "",
+        loading: false,
+        hash: "",
+        addedAddress: "",
+        errorMsg: ""
     };
 
     constructor() {
@@ -26,9 +32,24 @@ export default class SignAndAdd extends Component {
         await this.getWhitelist();
     }
 
+    handleCloseLoad = () => {
+        this.setState({
+            loading: false,
+            hash: "",
+            addedAddress: "",
+            errorMsg: ""
+        });
+    }
+
     render() {
         return (
             <div className="main">
+                {this.state.loading && <Loader
+                    hash={this.state.hash}
+                    addedAddress={this.state.addedAddress}
+                    errorMsg={this.state.errorMsg}
+                    close={this.handleCloseLoad}
+                />}
                 <div className="big-block">
                     <div id="whitelist">
                         <div className="head-box">
@@ -100,58 +121,8 @@ export default class SignAndAdd extends Component {
         }
     }
 
-    Adding(datum) {
-        document.getElementById("floater").style.display = "block";
-        if (datum == null) {
-            return (
-                <div className="loader">
-                    <h2>Transacting on Blockchain</h2>
-                    <div className="spinner"></div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="loader">
-                    <h2>Transacting on Blockchain</h2>
-                    <p >Hash is {datum}</p>
-                    <div className="spinner"></div>
-                </div>
-            );
-        }
-    }
-
-    Success(datum) {
-        document.getElementById("floater").style.display = "block";
-        return (
-            <div className="loader">
-                <h2>Successfully added</h2>
-                <p>{datum}</p>
-                <a href="!#" className="exit-Load" onClick={() => {
-                    ReactDOM.render(<div></div>, document.getElementById('floater'));
-                    document.getElementById("floater").style.display = "none";
-                }}>Close</a>
-            </div>
-        );
-    }
-
-    Fail(datum, msg) {
-        document.getElementById("floater").style.display = "block";
-        console.log(msg);
-        return (
-            <div className="loader" >
-                <h2>Unable to Add Address</h2>
-                <p>{datum}</p>
-                <p>{msg}</p>
-                <a href="!#" className="exit-Load" onClick={() => {
-                    ReactDOM.render(<div></div>, document.getElementById('floater'));
-                    document.getElementById("floater").style.display = "none";
-                }}>Close</a>
-            </div>
-        );
-    }
-
     addToWhiteList = async () => {
-        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+        this.setState({ loading: true });
 
         const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
         const address = this.state.address;
@@ -163,7 +134,10 @@ export default class SignAndAdd extends Component {
         }
         catch (err) {
             console.log(err);
-            ReactDOM.render(this.Fail(null, err), document.getElementById('floater'));
+            this.setState({
+                addedAddress: address,
+                errorMsg: err
+            });
             return;
         }
 
@@ -182,15 +156,20 @@ export default class SignAndAdd extends Component {
                 gasPrice: '3000000000000'
             })
                 .on('transactionHash', (hash) =>
-                    ReactDOM.render(this.Adding(hash), document.getElementById('floater')))
+                    this.setState({ hash: hash }))
 
                 .on('receipt', (rec) =>
-                    ReactDOM.render(this.Success(address), document.getElementById('floater')));
+                    this.setState({
+                        addedAddress: address
+                    }));
 
         } catch (err) {
             console.log("error caught");
             console.log(err);
-            ReactDOM.render(this.Fail(null, err), document.getElementById('floater'));
+            this.setState({
+                addedAddress: address,
+                errorMsg: err
+            })
         }
     }
 }
