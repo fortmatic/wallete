@@ -1,13 +1,13 @@
 # Wallete
 
-Wallete is Multi-Signature ethereum wallet that utilizes the Fortmatic Magic Link SDK. This runs 
+Wallete is Multi-Signature ethereum wallet that utilizes the Fortmatic Magic Link SDK for the user authentication. This allows the user to interact with the rinkeby (ethereum testnet) without cumbersome passkeys or addresses. The contract the web app interacts with is included in the contracts folder.
 
 ## Installation
 
 Ensure that the following tools are installed:
 
-- Node Package Manager
-- Truffle (If planning on modifying/compiling contract)
+- Node Package Manager `npm`
+- Truffle `truffle` (If planning on modifying/compiling contract)
 
 ```bash
 cd ./demo_app/
@@ -18,12 +18,16 @@ npm ci
 
 To launch on localhost:
 
-`cd ./demo_app/`
-`npm start`
+```bash
+cd ./demo_app/
+npm start
+```
+
+This should open a webpage to http://localhost:3000/
 
 ## Features
 
-Wallete has the login page which authenticates using the Magic link SDK. The DID Token given for that session 
+Wallete has the login page which authenticates using the Magic link SDK. The DID Token given for the session contains the information neccessary for the web app to do ether transactions.
 
 ### Assets
 
@@ -33,20 +37,3 @@ This tab displays the amount of ether that is currently stored on the smart cont
 
 ### Transactions
 
-## Authors and acknowledgment
-
-This project was made by:
-
-Sai Pavan Yerra (spvyerra)
-Sangil Lee (iisangil)
-Helen Gao (hegaoo)
-
-
-Prototype of using Whitelabel SDK for signing and adding keys to a smart contract.
-
-The prototype of this application can be on rinkeby or local.
-The goal is to demonstrate using the Whitelabel SDK as one of the keys to sign the approval message.
-
-Use Whitelabel SDK to add one key to the smart contract
-Use Whitelabel SDK to sign a transaction
-Show that the smart contract can send out transaction after it collects n-of-m signatures (this given)
