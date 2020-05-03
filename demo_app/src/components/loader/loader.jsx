@@ -13,9 +13,54 @@ export default class Loader extends React.Component {
             return (
                 <div id="floater">
                     <div className="loader" >
-                        <h2>Unable to Add Address</h2>
-                        <p>{this.props.addedAddress}</p>
+                        <h2>{this.props.title}</h2>
+                        {this.props.addedAddress && <p>{this.props.addedAddress}</p>}
                         <p>{this.props.errorMsg}</p>
+                        <a href="!#" className="exit-Load" onClick={() =>
+                            this.props.close()}>Close</a>
+                    </div>
+                </div>
+            );
+        }
+
+        // On start Tx success
+        if (this.props.successType === "start") {
+            return (
+                <div id="floater">
+                    <div className="loader">
+                        <h2>Successfully Started Transaction</h2>
+                        <p>{this.props.toAddress}</p>
+                        <p>{this.props.amount}</p>
+                        <a href={this.props.link}>View on EtherScan</a>
+                        <a href="!#" className="exit-Load" onClick={() =>
+                            this.props.close()}>Close</a>
+                    </div>
+                </div>
+            );
+        }
+
+        // On sign Tx success
+        if (this.props.successType === "sign") {
+            return (
+                <div id="floater">
+                    <div className="loader">
+                        <h2>Successfully Signed Transaction</h2>
+                        <p>For Hash {this.props.hash}</p>
+                        <p>{this.props.msg}</p>
+                        <a href="!#" className="exit-Load" onClick={() =>
+                            this.props.close()}>Close</a>
+                    </div>
+                </div>
+            );
+        }
+
+        // On add whitelist success
+        if (this.props.successType === "add") {
+            return (
+                <div id="floater">
+                    <div className="loader">
+                        <h2>Successfully added</h2>
+                        <p>{this.props.addedAddress}</p>
                         <a href="!#" className="exit-Load" onClick={() =>
                             this.props.close()}>Close</a>
                     </div>
@@ -31,20 +76,6 @@ export default class Loader extends React.Component {
                         <h2>Transacting on Blockchain</h2>
                         <p >Hash is {this.props.hash}</p>
                         <div className="spinner"></div>
-                    </div>
-                </div>
-            );
-        }
-
-        // On success
-        if (this.props.addedAddress != "") {
-            return (
-                <div id="floater">
-                    <div className="loader">
-                        <h2>Successfully added</h2>
-                        <p>{this.props.addedAddress}</p>
-                        <a href="!#" className="exit-Load" onClick={() =>
-                            this.props.close()}>Close</a>
                     </div>
                 </div>
             );

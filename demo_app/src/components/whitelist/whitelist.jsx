@@ -37,7 +37,9 @@ export default class SignAndAdd extends Component {
             loading: false,
             hash: "",
             addedAddress: "",
-            errorMsg: ""
+            errorMsg: "",
+            sucessType: "",
+            loadTitle: ""
         });
     }
 
@@ -49,6 +51,8 @@ export default class SignAndAdd extends Component {
                     addedAddress={this.state.addedAddress}
                     errorMsg={this.state.errorMsg}
                     close={this.handleCloseLoad}
+                    successType={this.state.successType}
+                    title={this.state.loadTitle}
                 />}
                 <div className="big-block">
                     <div id="whitelist">
@@ -135,6 +139,7 @@ export default class SignAndAdd extends Component {
         catch (err) {
             console.log(err);
             this.setState({
+                loadTitle: "Unable to Add Address",
                 addedAddress: address,
                 errorMsg: err
             });
@@ -160,13 +165,15 @@ export default class SignAndAdd extends Component {
 
                 .on('receipt', (rec) =>
                     this.setState({
-                        addedAddress: address
+                        addedAddress: address,
+                        successType: "add"
                     }));
 
         } catch (err) {
             console.log("error caught");
             console.log(err);
             this.setState({
+                loadTitle: "Unable to Add Address",
                 addedAddress: address,
                 errorMsg: err
             })
