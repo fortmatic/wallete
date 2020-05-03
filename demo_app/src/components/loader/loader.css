@@ -1,0 +1,71 @@
+.spinner {
+    position: absolute;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+    left: 50%;
+    margin-left: -60px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader {
+    border: 30px rgb(231, 236, 242) solid;
+    border-radius: 10px;
+    display: block;
+    box-sizing: content-box;
+    padding: 10px;
+    position: fixed;
+    background-color: rgb(231, 236, 242);
+    box-shadow: black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 30%;
+    text-align: center;
+}
+
+#floater {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 7; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.exit-Load {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border: 2px #282c34 solid;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+    border: 2px #282c34 solid;
+    color: white;
+    background-color: rgb(57, 50, 156);
+    padding: 11px;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+
+.exit-Load:hover {
+    text-align: center;
+    background-color: lightgray;
+    color: rgb(57, 50, 156);
+}
