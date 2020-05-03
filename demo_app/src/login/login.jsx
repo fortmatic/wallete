@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Function libraries
-import * as index from "../index.js";
+import * as constants from '../constants/constants.js';
 import './login.css';
 
 // React components
@@ -16,8 +16,8 @@ export class Top extends Component {
     };
 
     async componentDidMount() {
-        const user_in = (await index.fmPhantom.user.getMetadata()).email;
-        const address_in = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const user_in = (await constants.fmPhantom.user.getMetadata()).email;
+        const address_in = (await constants.fmPhantom.user.getMetadata()).publicAddress;
 
         this.setState({ userAddress: user_in });
         this.setState({ username: address_in });
@@ -74,9 +74,9 @@ export class Top extends Component {
     logout = async () => {
         document.removeEventListener('mousedown', this.handleClick, false);
 
-        await index.fmPhantom.user.logout();
+        await constants.fmPhantom.user.logout();
 
-        this.props.changeStatus(await index.fmPhantom.user.isLoggedIn());
+        this.props.changeStatus(await constants.fmPhantom.user.isLoggedIn());
     }
 
     openProfile = () => {
@@ -126,7 +126,7 @@ export class Login extends Component {
                     <h1>WALLETTE</h1>
                     <p value={this.state.status}>Please login</p>
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
-                        onChange={this.handleEmail} />
+                        onChange={this.handleEmail} z/>
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
@@ -142,7 +142,7 @@ export class Login extends Component {
     loginAndMain = async () => {
         const email = this.state.email;
 
-        await index.fmPhantom.loginWithMagicLink({ email })
+        await constants.fmPhantom.loginWithMagicLink({ email })
             .catch((err) => (
                 this.setState({
                     status: "Incorrect Login"
@@ -150,6 +150,6 @@ export class Login extends Component {
             ));
 
 
-        this.props.changeStatus(await index.fmPhantom.user.isLoggedIn());
+        this.props.changeStatus(await constants.fmPhantom.user.isLoggedIn());
     }
 }

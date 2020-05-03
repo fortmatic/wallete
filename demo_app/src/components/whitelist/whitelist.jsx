@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import blockies from 'ethereum-blockies';
 
 import * as index from '../../index.js';
+import * as constants from '../../constants/constants.js';
 import './whitelist.css';
 
 export default class SignAndAdd extends Component {
@@ -152,7 +153,7 @@ export default class SignAndAdd extends Component {
     addToWhiteList = async () => {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
-        const userAddress = (await index.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
         const address = this.state.address;
         const acctName = this.state.name;
 
