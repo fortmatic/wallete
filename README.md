@@ -29,11 +29,17 @@ This should open a webpage to http://localhost:3000/
 
 Wallete has the login page which authenticates using the Magic link SDK. The DID Token given for the session contains the information neccessary for the web app to do ether transactions.
 
-### Assets
+### **Tabs**
 
-This tab displays the amount of ether that is currently stored on the smart contract that is deployed. The address of the contract is written above the table.
+**Assets:** displays the amount of ether that is currently stored on the smart contract that is deployed. The address of the contract is written above the table.
 
-### Whitelist
+**Whitelist:** shows a table of all the ethereum addresses that are part of the whitelist of the smart contract. At the bottom of the page new addresses can be added along with 
 
-### Transactions
+**Transactions:** shows a dropdown table with all the transactions on the smart contract, with the ability to sign and view each transaction. At the bottom of the page new transactions can be started. All transactions have a approval threshold of 3 (once 3 users sign the transaction, the transactions is sent to the recipient).
 
+## Authors and acknowledgment
+
+This repository was produced by students from the University of Michigan in collaboration with Formatic:
+- Sangil Lee (iisangil)
+- Sai Pavan Yerra (spvyerra)
+- Helen Gao (hegaoo)
