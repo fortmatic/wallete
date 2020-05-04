@@ -29,8 +29,8 @@ export default class Loader extends React.Component {
                 <div id="floater">
                     <div className="loader">
                         <h2>Successfully Started Transaction</h2>
-                        <p>{this.props.toAddress}</p>
-                        <p>{this.props.amount}</p>
+                        <p>To: {this.props.toAddress}</p>
+                        <p>Amount: {this.props.amount} Eth</p>
                         <a href={this.props.link}>View on EtherScan</a>
                         <a href="!#" className="exit-Load" onClick={() =>
                             this.props.close()}>Close</a>

@@ -1,6 +1,5 @@
 // General React libraries
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // Blockies library
 import blockies from 'ethereum-blockies';

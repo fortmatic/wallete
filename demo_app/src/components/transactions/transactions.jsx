@@ -1,6 +1,5 @@
 // General React components
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from '../../index.js';
@@ -124,6 +123,7 @@ export class Transactions extends Component {
                     amount={this.state.exchangeAmt}
                     link={this.state.txLink}
                     msg={this.state.msg}
+                    successType={this.state.successType}
                 />}
                 <div className="big-block">
                     <div id="pending">
@@ -268,7 +268,7 @@ export class Transactions extends Component {
     }
 
     signContract = async (i) => {
-        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+        this.setState({ loading: true });
 
         const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
         let msg = "";
@@ -288,28 +288,31 @@ export class Transactions extends Component {
                 gasPrice: '3000000000000'
             })
                 .on('transactionHash', (hash) =>
-                    ReactDOM.render(this.Adding(hash), document.getElementById('floater')))
+                    this.setState({ hash: hash }))
 
                 .on('receipt', (rec) => {
-                    console.log(rec);
                     if (rec.events.transactionOccured != null) {
                         msg = "Transaction completed";
                     }
                 });
         } catch (err) {
-            console.log("error caught");
-            console.log(err);
-            ReactDOM.render(this.Fail("Unable to sign transaction", null, err), document.getElementById('floater'));
+            this.setState({
+                loadTitle: "Unable to sign transaction",
+                errorMsg: err
+            });
             return;
         }
 
-        ReactDOM.render(this.SuccessSigned(data[i].txHash, msg), document.getElementById('floater'));
+        this.setState({
+            successType: "sign",
+            hash: data[i].txHash,
+            msg: msg
+        });
     }
 }
 
 export let getPending = async () => {
     pending = await index.contract.methods.getTransactions().call();
-    console.log(pending);
 
     for (let i = 0; i < pending.length; ++i) {
         data.push({
@@ -320,6 +323,4 @@ export let getPending = async () => {
             status: (pending[i].complete) ? 'Done' : "Pending"
         });
     }
-
-    console.log(data);
 }
