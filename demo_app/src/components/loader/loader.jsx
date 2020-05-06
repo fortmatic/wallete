@@ -3,13 +3,10 @@ import './loader.css';
 
 
 export default class Loader extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     render() {
         // On failure
-        if (this.props.errorMsg != "") {
+        if (this.props.errorMsg !== "") {
             return (
                 <div id="floater">
                     <div className="loader" >
@@ -69,7 +66,7 @@ export default class Loader extends React.Component {
         }
 
         // Once received Hash
-        if (this.props.hash != "") {
+        if (this.props.hash !== "") {
             return (
                 <div id="floater">
                     <div className="loader">
