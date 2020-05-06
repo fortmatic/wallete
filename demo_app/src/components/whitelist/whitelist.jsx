@@ -23,6 +23,8 @@ export default class SignAndAdd extends Component {
     constructor() {
         super();
 
+        this.myRef = React.createRef();
+
         this.handleAddress = this.handleAddress.bind(this);
         this.handleName = this.handleName.bind(this);
     }
@@ -67,7 +69,7 @@ export default class SignAndAdd extends Component {
                                         <th className="whitelist-Address">Address</th>
                                     </tr>
                                 </thead>
-                                <tbody id="list">
+                                <tbody ref={this.myRef}>
                                 </tbody>
                             </table>
                         </div>
@@ -101,7 +103,7 @@ export default class SignAndAdd extends Component {
     getWhitelist = async () => {
         var whitelist = await index.contract.methods.getWhitelistAdd().call();
 
-        var table = document.getElementById("list");
+        var table = this.myRef.current;
 
         for (let i = 0; i < whitelist.length; i++) {
             var row = table.insertRow(0);

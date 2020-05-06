@@ -15,6 +15,8 @@ import Web3 from 'web3';
 import { Login, Top } from './login/login.jsx';
 import Sidebar from "./components/sidebar/sidebar.jsx";
 import Assets from "./components/assets/assets.jsx";
+import { Transactions, getPending } from './components/transactions/transactions.jsx';
+import SignAndAdd from './components/whitelist/whitelist.jsx';
 
 export const web3 = new Web3(constants.fmPhantom.getProvider());
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
@@ -23,7 +25,7 @@ contract.options.address = constants.contractAddress;
 class App extends React.Component {
     state = {
         LoginStatus: false,
-        mainElement: Assets
+        mainElement: "Assets"
     };
 
     async componentDidMount() {
@@ -38,7 +40,15 @@ class App extends React.Component {
     }
 
     handlePageChange = newPage => {
-        this.setState({ mainElement: newPage });
+        if (newPage === Assets) {
+            this.setState({ mainElement: "Assets"});
+        }
+        else if (newPage === SignAndAdd) {
+            this.setState({ mainElement: "SignAndAdd"});
+        }
+        else if (newPage === Transactions) {
+            this.setState({ mainElement: "Transactions"});
+        }
     }
 
     render() {
@@ -48,7 +58,9 @@ class App extends React.Component {
                     <Top changeStatus={this.handleLoginStatus} />
                     <Sidebar changePage={this.handlePageChange}/>
                     <div id="main">
-                        <this.state.mainElement />
+                        {this.state.mainElement==="Assets" && <Assets />}
+                        {this.state.mainElement==="SignAndAdd" && <SignAndAdd />}
+                        {this.state.mainElement==="Transactions" && <Transactions />}
                     </div>
                 </div>
             ) :
