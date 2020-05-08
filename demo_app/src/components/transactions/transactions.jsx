@@ -200,7 +200,7 @@ export class Transactions extends Component {
     startTransaction = async () => {
         this.setState({ loading: true });
 
-        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         const amount = this.state.exchangeAmt;
         const sendAddress = this.state.address;
         const threshold = 3;
@@ -270,7 +270,7 @@ export class Transactions extends Component {
     signContract = async (i) => {
         this.setState({ loading: true });
 
-        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         let msg = "";
 
         try {
