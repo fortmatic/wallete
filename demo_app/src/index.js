@@ -15,7 +15,7 @@ import Web3 from 'web3';
 import { Login, Top } from './login/login.jsx';
 import Sidebar from "./components/sidebar/sidebar.jsx";
 import Assets from "./components/assets/assets.jsx";
-import { Transactions, getPending } from './components/transactions/transactions.jsx';
+import { Transactions } from './components/transactions/transactions.jsx';
 import SignAndAdd from './components/whitelist/whitelist.jsx';
 
 export const web3 = new Web3(constants.magic.rpcProvider);

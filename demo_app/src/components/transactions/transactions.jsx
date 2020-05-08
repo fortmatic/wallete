@@ -1,39 +1,18 @@
 // General React components
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // General function libraries
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './transactions.css';
 // Libraries for table
-import DataTable, { createTheme } from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
+
+import Loader from '../loader/loader.jsx';
 
 var data = [];
 var pending;
-
-createTheme('Fortmatic', {
-    text: {
-        primary: '#268bd2',
-        secondary: '#2aa198',
-    },
-    background: {
-        default: 'rgb(231, 236, 242)',
-    },
-    context: {
-        background: '#cb4b16',
-        text: '#FFFFFF',
-    },
-    divider: {
-        default: '#073642',
-    },
-    action: {
-        button: 'rgba(0,0,0,.54)',
-        hover: 'rgba(0,0,0,.08)',
-        disabled: 'rgba(0,0,0,.12)',
-    },
-});
 
 const style = {
     rows: {
@@ -76,7 +55,14 @@ const style = {
 export class Transactions extends Component {
     state = {
         exchangeAmt: "",
-        address: ""
+        address: "",
+        loading: false,
+        hash: "",
+        errorMsg: "",
+        loadTitle: "",
+        txLink: "",
+        successType: "",
+        msg: ""
     }
 
     constructor() {
@@ -113,9 +99,32 @@ export class Transactions extends Component {
         }
     ]
 
+    handleCloseLoad = () => {
+        this.setState({
+            loading: false,
+            hash: "",
+            errorMsg: "",
+            loadTitle: "",
+            txLink: "",
+            successType: "",
+            msg: ""
+        });
+    }
+
     render() {
         return (
             <div className="main">
+                {this.state.loading && <Loader
+                    hash={this.state.hash}
+                    close={this.handleCloseLoad}
+                    errorMsg={this.state.errorMsg}
+                    title={this.state.loadTitle}
+                    toAddress={this.state.address}
+                    amount={this.state.exchangeAmt}
+                    link={this.state.txLink}
+                    msg={this.state.msg}
+                    successType={this.state.successType}
+                />}
                 <div className="big-block">
                     <div id="pending">
                         <Card>
@@ -188,62 +197,8 @@ export class Transactions extends Component {
         );
     }
 
-    Adding(datum) {
-        document.getElementById("floater").style.display = "block";
-        if (datum == null) {
-            return (
-                <div className="loader">
-                    <h2>Transacting on Blockchain</h2>
-                    <div className="spinner"></div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="loader">
-                    <h2>Transacting on Blockchain</h2>
-                    <p >Hash: {datum}</p>
-                    <div className="spinner"></div>
-                </div>
-            );
-        }
-    }
-
-    Fail(title, datum, msg) {
-        document.getElementById("floater").style.display = "block";
-        console.log(msg);
-        return (
-            <div className="loader" >
-                <h2>{title}</h2>
-                <p>{datum}</p>
-                <p>{msg}</p>
-                <a href="!#" className="exit-Load" onClick={() => {
-                    ReactDOM.render(<div></div>, document.getElementById('floater'));
-                    document.getElementById("floater").style.display = "none";
-                }}>Close</a>
-            </div>
-        );
-    }
-
-    SuccessStart(address, amount, txnHash) {
-        document.getElementById("floater").style.display = "block";
-        const link = "https://rinkeby.etherscan.io/tx/" + txnHash;
-
-        return (
-            <div className="loader">
-                <h2>Successfully Started Transaction</h2>
-                <p>To: {address}</p>
-                <p>Amount: {amount}</p>
-                <a href={link}>View on EtherScan</a>
-                <a href="!#" className="exit-Load" onClick={() => {
-                    ReactDOM.render(<div></div>, document.getElementById('floater'));
-                    document.getElementById("floater").style.display = "none";
-                }}>Close</a>
-            </div>
-        );
-    }
-
     startTransaction = async () => {
-        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+        this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         const amount = this.state.exchangeAmt;
@@ -256,7 +211,10 @@ export class Transactions extends Component {
         }
         catch (err) {
             console.log(err);
-            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
+            this.setState({
+                loadTitle: "Unable to start transaction",
+                errorMsg: err
+            });
             return;
         }
 
@@ -284,7 +242,7 @@ export class Transactions extends Component {
             })
                 .on('transactionHash', (hash) => {
                     txnHash = hash;
-                    ReactDOM.render(this.Adding(hash), document.getElementById('floater'));
+                    this.setState({ hash: hash });
                 });
 
             await index.contract.methods.setHash(txnHash).send({
@@ -295,31 +253,22 @@ export class Transactions extends Component {
         } catch (err) {
             console.log("error caught");
             console.log(err);
-            ReactDOM.render(this.Fail("Unable to start transaction", null, err), document.getElementById('floater'));
+            this.setState({
+                loadTitle: "Unable to start transaction",
+                errorMsg: err
+            });
             return;
         }
+        const link = "https://rinkeby.etherscan.io/tx/" + txnHash;
 
-        ReactDOM.render(this.SuccessStart(sendAddress, amount, txnHash), document.getElementById('floater'));
-    }
-
-    SuccessSigned(txnHash, msg) {
-        document.getElementById("floater").style.display = "block";
-
-        return (
-            <div className="loader">
-                <h2>Successfully Signed Transaction</h2>
-                <p>For Hash {txnHash}</p>
-                <p>{msg}</p>
-                <a href="!#" className="exit-Load" onClick={() => {
-                    ReactDOM.render(<div></div>, document.getElementById('floater'));
-                    document.getElementById("floater").style.display = "none";
-                }}>Close</a>
-            </div>
-        );
+        this.setState({
+            successType: "start",
+            txLink: link
+        });
     }
 
     signContract = async (i) => {
-        ReactDOM.render(this.Adding(null), document.getElementById('floater'));
+        this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         let msg = "";
@@ -328,7 +277,7 @@ export class Transactions extends Component {
             const status = await index.contract.methods.signTransaction(i).call({
                 from: userAddress
             });
-            
+
             if (status !== "Signed" && status !== "Transaction Completed") {
                 throw status;
             }
@@ -339,28 +288,31 @@ export class Transactions extends Component {
                 gasPrice: '3000000000000'
             })
                 .on('transactionHash', (hash) =>
-                    ReactDOM.render(this.Adding(hash), document.getElementById('floater')))
+                    this.setState({ hash: hash }))
 
                 .on('receipt', (rec) => {
-                    console.log(rec);
                     if (rec.events.transactionOccured != null) {
                         msg = "Transaction completed";
                     }
                 });
         } catch (err) {
-            console.log("error caught");
-            console.log(err);
-            ReactDOM.render(this.Fail("Unable to sign transaction", null, err), document.getElementById('floater'));
+            this.setState({
+                loadTitle: "Unable to sign transaction",
+                errorMsg: err
+            });
             return;
         }
 
-        ReactDOM.render(this.SuccessSigned(data[i].txHash, msg), document.getElementById('floater'));
+        this.setState({
+            successType: "sign",
+            hash: data[i].txHash,
+            msg: msg
+        });
     }
 }
 
 export let getPending = async () => {
     pending = await index.contract.methods.getTransactions().call();
-    console.log(pending);
 
     for (let i = 0; i < pending.length; ++i) {
         data.push({
@@ -371,6 +323,4 @@ export let getPending = async () => {
             status: (pending[i].complete) ? 'Done' : "Pending"
         });
     }
-
-    console.log(data);
 }
