@@ -18,20 +18,20 @@ import Assets from "./components/assets/assets.jsx";
 import { Transactions, getPending } from './components/transactions/transactions.jsx';
 import SignAndAdd from './components/whitelist/whitelist.jsx';
 
-export const web3 = new Web3(constants.fmPhantom.getProvider());
+export const web3 = new Web3(constants.magic.rpcProvider);
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
 contract.options.address = constants.contractAddress;
 
 class App extends React.Component {
     state = {
-        LoginStatus: false,
+        isLoggedIn: false,
         mainElement: "Assets"
     };
 
     async componentDidMount() {
-        const loginStatus = (await constants.fmPhantom.user.isLoggedIn());
+        const loginStatus = (await constants.magic.user.isLoggedIn());
         this.setState({
-            LoginStatus: loginStatus
+            isLoggedIn: loginStatus
         });
     }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
     render() {
         return (
-            (this.state.LoginStatus) ? (
+            (this.state.isLoggedIn) ? (
                 <div>
                     <Top changeStatus={this.handleLoginStatus} />
                     <Sidebar changePage={this.handlePageChange}/>
@@ -63,8 +63,7 @@ class App extends React.Component {
                         {this.state.mainElement==="Transactions" && <Transactions />}
                     </div>
                 </div>
-            ) :
-            (
+            ) : (
                 <Login changeStatus={this.handleLoginStatus} />
             )
         );

@@ -155,7 +155,7 @@ export default class SignAndAdd extends Component {
     addToWhiteList = async () => {
         ReactDOM.render(this.Adding(null), document.getElementById('floater'));
 
-        const userAddress = (await constants.fmPhantom.user.getMetadata()).publicAddress;
+        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         const address = this.state.address;
         const acctName = this.state.name;
 
