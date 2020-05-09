@@ -36,7 +36,7 @@ class App extends React.Component {
     }
 
     handleLoginStatus = status => {
-        this.setState({ LoginStatus: status });
+        this.setState({ isLoggedIn: status });
     }
 
     handlePageChange = newPage => {

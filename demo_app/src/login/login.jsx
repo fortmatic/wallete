@@ -24,7 +24,7 @@ export class Top extends Component {
 
         this.setState({
             icon: <Blockies
-                seed={this.state.userAddress}
+                seed={address_in}
                 size={5}
                 scale={10}
             >
