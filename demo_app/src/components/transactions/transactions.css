@@ -29,9 +29,9 @@
     display: block;
     color: black;
     padding: 13px;
-    left: -0.2%;
+    left: 1%;
     margin-top: 30px;
-    width: 50%;
+    width: 47%;
     transition: all 0.2s;
     align-items: left;
     background-color: #fafbfc;
@@ -46,7 +46,7 @@
     position: relative;
     display: block;
     left: 50%;
-    width: 50%;
+    width: 48%;
     text-align: left;
     background-color: #fafbfc;
     padding: 13px;
@@ -69,7 +69,7 @@
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-    left: 83.2%;
+    left: 81%;
     top: -12%;
     width: 150px;
     font-size: 15px;

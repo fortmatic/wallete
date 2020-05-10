@@ -4,7 +4,7 @@
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-    left: 85%;
+    left: 83%;
     top: -12%;
     width: 120px;
     font-size: 15px;
@@ -16,6 +16,7 @@
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
+    text-decoration: none;
 }
 
 .other-Btn:hover {
@@ -28,7 +29,7 @@
     font-family: 'Courier New', Courier, monospace;
     color: black;
     box-sizing: content-box;
-    font-size: 11px;
+    font-size: 15px;
     width: 80%;
     margin-left: 100px;
     text-align: center;
@@ -40,7 +41,7 @@
     position: relative;
     display: block;
     left: 50%;
-    width: 50%;
+    width: 48%;
     text-align: left;
     background-color: #fafbfc;
     padding: 13px;
@@ -90,4 +91,15 @@
 
 .address:hover {
     border-color: rgb(57, 50, 156);
+}
+.new-add-box {
+    position: relative;
+    box-sizing: content-box;
+    width: 53%;
+    margin-top: 30px;
+    font-size: 30px;
+    margin-left: 0px;
+    text-align: center;
+    top: 10%;
+    border-bottom: 5px black solid;
 }

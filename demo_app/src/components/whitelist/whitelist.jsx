@@ -75,6 +75,7 @@ export default class SignAndAdd extends Component {
                         </div>
                     </div>
                     <div className="row-Input">
+                        <h1 className = "new-add-box">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
