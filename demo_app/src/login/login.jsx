@@ -12,21 +12,32 @@ export class Top extends Component {
     state = {
         open: false,
         userAddress: "",
-        username: ""
+        username: "",
+        addressPart: "",
+        addEnd: ""
     };
 
     async componentDidMount() {
         const user_in = (await constants.magic.user.getMetadata()).email;
         const address_in = (await constants.magic.user.getMetadata()).publicAddress;
-
+        var userAdd = "";
+        var addressEnd = ""
         this.setState({ userAddress: user_in });
         this.setState({ username: address_in });
+        for (let i = 0; i < 7; ++i){
+            userAdd += address_in[i];
+        }
+        for (let i = address_in.length - 4; i < address_in.length; ++i){
+            addressEnd += address_in[i];
+        }
+        this.setState({ addressPart : userAdd});
+        this.setState({ addEnd : addressEnd});
 
         this.setState({
             icon: <Blockies
                 seed={address_in}
-                size={5}
-                scale={10}
+                size={6}
+                scale={6}
             >
             </Blockies>
         });
@@ -82,13 +93,15 @@ export class Top extends Component {
     openProfile = () => {
         return (
             <div >
-                <a href="!#" className="identicon" onClick={this.switchState} ref={node => this.node = node}>
-                    {this.state.icon}
+                <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
+                    {this.state.icon} 
                 </a>
                 <div className="profile-Box" ref={this.container}>
+                    <p className= "icon-display">{this.state.icon}
+                        <a className = "user-display" href="!#">{this.state.addressPart}&hellip;{this.state.addEnd}</a></p>
                     <p id="username">{this.state.username}</p>
                     <p id="user-Address">{this.state.userAddress}</p>
-                    <a href="!#" className="logout-Btn" onClick={this.logout} id="logout-Btn">Logout</a>
+                    <a href="!#" className="logout-Btn" onClick={this.logout}>Logout</a>
                 </div>
             </div>
         );
@@ -97,8 +110,8 @@ export class Top extends Component {
     closeProfile = () => {
         return (
             <div>
-                <a href="!#" className="identicon" onClick={this.switchState} ref={node => this.node = node}>
-                    {this.state.icon}
+                <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
+                    {this.state.icon} 
                 </a>
                 <p ref={this.container}></p>
             </div>
