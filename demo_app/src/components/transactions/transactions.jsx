@@ -14,7 +14,7 @@ import Loader from '../loader/loader.jsx';
 var data = [];
 var pending;
 
-const style = {
+const dataTableStyle = {
     rows: {
         style: {
             maxWidth: '1033px', // override the row height
@@ -133,7 +133,7 @@ export class Transactions extends Component {
                                 columns={this.columns}
                                 data={data}
                                 expandOnRowClicked
-                                customStyles={style}
+                                customStyles={dataTableStyle}
                                 highlightOnHover
                                 expandableRows
                                 expandableRowsComponent={<this.composition />} />
