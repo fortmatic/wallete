@@ -1,0 +1,8 @@
+allprojects { everyProj ->
+  task printClasspath {
+        doFirst {
+            apply plugin: 'java'
+            println(sourceSets.main.compileClasspath.asPath)
+        }
+    }
+  }

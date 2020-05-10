@@ -20,58 +20,85 @@
     font-size: 20px;
 }
 
-.identicon {
-    width: 50px;
-    height: 50px;
-
-}
-
 .profile-Box {
     position: relative;
     display: block;
     box-sizing: content-box;
-    padding: 5px;
+    padding: 8px;
     border-radius: 3px;
     background-color: white;
     border-radius: 5px;
     border: 1px white solid;
-    margin-top: 15px;
+    margin-top: 10px;
     z-index: 100;
     box-shadow: 8px 5px 20px #888888
 }
 
+
 #username {
-    color: gray;
-    font-size: 15px;
+    color: rgb(167, 163, 163);
+    font-size: 10px;
     font-weight: 800;
     position: relative;
     text-shadow: none;
-
+    text-align: left;
+    margin: 5px;
+    margin-bottom: 15px;
 }
 #user-Address {
     color: gray;
-    font-size: 11px;
+    font-size: 18px;
     font-weight: 800;
     position: relative;
     text-shadow: none;
+    text-align: left;
+    margin: 5px;
+    padding-top: 10px;
+    border-top: 1px lightgray solid;
+
+}
+.icon-display {
+    position: relative;
+    text-shadow: none;
+    text-align: left;
+    margin: 5px;
+    margin-bottom: 13px;
+}
+.user-display {
+    color: gray;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    position: absolute;
+    text-shadow: none;
+    text-align: left;
+    margin: 5px;
+    text-decoration: none;
+    padding-top: 5px;
 }
 
-#logout-Btn {
+.logout-Btn {
+    display: block;
+    box-sizing: content-box;
+    border: 1px gray solid;
+    border-radius: 3px;
+    width: auto;
     position: relative;
     text-align: center;
-    width: auto;
     cursor: pointer;
     font-size: 15px;
-    font-weight: 700;
-    color: black;
+    font-weight: 600;
+    color: #282c34;
     transition: all 0.2s;
     text-shadow: none;
-
+    margin-top: 15px;
+    padding: 3px;
+    text-decoration: none;
 }
 
 .logout-Btn:hover {
-    color: rgb(57, 50, 156);
-    text-decoration: underline;
+    background-color: gray;
+    color: whitesmoke;
 }
 
 .login-Box {
