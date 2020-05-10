@@ -8,6 +8,7 @@ import './login.css';
 // React components
 import Blockies from 'react-blockies';
 
+
 export class Top extends Component {
     state = {
         open: false,
@@ -99,9 +100,9 @@ export class Top extends Component {
                 <div className="profile-Box" ref={this.container}>
                     <p className= "icon-display">{this.state.icon}
                         <a className = "user-display" href="!#">{this.state.addressPart}&hellip;{this.state.addEnd}</a></p>
-                    <p id="username">{this.state.username}</p>
+                    <p id="username">{this.state.username} <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}><i class="far fa-copy"><span className = "copy-hov">Copy</span></i></a></p>
                     <p id="user-Address">{this.state.userAddress}</p>
-                    <a href="!#" className="logout-Btn" onClick={this.logout}>Logout</a>
+                    <a href="!#" className="logout-Btn" onClick={this.logout}><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
         );
