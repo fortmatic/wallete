@@ -36,7 +36,8 @@
 
 
 #username {
-    color: rgb(167, 163, 163);
+    /* color: rgb(167, 163, 163); */
+    color: #282c34;
     font-size: 10px;
     font-weight: 800;
     position: relative;
@@ -46,7 +47,7 @@
     margin-bottom: 15px;
 }
 #user-Address {
-    color: gray;
+    color: #282c34;
     font-size: 18px;
     font-weight: 800;
     position: relative;
@@ -65,7 +66,7 @@
     margin-bottom: 13px;
 }
 .user-display {
-    color: gray;
+    color: #282c34;
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
     font-weight: 700;
@@ -76,6 +77,45 @@
     text-decoration: none;
     padding-top: 5px;
 }
+
+.far:hover {
+    color: rgb(97, 97, 97);
+}
+
+  
+.far .copy-hov {
+    visibility: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    width: 30px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 4px 0;
+    position: absolute;
+    z-index: 1;
+    top: -210%;
+    right: -3%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.far .copy-hov::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: gray transparent transparent transparent;
+  }
+  
+.far:hover .copy-hov {
+    visibility: visible;
+    opacity: 1;
+  }
 
 .logout-Btn {
     display: block;
