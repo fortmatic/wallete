@@ -11,9 +11,6 @@ import Card from '@material-ui/core/Card';
 
 import Loader from '../loader/loader.jsx';
 
-var data = [];
-var pending;
-
 const dataTableStyle = {
     rows: {
         style: {
@@ -62,7 +59,9 @@ export class Transactions extends Component {
         loadTitle: "",
         txLink: "",
         successType: "",
-        msg: ""
+        msg: "",
+        data: [],
+        pending: []
     }
 
     constructor() {
@@ -72,8 +71,21 @@ export class Transactions extends Component {
         this.handleAddress = this.handleAddress.bind(this);
     }
 
-    componentWillUnmount() {
-        data = [];
+    async componentWillMount() {
+        var pending = await index.contract.methods.getTransactions().call();
+        var data = [];
+
+        for (let i = 0; i < pending.length; ++i) {
+            data.push({
+                id: pending[i].nonceTrans,
+                txHash: pending[i].txHash,
+                to: pending[i].to,
+                amt: pending[i].amount / Math.pow(10, 18) + " Eth",
+                status: (pending[i].complete) ? 'Done' : "Pending"
+            });
+        }
+
+        this.setState({ data: data, pending: pending });
     }
 
     columns = [
@@ -131,7 +143,7 @@ export class Transactions extends Component {
                             <DataTable
                                 title="Transactions"
                                 columns={this.columns}
-                                data={data}
+                                data={this.state.data}
                                 expandOnRowClicked
                                 customStyles={dataTableStyle}
                                 highlightOnHover
@@ -167,6 +179,7 @@ export class Transactions extends Component {
     }
 
     composition = ({ data }) => {
+        var pending = this.state.pending;
         const index = data.id;
         const link = "https://rinkeby.etherscan.io/tx/" + pending[index].txHash;
 
@@ -305,22 +318,8 @@ export class Transactions extends Component {
 
         this.setState({
             successType: "sign",
-            hash: data[i].txHash,
+            hash: this.state.data[i].txHash,
             msg: msg
-        });
-    }
-}
-
-export let getPending = async () => {
-    pending = await index.contract.methods.getTransactions().call();
-
-    for (let i = 0; i < pending.length; ++i) {
-        data.push({
-            id: pending[i].nonceTrans,
-            txHash: pending[i].txHash,
-            to: pending[i].to,
-            amt: pending[i].amount / Math.pow(10, 18) + " Eth",
-            status: (pending[i].complete) ? 'Done' : "Pending"
         });
     }
 }

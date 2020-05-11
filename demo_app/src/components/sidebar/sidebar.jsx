@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 // General function libraries
 import './sidebar.css';
 
-// React Components
-import { getPending } from '../transactions/transactions.jsx';
-
 export default class Sidebar extends Component {
     state = {
         assetsActive: "active",
@@ -38,7 +35,6 @@ export default class Sidebar extends Component {
             txActive: "active"
         });
 
-        await getPending();
         this.props.changePage("Transactions");
     }
 
