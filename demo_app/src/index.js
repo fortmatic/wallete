@@ -40,15 +40,7 @@ class App extends React.Component {
     }
 
     handlePageChange = newPage => {
-        if (newPage === Assets) {
-            this.setState({ mainElement: "Assets"});
-        }
-        else if (newPage === SignAndAdd) {
-            this.setState({ mainElement: "SignAndAdd"});
-        }
-        else if (newPage === Transactions) {
-            this.setState({ mainElement: "Transactions"});
-        }
+        this.setState({ mainElement: newPage });
     }
 
     render() {
@@ -56,16 +48,16 @@ class App extends React.Component {
             (this.state.isLoggedIn) ? (
                 <div>
                     <Top changeStatus={this.handleLoginStatus} />
-                    <Sidebar changePage={this.handlePageChange}/>
+                    <Sidebar changePage={this.handlePageChange} />
                     <div id="main">
-                        {this.state.mainElement==="Assets" && <Assets />}
-                        {this.state.mainElement==="SignAndAdd" && <SignAndAdd />}
-                        {this.state.mainElement==="Transactions" && <Transactions />}
+                        {this.state.mainElement === "Assets" && <Assets />}
+                        {this.state.mainElement === "SignAndAdd" && <SignAndAdd />}
+                        {this.state.mainElement === "Transactions" && <Transactions />}
                     </div>
                 </div>
             ) : (
-                <Login changeStatus={this.handleLoginStatus} />
-            )
+                    <Login changeStatus={this.handleLoginStatus} />
+                )
         );
     }
 }
