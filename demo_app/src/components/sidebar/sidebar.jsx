@@ -4,11 +4,6 @@ import React, { Component } from 'react';
 // General function libraries
 import './sidebar.css';
 
-// React Components
-import Assets from '../assets/assets.jsx';
-import Whitelist from '../whitelist/whitelist.jsx';
-import { Transactions, getPending } from '../transactions/transactions.jsx';
-
 export default class Sidebar extends Component {
     state = {
         assetsActive: "active",
@@ -40,8 +35,7 @@ export default class Sidebar extends Component {
             txActive: "active"
         });
 
-        await getPending();
-        this.props.changePage(Transactions);
+        this.props.changePage("Transactions");
     }
 
     getAssets = () => {
@@ -51,7 +45,7 @@ export default class Sidebar extends Component {
             txActive: ""
         });
 
-        this.props.changePage(Assets);
+        this.props.changePage("Assets");
     }
 
     getSignAndAdd = () => {
@@ -61,6 +55,6 @@ export default class Sidebar extends Component {
             txActive: ""
         });
 
-        this.props.changePage(Whitelist);
+        this.props.changePage("SignAndAdd");
     }
 }
