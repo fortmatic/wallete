@@ -25,12 +25,14 @@ export class Top extends Component {
         var addressEnd = ""
         this.setState({ userAddress: user_in });
         this.setState({ username: address_in });
-        for (let i = 0; i < 7; ++i){
+        for (let i = 0; i < 15; ++i){
             userAdd += address_in[i];
         }
+        userAdd += '...';
         for (let i = address_in.length - 4; i < address_in.length; ++i){
-            addressEnd += address_in[i];
+            userAdd += address_in[i];
         }
+        userAdd += ' ';
         this.setState({ addressPart : userAdd});
         this.setState({ addEnd : addressEnd});
 
@@ -98,10 +100,16 @@ export class Top extends Component {
                     {this.state.icon} 
                 </a>
                 <div className="profile-Box" ref={this.container}>
-                    <p className= "icon-display">{this.state.icon}
-                        <a className = "user-display" href="!#">{this.state.addressPart}&hellip;{this.state.addEnd}</a></p>
-                    <p id="username">{this.state.username} <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}><i class="far fa-copy"><span className = "copy-hov">Copy</span></i></a></p>
-                    <p id="user-Address">{this.state.userAddress}</p>
+                    <p className= "icon-display">{this.state.icon} 
+                        <a className = "user-display" href="!#">{this.state.userAddress}</a></p>
+                
+                    <div>
+                        <a href="!#" id="user-Address">{this.state.addressPart } 
+                            <span className = "copy-hov">{this.state.username}</span>
+                        </a>
+                        <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
+                            <i class="far fa-copy"><span className = "clipboard-hov">Copy</span></i></a>
+                    </div>
                     <a href="!#" className="logout-Btn" onClick={this.logout}><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
