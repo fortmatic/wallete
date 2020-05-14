@@ -29,7 +29,7 @@ export class Top extends Component {
             userAdd += address_in[i];
         }
         userAdd += '...';
-        for (let i = address_in.length - 4; i < address_in.length; ++i){
+        for (let i = address_in.length - 5; i < address_in.length; ++i){
             userAdd += address_in[i];
         }
         userAdd += ' ';
@@ -100,8 +100,9 @@ export class Top extends Component {
                     {this.state.icon} 
                 </a>
                 <div className="profile-Box" ref={this.container}>
-                    <p className= "icon-display">{this.state.icon} 
-                        <a className = "user-display" href="!#">{this.state.userAddress}</a></p>
+                    <p className= "icon-display">{this.state.icon} {this.state.userAddress} 
+                        {/* <a className = "user-display" href="!#">{this.state.userAddress}</a> */}
+                        </p>
                 
                     <div>
                         <a href="!#" id="user-Address">{this.state.addressPart } 
