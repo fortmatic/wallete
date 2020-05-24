@@ -81,6 +81,7 @@
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
+    text-decoration: none;
 }
 
 .st-Tran:hover {
@@ -135,4 +136,29 @@ a.composition:hover {
     text-align: center;
     background-color: lightgray;
     color: rgb(57, 50, 156);
+}
+
+.link-btn:hover {
+    color: rgb(75, 74, 74);
+}
+
+.sign-btn {
+    display: block;
+    background-color: rgb(95, 88, 190);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px #282c34 solid;
+    transition: all 0.2s;
+    transition-duration: 0.4s;
+    text-align: center;
+    color: white;
+    margin-top: -10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.sign-btn:hover {
+    color: rgb(95, 88, 190);
+    background-color: lightgray;
 }
