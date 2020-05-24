@@ -189,7 +189,7 @@ export class Transactions extends Component {
                     <p>Transaction Hash: {pending[index].txHash}</p>
                     <p>From: {pending[index].from}</p>
                     <p>To: {pending[index].to}</p>
-                    <a href={link} className = "link-btn">View on Etherscan</a>
+                    <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
                     <p id="status">Tx has been sent</p>
                 </div>
             );
@@ -201,7 +201,7 @@ export class Transactions extends Component {
                 <p>From: {pending[index].from}</p>
                 <p>To: {pending[index].to}</p>
                 <p>Number of Signatures: {pending[index].numSigs}/{pending[index].threshold}</p>
-                <a href={link} className = "link-btn">View on Etherscan</a>
+                <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
                 <br></br>
                 <br></br>
                 <button onClick={() => this.signContract(index)} className = "sign-btn">Sign Transaction</button>

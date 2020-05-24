@@ -28,7 +28,7 @@ export default class Loader extends React.Component {
                         <h2>Successfully Started Transaction</h2>
                         <p>To: {this.props.toAddress}</p>
                         <p>Amount: {this.props.amount} Eth</p>
-                        <a href={this.props.link}>View on EtherScan</a>
+                        <a href={this.props.link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on EtherScan</a>
                         <a href="!#" className="exit-Load" onClick={() =>
                             this.props.close()}>Close</a>
                     </div>

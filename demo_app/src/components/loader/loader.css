@@ -75,3 +75,7 @@
     background-color: lightgray;
     color: rgb(57, 50, 156);
 }
+
+.link-btn:hover {
+    color: rgb(75, 74, 74);
+}
