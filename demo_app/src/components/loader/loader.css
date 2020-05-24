@@ -27,10 +27,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    height: 30%;
+    width: 40%;
+    height: 20%;
     text-align: center;
-
     font-family: 'Courier New', Courier, monospace;
     color: black;
     font-size: 11px;
@@ -56,16 +55,19 @@
     cursor: pointer;
     border: 2px #282c34 solid;
     border-radius: 10px;
-
     font-size: 15px;
     font-weight: 700;
     border: 2px #282c34 solid;
     color: white;
-    background-color: rgb(57, 50, 156);
+    background-color: rgb(114, 108, 206);
     padding: 11px;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
+    width: 65%;
+    margin-top: 25px;
+    margin-left: 90px;
+    text-decoration: none;
 }
 
 .exit-Load:hover {
