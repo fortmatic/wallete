@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Function libraries
-import * as constants from '../constants/constants.js';
+import * as constants from '../../constants/constants.js';
 import './login.css';
 
 // React components
