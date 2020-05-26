@@ -1,9 +1,10 @@
 import React from 'react';
 
+// App React companents
 import { Top } from './login/login.jsx'
 import Sidebar from "../components/sidebar/sidebar.jsx";
 import Assets from "../components/assets/assets.jsx";
-import { Transactions } from '../components/transactions/transactions.jsx';
+import Transactions from '../components/transactions/transactions.jsx';
 import SignAndAdd from '../components/whitelist/whitelist.jsx';
 
 

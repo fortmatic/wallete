@@ -10,8 +10,7 @@ import * as abi from './constants/abi.js';
 import * as constants from './constants/constants.js';
 import Web3 from 'web3';
 
-
-// React Components
+// Main React Components
 import App from './containers/App.jsx';
 import { Login } from './containers/login/login.jsx';
 

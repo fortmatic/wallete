@@ -50,8 +50,8 @@ export class Top extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
+            <div className="Top">
+                <header className="Top-header">
                     <h1 id="main"> <div className="logo_box">WALLETTE</div></h1>
                     <div id="profile">
                         {this.handleState()}

@@ -49,7 +49,7 @@ const dataTableStyle = {
     }
 }
 
-export class Transactions extends Component {
+export default class Transactions extends Component {
     state = {
         exchangeAmt: "",
         address: "",
