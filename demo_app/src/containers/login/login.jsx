@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Function libraries
-import * as constants from '../constants/constants.js';
+import * as constants from '../../constants/constants.js';
 import './login.css';
 
 // React components
@@ -50,8 +50,8 @@ export class Top extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
+            <div className="Top">
+                <header className="Top-header">
                     <h1 id="main"> <div className="logo_box">WALLETTE</div></h1>
                     <div id="profile">
                         {this.handleState()}
