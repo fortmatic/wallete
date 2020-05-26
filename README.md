@@ -9,8 +9,8 @@ Ensure that the following tools are installed:
 - Node Package Manager `npm`
 - Truffle `truffle` (If planning on modifying/compiling contract)
 
+Then make a clean install of the npm modules:
 ```bash
-cd ./demo_app/
 npm ci
 ```
 
@@ -19,7 +19,6 @@ npm ci
 To launch on localhost:
 
 ```bash
-cd ./demo_app/
 npm start
 ```
 
