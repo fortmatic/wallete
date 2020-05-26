@@ -13,10 +13,6 @@ export default class App extends React.Component {
         mainElement: "Assets"
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     handlePageChange = newPage => {
         this.setState({ mainElement: newPage });
     }
