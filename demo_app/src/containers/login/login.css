@@ -200,7 +200,7 @@
 
 .login {
     /* border: 3px solid rgb(45, 0, 128); */
-    background-image: url("../Asset/loginImage.png");
+    background-image: url("../../Asset/loginImage.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;

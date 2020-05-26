@@ -12,7 +12,7 @@ import Web3 from 'web3';
 
 
 // React Components
-import { Login, Top } from './login/login.jsx';
+import { Login, Top } from './containers/login/login.jsx';
 import Sidebar from "./components/sidebar/sidebar.jsx";
 import Assets from "./components/assets/assets.jsx";
 import { Transactions } from './components/transactions/transactions.jsx';
