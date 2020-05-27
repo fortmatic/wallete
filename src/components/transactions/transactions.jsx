@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // General function libraries
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
-import './transactions.css';
+import './transactions.scss';
 // Libraries for table
 import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';

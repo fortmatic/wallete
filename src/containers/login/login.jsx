@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 // Function libraries
 import * as constants from '../../constants/constants.js';
-import './login.css';
+import './login.scss';
 
 // React components
 import Blockies from 'react-blockies';

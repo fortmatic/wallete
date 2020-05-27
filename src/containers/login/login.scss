@@ -1,10 +1,14 @@
+$primary-black: #282c34;
+$primary-purple: rgb(57, 50, 156);
+$font-style: 'Courier New', Courier, monospace;
+
 .Top-header {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     text-shadow: 2px 2px lightskyblue;
     font-weight: bold;
     text-align: center;
     font-size: 25px;
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
 }
 
 #profile {
@@ -32,7 +36,7 @@
 
 #username {
     /* color: rgb(167, 163, 163); */
-    color: #282c34;
+    color: $primary-black;
     font-size: 10px;
     font-weight: 800;
     position: relative;
@@ -43,7 +47,7 @@
     text-decoration: none;
 }
 #user-Address {
-    color: #282c34;
+    color: $primary-black;
     font-size: 15px;
     font-weight: 800;
     position: relative;
@@ -59,12 +63,12 @@
     text-align: left;
     margin: 5px;
     margin-bottom: 10px;
-    color: #282c34;
+    color: $primary-black;
     font-size: 15px;
 }
 .user-display {
-    color: #282c34;
-    font-family: 'Courier New', Courier, monospace;
+    color: $primary-black;
+    font-family: $font-style;
     font-size: 18px;
     font-weight: 700;
     position: absolute;
@@ -86,7 +90,7 @@
 
 .far .clipboard-hov {
     visibility: hidden;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     width: 30px;
     text-shadow: none;
     font-weight: bold;
@@ -123,7 +127,7 @@
 
 #user-Address .copy-hov {
     visibility: hidden;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     width: 260px;
     background-color: gray;
     color: #fff;
@@ -167,7 +171,7 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
-    color: #282c34;
+    color: $primary-black;
     transition: all 0.2s;
     text-shadow: none;
     margin-top: 15px;
@@ -189,13 +193,13 @@
     font-size: 20px;
     height: 230px;
     text-align: center;
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
     text-shadow: 2px 2px lightskyblue;
 }
 
 .login {
     /* border: 3px solid rgb(45, 0, 128); */
-    background-image: url("../../Asset/loginImage.png");
+    background-image: url("../../assets/loginImage.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -215,19 +219,19 @@
 }
 
 .user-email {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     position: relative;
     margin-right: 20px;
     text-align: center;
     display: block;
     margin: 0;
     border-radius: 7px;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     background-color: white;
     padding: 10px 20px;
     width: 100%;
     left: 1%;
-    color: #282c34;
+    color: $primary-black;
     margin-bottom: 10px;
     box-sizing: border-box;
     transition: all 0.2s;
@@ -235,7 +239,7 @@
 }
 
 .user-email:hover {
-    border-color: rgb(57, 50, 156);
+    border-color: $primary-purple;
 }
 
 .log-1 {
@@ -249,7 +253,7 @@
     font-size: 10px;
     font-weight: 700;
     border: 3px lightgray solid;
-    color: #282c34;
+    color: $primary-black;
     background-color: white;
     padding: 10px;
     transition: all 0.2s;
