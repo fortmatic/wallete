@@ -1,3 +1,6 @@
+$primary-purple: rgb(57, 50, 156);
+$light-purple: rgb(140, 135, 211);
+
 #sidebar {
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
@@ -19,7 +22,7 @@
 }
 
 li.active {
-    background-color: rgb(140, 135, 211);
+    background-color: $light-purple;
 }
 
 li.active a {
@@ -54,5 +57,5 @@ li.active a {
 }
 
 #nav a:hover {
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
 }

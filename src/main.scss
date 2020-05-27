@@ -1,3 +1,6 @@
+$light-blue: rgb(231, 236, 242);
+$primary-black: #282c34;
+
 body,
 html {
     height: 100%;
@@ -14,11 +17,11 @@ html {
     color: black;
     background-color: transparent;
     left: 30%;
-}
 
-#list li {
-    padding: 0.5em;
-    margin: 0 6em;
+    li {
+        padding: 0.5em;
+        margin: 0 6em;
+    }
 }
 
 #bar {
@@ -41,8 +44,8 @@ html {
 .big-block {
     display: block;
     border-radius: 10px;
-    border: 30px rgb(231, 236, 242) solid;
-    background-color: rgb(231, 236, 242);
+    border: 30px $light-blue solid;
+    background-color: $light-blue;
     opacity: 0.7;
     position: relative;
     box-sizing: border-box;
@@ -65,10 +68,10 @@ input, textarea {
     text-align: center;
     border-radius: 10px;
     display: block;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     padding: 13px 20px;
     width: 50%;
-    color: #282c34;
+    color: $primary-black;
     margin-bottom: 10px;
     box-sizing: border-box;
     transition: all 0.2s;

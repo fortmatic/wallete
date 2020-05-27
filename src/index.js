@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './main.css';
+import './main.scss';
 import * as serviceWorker from './serviceWorker';
 
 // Contract related Libraries

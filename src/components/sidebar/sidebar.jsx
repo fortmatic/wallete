@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // General function libraries
-import './sidebar.css';
+import './sidebar.scss';
 
 export default class Sidebar extends Component {
     state = {

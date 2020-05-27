@@ -1,17 +1,21 @@
+$primary-black: #282c34;
+$primary-purple: rgb(57, 50, 156);
+$primary-white: #fafbfc;
+
 .other-Btn {
     position: relative;
     display: block;
     cursor: pointer;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     border-radius: 10px;
     left: 83%;
     top: -12%;
     width: 120px;
     font-size: 15px;
     font-weight: 700;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     color: white;
-    background-color: rgb(57, 50, 156);
+    background-color: $primary-purple;
     padding: 11px;
     transition: all 0.2s;
     transition-duration: 0.4s;
@@ -22,7 +26,7 @@
 .other-Btn:hover {
     text-align: center;
     background-color: lightgray;
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
 }
 
 .head-box {
@@ -43,13 +47,13 @@
     left: 50%;
     width: 48%;
     text-align: left;
-    background-color: #fafbfc;
+    background-color: $primary-white;
     padding: 13px;
     margin-top: -57px;
 }
 
 .name:hover {
-    border-color: rgb(57, 50, 156);
+    border-color: $primary-purple;
 }
 
 .whitelist-Name {
@@ -86,11 +90,11 @@
     width: 48%;
     transition: all 0.2s;
     align-items: left;
-    background-color: #fafbfc;
+    background-color: $primary-white;
 }
 
 .address:hover {
-    border-color: rgb(57, 50, 156);
+    border-color: $primary-purple;
 }
 .new-add-box {
     position: relative;

@@ -1,5 +1,10 @@
+$primary-purple: rgb(57, 50, 156);
+$hover-purple: rgb(95, 88, 190);
+$primary-black: #282c34;
+$font-style: 'Courier New', Courier, monospace;
+
 #pending {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     -webkit-font-smoothing: antialiased;
     font-weight: 700;
     line-height: 1.42857;
@@ -38,7 +43,7 @@
 }
 
 .address:hover {
-    border-color: rgb(57, 50, 156);
+    border-color: $primary-purple;
 }
 
 .exchange-Amt {
@@ -54,7 +59,7 @@
 }
 
 .exchange-Amt:hover {
-    border-color: rgb(57, 50, 156);
+    border-color: $primary-purple;
 }
 
 .connected {
@@ -67,16 +72,16 @@
     position: relative;
     display: block;
     cursor: pointer;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     border-radius: 10px;
     left: 81%;
     top: -12%;
     width: 150px;
     font-size: 15px;
     font-weight: 700;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     color: white;
-    background-color: rgb(57, 50, 156);
+    background-color: $primary-purple;
     padding: 5px;
     transition: all 0.2s;
     transition-duration: 0.4s;
@@ -86,7 +91,7 @@
 
 .st-Tran:hover {
     background-color: lightgray;
-    color: rgb(57, 50, 156);
+    color:  $primary-purple;
     text-align: center;
 }
 
@@ -102,7 +107,7 @@
     padding-left: 30px;
 }
 a.composition {
-    background-color: rgb(57, 50, 156);
+    background-color: $primary-purple;;
     color: white;
     border-radius: 2px;
     font-size: 10px;
@@ -110,7 +115,7 @@ a.composition {
 }
 
 a.composition:hover {
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
     background-color: lightgrey;
 }
 
@@ -118,14 +123,14 @@ a.composition:hover {
     position: relative;
     display: block;
     cursor: pointer;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     border-radius: 10px;
 
     font-size: 15px;
     font-weight: 700;
-    border: 2px #282c34 solid;
+    border: 2px $primary-black solid;
     color: white;
-    background-color: rgb(57, 50, 156);
+    background-color: $primary-purple;
     padding: 11px;
     transition: all 0.2s;
     transition-duration: 0.4s;
@@ -135,7 +140,7 @@ a.composition:hover {
 .exit-Load:hover {
     text-align: center;
     background-color: lightgray;
-    color: rgb(57, 50, 156);
+    color: $primary-purple;
 }
 
 .link-btn:hover {
@@ -144,21 +149,21 @@ a.composition:hover {
 
 .sign-btn {
     display: block;
-    background-color: rgb(95, 88, 190);
+    background-color: $hover-purple;
     padding: 8px;
     border-radius: 8px;
-    border: 1px #282c34 solid;
+    border: 1px $primary-black solid;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
     color: white;
     margin-top: -10px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $font-style;
     font-weight: 700;
     font-size: 11px;
 }
 
 .sign-btn:hover {
-    color: rgb(95, 88, 190);
+    color: $hover-purple;
     background-color: lightgray;
 }

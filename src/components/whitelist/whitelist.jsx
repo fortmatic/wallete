@@ -6,7 +6,7 @@ import blockies from 'ethereum-blockies';
 
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
-import './whitelist.css';
+import './whitelist.scss';
 
 import Loader from '../loader/loader.jsx';
 
