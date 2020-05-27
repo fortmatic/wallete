@@ -37,25 +37,26 @@ li.active a {
     background-color: transparent;
     transition: 0.3s;
     cursor: pointer;
+
+    li {
+        float: left;
+    }
+
+    a {
+        display: block;
+        text-align: center;
+        width: 280px;
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: 600;
+        padding: 20px;
+        color: black;
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    a:hover {
+        color: $primary-purple;
+    }
 }
 
-#nav li {
-    float: left;
-}
-
-#nav a {
-    display: block;
-    text-align: center;
-    width: 280px;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 600;
-    padding: 20px;
-    color: black;
-    border-radius: 10px;
-    background-color: transparent;
-}
-
-#nav a:hover {
-    color: $primary-purple;
-}
