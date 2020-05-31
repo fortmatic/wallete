@@ -11,7 +11,7 @@ import * as constants from './constants/constants.js';
 import Web3 from 'web3';
 
 // Main React Components
-import App from './containers/app.jsx';
+import App from './containers/App.jsx';
 import { Login } from './containers/login/login.jsx';
 
 export const web3 = new Web3(constants.magic.rpcProvider);
