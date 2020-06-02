@@ -1,33 +1,6 @@
 @import '../../master';
 
-.other-Btn {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    border: 2px $primary-black solid;
-    border-radius: 10px;
-    left: 83%;
-    top: -12%;
-    width: 120px;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px $primary-black solid;
-    color: white;
-    background-color: $primary-purple;
-    padding: 11px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-    text-decoration: none;
-}
-
-.other-Btn:hover {
-    text-align: center;
-    background-color: lightgray;
-    color: $primary-purple;
-}
-
-.head-box {
+.whitelist-title {
     font-family: 'Courier New', Courier, monospace;
     color: black;
     box-sizing: content-box;
@@ -36,22 +9,6 @@
     margin-left: 100px;
     text-align: center;
     border-bottom: 5px black solid;
-}
-
-.name {
-    border-radius: 10px;
-    position: relative;
-    display: block;
-    left: 50%;
-    width: 48%;
-    text-align: left;
-    background-color: $primary-white;
-    padding: 13px;
-    margin-top: -57px;
-}
-
-.name:hover {
-    border-color: $primary-purple;
 }
 
 .whitelist-Name {
@@ -66,42 +23,84 @@
     margin: 0 10.5em;
 }
 
-.row-Input {
+.add-to-whitelist {
     position: relative;
-}
-#addAddress {
-    position: relative;
-    top: 30%;
-    left: 2%;
-    width: 500px;
+
+    .address-box {
+        position: relative;
+        box-sizing: content-box;
+        width: 53%;
+        margin-top: 30px;
+        font-size: 30px;
+        margin-left: 0px;
+        text-align: center;
+        top: 10%;
+        border-bottom: 5px black solid;
+    }
+
+    .address {
+        border-radius: 10px;
+        position: relative;
+        text-align: left;
+        display: block;
+        color: black;
+        padding: 13px;
+        left: -0.2%;
+        margin-top: 30px;
+        width: 48%;
+        transition: all 0.2s;
+        align-items: left;
+        background-color: $primaryWhite;
+    }
+    
+    .address:hover {
+        border-color: $primaryPurple;
+    }
+
+    .name {
+        border-radius: 10px;
+        position: relative;
+        display: block;
+        left: 50%;
+        width: 48%;
+        text-align: left;
+        background-color: $primaryWhite;
+        padding: 13px;
+        margin-top: -57px;
+    }
+    
+    .name:hover {
+        border-color: $primaryPurple;
+    }
+
+    
+    .add-btn {
+        position: relative;
+        display: block;
+        cursor: pointer;
+        border: 2px $primaryBlack solid;
+        border-radius: 10px;
+        left: 83%;
+        top: -12%;
+        width: 120px;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px $primaryBlack solid;
+        color: white;
+        background-color: $primaryPurple;
+        padding: 11px;
+        transition: all 0.2s;
+        transition-duration: 0.4s;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .add-btn:hover {
+        text-align: center;
+        background-color: lightgray;
+        color: $primaryPurple;
+    }
 }
 
-.address {
-    border-radius: 10px;
-    position: relative;
-    text-align: left;
-    display: block;
-    color: black;
-    padding: 13px;
-    left: -0.2%;
-    margin-top: 30px;
-    width: 48%;
-    transition: all 0.2s;
-    align-items: left;
-    background-color: $primary-white;
-}
 
-.address:hover {
-    border-color: $primary-purple;
-}
-.new-add-box {
-    position: relative;
-    box-sizing: content-box;
-    width: 53%;
-    margin-top: 30px;
-    font-size: 30px;
-    margin-left: 0px;
-    text-align: center;
-    top: 10%;
-    border-bottom: 5px black solid;
-}
+

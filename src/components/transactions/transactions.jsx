@@ -151,14 +151,14 @@ export default class Transactions extends Component {
                                 expandableRowsComponent={<this.composition />} />
                         </Card>
                     </div>
-                    <h1 className="head-boxST">New Transaction</h1>
-                    <div>
+                    <h1 className="new-trans">New Transaction</h1>
+                    <div className = "start-trans">
                         <input type="text" className="address" placeholder="Send to Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
                             value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
                         <p className="connected" id="status"></p>
-                        <a className="st-Tran" onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <a className="start-btn" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
                     </div>
                 </div>

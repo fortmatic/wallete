@@ -18,44 +18,44 @@
     z-index: 50;
     width: 75%;
     align-items: center;
-}
 
-li.active {
-    background-color: $light-purple;
-}
-
-li.active a {
-    color: white;
-}
-
-#nav {
-    padding-left: 0%;
-    margin: 0 auto;
-    list-style: none;
-    position: relative;
-    background-color: transparent;
-    transition: 0.3s;
-    cursor: pointer;
-
-    li {
-        float: left;
-    }
-
-    a {
-        display: block;
-        text-align: center;
-        width: 280px;
-        text-decoration: none;
-        font-size: 25px;
-        font-weight: 600;
-        padding: 20px;
-        color: black;
-        border-radius: 10px;
+    #nav {
+        padding-left: 0%;
+        margin: 0 auto;
+        list-style: none;
+        position: relative;
         background-color: transparent;
+        transition: 0.3s;
+        cursor: pointer;
+    
+        li {
+            float: left;
+        }
+    
+        a {
+            display: block;
+            text-align: center;
+            width: 280px;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 600;
+            padding: 20px;
+            color: black;
+            border-radius: 10px;
+            background-color: transparent;
+        }
+    
+        a:hover {
+            color: $primaryPurple;
+        }
     }
 
-    a:hover {
-        color: $primary-purple;
+    li.active {
+        background-color: $lightPurple;
+    
+        a {
+            color: white;
+        }
     }
 }
 

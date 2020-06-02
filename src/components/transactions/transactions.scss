@@ -1,7 +1,7 @@
 @import '../../master';
 
 #pending {
-    font-family: $font-style;
+    font-family: $fontStyle;
     -webkit-font-smoothing: antialiased;
     font-weight: 700;
     line-height: 1.42857;
@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.head-boxST {
+.new-trans {
     position: relative;
     box-sizing: content-box;
     width: 30%;
@@ -24,77 +24,79 @@
     border-bottom: 5px black solid;
 }
 
-.address {
-    border-radius: 10px;
-    position: relative;
-    text-align: left;
-    display: block;
-    color: black;
-    padding: 13px;
-    left: 1%;
-    margin-top: 30px;
-    width: 47%;
-    transition: all 0.2s;
-    align-items: left;
-    background-color: #fafbfc;
-}
+.start-trans {
+    .address {
+        border-radius: 10px;
+        position: relative;
+        text-align: left;
+        display: block;
+        color: black;
+        padding: 13px;
+        left: 1%;
+        margin-top: 30px;
+        width: 47%;
+        transition: all 0.2s;
+        align-items: left;
+        background-color: #fafbfc;
+    }
+    
+    .address:hover {
+        border-color: $primaryPurple;
+    }
+    
+    .exchange-Amt {
+        border-radius: 10px;
+        position: relative;
+        display: block;
+        left: 50%;
+        width: 48%;
+        text-align: left;
+        background-color: #fafbfc;
+        padding: 13px;
+        margin-top: -57px;
+    }
+    
+    .exchange-Amt:hover {
+        border-color: $primaryPurple;
+    }
 
-.address:hover {
-    border-color: $primary-purple;
-}
+    .connected {
+        position: relative;
+        text-align: left;
+        font-size: 20px;
+    }
 
-.exchange-Amt {
-    border-radius: 10px;
-    position: relative;
-    display: block;
-    left: 50%;
-    width: 48%;
-    text-align: left;
-    background-color: #fafbfc;
-    padding: 13px;
-    margin-top: -57px;
-}
-
-.exchange-Amt:hover {
-    border-color: $primary-purple;
-}
-
-.connected {
-    position: relative;
-    text-align: left;
-    font-size: 20px;
-}
-
-.st-Tran {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    border: 2px $primary-black solid;
-    border-radius: 10px;
-    left: 81%;
-    top: -12%;
-    width: 150px;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px $primary-black solid;
-    color: white;
-    background-color: $primary-purple;
-    padding: 5px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-    text-decoration: none;
-}
-
-.st-Tran:hover {
-    background-color: lightgray;
-    color:  $primary-purple;
-    text-align: center;
-}
-
-
-#status {
-    text-shadow: none;
+    .start-btn {
+        position: relative;
+        display: block;
+        cursor: pointer;
+        border: 2px $primaryBlack solid;
+        border-radius: 10px;
+        left: 81%;
+        top: -12%;
+        width: 150px;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px $primaryBlack solid;
+        color: white;
+        background-color: $primaryPurple;
+        padding: 5px;
+        transition: all 0.2s;
+        transition-duration: 0.4s;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .start-btn:hover {
+        background-color: lightgray;
+        color:  $primaryPurple;
+        text-align: center;
+    }
+    
+    
+    #status {
+        text-shadow: none;
+    }
 }
 
 .composition {
@@ -102,9 +104,14 @@
     box-sizing: content-box;
     background-color: red;
     padding-left: 30px;
+
+    .link-btn:hover {
+        color: rgb(75, 74, 74);
+    }
 }
+
 a.composition {
-    background-color: $primary-purple;;
+    background-color: $primaryPurple;;
     color: white;
     border-radius: 2px;
     font-size: 10px;
@@ -112,55 +119,29 @@ a.composition {
 }
 
 a.composition:hover {
-    color: $primary-purple;
+    color: $primaryPurple;
     background-color: lightgrey;
-}
-
-.exit-Load {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    border: 2px $primary-black solid;
-    border-radius: 10px;
-
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px $primary-black solid;
-    color: white;
-    background-color: $primary-purple;
-    padding: 11px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-}
-
-.exit-Load:hover {
-    text-align: center;
-    background-color: lightgray;
-    color: $primary-purple;
-}
-
-.link-btn:hover {
-    color: rgb(75, 74, 74);
 }
 
 .sign-btn {
     display: block;
-    background-color: $hover-purple;
+    background-color: $hoverPurple;
     padding: 8px;
     border-radius: 8px;
-    border: 1px $primary-black solid;
+    border: 1px $primaryBlack solid;
     transition: all 0.2s;
     transition-duration: 0.4s;
     text-align: center;
     color: white;
     margin-top: -10px;
-    font-family: $font-style;
+    font-family: $fontStyle;
     font-weight: 700;
     font-size: 11px;
 }
 
 .sign-btn:hover {
-    color: $hover-purple;
+    color: $hoverPurple;
     background-color: lightgray;
 }
+
+

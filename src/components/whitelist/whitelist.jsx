@@ -57,8 +57,8 @@ export default class SignAndAdd extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="whitelist">
-                        <div className="head-box">
-                            <h1 id="thing"> Addresses on Whitelist</h1>
+                        <div className="whitelist-title">
+                            <h1 id="title"> Addresses on Whitelist</h1>
                         </div>
                         <div>
                             <table id="table">
@@ -74,14 +74,14 @@ export default class SignAndAdd extends Component {
                             </table>
                         </div>
                     </div>
-                    <div className="row-Input">
-                        <h1 className = "new-add-box">Add New Address to Whitelist</h1>
+                    <div className="add-to-whitelist">
+                        <h1 className = "address-box">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
                             value={this.state.name} onChange={this.handleName} />
                         <p className="connected" id="status"></p>
-                        <a className="other-Btn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
+                        <a className="add-btn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
                     </div>
                 </div>
             </div>
