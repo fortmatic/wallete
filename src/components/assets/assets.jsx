@@ -19,7 +19,7 @@ export default class Assets extends Component {
     render() {
         return (
             <div className="main">
-                <div className="big-block">
+                <div className="main-blue-box">
                     <h1 >On Contract {this.state.contractAddress} </h1>
                     <table id="table">
                         <thead>

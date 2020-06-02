@@ -137,7 +137,7 @@ export default class Transactions extends Component {
                     msg={this.state.msg}
                     successType={this.state.successType}
                 />}
-                <div className="big-block">
+                <div className="main-blue-box">
                     <div id="pending">
                         <Card>
                             <DataTable

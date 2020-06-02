@@ -8,7 +8,7 @@ class Deploy extends Component {
     render() {
         return (
             <div className="main">
-                <div className="big-block">
+                <div className="main-blue-box">
                     <a className="other-Btn" onClick={handle.deploying} href="!#">Deploy Contract</a>
                     <div>
                         <input type="text" id="contractAdd" placeholder="Enter existing contract address" />
@@ -24,7 +24,7 @@ class Vault extends Component {
     render() {
         return (
             <div className="main">
-                <div className="big-block">
+                <div className="main-blue-box">
                     <div id="pending">
                         <h1 className="head-boxPD">Pending Transactions</h1>
                         <table>

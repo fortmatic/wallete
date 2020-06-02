@@ -55,7 +55,7 @@ export default class SignAndAdd extends Component {
                     successType={this.state.successType}
                     title={this.state.loadTitle}
                 />}
-                <div className="big-block">
+                <div className="main-blue-box">
                     <div id="whitelist">
                         <div className="head-box">
                             <h1 id="thing"> Addresses on Whitelist</h1>
