@@ -1,42 +1,5 @@
 @import '../../master';
 
-.spinner {
-    position: absolute;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 80px;
-    height: 80px;
-    animation: spin 1s linear infinite;
-    left: 50%;
-    margin-left: -60px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.loader {
-    border: 30px $light-blue solid;
-    border-radius: 10px;
-    display: block;
-    box-sizing: content-box;
-    padding: 10px;
-    position: fixed;
-    background-color: $light-blue;
-    box-shadow: black;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
-    height: 20%;
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    color: black;
-    font-size: 11px;
-}
-
 #floater {
     position: fixed; /* Sit on top of the page content */
     display: block; /* Hidden by default */
@@ -49,35 +12,72 @@
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 7; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
-}
 
-.exit-Load {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    border: 2px $primary-black solid;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px $primary-black solid;
-    color: white;
-    background-color: $light-purple;
-    padding: 11px;
-    transition: all 0.2s;
-    transition-duration: 0.4s;
-    text-align: center;
-    width: 65%;
-    margin-top: 25px;
-    margin-left: 90px;
-    text-decoration: none;
-}
+    .loader {
+        border: 30px $lightBlue solid;
+        border-radius: 10px;
+        display: block;
+        box-sizing: content-box;
+        padding: 10px;
+        position: fixed;
+        background-color: $lightBlue;
+        box-shadow: black;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+        height: 20%;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+        font-size: 11px;
+    }
 
-.exit-Load:hover {
-    text-align: center;
-    background-color: lightgray;
-    color: $primary-purple;
-}
+    .spinner {
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 80px;
+        height: 80px;
+        animation: spin 1s linear infinite;
+        left: 50%;
+        margin-left: -60px;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 
-.link-btn:hover {
-    color: rgb(75, 74, 74);
+    .link-btn:hover {
+        color: rgb(75, 74, 74);
+    }
+
+    .exit-Load {
+        position: relative;
+        display: block;
+        cursor: pointer;
+        border: 2px $primaryBlack solid;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px $primaryBlack solid;
+        color: white;
+        background-color: $lightPurple;
+        padding: 11px;
+        transition: all 0.2s;
+        transition-duration: 0.4s;
+        text-align: center;
+        width: 65%;
+        margin-top: 25px;
+        margin-left: 90px;
+        text-decoration: none;
+    }
+    
+    .exit-Load:hover {
+        text-align: center;
+        background-color: lightgray;
+        color: $primaryPurple;
+    }
 }

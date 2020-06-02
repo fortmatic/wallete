@@ -23,41 +23,24 @@ html {
     }
 }
 
-#bar {
-    width: 33%;
-    font-size: 15px;
-}
-
-#bar-1 {
-    border-right: 1px black solid;
-    width: 53%;
-    font-size: 15px;
-}
-
-#bar-2 {
-    border-left: 1px black solid;
-    width: 12%;
-    font-size: 15px;
-}
-
-.main-blue-box {
-    display: block;
-    border-radius: 10px;
-    border: 30px $light-blue solid;
-    background-color: $light-blue;
-    opacity: 0.7;
-    position: relative;
-    box-sizing: border-box;
-    width: 80%;
-    height: 100%;
-    margin-left: 55px;
-    margin-bottom: 1px;
-}
-
 .main {
     margin-left: 10%;
     margin-top: 70px;
     font-size: 12px;
+
+    .main-blue-box {
+        display: block;
+        border-radius: 10px;
+        border: 30px $lightBlue solid;
+        background-color: $lightBlue;
+        opacity: 0.7;
+        position: relative;
+        box-sizing: border-box;
+        width: 80%;
+        height: 100%;
+        margin-left: 55px;
+        margin-bottom: 1px;
+    }
 }
 
 input, textarea {
@@ -67,10 +50,10 @@ input, textarea {
     text-align: center;
     border-radius: 10px;
     display: block;
-    border: 2px $primary-black solid;
+    border: 2px $primaryBlack solid;
     padding: 13px 20px;
     width: 50%;
-    color: $primary-black;
+    color: $primaryBlack;
     margin-bottom: 10px;
     box-sizing: border-box;
     transition: all 0.2s;
@@ -98,10 +81,6 @@ th {
 
 canvas {
     border-radius: 50%;
-}
-
-.row-Input {
-    position: relative;
 }
 
 
