@@ -1,7 +1,4 @@
-$primary-purple: rgb(57, 50, 156);
-$hover-purple: rgb(95, 88, 190);
-$primary-black: #282c34;
-$font-style: 'Courier New', Courier, monospace;
+@import '../../master';
 
 #pending {
     font-family: $font-style;
