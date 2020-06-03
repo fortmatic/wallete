@@ -75,7 +75,7 @@ export default class Transactions extends Component {
         var pending = await index.contract.methods.getTransactions().call();
         var data = [];
 
-        for (let i = 0; i < pending.length; ++i) {
+        for (let i = pending.length - 1; i != -1; --i) {
             data.push({
                 id: pending[i].nonceTrans,
                 txHash: pending[i].txHash,

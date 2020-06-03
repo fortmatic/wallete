@@ -2,13 +2,45 @@
 import React, { Component } from 'react';
 
 // Blockies library
-import blockies from 'ethereum-blockies';
+import Blockies from 'react-blockies';
 
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
-import { Loader } from '../loader/loader.jsx';
+import { Loader, Buffer } from '../loader/loader.jsx';
+import DataTable from 'react-data-table-component';
+import Card from '@material-ui/core/Card';
+
+const dataTableStyle = {
+    rows: {
+        style: {
+            maxWidth: '970px', // override the row height
+            fontWeight: '700'
+        }
+    },
+
+    header: {
+        style: {
+            fontSize: '30px',
+            fontWeight: 700
+        }
+    },
+
+    headCells: {
+        style: {
+            fontSize: '20px',
+            fontWeight: 700
+        }
+    },
+
+    cells: {
+        style: {
+            fontSize: '20px',
+            fontWeight: 700
+        }
+    }
+}
 
 export default class SignAndAdd extends Component {
     state = {
@@ -17,7 +49,8 @@ export default class SignAndAdd extends Component {
         loading: false,
         hash: "",
         addedAddress: "",
-        errorMsg: ""
+        errorMsg: "",
+        data: []
     };
 
     constructor() {
@@ -30,8 +63,44 @@ export default class SignAndAdd extends Component {
     }
 
     async componentDidMount() {
-        await this.getWhitelist();
+        var pending = await index.contract.methods.getWhitelistAdd().call();
+        var data = [];
+
+        for (let i = pending.length - 1; i != -1; --i) {
+            var name = pending[i].email;
+            var address = pending[i].whiteAdd;
+            var icon = <Blockies
+                seed={address}
+                size={6}>
+                </Blockies>
+            data.push({
+                blockie: icon,
+                name: name,
+                address: address
+            });
+        }
+        this.setState({
+            data: data
+        });
     }
+
+    columns = [
+        {
+            name: "",
+            selector: "blockie",
+            sortable: false
+        },
+        {
+            name: 'Name',
+            selector: 'name',
+            sortable: true
+        },
+        {
+            name: 'Address',
+            selector: 'address',
+            sortable: true
+        },
+    ]
 
     handleCloseLoad = () => {
         this.setState({
@@ -57,21 +126,16 @@ export default class SignAndAdd extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="whitelist">
-                        <div className="whitelist-title">
-                            <h1 id="title"> Addresses on Whitelist</h1>
-                        </div>
                         <div>
-                            <table id="table">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th className="whitelist-Name">Name</th>
-                                        <th className="whitelist-Address">Address</th>
-                                    </tr>
-                                </thead>
-                                <tbody ref={this.myRef}>
-                                </tbody>
-                            </table>
+                            <Card>
+                                <DataTable 
+                                    title="Whitelist"
+                                    columns={this.columns}
+                                    data={this.state.data}
+                                    customStyles={dataTableStyle}
+                                    highlightOnHover
+                                />
+                            </Card>
                         </div>
                     </div>
                     <div className="add-to-whitelist">
@@ -101,31 +165,31 @@ export default class SignAndAdd extends Component {
         })
     }
 
-    getWhitelist = async () => {
-        var whitelist = await index.contract.methods.getWhitelistAdd().call();
+    // getWhitelist = async () => {
+    //     var whitelist = await index.contract.methods.getWhitelistAdd().call();
 
-        var table = this.myRef.current;
+    //     var table = this.myRef.current;
 
-        for (let i = 0; i < whitelist.length; i++) {
-            var row = table.insertRow(0);
+    //     for (let i = 0; i < whitelist.length; i++) {
+    //         var row = table.insertRow(0);
 
-            var icon = blockies.create({
-                seed: whitelist[i].whiteAdd,
-                size: 10
-            });
+    //         var icon = blockies.create({
+    //             seed: whitelist[i].whiteAdd,
+    //             size: 10
+    //         });
 
-            var logo = row.insertCell(0);
-            var name = row.insertCell(1);
-            var address = row.insertCell(2);
+    //         var logo = row.insertCell(0);
+    //         var name = row.insertCell(1);
+    //         var address = row.insertCell(2);
 
-            logo.appendChild(icon);
-            name.innerHTML = whitelist[i].email;
-            address.innerHTML = whitelist[i].whiteAdd;
+    //         logo.appendChild(icon);
+    //         name.innerHTML = whitelist[i].email;
+    //         address.innerHTML = whitelist[i].whiteAdd;
 
-            name.setAttribute("class", "whitelist-Name");
-            address.setAttribute("class", "whitelist-Address");
-        }
-    }
+    //         name.setAttribute("class", "whitelist-Name");
+    //         address.setAttribute("class", "whitelist-Address");
+    //     }
+    // }
 
     addToWhiteList = async () => {
         this.setState({ loading: true });
