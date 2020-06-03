@@ -61,7 +61,8 @@ export default class Assets extends Component {
         {
             name: 'Assets',
             selector: 'currency',
-            sortable: false
+            sortable: false,
+            width: "350px"
         },
         {
             name: 'Balance',

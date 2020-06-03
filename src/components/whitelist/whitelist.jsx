@@ -167,32 +167,6 @@ export default class SignAndAdd extends Component {
         })
     }
 
-    // getWhitelist = async () => {
-    //     var whitelist = await index.contract.methods.getWhitelistAdd().call();
-
-    //     var table = this.myRef.current;
-
-    //     for (let i = 0; i < whitelist.length; i++) {
-    //         var row = table.insertRow(0);
-
-    //         var icon = blockies.create({
-    //             seed: whitelist[i].whiteAdd,
-    //             size: 10
-    //         });
-
-    //         var logo = row.insertCell(0);
-    //         var name = row.insertCell(1);
-    //         var address = row.insertCell(2);
-
-    //         logo.appendChild(icon);
-    //         name.innerHTML = whitelist[i].email;
-    //         address.innerHTML = whitelist[i].whiteAdd;
-
-    //         name.setAttribute("class", "whitelist-Name");
-    //         address.setAttribute("class", "whitelist-Address");
-    //     }
-    // }
-
     addToWhiteList = async () => {
         this.setState({ loading: true });
 
