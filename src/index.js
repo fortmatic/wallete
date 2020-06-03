@@ -13,6 +13,7 @@ import Web3 from 'web3';
 // Main React Components
 import App from './containers/app.jsx';
 import { Login } from './containers/login/login.jsx';
+import { Buffer } from "./components/loader/loader.jsx";
 
 export const web3 = new Web3(constants.magic.rpcProvider);
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
@@ -20,13 +21,15 @@ contract.options.address = constants.contractAddress;
 
 class Main extends React.Component {
     state = {
-        isLoggedIn: false
+        isLoggedIn: false,
+        isLoading: true
     };
 
     async componentDidMount() {
         const loginStatus = (await constants.magic.user.isLoggedIn());
         this.setState({
-            isLoggedIn: loginStatus
+            isLoggedIn: loginStatus,
+            isLoading: false
         });
     }
 
@@ -36,11 +39,15 @@ class Main extends React.Component {
 
     render() {
         return (
-            (this.state.isLoggedIn) ? (
-                <App changeStatus={this.handleLoginStatus} />
+            (this.state.isLoading) ? (
+                <Buffer />
             ) : (
+                (this.state.isLoggedIn) ? (
+                    <App changeStatus={this.handleLoginStatus} />
+                ) : (
                     <Login changeStatus={this.handleLoginStatus} />
                 )
+            )
         );
     }
 }
