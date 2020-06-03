@@ -2,7 +2,7 @@ import React from 'react';
 import './loader.scss';
 
 
-export default class Loader extends React.Component {
+export class Loader extends React.Component {
     
     render() {
         // On failure

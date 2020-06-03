@@ -101,7 +101,6 @@ export class Top extends Component {
                 </a>
                 <div className="profile-Box" ref={this.container}>
                     <p className= "icon-display">{this.state.icon} {this.state.userAddress} 
-                        {/* <a className = "user-display" href="!#">{this.state.userAddress}</a> */}
                         </p>
                 
                     <div>
