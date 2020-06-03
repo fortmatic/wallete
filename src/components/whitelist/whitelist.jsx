@@ -8,7 +8,7 @@ import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
-import { Loader, Buffer } from '../loader/loader.jsx';
+import { Loader } from '../loader/loader.jsx';
 import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
 
@@ -66,7 +66,7 @@ export default class SignAndAdd extends Component {
         var pending = await index.contract.methods.getWhitelistAdd().call();
         var data = [];
 
-        for (let i = pending.length - 1; i != -1; --i) {
+        for (let i = pending.length - 1; i !== -1; --i) {
             var name = pending[i].email;
             var address = pending[i].whiteAdd;
             var icon = <Blockies
