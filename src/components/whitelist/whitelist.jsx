@@ -71,7 +71,8 @@ export default class SignAndAdd extends Component {
             var address = pending[i].whiteAdd;
             var icon = <Blockies
                 seed={address}
-                size={6}>
+                size={6}
+                scale ={6}>
                 </Blockies>
             data.push({
                 blockie: icon,
@@ -88,12 +89,14 @@ export default class SignAndAdd extends Component {
         {
             name: "",
             selector: "blockie",
-            sortable: false
+            sortable: false,
+            width: "70px"
         },
         {
             name: 'Name',
             selector: 'name',
-            sortable: true
+            sortable: true,
+            width: "350px"
         },
         {
             name: 'Address',
@@ -133,7 +136,6 @@ export default class SignAndAdd extends Component {
                                     columns={this.columns}
                                     data={this.state.data}
                                     customStyles={dataTableStyle}
-                                    highlightOnHover
                                 />
                             </Card>
                         </div>
