@@ -71,11 +71,11 @@ export default class Transactions extends Component {
         this.handleAddress = this.handleAddress.bind(this);
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         var pending = await index.contract.methods.getTransactions().call();
         var data = [];
 
-        for (let i = pending.length - 1; i != -1; --i) {
+        for (let i = pending.length - 1; i !== -1; --i) {
             data.push({
                 id: pending[i].nonceTrans,
                 txHash: pending[i].txHash,
