@@ -8,7 +8,7 @@ import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
-import Loader from '../loader/loader.jsx';
+import { Loader } from '../loader/loader.jsx';
 
 export default class SignAndAdd extends Component {
     state = {
