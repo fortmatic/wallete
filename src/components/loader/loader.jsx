@@ -2,7 +2,7 @@ import React from 'react';
 import './loader.scss';
 
 
-export default class Loader extends React.Component {
+export class Loader extends React.Component {
     
     render() {
         // On failure
@@ -83,6 +83,19 @@ export default class Loader extends React.Component {
             <div id="floater">
                 <div className="loader">
                     <h2>Transacting on Blockchain</h2>
+                    <div className="spinner"></div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export class Buffer extends React.Component {
+    render() {
+        return (
+            <div id="floater">
+                <div className="loader">
+                    <h2>Setting Up Wallette...</h2>
                     <div className="spinner"></div>
                 </div>
             </div>

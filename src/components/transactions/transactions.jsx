@@ -9,7 +9,7 @@ import './transactions.scss';
 import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
 
-import Loader from '../loader/loader.jsx';
+import { Loader } from '../loader/loader.jsx';
 
 const dataTableStyle = {
     rows: {
