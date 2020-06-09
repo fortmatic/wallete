@@ -13,10 +13,10 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    left: 50%;
+    left: 39%;
     margin-left: -570px;
     z-index: 50;
-    width: 75%;
+    width: 100%;
     align-items: center;
 
     #nav {
@@ -43,6 +43,7 @@
             color: black;
             border-radius: 10px;
             background-color: transparent;
+
         }
     
         a:hover {
@@ -59,3 +60,42 @@
     }
 }
 
+@media screen and (max-width: 980px){
+    #sidebar {
+        width: 50%;
+        margin-left: -230px;
+    }
+
+    #nav a {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 1300px){
+    #sidebar {
+        left: 45%;
+    }
+
+    #nav a {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    #sidebar {
+        left: 50%;
+    }
+
+    #nav a {
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #sidebar{
+        left: 58%;
+    }
+    #nav a {
+        width: 200px;
+    }
+}

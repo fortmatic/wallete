@@ -72,7 +72,7 @@
         cursor: pointer;
         border: 2px $primaryBlack solid;
         border-radius: 10px;
-        left: 81%;
+        float: right;
         top: -12%;
         width: 150px;
         font-size: 15px;
@@ -85,6 +85,7 @@
         transition-duration: 0.4s;
         text-align: center;
         text-decoration: none;
+        margin-right: 20px;
     }
     
     .start-btn:hover {
