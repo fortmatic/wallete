@@ -40,6 +40,11 @@ html {
         height: 100%;
         margin-left: 55px;
         margin-bottom: 1px;
+        padding-bottom: 40px;
+
+        @media screen and (max-width: 700px){
+            margin-left: 10px;
+        }
     }
 }
 

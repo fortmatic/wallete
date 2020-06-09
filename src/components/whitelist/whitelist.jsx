@@ -147,7 +147,7 @@ export default class SignAndAdd extends Component {
                         <input className="name" type="text" placeholder="Account Name"
                             value={this.state.name} onChange={this.handleName} />
                         <p className="connected" id="status"></p>
-                        <a className="add-btn" onClick={this.addToWhiteList} href="!#" >Add Address</a>
+                        <button className="add-btn" onClick={this.addToWhiteList} href="!#" >Add Address</button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 @import '../../master';
 
 .whitelist-title {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: $fontStyle;
     color: black;
     box-sizing: content-box;
     font-size: 15px;
@@ -80,9 +80,10 @@
         cursor: pointer;
         border: 2px $primaryBlack solid;
         border-radius: 10px;
-        left: 83%;
+        // left: 83%;
         top: -12%;
-        width: 120px;
+        width: 140px;
+        margin-right: 20px;
         font-size: 15px;
         font-weight: 700;
         border: 2px $primaryBlack solid;
@@ -93,6 +94,8 @@
         transition-duration: 0.4s;
         text-align: center;
         text-decoration: none;
+        font-family: $fontStyle;
+        float: right;
     }
 
     .add-btn:hover {

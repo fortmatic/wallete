@@ -5,6 +5,7 @@ import './assets.css';
 
 import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
+import { styled } from '@material-ui/core';
 
 const dataTableStyle = {
     rows: {
@@ -39,7 +40,7 @@ const dataTableStyle = {
 export default class Assets extends Component {
     state = {
         contractAddress: "",
-        data: []
+        data: [],
     }
 
     async componentDidMount() {
@@ -61,13 +62,12 @@ export default class Assets extends Component {
         {
             name: 'Assets',
             selector: 'currency',
-            sortable: false,
-            width: "350px"
+            width: "350px",
         },
         {
             name: 'Balance',
-            selector: 'amt',
-            sortable: false
+            selector: 'amt'
+
         }
     ]
 
