@@ -1,26 +1,53 @@
 @import '../../master';
 
 .whitelist-title {
-    font-family: $fontStyle;
-    color: black;
-    box-sizing: content-box;
-    font-size: 15px;
-    width: 80%;
-    margin-left: 100px;
+    font-size: 30px;
+}
+
+.whitelist-Blockie {
+    width: 6%;
     text-align: center;
-    border-bottom: 5px black solid;
 }
 
 .whitelist-Name {
     width: 40%;
     font-size: 20px;
-    font-weight: 700;
 }
 
 .whitelist-Address {
     font-size: 20px;
-    font-weight: 700;
     margin: 0 10.5em;
+}
+
+.whitelist-table {
+    background-color: #FFFFFF;
+    border-right: white;
+    border-left: white;
+    border-collapse: collapse;
+    font-weight: normal;
+    border-radius: 9px;
+    width: 970px;
+}
+
+.whitelist-table th {
+    background-color: white;
+    border-left: white;
+    border-right: white;
+    border-collapse: collapse;
+    height: 47px;
+    font-weight: bold;
+    border-radius: 9px;
+}
+
+.whitelist-table, .whitelist-table td {
+    background-color: #FFFFFF;
+    border-right: white;
+    border-left: white;
+    border-collapse: collapse;
+    height: 47px;
+    font-weight: normal;
+    border-radius: 9px;
+    width: 970px;
 }
 
 .add-to-whitelist {

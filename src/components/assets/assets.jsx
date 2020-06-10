@@ -4,84 +4,41 @@ import * as index from '../../index.js';
 import './assets.css';
 
 import DataTable from 'react-data-table-component';
-import Card from '@material-ui/core/Card';
-import { styled } from '@material-ui/core';
 
-const dataTableStyle = {
-    rows: {
-        style: {
-            maxWidth: '970px', // override the row height
-            fontWeight: '700'
-        }
-    },
-
-    header: {
-        style: {
-            fontSize: '25px',
-            fontWeight: 700
-        }
-    },
-
-    headCells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
-
-    cells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    }
-}
 
 export default class Assets extends Component {
     state = {
         contractAddress: "",
-        data: [],
+        eth: ""
     }
 
     async componentDidMount() {
         this.setState({
             contractAddress: index.contract.options.address
         })
-        const balance = await index.contract.methods.contractBalance().call() / Math.pow(10, 18) + " Eth";
-        var data = [];
-        data.push({
-            currency: "Ether",
-            amt: balance
-        });
+        const balance = await index.contract.methods.contractBalance().call() / Math.pow(10, 18);
         this.setState({
-            data: data
+            eth: balance
         });
     }
-
-    columns = [
-        {
-            name: 'Assets',
-            selector: 'currency',
-            width: "350px",
-        },
-        {
-            name: 'Balance',
-            selector: 'amt'
-
-        }
-    ]
 
     render() {
         return (
             <div className="main">
                 <div className="main-blue-box">
-                    <Card>
-                         <DataTable
-                            title={"On Contract " + this.state.contractAddress}
-                            columns={this.columns}
-                            data={this.state.data}
-                            customStyles={dataTableStyle} />
-                    </Card>
+                    <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
+                    <table className="table">
+                        <tbody>
+                            <tr>
+                                <th className="assets">Assets</th>
+                                <th className="balance">Balance</th>
+                            </tr>
+                            <tr>
+                                <td className="assets">Ether</td>
+                                <td className="balance">{this.state.eth + " Eth"}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );
