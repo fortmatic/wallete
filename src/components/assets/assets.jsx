@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import * as index from '../../index.js';
-import './assets.css';
-
-import DataTable from 'react-data-table-component';
-
+import './assets.scss';
 
 export default class Assets extends Component {
     state = {
@@ -26,7 +23,7 @@ export default class Assets extends Component {
         return (
             <div className="main">
                 <div className="main-blue-box">
-                    <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
+                <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
                     <table className="table">
                         <tbody>
                             <tr>

@@ -19,6 +19,37 @@
     margin: 0 10.5em;
 }
 
+@media screen and (max-width: 990px) {
+    .whitelist-Name {
+        font-size: 15px;
+    }
+    
+    .whitelist-Address {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .whitelist-Name {
+        font-size: 12px;
+    }
+    
+    .whitelist-Address {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .whitelist-Name {
+        font-size: 8px;
+    }
+    
+    .whitelist-Address {
+        font-size: 8px;
+    }
+}
+
+
 .whitelist-table {
     background-color: #FFFFFF;
     border-right: white;
@@ -26,29 +57,32 @@
     border-collapse: collapse;
     font-weight: normal;
     border-radius: 9px;
-    width: 970px;
+    width: fit-content;
+
+    th {
+        background-color: white;
+        border-left: white;
+        border-right: white;
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: bold;
+        border-radius: 9px;
+    }
+
+    td {
+        background-color: #FFFFFF;
+        border-right: white;
+        border-left: white;
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: normal;
+        border-radius: 9px;
+        width: 970px;
+    }
+
 }
 
-.whitelist-table th {
-    background-color: white;
-    border-left: white;
-    border-right: white;
-    border-collapse: collapse;
-    height: 47px;
-    font-weight: bold;
-    border-radius: 9px;
-}
 
-.whitelist-table, .whitelist-table td {
-    background-color: #FFFFFF;
-    border-right: white;
-    border-left: white;
-    border-collapse: collapse;
-    height: 47px;
-    font-weight: normal;
-    border-radius: 9px;
-    width: 970px;
-}
 
 .add-to-whitelist {
     position: relative;
