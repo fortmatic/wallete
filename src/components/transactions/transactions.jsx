@@ -15,7 +15,7 @@ const dataTableStyle = {
     rows: {
         style: {
             maxWidth: '970px', // override the row height
-            fontWeight: '700'
+            fontWeight: 700
         }
     },
 

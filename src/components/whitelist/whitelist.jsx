@@ -9,38 +9,6 @@ import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
 import { Loader } from '../loader/loader.jsx';
-import DataTable from 'react-data-table-component';
-import Card from '@material-ui/core/Card';
-
-const dataTableStyle = {
-    rows: {
-        style: {
-            maxWidth: '970px', // override the row height
-            fontWeight: '700'
-        }
-    },
-
-    header: {
-        style: {
-            fontSize: '30px',
-            fontWeight: 700
-        }
-    },
-
-    headCells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
-
-    cells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    }
-}
 
 export default class SignAndAdd extends Component {
     state = {
@@ -85,26 +53,6 @@ export default class SignAndAdd extends Component {
         });
     }
 
-    columns = [
-        {
-            name: "",
-            selector: "blockie",
-            sortable: false,
-            width: "70px"
-        },
-        {
-            name: 'Name',
-            selector: 'name',
-            sortable: true,
-            width: "350px"
-        },
-        {
-            name: 'Address',
-            selector: 'address',
-            sortable: true
-        },
-    ]
-
     handleCloseLoad = () => {
         this.setState({
             loading: false,
@@ -115,6 +63,19 @@ export default class SignAndAdd extends Component {
             loadTitle: ""
         });
     }
+
+    renderTableData() {
+        return this.state.data.map((row) => {
+            const {blockie, name, address } = row;
+           return (
+              <tr>
+                 <td className="whitelist-Blockie">{blockie}</td>
+                 <td className="whitelist-Name">{name}</td>
+                 <td className="whitelist-Address">{address}</td>
+              </tr>
+           );
+        });
+     }
 
     render() {
         return (
@@ -129,16 +90,17 @@ export default class SignAndAdd extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="whitelist">
-                        <div>
-                            <Card>
-                                <DataTable 
-                                    title="Whitelist"
-                                    columns={this.columns}
-                                    data={this.state.data}
-                                    customStyles={dataTableStyle}
-                                />
-                            </Card>
-                        </div>
+                        <h1 className="whitelist-title">Whitelist</h1>
+                        <table className="whitelist-table">
+                            <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th className="whitelist-Name">Name</th>
+                                    <th className="whitelist-Address">Address</th>
+                                </tr>
+                                {this.renderTableData()}
+                            </tbody>
+                        </table>
                     </div>
                     <div className="add-to-whitelist">
                         <h1 className = "address-box">Add New Address to Whitelist</h1>
