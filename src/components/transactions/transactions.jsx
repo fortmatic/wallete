@@ -49,6 +49,26 @@ const dataTableStyle = {
     }
 }
 
+class txRow extends Component {
+    state = {
+        isExpanded: false
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="txnRow">
+                <div className="txnHeader" onClick={() => (setState({ isExpanded: !isExpanded }))}></div>
+                {fromAddress + toAddress + amount}
+                {this.state.isExpanded && <div className="txnDetails"></div>}
+            </div>
+        );
+    }
+}
+
 export default class Transactions extends Component {
     state = {
         exchangeAmt: "",
@@ -139,6 +159,21 @@ export default class Transactions extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="pending">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Tx Hash</th>
+                                    <th>To</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                                {this.state.pending.map(tx => {
+                                    return (<txRow from={tx.from} />)
+                                })}
+
+                            </tbody>
+                        </table>
+
                         <Card>
                             <DataTable
                                 title="Transactions"
@@ -152,7 +187,7 @@ export default class Transactions extends Component {
                         </Card>
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
-                    <div className = "start-trans">
+                    <div className="start-trans">
                         <input type="text" className="address" placeholder="Send to Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
@@ -189,7 +224,7 @@ export default class Transactions extends Component {
                     <p>Transaction Hash: {pending[index].txHash}</p>
                     <p>From: {pending[index].from}</p>
                     <p>To: {pending[index].to}</p>
-                    <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
+                    <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
                     <p id="status">Tx has been sent</p>
                 </div>
             );
@@ -201,10 +236,10 @@ export default class Transactions extends Component {
                 <p>From: {pending[index].from}</p>
                 <p>To: {pending[index].to}</p>
                 <p>Number of Signatures: {pending[index].numSigs}/{pending[index].threshold}</p>
-                <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
+                <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
                 <br></br>
                 <br></br>
-                <button onClick={() => this.signContract(index)} className = "sign-btn">Sign Transaction</button>
+                <button onClick={() => this.signContract(index)} className="sign-btn">Sign Transaction</button>
                 <p id="status"></p>
             </div>
         );
