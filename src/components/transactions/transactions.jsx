@@ -65,8 +65,8 @@ class TxRow extends Component {
             <div className="txnRow">
                 <div className="txnHeader" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
                     <tr>
-                        <th>{this.props.data.txHash}</th>
-                        <th>{this.props.data.to}</th>
+                        <th>{this.props.data.txHash.substring(0, 15) + "..."}</th>
+                        <th>{this.props.data.to.substring(0,15) + "..."}</th>
                         <th>{this.props.data.amount / Math.pow(10, 18)} Eth</th>
                         {(this.props.data.complete) ? 'Done' : "Pending"}
                     </tr>
@@ -183,6 +183,7 @@ export default class Transactions extends Component {
                 <div className="main-blue-box">
                     <div id="pending">
                         <table>
+                        <h1 className="transaction-title">Transactions</h1>
                             <tbody>
                                 <tr>
                                     <th>Tx Hash</th>
@@ -197,7 +198,7 @@ export default class Transactions extends Component {
                             </tbody>
                         </table>
 
-                        {/* <Card>
+                        <Card>
                             <DataTable
                                 title="Transactions"
                                 columns={this.columns}
@@ -207,7 +208,7 @@ export default class Transactions extends Component {
                                 highlightOnHover
                                 expandableRows
                                 expandableRowsComponent={<this.composition />} />
-                        </Card> */}
+                        </Card>
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
                     <div className="start-trans">
