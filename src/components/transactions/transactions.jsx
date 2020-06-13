@@ -49,21 +49,44 @@ const dataTableStyle = {
     }
 }
 
-class txRow extends Component {
-    state = {
-        isExpanded: false
-    }
-
+class TxRow extends Component {
     constructor(props) {
         super(props);
     }
 
+    state = {
+        isExpanded: false
+    }
+
     render() {
+        console.log("Rendering things");
+
         return (
             <div className="txnRow">
-                <div className="txnHeader" onClick={() => (setState({ isExpanded: !isExpanded }))}></div>
-                {fromAddress + toAddress + amount}
-                {this.state.isExpanded && <div className="txnDetails"></div>}
+                <div className="txnHeader" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+                    <tr>
+                        <th>{this.props.data.txHash}</th>
+                        <th>{this.props.data.to}</th>
+                        <th>{this.props.data.amount / Math.pow(10, 18)} Eth</th>
+                        {(this.props.data.complete) ? 'Done' : "Pending"}
+                    </tr>
+                </div>
+                {this.state.isExpanded &&
+                    <div className="compostion">
+                        <p>Transaction Hash: {this.props.data.txHash}</p>
+                        <p>From: {this.props.data.from}</p>
+                        <p>To: {this.props.data.to}</p>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        {(this.props.data.complete) ?
+                            <p id="status">Tx has been sent</p> :
+                            <div>
+                                <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
+                                <br></br>
+                                <br></br>
+                                <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
+                                <p id="status"></p>
+                            </div>}
+                    </div>}
             </div>
         );
     }
@@ -167,14 +190,14 @@ export default class Transactions extends Component {
                                     <th>Amount</th>
                                     <th>Status</th>
                                 </tr>
-                                {this.state.pending.map(tx => {
-                                    return (<txRow from={tx.from} />)
+                                {this.state.pending.map((tx, index) => {
+                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
                                 })}
 
                             </tbody>
                         </table>
 
-                        <Card>
+                        {/* <Card>
                             <DataTable
                                 title="Transactions"
                                 columns={this.columns}
@@ -184,7 +207,7 @@ export default class Transactions extends Component {
                                 highlightOnHover
                                 expandableRows
                                 expandableRowsComponent={<this.composition />} />
-                        </Card>
+                        </Card> */}
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
                     <div className="start-trans">
