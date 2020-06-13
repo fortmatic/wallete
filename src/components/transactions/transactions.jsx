@@ -6,48 +6,9 @@ import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './transactions.scss';
 // Libraries for table
-import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
 
 import { Loader } from '../loader/loader.jsx';
-
-const dataTableStyle = {
-    rows: {
-        style: {
-            maxWidth: '970px', // override the row height
-            fontWeight: 700
-        }
-    },
-
-    header: {
-        style: {
-            fontSize: '30px',
-            fontWeight: 700
-        }
-    },
-
-    headCells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
-
-    cells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
-
-    expanderRow: {
-        style: {
-            fontSize: '15px',
-            fontWeight: 700,
-            paddingLeft: '65px'
-        }
-    }
-}
 
 class TxRow extends Component {
     constructor(props) {
@@ -66,7 +27,7 @@ class TxRow extends Component {
                 <div className="txnHeader" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
                     <tr>
                         <th>{this.props.data.txHash.substring(0, 15) + "..."}</th>
-                        <th>{this.props.data.to.substring(0,15) + "..."}</th>
+                        <th>{this.props.data.to.substring(0, 15) + "..."}</th>
                         <th>{this.props.data.amount / Math.pow(10, 18)} Eth</th>
                         {(this.props.data.complete) ? 'Done' : "Pending"}
                     </tr>
@@ -115,44 +76,9 @@ export default class Transactions extends Component {
     }
 
     async componentDidMount() {
-        var pending = await index.contract.methods.getTransactions().call();
-        var data = [];
-
-        for (let i = pending.length - 1; i !== -1; --i) {
-            data.push({
-                id: pending[i].nonceTrans,
-                txHash: pending[i].txHash,
-                to: pending[i].to,
-                amt: pending[i].amount / Math.pow(10, 18) + " Eth",
-                status: (pending[i].complete) ? 'Done' : "Pending"
-            });
-        }
-
-        this.setState({ data: data, pending: pending });
+        const pending = await index.contract.methods.getTransactions().call();
+        this.setState({ pending: pending });
     }
-
-    columns = [
-        {
-            name: 'Tx hash',
-            selector: 'txHash',
-            sortable: false
-        },
-        {
-            name: 'To',
-            selector: 'to',
-            sortable: true
-        },
-        {
-            name: 'Amount',
-            selector: 'amt',
-            sortable: true
-        },
-        {
-            name: 'Status',
-            selector: 'status',
-            sortable: false
-        }
-    ]
 
     handleCloseLoad = () => {
         this.setState({
@@ -182,32 +108,22 @@ export default class Transactions extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="pending">
-                        <table>
-                        <h1 className="transaction-title">Transactions</h1>
-                            <tbody>
-                                <tr>
-                                    <th>Tx Hash</th>
-                                    <th>To</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                                {this.state.pending.map((tx, index) => {
-                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
-                                })}
-
-                            </tbody>
-                        </table>
-
                         <Card>
-                            <DataTable
-                                title="Transactions"
-                                columns={this.columns}
-                                data={this.state.data}
-                                expandOnRowClicked
-                                customStyles={dataTableStyle}
-                                highlightOnHover
-                                expandableRows
-                                expandableRowsComponent={<this.composition />} />
+                            <table>
+                                <h1 className="transaction-title">Transactions</h1>
+                                <tbody>
+                                    <tr>
+                                        <th>Tx Hash</th>
+                                        <th>To</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    {this.state.pending.map((tx, index) => {
+                                        return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                    })}
+
+                                </tbody>
+                            </table>
                         </Card>
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
@@ -235,38 +151,6 @@ export default class Transactions extends Component {
         this.setState({
             address: event.target.value
         })
-    }
-
-    composition = ({ data }) => {
-        var pending = this.state.pending;
-        const index = data.id;
-        const link = "https://rinkeby.etherscan.io/tx/" + pending[index].txHash;
-
-        if (pending[index].complete) {
-            return (
-                <div className="compostion">
-                    <p>Transaction Hash: {pending[index].txHash}</p>
-                    <p>From: {pending[index].from}</p>
-                    <p>To: {pending[index].to}</p>
-                    <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
-                    <p id="status">Tx has been sent</p>
-                </div>
-            );
-        }
-
-        return (
-            <div className="compostion">
-                <p>Transaction Hash: {pending[index].txHash}</p>
-                <p>From: {pending[index].from}</p>
-                <p>To: {pending[index].to}</p>
-                <p>Number of Signatures: {pending[index].numSigs}/{pending[index].threshold}</p>
-                <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
-                <br></br>
-                <br></br>
-                <button onClick={() => this.signContract(index)} className="sign-btn">Sign Transaction</button>
-                <p id="status"></p>
-            </div>
-        );
     }
 
     startTransaction = async () => {
