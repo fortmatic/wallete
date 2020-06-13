@@ -24,6 +24,83 @@
     border-bottom: 5px black solid;
 }
 
+.transaction-title {
+    font-size: 30px;
+}
+
+@media screen and (max-width: 990px) {
+    .transaction-row {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .transaction-row {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .transaction-row {
+        font-size: 8px;
+    }
+}
+
+
+
+.transaction-table {
+    background-color: #FFFFFF;
+    border-right: white;
+    border-left: white;
+    border-collapse: collapse;
+    font-weight: normal;
+    border-radius: 9px;
+    
+    .transaction-row {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .transaction-hash {
+        width: 40%;
+    }
+
+    .transaction-to {
+        width: 40%;
+    }
+
+    .transaction-amount {
+        width: 10%;
+    }
+
+    .transaction-status {
+        width: 10%;
+    }
+    
+    th {
+        background-color: white;
+        border-left: white;
+        border-right: white;
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: bold;
+        border-radius: 9px;
+    }
+    
+    td {
+        font-size: 20px;
+        background-color: #FFFFFF;
+        border-right: white;
+        border-left: white;
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: normal;
+        border-radius: 9px;
+        width: 970px;
+    }
+
+}
+
 .start-trans {
     .address {
         border-radius: 10px;
@@ -101,10 +178,12 @@
 }
 
 .composition {
+    position: relative;
+    bottom: 0;
     display: block;
     box-sizing: content-box;
     background-color: red;
-    padding-left: 30px;
+    //padding-left: 30px;
 
     .link-btn:hover {
         color: rgb(75, 74, 74);

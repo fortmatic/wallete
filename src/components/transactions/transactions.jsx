@@ -20,18 +20,15 @@ class TxRow extends Component {
     }
 
     render() {
-        console.log("Rendering things");
-
         return (
-            <div className="txnRow">
-                <div className="txnHeader" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
-                    <tr>
-                        <th>{this.props.data.txHash.substring(0, 15) + "..."}</th>
-                        <th>{this.props.data.to.substring(0, 15) + "..."}</th>
-                        <th>{this.props.data.amount / Math.pow(10, 18)} Eth</th>
-                        {(this.props.data.complete) ? 'Done' : "Pending"}
-                    </tr>
-                </div>
+            <tr className="transaction-row" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+                <td className="transaction-hash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
+                <td className="transaction-to">{this.props.data.to.substring(0, 15) + "..."}</td>
+                <td className="transaction-amount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
+                {(this.props.data.complete) ?
+                    <td className="transaction-status">Done</td>
+                    : <td className="transaction-status">Pending</td>}
+
                 {this.state.isExpanded &&
                     <div className="compostion">
                         <p>Transaction Hash: {this.props.data.txHash}</p>
@@ -42,13 +39,11 @@ class TxRow extends Component {
                             <p id="status">Tx has been sent</p> :
                             <div>
                                 <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
-                                <br></br>
-                                <br></br>
                                 <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
                                 <p id="status"></p>
                             </div>}
                     </div>}
-            </div>
+            </tr>
         );
     }
 }
@@ -108,15 +103,15 @@ export default class Transactions extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="pending">
+                        <h1 className="transaction-title">Transactions</h1>
                         <Card>
-                            <table>
-                                <h1 className="transaction-title">Transactions</h1>
+                            <table className="transaction-table">
                                 <tbody>
                                     <tr>
-                                        <th>Tx Hash</th>
-                                        <th>To</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
+                                        <th className="transaction-hash">Tx Hash</th>
+                                        <th className="transaction-to">To</th>
+                                        <th className="transaction-amount">Amount</th>
+                                        <th className="transaction-status">Status</th>
                                     </tr>
                                     {this.state.pending.map((tx, index) => {
                                         return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
