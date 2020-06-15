@@ -59,6 +59,7 @@
     .transaction-row {
         font-size: 20px;
         cursor: pointer;
+        border-top: 1px solid lightgrey;
     }
 
     tbody {
@@ -74,27 +75,23 @@
     }
     
     th {
-        background-color: white;
-        border-left: white;
-        border-right: white;
         border-collapse: collapse;
         height: 47px;
         font-weight: bold;
         border-radius: 9px;
+        border: none;
         flex: 1;
     }
     
     td {
         flex: 1;
         font-size: 20px;
-        background-color: #FFFFFF;
-        border-right: white;
-        border-left: white;
         border-collapse: collapse;
         height: 47px;
         font-weight: normal;
         border-radius: 9px;
         width: 970px;
+        border: none;
     }
     
     .composition {
@@ -103,7 +100,10 @@
         flex: auto;
         box-sizing: content-box;
         background-color: lightgray;
-        padding-left: 30px;
+        padding: 2%;
+        font-size: 15px;
+        font-weight: 700;
+        border: 1px solid $primaryPurple;
     }
 }
 
