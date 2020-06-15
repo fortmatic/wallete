@@ -9,7 +9,7 @@ import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
 import { Loader } from '../loader/loader.jsx';
-import { validateInputs } from './whitelistHelper';
+import validateInputs from './whitelistHelper';
 
 export default class SignAndAdd extends Component {
     state = {
