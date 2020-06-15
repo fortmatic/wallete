@@ -9,7 +9,7 @@ import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
 import { Loader } from '../loader/loader.jsx';
-import validateInputs from './whitelistHelper';
+import { validateInputs, getData } from './whitelistHelper.js';
 
 export default class SignAndAdd extends Component {
     state = {
@@ -32,23 +32,8 @@ export default class SignAndAdd extends Component {
     }
 
     async componentDidMount() {
-        var pending = await index.contract.methods.getWhitelistAdd().call();
-        var data = [];
+        const data = await getData();
 
-        for (let i = pending.length - 1; i !== -1; --i) {
-            var name = pending[i].email;
-            var address = pending[i].whiteAdd;
-            var icon = <Blockies
-                seed={address}
-                size={6}
-                scale ={6}>
-                </Blockies>
-            data.push({
-                blockie: icon,
-                name: name,
-                address: address
-            });
-        }
         this.setState({
             data: data
         });
@@ -67,16 +52,16 @@ export default class SignAndAdd extends Component {
 
     renderTableData() {
         return this.state.data.map((row) => {
-            const {blockie, name, address } = row;
-           return (
-              <tr>
-                 <td className="whitelist-Blockie">{blockie}</td>
-                 <td className="whitelist-Name">{name}</td>
-                 <td className="whitelist-Address">{address}</td>
-              </tr>
-           );
+            const { blockie, name, address } = row;
+            return (
+                <tr>
+                    <td className="whitelist-Blockie">{blockie}</td>
+                    <td className="whitelist-Name">{name}</td>
+                    <td className="whitelist-Address">{address}</td>
+                </tr>
+            );
         });
-     }
+    }
 
     render() {
         return (
@@ -104,7 +89,7 @@ export default class SignAndAdd extends Component {
                         </table>
                     </div>
                     <div className="add-to-whitelist">
-                        <h1 className = "address-box">Add New Address to Whitelist</h1>
+                        <h1 className="address-box">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
