@@ -9,6 +9,7 @@ import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
 import { Loader } from '../loader/loader.jsx';
+import validateInputs from './whitelistHelper';
 
 export default class SignAndAdd extends Component {
     state = {
@@ -136,12 +137,8 @@ export default class SignAndAdd extends Component {
         const address = this.state.address;
         const acctName = this.state.name;
 
-        try {
-            let message = "Invalid Inputs";
-            if (address === "" || acctName === "") throw message;
-        }
-        catch (err) {
-            console.log(err);
+        var err = validateInputs(address, acctName);
+        if (validateInputs(address, acctName) !== "") {
             this.setState({
                 loadTitle: "Unable to Add Address",
                 addedAddress: address,
