@@ -11,9 +11,6 @@ import Card from '@material-ui/core/Card';
 import { Loader } from '../loader/loader.jsx';
 
 class TxRow extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         isExpanded: false
@@ -107,7 +104,7 @@ export default class Transactions extends Component {
                         <Card>
                             <table className="transaction-table">
                                 <tbody>
-                                    <tr>
+                                    <tr className = "heading-row">
                                         <th className="transaction-hash">Tx Hash</th>
                                         <th className="transaction-to">To</th>
                                         <th className="transaction-amount">Amount</th>

@@ -24,29 +24,6 @@
     border-bottom: 5px black solid;
 }
 
-.transaction-title {
-    font-size: 30px;
-}
-
-@media screen and (max-width: 990px) {
-    .transaction-row {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 780px) {
-    .transaction-row {
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 680px) {
-    .transaction-row {
-        font-size: 8px;
-    }
-}
-
-
 
 .transaction-table {
     background-color: #FFFFFF;
@@ -65,33 +42,45 @@
     tbody {
         display: inline-block;
         width: 100%;
-    }
-    
-    tr {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    
-    th {
-        border-collapse: collapse;
-        height: 47px;
-        font-weight: bold;
-        border-radius: 9px;
-        border: none;
-        flex: 1;
-    }
-    
-    td {
-        flex: 1;
-        font-size: 20px;
-        border-collapse: collapse;
-        height: 47px;
-        font-weight: normal;
-        border-radius: 9px;
-        width: 970px;
-        border: none;
+
+        tr {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+
+            th {
+                border-collapse: collapse;
+                font-weight: bold;
+                border-radius: 9px;
+                border: none;
+                flex: 1;
+                padding: 15px;
+            }
+            
+            td {
+                flex: 1;
+                font-size: 20px;
+                border-collapse: collapse;
+                font-weight: normal;
+                border-radius: 9px;
+                width: 970px;
+                border: none;
+                padding: 13px;
+            }
+
+            .transaction-amount {
+                padding-left: 55px;
+            }
+        }
+        
+        tr:hover {
+            background-color: rgb(231, 230, 230);
+        }
+
+        .heading-row:hover {
+            background-color: #FFFFFF;
+        }
     }
     
     .composition {
@@ -99,11 +88,11 @@
         display: block;
         flex: auto;
         box-sizing: content-box;
-        background-color: lightgray;
+        background-color: #FFFFFF;
         padding: 2%;
         font-size: 15px;
         font-weight: 700;
-        border: 1px solid $primaryPurple;
+        border: 1px solid lightgray;
     }
 }
 
