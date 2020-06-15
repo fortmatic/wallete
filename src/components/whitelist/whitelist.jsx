@@ -122,8 +122,9 @@ export default class SignAndAdd extends Component {
         const address = this.state.address;
         const acctName = this.state.name;
 
-        var err = validateInputs(address, acctName);
-        if (validateInputs(address, acctName) !== "") {
+        try {
+            await validateInputs(address, acctName, userAddress);
+        } catch (err) {
             this.setState({
                 loadTitle: "Unable to Add Address",
                 addedAddress: address,
@@ -133,14 +134,6 @@ export default class SignAndAdd extends Component {
         }
 
         try {
-            const status = await index.contract.methods.addAddress(address, acctName).call({
-                from: userAddress
-            });
-
-            if (status !== "Added") {
-                throw status;
-            }
-
             await index.contract.methods.addAddress(address, acctName).send({
                 from: userAddress,
                 gas: 1500000,

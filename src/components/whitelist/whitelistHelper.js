@@ -1,18 +1,16 @@
 import React from 'react';
-    
+
 import Blockies from 'react-blockies';
 import * as index from '../../index.js';
 
-export let validateInputs = (address, acctName) => {
-    try {
-        let message = "Invalid Inputs";
-        if (address === "" || acctName === "") throw message;
-    }
-    catch (err) {
-        console.log(err);
-        return err;
-    }
-    return "";
+export let validateInputs = async (address, acctName, userAddress) => {
+    if (address === "" || acctName === "") throw "Invalid Inputs";
+
+    const status = await index.contract.methods.addAddress(address, acctName).call({
+        from: userAddress
+    });
+
+    if (status !== "Added") throw status;
 }
 
 export let getData = async () => {
@@ -35,4 +33,8 @@ export let getData = async () => {
     }
 
     return data;
+}
+
+export let addWhitelistUser = async (address, acctName) => {
+
 }
