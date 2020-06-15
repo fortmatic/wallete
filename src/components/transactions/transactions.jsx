@@ -30,7 +30,7 @@ class TxRow extends Component {
                     : <td className="transaction-status">Pending</td>}
 
                 {this.state.isExpanded &&
-                    <div className="compostion">
+                    <div className="composition">
                         <p>Transaction Hash: {this.props.data.txHash}</p>
                         <p>From: {this.props.data.from}</p>
                         <p>To: {this.props.data.to}</p>

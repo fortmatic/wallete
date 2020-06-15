@@ -72,9 +72,21 @@
     .transaction-amount {
         width: 10%;
     }
-
+    
     .transaction-status {
         width: 10%;
+    }
+
+    tbody {
+        display: inline-block;
+        width: 100%;
+    }
+    
+    tr {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
     }
     
     th {
@@ -85,9 +97,11 @@
         height: 47px;
         font-weight: bold;
         border-radius: 9px;
+        flex: 1;
     }
     
     td {
+        flex: 1;
         font-size: 20px;
         background-color: #FFFFFF;
         border-right: white;
@@ -98,7 +112,15 @@
         border-radius: 9px;
         width: 970px;
     }
-
+    
+    .composition {
+        width: 100%;
+        display: block;
+        flex: auto;
+        box-sizing: content-box;
+        background-color: lightgray;
+        padding-left: 30px;
+    }
 }
 
 .start-trans {
@@ -177,31 +199,6 @@
     }
 }
 
-.composition {
-    position: relative;
-    bottom: 0;
-    display: block;
-    box-sizing: content-box;
-    background-color: red;
-    //padding-left: 30px;
-
-    .link-btn:hover {
-        color: rgb(75, 74, 74);
-    }
-}
-
-a.composition {
-    background-color: $primaryPurple;;
-    color: white;
-    border-radius: 2px;
-    font-size: 10px;
-    font-weight: 3px;
-}
-
-a.composition:hover {
-    color: $primaryPurple;
-    background-color: lightgrey;
-}
 
 .sign-btn {
     display: block;
