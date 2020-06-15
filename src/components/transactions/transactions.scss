@@ -24,6 +24,89 @@
     border-bottom: 5px black solid;
 }
 
+.transaction-title {
+    font-size: 30px;
+}
+
+@media screen and (max-width: 990px) {
+    .transaction-row {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .transaction-row {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .transaction-row {
+        font-size: 8px;
+    }
+}
+
+
+
+.transaction-table {
+    background-color: #FFFFFF;
+    border-right: white;
+    border-left: white;
+    border-collapse: collapse;
+    font-weight: normal;
+    border-radius: 9px;
+    
+    .transaction-row {
+        font-size: 20px;
+        cursor: pointer;
+        border-top: 1px solid lightgrey;
+    }
+
+    tbody {
+        display: inline-block;
+        width: 100%;
+    }
+    
+    tr {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    
+    th {
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: bold;
+        border-radius: 9px;
+        border: none;
+        flex: 1;
+    }
+    
+    td {
+        flex: 1;
+        font-size: 20px;
+        border-collapse: collapse;
+        height: 47px;
+        font-weight: normal;
+        border-radius: 9px;
+        width: 970px;
+        border: none;
+    }
+    
+    .composition {
+        width: 100%;
+        display: block;
+        flex: auto;
+        box-sizing: content-box;
+        background-color: lightgray;
+        padding: 2%;
+        font-size: 15px;
+        font-weight: 700;
+        border: 1px solid $primaryPurple;
+    }
+}
+
 .start-trans {
     .address {
         border-radius: 10px;
@@ -100,29 +183,6 @@
     }
 }
 
-.composition {
-    display: block;
-    box-sizing: content-box;
-    background-color: red;
-    padding-left: 30px;
-
-    .link-btn:hover {
-        color: rgb(75, 74, 74);
-    }
-}
-
-a.composition {
-    background-color: $primaryPurple;;
-    color: white;
-    border-radius: 2px;
-    font-size: 10px;
-    font-weight: 3px;
-}
-
-a.composition:hover {
-    color: $primaryPurple;
-    background-color: lightgrey;
-}
 
 .sign-btn {
     display: block;

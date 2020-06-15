@@ -6,46 +6,45 @@ import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './transactions.scss';
 // Libraries for table
-import DataTable from 'react-data-table-component';
 import Card from '@material-ui/core/Card';
 
 import { Loader } from '../loader/loader.jsx';
 
-const dataTableStyle = {
-    rows: {
-        style: {
-            maxWidth: '970px', // override the row height
-            fontWeight: 700
-        }
-    },
+class TxRow extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    header: {
-        style: {
-            fontSize: '30px',
-            fontWeight: 700
-        }
-    },
+    state = {
+        isExpanded: false
+    }
 
-    headCells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
+    render() {
+        return (
+            <tr className="transaction-row" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+                <td className="transaction-hash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
+                <td className="transaction-to">{this.props.data.to.substring(0, 15) + "..."}</td>
+                <td className="transaction-amount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
+                {(this.props.data.complete) ?
+                    <td className="transaction-status">Done</td>
+                    : <td className="transaction-status">Pending</td>}
 
-    cells: {
-        style: {
-            fontSize: '20px',
-            fontWeight: 700
-        }
-    },
-
-    expanderRow: {
-        style: {
-            fontSize: '15px',
-            fontWeight: 700,
-            paddingLeft: '65px'
-        }
+                {this.state.isExpanded &&
+                    <div className="composition">
+                        <p>Transaction Hash: {this.props.data.txHash}</p>
+                        <p>From: {this.props.data.from}</p>
+                        <p>To: {this.props.data.to}</p>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        {(this.props.data.complete) ?
+                            <p id="status">Tx has been sent</p> :
+                            <div>
+                                <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
+                                <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
+                                <p id="status"></p>
+                            </div>}
+                    </div>}
+            </tr>
+        );
     }
 }
 
@@ -72,44 +71,9 @@ export default class Transactions extends Component {
     }
 
     async componentDidMount() {
-        var pending = await index.contract.methods.getTransactions().call();
-        var data = [];
-
-        for (let i = pending.length - 1; i !== -1; --i) {
-            data.push({
-                id: pending[i].nonceTrans,
-                txHash: pending[i].txHash,
-                to: pending[i].to,
-                amt: pending[i].amount / Math.pow(10, 18) + " Eth",
-                status: (pending[i].complete) ? 'Done' : "Pending"
-            });
-        }
-
-        this.setState({ data: data, pending: pending });
+        const pending = await index.contract.methods.getTransactions().call();
+        this.setState({ pending: pending });
     }
-
-    columns = [
-        {
-            name: 'Tx hash',
-            selector: 'txHash',
-            sortable: false
-        },
-        {
-            name: 'To',
-            selector: 'to',
-            sortable: true
-        },
-        {
-            name: 'Amount',
-            selector: 'amt',
-            sortable: true
-        },
-        {
-            name: 'Status',
-            selector: 'status',
-            sortable: false
-        }
-    ]
 
     handleCloseLoad = () => {
         this.setState({
@@ -139,20 +103,26 @@ export default class Transactions extends Component {
                 />}
                 <div className="main-blue-box">
                     <div id="pending">
+                        <h1 className="transaction-title">Transactions</h1>
                         <Card>
-                            <DataTable
-                                title="Transactions"
-                                columns={this.columns}
-                                data={this.state.data}
-                                expandOnRowClicked
-                                customStyles={dataTableStyle}
-                                highlightOnHover
-                                expandableRows
-                                expandableRowsComponent={<this.composition />} />
+                            <table className="transaction-table">
+                                <tbody>
+                                    <tr>
+                                        <th className="transaction-hash">Tx Hash</th>
+                                        <th className="transaction-to">To</th>
+                                        <th className="transaction-amount">Amount</th>
+                                        <th className="transaction-status">Status</th>
+                                    </tr>
+                                    {this.state.pending.map((tx, index) => {
+                                        return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                    })}
+
+                                </tbody>
+                            </table>
                         </Card>
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
-                    <div className = "start-trans">
+                    <div className="start-trans">
                         <input type="text" className="address" placeholder="Send to Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
@@ -176,38 +146,6 @@ export default class Transactions extends Component {
         this.setState({
             address: event.target.value
         })
-    }
-
-    composition = ({ data }) => {
-        var pending = this.state.pending;
-        const index = data.id;
-        const link = "https://rinkeby.etherscan.io/tx/" + pending[index].txHash;
-
-        if (pending[index].complete) {
-            return (
-                <div className="compostion">
-                    <p>Transaction Hash: {pending[index].txHash}</p>
-                    <p>From: {pending[index].from}</p>
-                    <p>To: {pending[index].to}</p>
-                    <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
-                    <p id="status">Tx has been sent</p>
-                </div>
-            );
-        }
-
-        return (
-            <div className="compostion">
-                <p>Transaction Hash: {pending[index].txHash}</p>
-                <p>From: {pending[index].from}</p>
-                <p>To: {pending[index].to}</p>
-                <p>Number of Signatures: {pending[index].numSigs}/{pending[index].threshold}</p>
-                <a href={link} className = "link-btn" target = "_blank" rel="noopener noreferrer">View on Etherscan</a>
-                <br></br>
-                <br></br>
-                <button onClick={() => this.signContract(index)} className = "sign-btn">Sign Transaction</button>
-                <p id="status"></p>
-            </div>
-        );
     }
 
     startTransaction = async () => {
