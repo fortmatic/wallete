@@ -34,7 +34,3 @@ export let getData = async () => {
 
     return data;
 }
-
-export let addWhitelistUser = async (address, acctName) => {
-
-}
