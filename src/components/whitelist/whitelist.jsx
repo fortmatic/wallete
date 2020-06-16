@@ -1,9 +1,6 @@
 // General React libraries
 import React, { Component } from 'react';
 
-// Blockies library
-import Blockies from 'react-blockies';
-
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.scss';

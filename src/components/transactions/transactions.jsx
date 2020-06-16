@@ -10,6 +10,8 @@ import Card from '@material-ui/core/Card';
 
 import { Loader } from '../loader/loader.jsx';
 
+import { startTxInputs, signContractInputs } from "./transactionsHelper.js";
+
 class TxRow extends Component {
 
     state = {
@@ -56,7 +58,6 @@ export default class Transactions extends Component {
         txLink: "",
         successType: "",
         msg: "",
-        data: [],
         pending: []
     }
 
@@ -104,7 +105,7 @@ export default class Transactions extends Component {
                         <Card>
                             <table className="transaction-table">
                                 <tbody>
-                                    <tr className = "heading-row">
+                                    <tr className="heading-row">
                                         <th className="transaction-hash">Tx Hash</th>
                                         <th className="transaction-to">To</th>
                                         <th className="transaction-amount">Amount</th>
@@ -154,11 +155,10 @@ export default class Transactions extends Component {
         const threshold = 3;
 
         try {
-            let message = "Invalid Inputs";
-            if (sendAddress === "" || amount === "") throw message;
+            await startTxInputs(userAddress, amount, sendAddress);
         }
         catch (err) {
-            console.log(err);
+            console.log(err)
             this.setState({
                 loadTitle: "Unable to start transaction",
                 errorMsg: err
@@ -166,22 +166,11 @@ export default class Transactions extends Component {
             return;
         }
 
-        console.log(amount);
         var txnHash;
 
         const transactAmt = index.web3.utils.toWei(amount, "ether");
-        console.log(transactAmt);
 
         try {
-            const status = await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).call({
-                from: userAddress,
-                value: transactAmt
-            });
-
-            if (status !== "Transaction Started") {
-                throw status;
-            }
-
             await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
                 from: userAddress,
                 gas: 1500000,
@@ -199,14 +188,13 @@ export default class Transactions extends Component {
                 gasPrice: '30000000000'
             });
         } catch (err) {
-            console.log("error caught");
-            console.log(err);
             this.setState({
                 loadTitle: "Unable to start transaction",
                 errorMsg: err
             });
             return;
         }
+
         const link = "https://rinkeby.etherscan.io/tx/" + txnHash;
 
         this.setState({
@@ -222,13 +210,7 @@ export default class Transactions extends Component {
         let msg = "";
 
         try {
-            const status = await index.contract.methods.signTransaction(i).call({
-                from: userAddress
-            });
-
-            if (status !== "Signed" && status !== "Transaction Completed") {
-                throw status;
-            }
+            await signContractInputs(userAddress, i);
 
             await index.contract.methods.signTransaction(i).send({
                 from: userAddress,
@@ -253,7 +235,7 @@ export default class Transactions extends Component {
 
         this.setState({
             successType: "sign",
-            hash: this.state.data[i].txHash,
+            hash: this.state.pending[i].txHash,
             msg: msg
         });
     }
