@@ -1,15 +1,12 @@
 // General React libraries
 import React, { Component } from 'react';
 
-// Blockies library
-import Blockies from 'react-blockies';
-
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './whitelist.scss';
 
 import { Loader } from '../loader/loader.jsx';
-import validateInputs from './whitelistHelper';
+import { validateInputs, getData } from './whitelistHelper.js';
 
 export default class SignAndAdd extends Component {
     state = {
@@ -32,23 +29,8 @@ export default class SignAndAdd extends Component {
     }
 
     async componentDidMount() {
-        var pending = await index.contract.methods.getWhitelistAdd().call();
-        var data = [];
+        const data = await getData();
 
-        for (let i = pending.length - 1; i !== -1; --i) {
-            var name = pending[i].email;
-            var address = pending[i].whiteAdd;
-            var icon = <Blockies
-                seed={address}
-                size={6}
-                scale ={6}>
-                </Blockies>
-            data.push({
-                blockie: icon,
-                name: name,
-                address: address
-            });
-        }
         this.setState({
             data: data
         });
@@ -66,17 +48,17 @@ export default class SignAndAdd extends Component {
     }
 
     renderTableData() {
-        return this.state.data.map((row) => {
-            const {blockie, name, address } = row;
-           return (
-              <tr>
-                 <td className="whitelist-Blockie">{blockie}</td>
-                 <td className="whitelist-Name">{name}</td>
-                 <td className="whitelist-Address">{address}</td>
-              </tr>
-           );
+        return this.state.data.map((row, index) => {
+            const { blockie, name, address } = row;
+            return (
+                <tr key={index}>
+                    <td className="whitelist-Blockie">{blockie}</td>
+                    <td className="whitelist-Name">{name}</td>
+                    <td className="whitelist-Address">{address}</td>
+                </tr>
+            );
         });
-     }
+    }
 
     render() {
         return (
@@ -104,7 +86,7 @@ export default class SignAndAdd extends Component {
                         </table>
                     </div>
                     <div className="add-to-whitelist">
-                        <h1 className = "address-box">Add New Address to Whitelist</h1>
+                        <h1 className="address-box">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
@@ -137,25 +119,18 @@ export default class SignAndAdd extends Component {
         const address = this.state.address;
         const acctName = this.state.name;
 
-        var err = validateInputs(address, acctName);
-        if (validateInputs(address, acctName) !== "") {
+        const tmp = await validateInputs(address, acctName, userAddress);
+
+        if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to Add Address",
                 addedAddress: address,
-                errorMsg: err
+                errorMsg: tmp
             });
             return;
         }
 
         try {
-            const status = await index.contract.methods.addAddress(address, acctName).call({
-                from: userAddress
-            });
-
-            if (status !== "Added") {
-                throw status;
-            }
-
             await index.contract.methods.addAddress(address, acctName).send({
                 from: userAddress,
                 gas: 1500000,
