@@ -48,10 +48,10 @@ export default class SignAndAdd extends Component {
     }
 
     renderTableData() {
-        return this.state.data.map((row) => {
+        return this.state.data.map((row, index) => {
             const { blockie, name, address } = row;
             return (
-                <tr>
+                <tr key={index}>
                     <td className="whitelist-Blockie">{blockie}</td>
                     <td className="whitelist-Name">{name}</td>
                     <td className="whitelist-Address">{address}</td>
@@ -119,13 +119,13 @@ export default class SignAndAdd extends Component {
         const address = this.state.address;
         const acctName = this.state.name;
 
-        try {
-            await validateInputs(address, acctName, userAddress);
-        } catch (err) {
+        const tmp = await validateInputs(address, acctName, userAddress);
+
+        if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to Add Address",
                 addedAddress: address,
-                errorMsg: err
+                errorMsg: tmp
             });
             return;
         }

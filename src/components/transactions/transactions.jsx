@@ -29,7 +29,7 @@ class TxRow extends Component {
                     : <td className="transaction-status">Pending</td>}
 
                 {this.state.isExpanded &&
-                    <div className="composition">
+                    <td className="composition">
                         <p>Transaction Hash: {this.props.data.txHash}</p>
                         <p>From: {this.props.data.from}</p>
                         <p>To: {this.props.data.to}</p>
@@ -41,7 +41,7 @@ class TxRow extends Component {
                                 <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
                                 <p id="status"></p>
                             </div>}
-                    </div>}
+                    </td>}
             </tr>
         );
     }
@@ -154,14 +154,11 @@ export default class Transactions extends Component {
         const sendAddress = this.state.address;
         const threshold = 3;
 
-        try {
-            await startTxInputs(userAddress, amount, sendAddress);
-        }
-        catch (err) {
-            console.log(err)
+        const tmp = await startTxInputs(userAddress, amount, sendAddress);
+        if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to start transaction",
-                errorMsg: err
+                errorMsg: tmp
             });
             return;
         }
@@ -209,9 +206,16 @@ export default class Transactions extends Component {
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         let msg = "";
 
-        try {
-            await signContractInputs(userAddress, i);
+        const tmp = await signContractInputs(userAddress, i);
+        if (tmp !== "") {
+            this.setState({
+                loadTitle: "Unable to sign transaction",
+                errorMsg: tmp
+            });
+            return;
+        }
 
+        try {
             await index.contract.methods.signTransaction(i).send({
                 from: userAddress,
                 gas: 1500000,

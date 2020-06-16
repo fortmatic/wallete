@@ -1,7 +1,8 @@
 import * as index from '../../index.js';
 
 export let startTxInputs = async (userAddress, amount, sendAddress) => {
-    if (sendAddress === "" || amount === "") throw "Invalid Inputs";
+    if (sendAddress === "" || amount === "")
+        return "Invalid Inputs";
 
     const threshold = 3;
     const transactAmt = index.web3.utils.toWei(amount, "ether");
@@ -11,7 +12,10 @@ export let startTxInputs = async (userAddress, amount, sendAddress) => {
         value: transactAmt
     });
 
-    if (status !== "Transaction Started") throw status;
+    if (status !== "Transaction Started")
+        return status;
+    
+    return "";
 }
 
 export let signContractInputs = async (userAddress, i) => {
@@ -19,5 +23,5 @@ export let signContractInputs = async (userAddress, i) => {
         from: userAddress
     });
 
-    if (status !== "Signed" && status !== "Transaction Completed") throw status;
+    if (status !== "Signed" && status !== "Transaction Completed") return status;
 }

@@ -4,13 +4,15 @@ import Blockies from 'react-blockies';
 import * as index from '../../index.js';
 
 export let validateInputs = async (address, acctName, userAddress) => {
-    if (address === "" || acctName === "") throw "Invalid Inputs";
+    if (address === "" || acctName === "") return "Invalid Inputs";
 
     const status = await index.contract.methods.addAddress(address, acctName).call({
         from: userAddress
     });
 
-    if (status !== "Added") throw status;
+    if (status !== "Added") return status;
+
+    return "";
 }
 
 export let getData = async () => {
