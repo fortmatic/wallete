@@ -12,15 +12,20 @@ export default class Sidebar extends Component {
     };
 
     render() {
+        const {
+            assetsActive,
+            whitelistActive,
+            txActive } = this.state;
+
         return (
             <div className="sidebar" id="sidebar">
                 <ul id="nav">
                     <div>
-                        <li id="Assets" className={this.state.assetsActive}>
+                        <li id="Assets" className={assetsActive}>
                             <a onClick={this.getAssets} href="!#">Assets</a></li>
-                        <li id="Whitelist" className={this.state.whitelistActive}>
+                        <li id="Whitelist" className={whitelistActive}>
                             <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                        <li id="Transactions" className={this.state.txActive}>
+                        <li id="Transactions" className={txActive}>
                             <a onClick={this.getTransactions} href="!#">Transactions</a></li>
                     </div>
                 </ul>
