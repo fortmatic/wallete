@@ -20,6 +20,8 @@ export default class Assets extends Component {
     }
 
     render() {
+        const { eth } = this.state;
+
         return (
             <div className="main">
                 <div className="main-blue-box">
@@ -32,7 +34,7 @@ export default class Assets extends Component {
                             </tr>
                             <tr>
                                 <td className="assets">Ether</td>
-                                <td className="balance">{this.state.eth + " Eth"}</td>
+                                <td className="balance">{eth + " Eth"}</td>
                             </tr>
                         </tbody>
                     </table>
