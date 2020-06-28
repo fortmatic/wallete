@@ -42,12 +42,12 @@ class Main extends React.Component {
             (this.state.isLoading) ? (
                 <Buffer />
             ) : (
-                (this.state.isLoggedIn) ? (
-                    <App changeStatus={this.handleLoginStatus} />
-                ) : (
-                    <Login changeStatus={this.handleLoginStatus} />
+                    (this.state.isLoggedIn) ? (
+                        <App changeStatus={this.handleLoginStatus} />
+                    ) : (
+                            <Login changeStatus={this.handleLoginStatus} />
+                        )
                 )
-            )
         );
     }
 }
