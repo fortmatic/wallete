@@ -5,63 +5,67 @@ import './loader.scss';
 export class Loader extends React.Component {
 
     render() {
+        const { errorMsg,
+            successType,
+            title,
+            addedAddress,
+            amount,
+            toAddress,
+            link,
+            msg,
+            hash } = this.props;
 
-
-        if (this.props.errorMsg === "" && this.props.successType === "") {
+        // When loading is occuring
+        if (errorMsg === "" && successType === "") {
             return (
                 <div id="floater">
                     <div className="loader">
                         <h2>Transacting on Blockchain</h2>
-                        {this.props.hash !== "" && <p >Hash is {this.props.hash}</p>}
+                        {hash !== "" && <p >Hash is {hash}</p>}
                         <div className="spinner"></div>
                     </div>
                 </div>
             );
         }
 
+        // When loading is completed and result is reached
         return (
             <div id="floater">
                 <div className="loader" >
-                    {this.props.errorMsg !== "" &&
+                    {errorMsg !== "" &&
                         <>
-                            <h2>{this.props.title}</h2>
-                            {this.props.addedAddress && <p>{this.props.addedAddress}</p>}
-                            <p>{this.props.errorMsg}</p>
-                            <a href="!#" className="exit-Load" onClick={() =>
-                                this.props.close()}>Close</a>
+                            <h2>{title}</h2>
+                            {addedAddress && <p>{addedAddress}</p>}
+                            <p>{errorMsg}</p>
                         </>
                     }
 
-                    {this.props.successType === "start" &&
+                    {successType === "start" &&
                         <>
                             <h2>Successfully Started Transaction</h2>
-                            <p>To: {this.props.toAddress}</p>
-                            <p>Amount: {this.props.amount} Eth</p>
-                            <a href={this.props.link} className="link-btn" target="_blank" rel="noopener noreferrer">View on EtherScan</a>
-                            <a href="!#" className="exit-Load" onClick={() =>
-                                this.props.close()}>Close</a>
+                            <p>To: {toAddress}</p>
+                            <p>Amount: {amount} Eth</p>
+                            <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on EtherScan</a>
                         </>
                     }
 
-                    {this.props.successType === "sign" &&
+                    {successType === "sign" &&
                         <>
                             <h2>Successfully Signed Transaction</h2>
-                            <p>For Hash {this.props.hash}</p>
-                            <p>{this.props.msg}</p>
-                            <a href="!#" className="exit-Load" onClick={() =>
-                                this.props.close()}>Close</a>
+                            <p>For Hash {hash}</p>
+                            <p>{msg}</p>
                         </>
                     }
 
-                    {this.props.successType === "add" &&
+                    {successType === "add" &&
                         <>
                             <h2>Successfully added</h2>
-                            <p>{this.props.addedAddress}</p>
-                            <a href="!#" className="exit-Load" onClick={() =>
-                                this.props.close()}>Close</a>
+                            <p>{addedAddress}</p>
                         </>
                     }
 
+                    <a href="!#" className="exit-Load" onClick={() =>
+                        this.props.close()}>Close</a>
                 </div>
             </div >
         );

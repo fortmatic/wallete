@@ -16,6 +16,7 @@ export default class SignAndAdd extends Component {
         hash: "",
         addedAddress: "",
         errorMsg: "",
+        successType: "",
         data: []
     };
 
