@@ -13,31 +13,40 @@ import { Loader } from '../loader/loader.jsx';
 import { startTxInputs, signContractInputs } from "./transactionsHelper.js";
 
 class TxRow extends Component {
-
     state = {
         isExpanded: false
     }
 
     render() {
+        const {
+            txHash,
+            to,
+            amount,
+            complete,
+            from,
+            threshold,
+            numSigs
+        } = this.props.data;
+
         return (
             <tr className="transaction-row" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
-                <td className="transaction-hash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
-                <td className="transaction-to">{this.props.data.to.substring(0, 15) + "..."}</td>
-                <td className="transaction-amount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
-                {(this.props.data.complete) ?
+                <td className="transaction-hash">{txHash.substring(0, 15) + "..."}</td>
+                <td className="transaction-to">{to.substring(0, 15) + "..."}</td>
+                <td className="transaction-amount">{amount / Math.pow(10, 18)} Eth</td>
+                {(complete) ?
                     <td className="transaction-status">Done</td>
                     : <td className="transaction-status">Pending</td>}
 
                 {this.state.isExpanded &&
                     <td className="composition">
-                        <p>Transaction Hash: {this.props.data.txHash}</p>
-                        <p>From: {this.props.data.from}</p>
-                        <p>To: {this.props.data.to}</p>
-                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
-                        {(this.props.data.complete) ?
+                        <p>Transaction Hash: {txHash}</p>
+                        <p>From: {from}</p>
+                        <p>To: {to}</p>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + txHash} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        {(complete) ?
                             <p id="status">Tx has been sent</p> :
                             <div>
-                                <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
+                                <p>Number of Signatures: {numSigs}/{threshold}</p>
                                 <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
                                 <p id="status"></p>
                             </div>}
@@ -86,18 +95,31 @@ export default class Transactions extends Component {
     }
 
     render() {
+        const {
+            loading,
+            hash,
+            errorMsg,
+            successType,
+            pending,
+            address,
+            loadTitle,
+            exchangeAmt,
+            msg,
+            txLink
+        } = this.state;
+
         return (
             <div className="main">
-                {this.state.loading && <Loader
-                    hash={this.state.hash}
+                {loading && <Loader
+                    hash={hash}
                     close={this.handleCloseLoad}
-                    errorMsg={this.state.errorMsg}
-                    title={this.state.loadTitle}
-                    toAddress={this.state.address}
-                    amount={this.state.exchangeAmt}
-                    link={this.state.txLink}
-                    msg={this.state.msg}
-                    successType={this.state.successType}
+                    errorMsg={errorMsg}
+                    title={loadTitle}
+                    toAddress={address}
+                    amount={exchangeAmt}
+                    link={txLink}
+                    msg={msg}
+                    successType={successType}
                 />}
                 <div className="main-blue-box">
                     <div id="pending">
@@ -111,7 +133,7 @@ export default class Transactions extends Component {
                                         <th className="transaction-amount">Amount</th>
                                         <th className="transaction-status">Status</th>
                                     </tr>
-                                    {this.state.pending.map((tx, index) => {
+                                    {pending.map((tx, index) => {
                                         return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
                                     })}
 
@@ -122,9 +144,9 @@ export default class Transactions extends Component {
                     <h1 className="new-trans">New Transaction</h1>
                     <div className="start-trans">
                         <input type="text" className="address" placeholder="Send to Address"
-                            value={this.state.address} onChange={this.handleAddress} />
+                            value={address} onChange={this.handleAddress} />
                         <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
-                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
+                            value={exchangeAmt} onChange={this.handleExchangeAmt} />
                         <p className="connected" id="status"></p>
                         <a className="start-btn" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
@@ -150,11 +172,10 @@ export default class Transactions extends Component {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const amount = this.state.exchangeAmt;
-        const sendAddress = this.state.address;
+        const { exchangeAmt, sendAddress } = this.state;
         const threshold = 3;
 
-        const tmp = await startTxInputs(userAddress, amount, sendAddress);
+        const tmp = await startTxInputs(userAddress, exchangeAmt, sendAddress);
         if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to start transaction",
@@ -165,7 +186,7 @@ export default class Transactions extends Component {
 
         var txnHash;
 
-        const transactAmt = index.web3.utils.toWei(amount, "ether");
+        const transactAmt = index.web3.utils.toWei(exchangeAmt, "ether");
 
         try {
             await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
