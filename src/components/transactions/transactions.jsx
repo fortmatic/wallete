@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './transactions.scss';
-// Libraries for table
-import Card from '@material-ui/core/Card';
 
 import { Loader } from '../loader/loader.jsx';
 
@@ -124,22 +122,20 @@ export default class Transactions extends Component {
                 <div className="main-blue-box">
                     <div id="pending">
                         <h1 className="transaction-title">Transactions</h1>
-                        <Card>
-                            <table className="transaction-table">
-                                <tbody>
-                                    <tr className="heading-row">
-                                        <th className="transaction-hash">Tx Hash</th>
-                                        <th className="transaction-to">To</th>
-                                        <th className="transaction-amount">Amount</th>
-                                        <th className="transaction-status">Status</th>
-                                    </tr>
-                                    {pending.map((tx, index) => {
-                                        return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
-                                    })}
+                        <table className="transaction-table">
+                            <tbody>
+                                <tr className="heading-row">
+                                    <th className="transaction-hash">Tx Hash</th>
+                                    <th className="transaction-to">To</th>
+                                    <th className="transaction-amount">Amount</th>
+                                    <th className="transaction-status">Status</th>
+                                </tr>
+                                {pending.map((tx, index) => {
+                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                })}
 
-                                </tbody>
-                            </table>
-                        </Card>
+                            </tbody>
+                        </table>
                     </div>
                     <h1 className="new-trans">New Transaction</h1>
                     <div className="start-trans">
