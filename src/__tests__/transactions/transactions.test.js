@@ -1,4 +1,4 @@
-import { startTxInputs } from "../transactionsHelper";
+import { startTxInputs } from "../../components/transactions/transactionsHelper";
 
 test("invalid inputs for startTxInputs", async () => {
     await expect(startTxInputs("", "", "")).resolves.toMatch("Invalid Inputs");
