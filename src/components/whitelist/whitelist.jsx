@@ -16,6 +16,7 @@ export default class SignAndAdd extends Component {
         hash: "",
         addedAddress: "",
         errorMsg: "",
+        successType: "",
         data: []
     };
 
@@ -61,15 +62,26 @@ export default class SignAndAdd extends Component {
     }
 
     render() {
+        const {
+            hash,
+            addedAddress,
+            errorMsg,
+            successType,
+            loadTitle,
+            loading,
+            address,
+            name
+        } = this.state;
+
         return (
             <div className="main">
-                {this.state.loading && <Loader
-                    hash={this.state.hash}
-                    addedAddress={this.state.addedAddress}
-                    errorMsg={this.state.errorMsg}
+                {loading && <Loader
+                    hash={hash}
+                    addedAddress={addedAddress}
+                    errorMsg={errorMsg}
                     close={this.handleCloseLoad}
-                    successType={this.state.successType}
-                    title={this.state.loadTitle}
+                    successType={successType}
+                    title={loadTitle}
                 />}
                 <div className="main-blue-box">
                     <div id="whitelist">
@@ -88,9 +100,9 @@ export default class SignAndAdd extends Component {
                     <div className="add-to-whitelist">
                         <h1 className="address-box">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
-                            value={this.state.address} onChange={this.handleAddress} />
+                            value={address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
-                            value={this.state.name} onChange={this.handleName} />
+                            value={name} onChange={this.handleName} />
                         <p className="connected" id="status"></p>
                         <button className="add-btn" onClick={this.addToWhiteList} href="!#" >Add Address</button>
                     </div>
@@ -116,10 +128,9 @@ export default class SignAndAdd extends Component {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const address = this.state.address;
-        const acctName = this.state.name;
+        const {address, name } = this.state;
 
-        const tmp = await validateInputs(address, acctName, userAddress);
+        const tmp = await validateInputs(address, name, userAddress);
 
         if (tmp !== "") {
             this.setState({
@@ -131,7 +142,7 @@ export default class SignAndAdd extends Component {
         }
 
         try {
-            await index.contract.methods.addAddress(address, acctName).send({
+            await index.contract.methods.addAddress(address, name).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '3000000000000'
