@@ -20,25 +20,25 @@ class TxRow extends Component {
 
     render() {
         return (
-            <tr className="transaction-row" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
-                <td className="transaction-hash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
-                <td className="transaction-to">{this.props.data.to.substring(0, 15) + "..."}</td>
-                <td className="transaction-amount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
+            <tr className="transactionRow" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+                <td className="transactionHash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
+                <td className="transactionTo">{this.props.data.to.substring(0, 15) + "..."}</td>
+                <td className="transactionAmount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
                 {(this.props.data.complete) ?
-                    <td className="transaction-status">Done</td>
-                    : <td className="transaction-status">Pending</td>}
+                    <td className="transactionStatus">Done</td>
+                    : <td className="transactionStatus">Pending</td>}
 
                 {this.state.isExpanded &&
                     <td className="composition">
                         <p>Transaction Hash: {this.props.data.txHash}</p>
                         <p>From: {this.props.data.from}</p>
                         <p>To: {this.props.data.to}</p>
-                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="link-btn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="linkBtn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
                         {(this.props.data.complete) ?
                             <p id="status">Tx has been sent</p> :
                             <div>
                                 <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
-                                <button onClick={() => this.props.signTx()} className="sign-btn">Sign Transaction</button>
+                                <button onClick={() => this.props.signTx()} className="signBtn">Sign Transaction</button>
                                 <p id="status"></p>
                             </div>}
                     </td>}
@@ -99,17 +99,17 @@ export default class Transactions extends Component {
                     msg={this.state.msg}
                     successType={this.state.successType}
                 />}
-                <div className="main-blue-box">
+                <div className="mainBlueBox">
                     <div id="pending">
-                        <h1 className="transaction-title">Transactions</h1>
+                        <h1 className="transactionTitle">Transactions</h1>
                         <Card>
-                            <table className="transaction-table">
+                            <table className="transactionTable">
                                 <tbody>
-                                    <tr className="heading-row">
-                                        <th className="transaction-hash">Tx Hash</th>
-                                        <th className="transaction-to">To</th>
-                                        <th className="transaction-amount">Amount</th>
-                                        <th className="transaction-status">Status</th>
+                                    <tr className="headingRow">
+                                        <th className="transactionHash">Tx Hash</th>
+                                        <th className="transactionTo">To</th>
+                                        <th className="transactionAmount">Amount</th>
+                                        <th className="transactionStatus">Status</th>
                                     </tr>
                                     {this.state.pending.map((tx, index) => {
                                         return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
@@ -119,14 +119,14 @@ export default class Transactions extends Component {
                             </table>
                         </Card>
                     </div>
-                    <h1 className="new-trans">New Transaction</h1>
-                    <div className="start-trans">
+                    <h1 className="newTrans">New Transaction</h1>
+                    <div className="startTrans">
                         <input type="text" className="address" placeholder="Send to Address"
                             value={this.state.address} onChange={this.handleAddress} />
-                        <input type="number" className="exchange-Amt" placeholder="Transaction amount (Eth)"
+                        <input type="number" className="exchangeAmt" placeholder="Transaction amount (Eth)"
                             value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
                         <p className="connected" id="status"></p>
-                        <a className="start-btn" onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <a className="startBtn" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
                     </div>
                 </div>

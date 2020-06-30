@@ -50,11 +50,11 @@
         100% { transform: rotate(360deg); }
     }
 
-    .link-btn:hover {
+    .linkBtn:hover {
         color: rgb(75, 74, 74);
     }
 
-    .exit-Load {
+    .exitLoad {
         position: relative;
         display: block;
         cursor: pointer;
@@ -75,7 +75,7 @@
         text-decoration: none;
     }
     
-    .exit-Load:hover {
+    .exitLoad:hover {
         text-align: center;
         background-color: lightgray;
         color: $primaryPurple;

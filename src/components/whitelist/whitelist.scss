@@ -1,56 +1,56 @@
 @import '../../master';
 
-.whitelist-title {
+.whitelistTitle {
     font-size: 30px;
 }
 
-.whitelist-Blockie {
+.whitelistBlockie {
     width: 6%;
     text-align: center;
 }
 
-.whitelist-Name {
+.whitelistName {
     width: 40%;
     font-size: 20px;
 }
 
-.whitelist-Address {
+.whitelistAddress {
     font-size: 20px;
     margin: 0 10.5em;
 }
 
 @media screen and (max-width: 990px) {
-    .whitelist-Name {
+    .whitelistName {
         font-size: 15px;
     }
     
-    .whitelist-Address {
+    .whitelistAddress {
         font-size: 15px;
     }
 }
 
 @media screen and (max-width: 780px) {
-    .whitelist-Name {
+    .whitelistName {
         font-size: 12px;
     }
     
-    .whitelist-Address {
+    .whitelistAddress {
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 680px) {
-    .whitelist-Name {
+    .whitelistName {
         font-size: 8px;
     }
     
-    .whitelist-Address {
+    .whitelistAddress {
         font-size: 8px;
     }
 }
 
 
-.whitelist-table {
+.whitelistTable {
     background-color: #FFFFFF;
     border-right: white;
     border-left: white;
@@ -84,10 +84,10 @@
 
 
 
-.add-to-whitelist {
+.addToWhitelist {
     position: relative;
 
-    .address-box {
+    .addressBox {
         position: relative;
         box-sizing: content-box;
         width: 53%;
@@ -135,7 +135,7 @@
     }
 
     
-    .add-btn {
+    .addBtn {
         position: relative;
         display: block;
         cursor: pointer;
@@ -159,7 +159,7 @@
         float: right;
     }
 
-    .add-btn:hover {
+    .addBtn:hover {
         text-align: center;
         background-color: lightgray;
         color: $primaryPurple;

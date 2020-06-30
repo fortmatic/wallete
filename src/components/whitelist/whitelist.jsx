@@ -53,9 +53,9 @@ export default class SignAndAdd extends Component {
             const { blockie, name, address } = row;
             return (
                 <tr key={index}>
-                    <td className="whitelist-Blockie">{blockie}</td>
-                    <td className="whitelist-Name">{name}</td>
-                    <td className="whitelist-Address">{address}</td>
+                    <td className="whitelistBlockie">{blockie}</td>
+                    <td className="whitelistName">{name}</td>
+                    <td className="whitelistAddress">{address}</td>
                 </tr>
             );
         });
@@ -72,28 +72,28 @@ export default class SignAndAdd extends Component {
                     successType={this.state.successType}
                     title={this.state.loadTitle}
                 />}
-                <div className="main-blue-box">
+                <div className="mainBlueBox">
                     <div id="whitelist">
-                        <h1 className="whitelist-title">Whitelist</h1>
-                        <table className="whitelist-table">
+                        <h1 className="whitelistTitle">Whitelist</h1>
+                        <table className="whitelistTable">
                             <tbody>
                                 <tr>
                                     <th></th>
-                                    <th className="whitelist-Name">Name</th>
-                                    <th className="whitelist-Address">Address</th>
+                                    <th className="whitelistName">Name</th>
+                                    <th className="whitelistAddress">Address</th>
                                 </tr>
                                 {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>
-                    <div className="add-to-whitelist">
-                        <h1 className="address-box">Add New Address to Whitelist</h1>
+                    <div className="addToWhitelist">
+                        <h1 className="addressBox">Add New Address to Whitelist</h1>
                         <input className="address" type="text" placeholder="Enter Address"
                             value={this.state.address} onChange={this.handleAddress} />
                         <input className="name" type="text" placeholder="Account Name"
                             value={this.state.name} onChange={this.handleName} />
                         <p className="connected" id="status"></p>
-                        <button className="add-btn" onClick={this.addToWhiteList} href="!#" >Add Address</button>
+                        <button className="addBtn" onClick={this.addToWhiteList} href="!#" >Add Address</button>
                     </div>
                 </div>
             </div>
