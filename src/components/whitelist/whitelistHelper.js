@@ -13,7 +13,7 @@ export let validateInputs = async (address, acctName, func) => {
     return "";
 }
 
-export async function getData() {
+export let getData = async () => {
     var pending = await index.contract.methods.getWhitelistAdd().call();
     var data = [];
 

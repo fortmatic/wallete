@@ -174,10 +174,16 @@ export default class Transactions extends Component {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const { exchangeAmt, sendAddress } = this.state;
+        const { exchangeAmt, address } = this.state;
         const threshold = 3;
 
-        const tmp = await startTxInputs(userAddress, exchangeAmt, sendAddress);
+        const tmp = await startTxInputs(exchangeAmt, address, async (amt) => {
+            return await index.contract.methods.setupTransaction(address, threshold, amt).call({
+                from: userAddress,
+                value: amt
+            });
+        });
+
         if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to start transaction",
@@ -191,7 +197,7 @@ export default class Transactions extends Component {
         const transactAmt = index.web3.utils.toWei(exchangeAmt, "ether");
 
         try {
-            await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
+            await index.contract.methods.setupTransaction(address, threshold, transactAmt).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '30000000000',
@@ -229,7 +235,13 @@ export default class Transactions extends Component {
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
         let msg = "";
 
-        const tmp = await signContractInputs(userAddress, i);
+        const tmp = await signContractInputs(async () => {
+            return await index.contract.methods.signTransaction(i).call({
+                from: userAddress
+            });
+        });
+
+
         if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to sign transaction",
