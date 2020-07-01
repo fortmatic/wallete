@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.new-trans {
+.newTrans {
     position: relative;
     box-sizing: content-box;
     width: 30%;
@@ -25,7 +25,7 @@
 }
 
 
-.transaction-table {
+.transactionTable {
     background-color: #FFFFFF;
     border-right: white;
     border-left: white;
@@ -33,7 +33,7 @@
     font-weight: normal;
     border-radius: 9px;
     
-    .transaction-row {
+    .transactionRow {
         font-size: 20px;
         cursor: pointer;
         border-top: 1px solid lightgrey;
@@ -69,7 +69,7 @@
                 padding: 13px;
             }
 
-            .transaction-amount {
+            .transactionAmount {
                 padding-left: 55px;
             }
         }
@@ -78,7 +78,7 @@
             background-color: rgb(231, 230, 230);
         }
 
-        .heading-row:hover {
+        .headingRow:hover {
             background-color: #FFFFFF;
         }
     }
@@ -96,7 +96,7 @@
     }
 }
 
-.start-trans {
+.startTrans {
     .address {
         border-radius: 10px;
         position: relative;
@@ -116,7 +116,7 @@
         border-color: $primaryPurple;
     }
     
-    .exchange-Amt {
+    .exchangeAmt {
         border-radius: 10px;
         position: relative;
         display: block;
@@ -128,7 +128,7 @@
         margin-top: -57px;
     }
     
-    .exchange-Amt:hover {
+    .exchangeAmt:hover {
         border-color: $primaryPurple;
     }
 
@@ -138,7 +138,7 @@
         font-size: 20px;
     }
 
-    .start-btn {
+    .startBtn {
         position: relative;
         display: block;
         cursor: pointer;
@@ -160,7 +160,7 @@
         margin-right: 20px;
     }
     
-    .start-btn:hover {
+    .startBtn:hover {
         background-color: lightgray;
         color:  $primaryPurple;
         text-align: center;
@@ -173,7 +173,7 @@
 }
 
 
-.sign-btn {
+.signBtn {
     display: block;
     background-color: $hoverPurple;
     padding: 8px;
@@ -189,7 +189,7 @@
     font-size: 11px;
 }
 
-.sign-btn:hover {
+.signBtn:hover {
     color: $hoverPurple;
     background-color: lightgray;
 }

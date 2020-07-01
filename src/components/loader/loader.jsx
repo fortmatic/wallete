@@ -45,7 +45,7 @@ export class Loader extends React.Component {
                             <h2>Successfully Started Transaction</h2>
                             <p>To: {toAddress}</p>
                             <p>Amount: {amount} Eth</p>
-                            <a href={link} className="link-btn" target="_blank" rel="noopener noreferrer">View on EtherScan</a>
+                            <a href={link} className="linkBtn" target="_blank" rel="noopener noreferrer">View on EtherScan</a>
                         </>
                     }
 
@@ -64,7 +64,7 @@ export class Loader extends React.Component {
                         </>
                     }
 
-                    <a href="!#" className="exit-Load" onClick={() =>
+                    <a href="!#" className="exitLoad" onClick={() =>
                         this.props.close()}>Close</a>
                 </div>
             </div >

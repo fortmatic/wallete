@@ -24,7 +24,7 @@ export default class Assets extends Component {
 
         return (
             <div className="main">
-                <div className="main-blue-box">
+                <div className="mainBlueBox">
                 <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
                     <table className="table">
                         <tbody>
