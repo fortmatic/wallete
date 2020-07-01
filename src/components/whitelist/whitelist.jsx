@@ -128,10 +128,14 @@ export default class SignAndAdd extends Component {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const {address, name } = this.state;
+        const { address, name } = this.state;
 
-        const tmp = await validateInputs(address, name, userAddress);
-
+        let tmp = await validateInputs(address, name, async () => {
+            return await index.contract.methods.addAddress(address, name).call({
+                from: userAddress
+            })
+        });
+        
         if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to Add Address",
