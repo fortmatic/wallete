@@ -4,7 +4,7 @@ import React from 'react';
 import { Top } from './login/login.jsx'
 import Sidebar from "../components/sidebar/sidebar.jsx";
 import Assets from "../components/assets/assets.jsx";
-import Transactions from '../components/transactions/transactions.jsx';
+import Transactions from '../components/transactions/transactions.tsx';
 import SignAndAdd from '../components/whitelist/whitelist.jsx';
 
 

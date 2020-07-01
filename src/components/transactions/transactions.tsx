@@ -1,5 +1,5 @@
 // General React components
-import React, { Component } from 'react';
+import React from 'react';
 
 // General function libraries
 import * as index from '../../index.js';
@@ -10,7 +10,16 @@ import { Loader } from '../loader/loader.jsx';
 
 import { startTxInputs, signContractInputs } from "./transactionsHelper.js";
 
-class TxRow extends Component {
+interface TxRowProps {
+    data?: any,
+    signTx(): any;
+}
+
+interface TxRowState {
+    isExpanded?: Boolean;
+}
+
+class TxRow extends React.Component<TxRowProps, TxRowState> {
     state = {
         isExpanded: false
     }
@@ -56,10 +65,29 @@ class TxRow extends Component {
     }
 }
 
-export default class Transactions extends Component {
+interface TransactionsProps {
+
+}
+
+interface TransactionsState {
+    exchangeAmt?: string,
+    address?: string,
+    sendAddress?: string,
+    loading?: boolean,
+    hash?: string,
+    errorMsg?: string,
+    loadTitle?: string,
+    txLink?: string,
+    successType?: string,
+    msg?: string,
+    pending: Array<any>
+}
+
+export default class Transactions extends React.Component<TransactionsProps, TransactionsState> {
     state = {
         exchangeAmt: "",
         address: "",
+        sendAddress: "",
         loading: false,
         hash: "",
         errorMsg: "",
@@ -70,8 +98,8 @@ export default class Transactions extends Component {
         pending: []
     }
 
-    constructor() {
-        super();
+    constructor(props: TransactionsProps) {
+        super(props);
 
         this.handleExchangeAmt = this.handleExchangeAmt.bind(this);
         this.handleAddress = this.handleAddress.bind(this);
@@ -158,13 +186,13 @@ export default class Transactions extends Component {
         );
     }
 
-    handleExchangeAmt = (event) => {
+    handleExchangeAmt = (event: any) => {
         this.setState({
             exchangeAmt: event.target.value
         });
     }
 
-    handleAddress = (event) => {
+    handleAddress = (event: any) => {
         this.setState({
             address: event.target.value
         })
@@ -197,7 +225,7 @@ export default class Transactions extends Component {
                 gasPrice: '30000000000',
                 value: transactAmt
             })
-                .on('transactionHash', (hash) => {
+                .on('transactionHash', (hash: string) => {
                     txnHash = hash;
                     this.setState({ hash: hash });
                 });
@@ -223,7 +251,7 @@ export default class Transactions extends Component {
         });
     }
 
-    signContract = async (i) => {
+    signContract = async (i: number) => {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
@@ -244,10 +272,10 @@ export default class Transactions extends Component {
                 gas: 1500000,
                 gasPrice: '3000000000000'
             })
-                .on('transactionHash', (hash) =>
+                .on('transactionHash', (hash: string) =>
                     this.setState({ hash: hash }))
 
-                .on('receipt', (rec) => {
+                .on('receipt', (rec: any) => {
                     if (rec.events.transactionOccured != null) {
                         msg = "Transaction completed";
                     }
