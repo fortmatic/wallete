@@ -29,23 +29,23 @@ class TxRow extends Component {
         return (
 
             <tr className="transactionRow" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
-                <td className="transactionHash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
-                <td className="transactionTo">{this.props.data.to.substring(0, 15) + "..."}</td>
-                <td className="transactionAmount">{this.props.data.amount / Math.pow(10, 18)} Eth</td>
-                {(this.props.data.complete) ?
+                <td className="transactionHash">{txHash.substring(0, 15) + "..."}</td>
+                <td className="transactionTo">{to.substring(0, 15) + "..."}</td>
+                <td className="transactionAmount">{amount / Math.pow(10, 18)} Eth</td>
+                {complete ?
                     <td className="transactionStatus">Done</td>
                     : <td className="transactionStatus">Pending</td>}
 
                 {this.state.isExpanded &&
                     <td className="composition">
-                        <p>Transaction Hash: {this.props.data.txHash}</p>
-                        <p>From: {this.props.data.from}</p>
-                        <p>To: {this.props.data.to}</p>
-                        <a href={"https://rinkeby.etherscan.io/tx/" + this.props.data.txHash} className="linkBtn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
-                        {(this.props.data.complete) ?
+                        <p>Transaction Hash: {txHash}</p>
+                        <p>From: {from}</p>
+                        <p>To: {to}</p>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + txHash} className="linkBtn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        {(complete) ?
                             <p id="status">Tx has been sent</p> :
                             <div>
-                                <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
+                                <p>Number of Signatures: {numSigs}/{threshold}</p>
                                 <button onClick={() => this.props.signTx()} className="signBtn">Sign Transaction</button>
 
                                 <p id="status"></p>
