@@ -1,6 +1,6 @@
 # Wallete
 
-Wallete is Multi-Signature Ethereum wallet that utilizes the Fortmatic Magic Link SDK for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. The contract the web app interacts with is included in the contracts folder.
+Wallete is Multi-Signature Ethereum wallet that utilizes the Magic SDK for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. The contract the web app interacts with is included in the contracts folder.
 
 ## Installation
 

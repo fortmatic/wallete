@@ -3,7 +3,7 @@ import React from 'react';
 import Blockies from 'react-blockies';
 import * as index from '../../index.js';
 
-export let validateInputs = async (address, acctName, userAddress) => {
+export async function validateInputs(address, acctName, userAddress) {
     if (address === "" || acctName === "") return "Invalid Inputs";
 
     const status = await index.contract.methods.addAddress(address, acctName).call({
@@ -15,7 +15,7 @@ export let validateInputs = async (address, acctName, userAddress) => {
     return "";
 }
 
-export let getData = async () => {
+export async function getData() {
     var pending = await index.contract.methods.getWhitelistAdd().call();
     var data = [];
 

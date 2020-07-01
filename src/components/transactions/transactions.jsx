@@ -5,21 +5,29 @@ import React, { Component } from 'react';
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
 import './transactions.scss';
-// Libraries for table
-import Card from '@material-ui/core/Card';
 
 import { Loader } from '../loader/loader.jsx';
 
 import { startTxInputs, signContractInputs } from "./transactionsHelper.js";
 
 class TxRow extends Component {
-
     state = {
         isExpanded: false
     }
 
     render() {
+        const {
+            txHash,
+            to,
+            amount,
+            complete,
+            from,
+            threshold,
+            numSigs
+        } = this.props.data;
+
         return (
+
             <tr className="transactionRow" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
                 <td className="transactionHash">{this.props.data.txHash.substring(0, 15) + "..."}</td>
                 <td className="transactionTo">{this.props.data.to.substring(0, 15) + "..."}</td>
@@ -39,6 +47,7 @@ class TxRow extends Component {
                             <div>
                                 <p>Number of Signatures: {this.props.data.numSigs}/{this.props.data.threshold}</p>
                                 <button onClick={() => this.props.signTx()} className="signBtn">Sign Transaction</button>
+
                                 <p id="status"></p>
                             </div>}
                     </td>}
@@ -86,45 +95,60 @@ export default class Transactions extends Component {
     }
 
     render() {
+        const {
+            loading,
+            hash,
+            errorMsg,
+            successType,
+            pending,
+            address,
+            loadTitle,
+            exchangeAmt,
+            msg,
+            txLink
+        } = this.state;
+
         return (
             <div className="main">
-                {this.state.loading && <Loader
-                    hash={this.state.hash}
+                {loading && <Loader
+                    hash={hash}
                     close={this.handleCloseLoad}
-                    errorMsg={this.state.errorMsg}
-                    title={this.state.loadTitle}
-                    toAddress={this.state.address}
-                    amount={this.state.exchangeAmt}
-                    link={this.state.txLink}
-                    msg={this.state.msg}
-                    successType={this.state.successType}
+                    errorMsg={errorMsg}
+                    title={loadTitle}
+                    toAddress={address}
+                    amount={exchangeAmt}
+                    link={txLink}
+                    msg={msg}
+                    successType={successType}
                 />}
                 <div className="mainBlueBox">
                     <div id="pending">
-                        <h1 className="transactionTitle">Transactions</h1>
-                        <Card>
-                            <table className="transactionTable">
-                                <tbody>
-                                    <tr className="headingRow">
-                                        <th className="transactionHash">Tx Hash</th>
-                                        <th className="transactionTo">To</th>
-                                        <th className="transactionAmount">Amount</th>
-                                        <th className="transactionStatus">Status</th>
-                                    </tr>
-                                    {this.state.pending.map((tx, index) => {
-                                        return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
-                                    })}
 
-                                </tbody>
-                            </table>
-                        </Card>
+                        <h1 className="transactionTitle">Transactions</h1>
+                        <table className="transactionTable">
+                            <tbody>
+                                <tr className="headingRow">
+                                    <th className="transactionHash">Tx Hash</th>
+                                    <th className="transactionTo">To</th>
+                                    <th className="transactionAmount">Amount</th>
+                                    <th className="transactionStatus">Status</th>
+                                </tr>
+                                {pending.map((tx, index) => {
+                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                })}
+
+                            </tbody>
+                        </table>
+
                     </div>
                     <h1 className="newTrans">New Transaction</h1>
                     <div className="startTrans">
                         <input type="text" className="address" placeholder="Send to Address"
+
                             value={this.state.address} onChange={this.handleAddress} />
                         <input type="number" className="exchangeAmt" placeholder="Transaction amount (Eth)"
                             value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
+
                         <p className="connected" id="status"></p>
                         <a className="startBtn" onClick={this.startTransaction} href="!#">Start Transaction</a>
                         <p className="connected" id="message"></p>
@@ -150,11 +174,10 @@ export default class Transactions extends Component {
         this.setState({ loading: true });
 
         const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const amount = this.state.exchangeAmt;
-        const sendAddress = this.state.address;
+        const { exchangeAmt, sendAddress } = this.state;
         const threshold = 3;
 
-        const tmp = await startTxInputs(userAddress, amount, sendAddress);
+        const tmp = await startTxInputs(userAddress, exchangeAmt, sendAddress);
         if (tmp !== "") {
             this.setState({
                 loadTitle: "Unable to start transaction",
@@ -165,7 +188,7 @@ export default class Transactions extends Component {
 
         var txnHash;
 
-        const transactAmt = index.web3.utils.toWei(amount, "ether");
+        const transactAmt = index.web3.utils.toWei(exchangeAmt, "ether");
 
         try {
             await index.contract.methods.setupTransaction(sendAddress, threshold, transactAmt).send({
