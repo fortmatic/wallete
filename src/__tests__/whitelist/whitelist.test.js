@@ -13,7 +13,7 @@ test("invalid name for validateInputs", () => {
 });
 
 test("unauthorized sender", async () => {
-    const status = await validateInputs("0x7Be413F5E12B51AD68a09f90d4A3E544DF5B7720", "test", async () => {
+    const status = await validateInputs("0x7Be413F5E12B51AD68a09f90d4A3E544DF5B7720", "test", () => {
         return "Sender not authorized";
     });
 
@@ -21,9 +21,17 @@ test("unauthorized sender", async () => {
 });
 
 test("already added address", async () => {
-    const status = await validateInputs("0x7Be413F5E12B51AD68a09f90d4A3E544DF5B7720", "test", async () => {
+    const status = await validateInputs("0x7Be413F5E12B51AD68a09f90d4A3E544DF5B7720", "test", () => {
         return "Already added";
     });
 
     expect(status).toMatch("Already added");
+});
+
+test("new address added", async () => {
+    const status = await validateInputs("0x7Be413F5E12B51AD68a09f90d4A3E544DF5B7720", "test", () => {
+        return "Added";
+    });
+
+    expect(status).toMatch("");
 });
