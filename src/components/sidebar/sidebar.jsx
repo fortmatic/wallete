@@ -10,6 +10,36 @@ export default class Sidebar extends Component {
         whitelistActive: "",
         txActive: ""
     };
+    
+    getTransactions = async () => {
+        this.setState({
+            assetsActive: "",
+            whitelistActive: "",
+            txActive: "active"
+        });
+
+        this.props.changePage("Transactions");
+    }
+    
+    getAssets = () => {
+        this.setState({
+            assetsActive: "active",
+            whitelistActive: "",
+            txActive: ""
+        });
+
+        this.props.changePage("Assets");
+    }
+    
+    getSignAndAdd = () => {
+        this.setState({
+            assetsActive: "",
+            whitelistActive: "active",
+            txActive: ""
+        });
+        
+        this.props.changePage("SignAndAdd");
+    }
 
     render() {
         const {
@@ -31,35 +61,5 @@ export default class Sidebar extends Component {
                 </ul>
             </div>
         );
-    }
-
-    getTransactions = async () => {
-        this.setState({
-            assetsActive: "",
-            whitelistActive: "",
-            txActive: "active"
-        });
-
-        this.props.changePage("Transactions");
-    }
-
-    getAssets = () => {
-        this.setState({
-            assetsActive: "active",
-            whitelistActive: "",
-            txActive: ""
-        });
-
-        this.props.changePage("Assets");
-    }
-
-    getSignAndAdd = () => {
-        this.setState({
-            assetsActive: "",
-            whitelistActive: "active",
-            txActive: ""
-        });
-
-        this.props.changePage("SignAndAdd");
     }
 }
