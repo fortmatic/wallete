@@ -94,69 +94,6 @@ export default class Transactions extends Component {
         });
     }
 
-    render() {
-        const {
-            loading,
-            hash,
-            errorMsg,
-            successType,
-            pending,
-            address,
-            loadTitle,
-            exchangeAmt,
-            msg,
-            txLink
-        } = this.state;
-
-        return (
-            <div className="main">
-                {loading && <Loader
-                    hash={hash}
-                    close={this.handleCloseLoad}
-                    errorMsg={errorMsg}
-                    title={loadTitle}
-                    toAddress={address}
-                    amount={exchangeAmt}
-                    link={txLink}
-                    msg={msg}
-                    successType={successType}
-                />}
-                <div className="mainBlueBox">
-                    <div id="pending">
-
-                        <h1 className="transactionTitle">Transactions</h1>
-                        <table className="transactionTable">
-                            <tbody>
-                                <tr className="headingRow">
-                                    <th className="transactionHash">Tx Hash</th>
-                                    <th className="transactionTo">To</th>
-                                    <th className="transactionAmount">Amount</th>
-                                    <th className="transactionStatus">Status</th>
-                                </tr>
-                                {pending.map((tx, index) => {
-                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
-                                })}
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <h1 className="newTrans">New Transaction</h1>
-                    <div className="startTrans">
-                        <input type="text" className="address" placeholder="Send to Address"
-
-                            value={this.state.address} onChange={this.handleAddress} />
-                        <input type="number" className="exchangeAmt" placeholder="Transaction amount (Eth)"
-                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
-
-                        <p className="connected" id="status"></p>
-                        <a className="startBtn" onClick={this.startTransaction} href="!#">Start Transaction</a>
-                        <p className="connected" id="message"></p>
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     handleExchangeAmt = (event) => {
         this.setState({
@@ -278,4 +215,69 @@ export default class Transactions extends Component {
             msg: msg
         });
     }
+
+    render() {
+        const {
+            loading,
+            hash,
+            errorMsg,
+            successType,
+            pending,
+            address,
+            loadTitle,
+            exchangeAmt,
+            msg,
+            txLink
+        } = this.state;
+
+        return (
+            <div className="main">
+                {loading && <Loader
+                    hash={hash}
+                    close={this.handleCloseLoad}
+                    errorMsg={errorMsg}
+                    title={loadTitle}
+                    toAddress={address}
+                    amount={exchangeAmt}
+                    link={txLink}
+                    msg={msg}
+                    successType={successType}
+                />}
+                <div className="mainBlueBox">
+                    <div id="pending">
+
+                        <h1 className="transactionTitle">Transactions</h1>
+                        <table className="transactionTable">
+                            <tbody>
+                                <tr className="headingRow">
+                                    <th className="transactionHash">Tx Hash</th>
+                                    <th className="transactionTo">To</th>
+                                    <th className="transactionAmount">Amount</th>
+                                    <th className="transactionStatus">Status</th>
+                                </tr>
+                                {pending.map((tx, index) => {
+                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                })}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <h1 className="newTrans">New Transaction</h1>
+                    <div className="startTrans">
+                        <input type="text" className="address" placeholder="Send to Address"
+
+                            value={this.state.address} onChange={this.handleAddress} />
+                        <input type="number" className="exchangeAmt" placeholder="Transaction amount (Eth)"
+                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
+
+                        <p className="connected" id="status"></p>
+                        <a className="startBtn" onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <p className="connected" id="message"></p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
+
