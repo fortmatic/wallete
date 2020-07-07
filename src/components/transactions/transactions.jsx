@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 // General function libraries
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
-import './transactions.scss';
+import txStyle from './transactions.module.scss';
+import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader.jsx';
 
@@ -28,27 +29,27 @@ class TxRow extends Component {
 
         return (
 
-            <tr className="transactionRow" onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
-                <td className="transactionHash">{txHash.substring(0, 15) + "..."}</td>
-                <td className="transactionTo">{to.substring(0, 15) + "..."}</td>
-                <td className="transactionAmount">{amount / Math.pow(10, 18)} Eth</td>
+            <tr className={txStyle.transactionRow} onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+                <td className={txStyle.transactionHash}>{txHash.substring(0, 15) + "..."}</td>
+                <td className={txStyle.transactionTo}>{to.substring(0, 15) + "..."}</td>
+                <td className={txStyle.transactionAmount}>{amount / Math.pow(10, 18)} Eth</td>
                 {complete ?
-                    <td className="transactionStatus">Done</td>
-                    : <td className="transactionStatus">Pending</td>}
+                    <td className={txStyle.transactionStatus}>Done</td>
+                    : <td className={txStyle.transactionStatus}>Pending</td>}
 
                 {this.state.isExpanded &&
-                    <td className="composition">
+                    <td className={txStyle.composition}>
                         <p>Transaction Hash: {txHash}</p>
                         <p>From: {from}</p>
                         <p>To: {to}</p>
-                        <a href={"https://rinkeby.etherscan.io/tx/" + txHash} className="linkBtn" target="_blank" rel="noopener noreferrer">View on Etherscan</a>
+                        <a href={"https://rinkeby.etherscan.io/tx/" + txHash} className={txStyle.linkBtn} target="_blank" rel="noopener noreferrer">View on Etherscan</a>
                         {(complete) ?
-                            <p id="status">Tx has been sent</p> :
+                            <p id={txStyle.status}>Tx has been sent</p> :
                             <div>
                                 <p>Number of Signatures: {numSigs}/{threshold}</p>
-                                <button onClick={() => this.props.signTx()} className="signBtn">Sign Transaction</button>
+                                <button onClick={() => this.props.signTx()} className={txStyle.signBtn}>Sign Transaction</button>
 
-                                <p id="status"></p>
+                                <p id={txStyle.status}></p>
                             </div>}
                     </td>}
             </tr>
@@ -109,7 +110,7 @@ export default class Transactions extends Component {
         } = this.state;
 
         return (
-            <div className="main">
+            <div className={mainStyle.main}>
                 {loading && <Loader
                     hash={hash}
                     close={this.handleCloseLoad}
@@ -121,17 +122,17 @@ export default class Transactions extends Component {
                     msg={msg}
                     successType={successType}
                 />}
-                <div className="mainBlueBox">
-                    <div id="pending">
+                <div className={mainStyle.mainBlueBox}>
+                    <div id={txStyle.pending}>
 
-                        <h1 className="transactionTitle">Transactions</h1>
-                        <table className="transactionTable">
+                        <h1 className={txStyle.transactionTitle}>Transactions</h1>
+                        <table className={txStyle.transactionTable}>
                             <tbody>
-                                <tr className="headingRow">
-                                    <th className="transactionHash">Tx Hash</th>
-                                    <th className="transactionTo">To</th>
-                                    <th className="transactionAmount">Amount</th>
-                                    <th className="transactionStatus">Status</th>
+                                <tr className={txStyle.headingRow}>
+                                    <th className={txStyle.transactionHash}>Tx Hash</th>
+                                    <th className={txStyle.transactionTo}>To</th>
+                                    <th className={txStyle.transactionAmount}>Amount</th>
+                                    <th className={txStyle.transactionStatus}>Status</th>
                                 </tr>
                                 {pending.map((tx, index) => {
                                     return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
@@ -141,17 +142,17 @@ export default class Transactions extends Component {
                         </table>
 
                     </div>
-                    <h1 className="newTrans">New Transaction</h1>
-                    <div className="startTrans">
-                        <input type="text" className="address" placeholder="Send to Address"
+                    <h1 className={txStyle.newTrans}>New Transaction</h1>
+                    <div className={txStyle.startTrans}>
+                        <input type="text" className={txStyle.address} placeholder="Send to Address"
 
                             value={this.state.address} onChange={this.handleAddress} />
-                        <input type="number" className="exchangeAmt" placeholder="Transaction amount (Eth)"
+                        <input type="number" className={txStyle.exchangeAmt} placeholder="Transaction amount (Eth)"
                             value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
 
-                        <p className="connected" id="status"></p>
-                        <a className="startBtn" onClick={this.startTransaction} href="!#">Start Transaction</a>
-                        <p className="connected" id="message"></p>
+                        <p className={txStyle.connected} id={txStyle.status}></p>
+                        <a className={txStyle.startBtn} onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <p className={txStyle.connected} id="message"></p>
                     </div>
                 </div>
             </div>
