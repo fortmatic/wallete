@@ -20,7 +20,7 @@ export default class Sidebar extends Component {
 
         this.props.changePage("Transactions");
     }
-
+    
     getAssets = () => {
         this.setState({
             assetsActive: "active",
@@ -30,14 +30,14 @@ export default class Sidebar extends Component {
 
         this.props.changePage("Assets");
     }
-
+    
     getSignAndAdd = () => {
         this.setState({
             assetsActive: "",
             whitelistActive: "active",
             txActive: ""
         });
-
+        
         this.props.changePage("SignAndAdd");
     }
 

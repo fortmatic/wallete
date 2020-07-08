@@ -279,3 +279,4 @@ export default class Transactions extends Component {
         );
     }
 }
+
