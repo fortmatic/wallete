@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // General function libraries
-import './sidebar.scss';
+import sidebarStyle from './sidebar.module.scss';
 
 export default class Sidebar extends Component {
     state = {
@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
         whitelistActive: "",
         txActive: ""
     };
-    
+
     getTransactions = async () => {
         this.setState({
             assetsActive: "",
@@ -48,14 +48,14 @@ export default class Sidebar extends Component {
             txActive } = this.state;
 
         return (
-            <div className="sidebar" id="sidebar">
-                <ul id="nav">
+            <div className={sidebarStyle.sidebar} id={sidebarStyle.sidebar}>
+                <ul id={sidebarStyle.nav}>
                     <div>
-                        <li id="Assets" className={assetsActive}>
+                        <li id="Assets" className={assetsActive === "active" ? sidebarStyle.active : ""}>
                             <a onClick={this.getAssets} href="!#">Assets</a></li>
-                        <li id="Whitelist" className={whitelistActive}>
+                        <li id="Whitelist" className={whitelistActive === "active" ? sidebarStyle.active : ""}>
                             <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                        <li id="Transactions" className={txActive}>
+                        <li id="Transactions" className={txActive === "active" ? sidebarStyle.active : ""}>
                             <a onClick={this.getTransactions} href="!#">Transactions</a></li>
                     </div>
                 </ul>

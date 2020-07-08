@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import * as index from '../../index.js';
-import './assets.scss';
+import assetStyle from'./assets.module.scss';
+import mainStyle from '../../main.module.scss'
 
 export default class Assets extends Component {
     state = {
@@ -23,18 +24,18 @@ export default class Assets extends Component {
         const { eth } = this.state;
 
         return (
-            <div className="main">
-                <div className="mainBlueBox">
+            <div className={mainStyle.main}>
+                <div className={mainStyle.mainBlueBox}>
                 <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
-                    <table className="table">
+                    <table className={assetStyle.table}>
                         <tbody>
                             <tr>
-                                <th className="assets">Assets</th>
-                                <th className="balance">Balance</th>
+                                <th className={assetStyle.assets}>Assets</th>
+                                <th className={assetStyle.balance}>Balance</th>
                             </tr>
                             <tr>
-                                <td className="assets">Ether</td>
-                                <td className="balance">{eth + " Eth"}</td>
+                                <td className={assetStyle.assets}>Ether</td>
+                                <td className={assetStyle.balance}>{eth + " Eth"}</td>
                             </tr>
                         </tbody>
                     </table>

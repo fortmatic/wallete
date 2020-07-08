@@ -34,8 +34,8 @@
     border-radius: 9px;
     
     .transactionRow {
-        font-size: 20px;
         cursor: pointer;
+        font-size: large;
         border-top: 1px solid lightgrey;
     }
 
@@ -48,6 +48,7 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            margin-right: -60px;
 
             th {
                 border-collapse: collapse;
@@ -73,6 +74,10 @@
                 padding-left: 55px;
             }
         }
+
+        .transactionStatus {
+            padding-left: -20px;
+        }
         
         tr:hover {
             background-color: rgb(231, 230, 230);
@@ -86,6 +91,8 @@
     .composition {
         width: 100%;
         display: block;
+        flex-wrap: wrap;
+        flex-direction: row;
         flex: auto;
         box-sizing: content-box;
         background-color: #FFFFFF;
@@ -95,7 +102,6 @@
         border: 1px solid lightgray;
     }
 }
-
 .startTrans {
     .address {
         border-radius: 10px;

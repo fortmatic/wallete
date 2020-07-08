@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 import * as index from '../../index.js';
 import * as constants from '../../constants/constants.js';
-import './whitelist.scss';
+import whitelistStyle from './whitelist.module.scss';
+import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader.jsx';
 import { validateInputs, getData } from './whitelistHelper.js';
@@ -53,9 +54,9 @@ export default class SignAndAdd extends Component {
             const { blockie, name, address } = row;
             return (
                 <tr key={index}>
-                    <td className="whitelistBlockie">{blockie}</td>
-                    <td className="whitelistName">{name}</td>
-                    <td className="whitelistAddress">{address}</td>
+                    <td className={whitelistStyle.whitelistBlockie}>{blockie}</td>
+                    <td className={whitelistStyle.whitelistName}>{name}</td>
+                    <td className={whitelistStyle.whitelistAddress}>{address}</td>
                 </tr>
             );
         });
@@ -133,7 +134,7 @@ export default class SignAndAdd extends Component {
         } = this.state;
 
         return (
-            <div className="main">
+            <div className={mainStyle.main}>
                 {loading && <Loader
                     hash={hash}
                     addedAddress={addedAddress}
@@ -142,28 +143,28 @@ export default class SignAndAdd extends Component {
                     successType={successType}
                     title={loadTitle}
                 />}
-                <div className="mainBlueBox">
-                    <div id="whitelist">
-                        <h1 className="whitelistTitle">Whitelist</h1>
-                        <table className="whitelistTable">
+                <div className={mainStyle.mainBlueBox}>
+                    <div id={whitelistStyle.whitelist}>
+                        <h1 className={whitelistStyle.whitelistTitle}>Whitelist</h1>
+                        <table className={whitelistStyle.whitelistTable}>
                             <tbody>
                                 <tr>
                                     <th></th>
-                                    <th className="whitelistName">Name</th>
-                                    <th className="whitelistAddress">Address</th>
+                                    <th className={whitelistStyle.whitelistName}>Name</th>
+                                    <th className={whitelistStyle.whitelistAddress}>Address</th>
                                 </tr>
                                 {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>
-                    <div className="addToWhitelist">
-                        <h1 className="addressBox">Add New Address to Whitelist</h1>
-                        <input className="address" type="text" placeholder="Enter Address"
+                    <div className={whitelistStyle.addToWhitelist}>
+                        <h1 className={whitelistStyle.addressBox}>Add New Address to Whitelist</h1>
+                        <input className={whitelistStyle.address} type="text" placeholder="Enter Address"
                             value={address} onChange={this.handleAddress} />
-                        <input className="name" type="text" placeholder="Account Name"
+                        <input className={whitelistStyle.name} type="text" placeholder="Account Name"
                             value={name} onChange={this.handleName} />
-                        <p className="connected" id="status"></p>
-                        <button className="addBtn" onClick={this.addToWhiteList} href="!#" >Add Address</button>
+                        <p className={whitelistStyle.connected} id="status"></p>
+                        <button className={whitelistStyle.addBtn} onClick={this.addToWhiteList} href="!#" >Add Address</button>
                     </div>
                 </div>
             </div>
