@@ -65,6 +65,17 @@ class TxRow extends React.Component<TxRowProps, TxRowState> {
     }
 }
 
+interface transactionData {
+    from?: any,
+    to?: any,
+    amount?: number,
+    nonceTrans?: number,
+    threshold?: number,
+    numSigs?: number,
+    txHash?: string,
+    complete?: Boolean
+}
+
 interface TransactionsProps {
 
 }
@@ -80,7 +91,7 @@ interface TransactionsState {
     txLink?: string,
     successType?: string,
     msg?: string,
-    pending: Array<any>
+    pending: Array<transactionData>
 }
 
 export default class Transactions extends React.Component<TransactionsProps, TransactionsState> {
@@ -290,7 +301,7 @@ export default class Transactions extends React.Component<TransactionsProps, Tra
 
         this.setState({
             successType: "sign",
-            hash: this.state.pending[i].txHash,
+            // hash: this.state.pending[i].txHash,
             msg: msg
         });
     }
