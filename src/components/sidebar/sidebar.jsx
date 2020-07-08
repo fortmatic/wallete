@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // General function libraries
-import sidebarStyle from'./sidebar.module.scss';
+import sidebarStyle from './sidebar.module.scss';
 
 export default class Sidebar extends Component {
     state = {
@@ -10,28 +10,6 @@ export default class Sidebar extends Component {
         whitelistActive: "",
         txActive: ""
     };
-
-    render() {
-        const {
-            assetsActive,
-            whitelistActive,
-            txActive } = this.state;
-
-        return (
-            <div className={sidebarStyle.sidebar} id={sidebarStyle.sidebar}>
-                <ul id={sidebarStyle.nav}>
-                    <div>
-                        <li id="Assets" className={assetsActive === "active" ? sidebarStyle.active : ""}>
-                            <a onClick={this.getAssets} href="!#">Assets</a></li>
-                        <li id="Whitelist" className={whitelistActive === "active" ? sidebarStyle.active : ""}>
-                            <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
-                        <li id="Transactions" className={txActive === "active" ? sidebarStyle.active : ""}>
-                            <a onClick={this.getTransactions} href="!#">Transactions</a></li>
-                    </div>
-                </ul>
-            </div>
-        );
-    }
 
     getTransactions = async () => {
         this.setState({
@@ -61,5 +39,27 @@ export default class Sidebar extends Component {
         });
 
         this.props.changePage("SignAndAdd");
+    }
+
+    render() {
+        const {
+            assetsActive,
+            whitelistActive,
+            txActive } = this.state;
+
+        return (
+            <div className={sidebarStyle.sidebar} id={sidebarStyle.sidebar}>
+                <ul id={sidebarStyle.nav}>
+                    <div>
+                        <li id="Assets" className={assetsActive === "active" ? sidebarStyle.active : ""}>
+                            <a onClick={this.getAssets} href="!#">Assets</a></li>
+                        <li id="Whitelist" className={whitelistActive === "active" ? sidebarStyle.active : ""}>
+                            <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                        <li id="Transactions" className={txActive === "active" ? sidebarStyle.active : ""}>
+                            <a onClick={this.getTransactions} href="!#">Transactions</a></li>
+                    </div>
+                </ul>
+            </div>
+        );
     }
 }

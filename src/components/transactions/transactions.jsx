@@ -28,7 +28,6 @@ class TxRow extends Component {
         } = this.props.data;
 
         return (
-
             <tr className={txStyle.transactionRow} onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
                 <td className={txStyle.transactionHash}>{txHash.substring(0, 15) + "..."}</td>
                 <td className={txStyle.transactionTo}>{to.substring(0, 15) + "..."}</td>
@@ -93,70 +92,6 @@ export default class Transactions extends Component {
             successType: "",
             msg: ""
         });
-    }
-
-    render() {
-        const {
-            loading,
-            hash,
-            errorMsg,
-            successType,
-            pending,
-            address,
-            loadTitle,
-            exchangeAmt,
-            msg,
-            txLink
-        } = this.state;
-
-        return (
-            <div className={mainStyle.main}>
-                {loading && <Loader
-                    hash={hash}
-                    close={this.handleCloseLoad}
-                    errorMsg={errorMsg}
-                    title={loadTitle}
-                    toAddress={address}
-                    amount={exchangeAmt}
-                    link={txLink}
-                    msg={msg}
-                    successType={successType}
-                />}
-                <div className={mainStyle.mainBlueBox}>
-                    <div id={txStyle.pending}>
-
-                        <h1 className={txStyle.transactionTitle}>Transactions</h1>
-                        <table className={txStyle.transactionTable}>
-                            <tbody>
-                                <tr className={txStyle.headingRow}>
-                                    <th className={txStyle.transactionHash}>Tx Hash</th>
-                                    <th className={txStyle.transactionTo}>To</th>
-                                    <th className={txStyle.transactionAmount}>Amount</th>
-                                    <th className={txStyle.transactionStatus}>Status</th>
-                                </tr>
-                                {pending.map((tx, index) => {
-                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
-                                })}
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <h1 className={txStyle.newTrans}>New Transaction</h1>
-                    <div className={txStyle.startTrans}>
-                        <input type="text" className={txStyle.address} placeholder="Send to Address"
-
-                            value={this.state.address} onChange={this.handleAddress} />
-                        <input type="number" className={txStyle.exchangeAmt} placeholder="Transaction amount (Eth)"
-                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
-
-                        <p className={txStyle.connected} id={txStyle.status}></p>
-                        <a className={txStyle.startBtn} onClick={this.startTransaction} href="!#">Start Transaction</a>
-                        <p className={txStyle.connected} id="message"></p>
-                    </div>
-                </div>
-            </div>
-        );
     }
 
     handleExchangeAmt = (event) => {
@@ -278,5 +213,69 @@ export default class Transactions extends Component {
             hash: this.state.pending[i].txHash,
             msg: msg
         });
+    }
+
+    render() {
+        const {
+            loading,
+            hash,
+            errorMsg,
+            successType,
+            pending,
+            address,
+            loadTitle,
+            exchangeAmt,
+            msg,
+            txLink
+        } = this.state;
+
+        return (
+            <div className={mainStyle.main}>
+                {loading && <Loader
+                    hash={hash}
+                    close={this.handleCloseLoad}
+                    errorMsg={errorMsg}
+                    title={loadTitle}
+                    toAddress={address}
+                    amount={exchangeAmt}
+                    link={txLink}
+                    msg={msg}
+                    successType={successType}
+                />}
+                <div className={mainStyle.mainBlueBox}>
+                    <div id={txStyle.pending}>
+
+                        <h1 className={txStyle.transactionTitle}>Transactions</h1>
+                        <table className={txStyle.transactionTable}>
+                            <tbody>
+                                <tr className={txStyle.headingRow}>
+                                    <th className={txStyle.transactionHash}>Tx Hash</th>
+                                    <th className={txStyle.transactionTo}>To</th>
+                                    <th className={txStyle.transactionAmount}>Amount</th>
+                                    <th className={txStyle.transactionStatus}>Status</th>
+                                </tr>
+                                {pending.map((tx, index) => {
+                                    return (<TxRow key={index} data={tx} signTx={() => this.signContract(index)} />)
+                                })}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <h1 className={txStyle.newTrans}>New Transaction</h1>
+                    <div className={txStyle.startTrans}>
+                        <input type="text" className={txStyle.address} placeholder="Send to Address"
+
+                            value={this.state.address} onChange={this.handleAddress} />
+                        <input type="number" className={txStyle.exchangeAmt} placeholder="Transaction amount (Eth)"
+                            value={this.state.exchangeAmt} onChange={this.handleExchangeAmt} />
+
+                        <p className={txStyle.connected} id={txStyle.status}></p>
+                        <a className={txStyle.startBtn} onClick={this.startTransaction} href="!#">Start Transaction</a>
+                        <p className={txStyle.connected} id="message"></p>
+                    </div>
+                </div>
+            </div>
+        );
     }
 }

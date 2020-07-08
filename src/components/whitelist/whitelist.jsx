@@ -62,6 +62,65 @@ export default class SignAndAdd extends Component {
         });
     }
 
+    handleAddress = (event) => {
+        this.setState({
+            address: event.target.value
+        });
+    }
+
+    handleName = (event) => {
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    addToWhiteList = async () => {
+        this.setState({ loading: true });
+
+        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
+        const { address, name } = this.state;
+
+        let tmp = await validateInputs(address, name, async () => {
+            return await index.contract.methods.addAddress(address, name).call({
+                from: userAddress
+            })
+        });
+
+        if (tmp !== "") {
+            this.setState({
+                loadTitle: "Unable to Add Address",
+                addedAddress: address,
+                errorMsg: tmp
+            });
+            return;
+        }
+
+        try {
+            await index.contract.methods.addAddress(address, name).send({
+                from: userAddress,
+                gas: 1500000,
+                gasPrice: '3000000000000'
+            })
+                .on('transactionHash', (hash) =>
+                    this.setState({ hash: hash }))
+
+                .on('receipt', (rec) =>
+                    this.setState({
+                        addedAddress: address,
+                        successType: "add"
+                    }));
+
+        } catch (err) {
+            console.log("error caught");
+            console.log(err);
+            this.setState({
+                loadTitle: "Unable to Add Address",
+                addedAddress: address,
+                errorMsg: err
+            })
+        }
+    }
+
     render() {
         const {
             hash,
@@ -110,65 +169,5 @@ export default class SignAndAdd extends Component {
                 </div>
             </div>
         );
-    }
-
-
-    handleAddress = (event) => {
-        this.setState({
-            address: event.target.value
-        });
-    }
-
-    handleName = (event) => {
-        this.setState({
-            name: event.target.value
-        })
-    }
-
-    addToWhiteList = async () => {
-        this.setState({ loading: true });
-
-        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
-        const { address, name } = this.state;
-
-        let tmp = await validateInputs(address, name, async () => {
-            return await index.contract.methods.addAddress(address, name).call({
-                from: userAddress
-            })
-        });
-        
-        if (tmp !== "") {
-            this.setState({
-                loadTitle: "Unable to Add Address",
-                addedAddress: address,
-                errorMsg: tmp
-            });
-            return;
-        }
-
-        try {
-            await index.contract.methods.addAddress(address, name).send({
-                from: userAddress,
-                gas: 1500000,
-                gasPrice: '3000000000000'
-            })
-                .on('transactionHash', (hash) =>
-                    this.setState({ hash: hash }))
-
-                .on('receipt', (rec) =>
-                    this.setState({
-                        addedAddress: address,
-                        successType: "add"
-                    }));
-
-        } catch (err) {
-            console.log("error caught");
-            console.log(err);
-            this.setState({
-                loadTitle: "Unable to Add Address",
-                addedAddress: address,
-                errorMsg: err
-            })
-        }
     }
 }
