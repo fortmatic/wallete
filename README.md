@@ -11,7 +11,18 @@ Ensure that the following tools are installed:
 
 Then make a clean install of the npm modules:
 ```bash
-npm ci
+yarn install
+```
+
+### `.env` Setup
+
+Create .env file in the root folder of the project. In order to use launch the project you need and enviroment variable called `MagicKey`. This is where your Magic API key should go.
+
+You can create an account and get API keys from https://magic.link/
+
+The .env should include:
+```
+MagicKey="YOUR_API_KEY"
 ```
 
 ## Usage
@@ -19,10 +30,10 @@ npm ci
 To launch on localhost:
 
 ```bash
-npm start
+yarn start
 ```
 
-This should open a webpage to http://localhost:3000/
+This should open a webpage at http://localhost:3000/
 
 ## Features
 
