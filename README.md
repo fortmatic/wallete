@@ -16,7 +16,7 @@ yarn install
 
 ### `.env` Setup
 
-Create .env file in the root folder of the project. In order to use launch the project you need and enviroment variable called `MagicKey`. This is where your Magic API key should go.
+Create .env file in the root folder of the project. In order to run the project you need an enviroment variable called `MagicKey`. This is where your Magic API key should go.
 
 You can create an account and get API keys from https://magic.link/
 
