@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 
 // General function libraries
-import * as index from '../../index.js';
-import * as constants from '../../constants/constants.js';
+import * as index from '../../index';
+import * as constants from '../../constants/constants';
 import txStyle from './transactions.module.scss';
 import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader.js';
 
-import { startTxInputs, signContractInputs } from "./transactionsHelper.js";
+import { startTxInputs, signContractInputs } from "./transactionsHelper";
 
 class TxRow extends Component {
     state = {

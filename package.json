@@ -64,6 +64,7 @@
     "styled-components": "^5.1.0",
     "terser-webpack-plugin": "2.3.4",
     "ts-pnp": "1.1.5",
+    "typescript": "^3.9.6",
     "url-loader": "2.3.0",
     "web3": "^1.2.6",
     "webpack": "4.41.5",

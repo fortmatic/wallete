@@ -1,4 +1,4 @@
-import * as index from '../../index.js';
+import * as index from '../../index';
 
 export let startTxInputs = async (amount, sendAddress, func) => {
     if (sendAddress === "" || amount === "")

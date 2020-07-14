@@ -6,14 +6,14 @@ import './main.module.scss';
 import * as serviceWorker from './serviceWorker';
 
 // Contract related Libraries
-import * as abi from './constants/abi.js';
-import * as constants from './constants/constants.js';
+import * as abi from './constants/abi';
+import * as constants from './constants/constants';
 import Web3 from 'web3';
 
 // Main React Components
-import App from './containers/app.js';
-import { Login } from './containers/login/login.js';
-import { Buffer } from "./components/loader/loader.js";
+import App from './containers/app';
+import { Login } from './containers/login/login';
+import { Buffer } from "./components/loader/loader";
 
 export const web3 = new Web3(constants.magic.rpcProvider);
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract

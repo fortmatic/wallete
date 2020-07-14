@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Blockies from 'react-blockies';
-import * as index from '../../index.js';
+import * as index from '../../index';
 
 export let validateInputs = async (address, acctName, func) => {
     if (address === "" || acctName === "") return "Invalid Inputs";
