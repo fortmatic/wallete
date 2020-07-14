@@ -1,12 +1,12 @@
 // General React libraries
 import React, { Component } from 'react';
 
-import * as index from '../../index.js';
+import * as index from '../../index';
 import * as constants from '../../constants/constants';
 import whitelistStyle from './whitelist.module.scss';
 import mainStyle from '../../main.module.scss';
 
-import { Loader } from '../loader/loader.js';
+import { Loader } from '../loader/loader';
 import { validateInputs, getData } from './whitelistHelper';
 
 export default class SignAndAdd extends Component {

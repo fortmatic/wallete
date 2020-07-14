@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Blockies from 'react-blockies';
 import * as index from '../../index';

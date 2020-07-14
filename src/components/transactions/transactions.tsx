@@ -7,7 +7,7 @@ import * as constants from '../../constants/constants';
 import txStyle from './transactions.module.scss';
 import mainStyle from '../../main.module.scss';
 
-import { Loader } from '../loader/loader.js';
+import { Loader } from '../loader/loader';
 
 import { startTxInputs, signContractInputs } from "./transactionsHelper";
 
