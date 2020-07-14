@@ -11,9 +11,9 @@ import * as constants from './constants/constants.js';
 import Web3 from 'web3';
 
 // Main React Components
-import App from './containers/app.jsx';
-import { Login } from './containers/login/login.jsx';
-import { Buffer } from "./components/loader/loader.jsx";
+import App from './containers/app.js';
+import { Login } from './containers/login/login.js';
+import { Buffer } from "./components/loader/loader.js";
 
 export const web3 = new Web3(constants.magic.rpcProvider);
 export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
