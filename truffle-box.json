@@ -1,0 +1,11 @@
+{
+    "commands": {
+        "Compile Contracts": "truffle compile",
+        "Start React App": "yarn start",
+        "Test React Helper Files": "yarn test",
+        "Run Coverage Test": "yarn coverage"
+    },
+    "hooks": {
+        "post-unpack": "yarn install"
+    }
+}
