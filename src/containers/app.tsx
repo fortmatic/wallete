@@ -1,11 +1,11 @@
 import React from 'react';
 
 // App React companents
-import { Top } from './login/login.jsx'
-import Sidebar from "../components/sidebar/sidebar.jsx";
-import Assets from "../components/assets/assets.jsx";
-import Transactions from '../components/transactions/transactions.jsx';
-import SignAndAdd from '../components/whitelist/whitelist.jsx';
+import { Top } from './login/login'
+import Sidebar from "../components/sidebar/sidebar";
+import Assets from "../components/assets/assets";
+import Transactions from '../components/transactions/transactions';
+import SignAndAdd from '../components/whitelist/whitelist';
 
 
 export default class App extends React.Component {

@@ -1,5 +1,5 @@
 {
-  "name": "demo_app",
+  "name": "wallete",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,6 +33,7 @@
     "file-loader": "4.3.0",
     "fortmatic": "^2.0.0",
     "fs-extra": "^8.1.0",
+    "html-minifier": "^4.0.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.9.0",
@@ -64,6 +65,7 @@
     "styled-components": "^5.1.0",
     "terser-webpack-plugin": "2.3.4",
     "ts-pnp": "1.1.5",
+    "typescript": "^3.9.6",
     "url-loader": "2.3.0",
     "web3": "^1.2.6",
     "webpack": "4.41.5",

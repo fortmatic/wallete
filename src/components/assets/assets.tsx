@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import * as index from '../../index.js';
+import * as index from '../../index';
 import assetStyle from'./assets.module.scss';
 import mainStyle from '../../main.module.scss'
 
