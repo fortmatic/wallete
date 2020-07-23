@@ -19,7 +19,8 @@
         "baseUrl": "src" /* Base directory to resolve non-absolute module names. */,
         "noEmitOnError": true,
         // "strictNullChecks": true /* Enable strict null checks. */,
-        "allowJs": true /* Allow javascript files to be compiled. */
+        "allowJs": true /* Allow javascript files to be compiled. */,
+        "skipLibCheck": true
     },
     "exclude": [
         "dist",
