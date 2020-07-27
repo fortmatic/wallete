@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 // General function libraries
 import sidebarStyle from './sidebar.module.scss';
 
-export default class Sidebar extends Component {
+export default class Sidebar extends Component<any> {
     state = {
         assetsActive: "active",
         whitelistActive: "",

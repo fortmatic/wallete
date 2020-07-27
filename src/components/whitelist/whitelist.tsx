@@ -9,7 +9,7 @@ import mainStyle from '../../main.module.scss';
 import { Loader } from '../loader/loader';
 import { validateInputs, getData } from './whitelistHelper';
 
-export default class SignAndAdd extends Component {
+export default class SignAndAdd extends Component<any>{
     state = {
         address: "",
         name: "",
@@ -18,11 +18,12 @@ export default class SignAndAdd extends Component {
         addedAddress: "",
         errorMsg: "",
         successType: "",
+        loadTitle: 'any',
         data: []
     };
-
-    constructor() {
-        super();
+    private myRef;
+    constructor(props) {
+        super(props);
 
         this.myRef = React.createRef();
 
@@ -164,7 +165,7 @@ export default class SignAndAdd extends Component {
                         <input className={whitelistStyle.name} type="text" placeholder="Account Name"
                             value={name} onChange={this.handleName} />
                         <p className={whitelistStyle.connected} id="status"></p>
-                        <button className={whitelistStyle.addBtn} onClick={this.addToWhiteList} href="!#" >Add Address</button>
+                        <button className={whitelistStyle.addBtn} onClick={this.addToWhiteList} >Add Address</button>
                     </div>
                 </div>
             </div>
