@@ -10,6 +10,7 @@ declare namespace NodeJS {
 }
 
 declare module 'react-blockies';
+declare module 'web3';
 
 declare module '*.bmp' {
   const src: string;

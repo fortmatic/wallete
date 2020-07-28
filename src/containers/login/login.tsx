@@ -99,20 +99,20 @@ export class Top extends Component<any, any> {
         return (
             <div >
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
-                    {this.state.icon}
+                    {this.state.icon} 
                 </a>
                 <div className="profile-Box" ref={this.container}>
-                    <p className="icon-display">{this.state.icon} {this.state.userAddress}
-                    </p>
-
+                    <p className= "icon-display">{this.state.icon} {this.state.userAddress} 
+                        </p>
+                
                     <div>
-                        <a href="!#" id="user-Address">{this.state.addressPart}
-                            <span className="copy-hov">{this.state.username}</span>
+                        <a href="!#" id="user-Address">{this.state.addressPart } 
+                            <span className = "copy-hov">{this.state.username}</span>
                         </a>
                         <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
-                            <i ><span className="clipboard-hov">Copy</span></i></a>
+                            <i className="far fa-copy"><span className = "clipboard-hov">Copy</span></i></a>
                     </div>
-                    <a href="!#" className="logout-Btn" onClick={this.logout}>Logout</a>
+                    <a href="!#" className="logout-Btn" onClick={this.logout}><i className="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
         );
