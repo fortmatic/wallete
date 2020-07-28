@@ -9,13 +9,14 @@ import './login.scss';
 import Blockies from 'react-blockies';
 
 
-export class Top extends Component {
+export class Top extends Component<any, any> {
     state = {
         open: false,
         userAddress: "",
         username: "",
         addressPart: "",
-        addEnd: ""
+        addEnd: "",
+        icon: ""
     };
 
     async componentDidMount() {
@@ -25,16 +26,16 @@ export class Top extends Component {
         var addressEnd = ""
         this.setState({ userAddress: user_in });
         this.setState({ username: address_in });
-        for (let i = 0; i < 15; ++i){
+        for (let i = 0; i < 15; ++i) {
             userAdd += address_in[i];
         }
         userAdd += '...';
-        for (let i = address_in.length - 5; i < address_in.length; ++i){
+        for (let i = address_in.length - 5; i < address_in.length; ++i) {
             userAdd += address_in[i];
         }
         userAdd += ' ';
-        this.setState({ addressPart : userAdd});
-        this.setState({ addEnd : addressEnd});
+        this.setState({ addressPart: userAdd });
+        this.setState({ addEnd: addressEnd });
 
         this.setState({
             icon: <Blockies
@@ -62,7 +63,8 @@ export class Top extends Component {
         );
     }
 
-    container = React.createRef();
+    container: any = React.createRef();
+    node: any;
 
     handleState = () => {
         if (this.state.open) {
@@ -108,9 +110,9 @@ export class Top extends Component {
                             <span className = "copy-hov">{this.state.username}</span>
                         </a>
                         <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
-                            <i class="far fa-copy"><span className = "clipboard-hov">Copy</span></i></a>
+                            <i className="far fa-copy"><span className = "clipboard-hov">Copy</span></i></a>
                     </div>
-                    <a href="!#" className="logout-Btn" onClick={this.logout}><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="!#" className="logout-Btn" onClick={this.logout}><i className="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
         );
@@ -120,7 +122,7 @@ export class Top extends Component {
         return (
             <div>
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
-                    {this.state.icon} 
+                    {this.state.icon}
                 </a>
                 <p ref={this.container}></p>
             </div>
@@ -129,14 +131,14 @@ export class Top extends Component {
 
 }
 
-export class Login extends Component {
+export class Login extends Component<any> {
     state = {
         email: "",
         status: ""
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.handleEmail = this.handleEmail.bind(this);
     }
@@ -146,9 +148,9 @@ export class Login extends Component {
             <div className="login">
                 <div className="login-Box">
                     <h1>WALLETTE</h1>
-                    <p value={this.state.status}>Please login</p>
+                    <p>Please login</p>
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
-                        onChange={this.handleEmail}/>
+                        onChange={this.handleEmail} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>

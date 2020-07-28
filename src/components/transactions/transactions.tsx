@@ -11,7 +11,7 @@ import { Loader } from '../loader/loader';
 
 import { startTxInputs, signContractInputs } from "./transactionsHelper";
 
-class TxRow extends Component {
+class TxRow extends Component<any> {
     state = {
         isExpanded: false
     }
@@ -70,8 +70,8 @@ export default class Transactions extends Component {
         pending: []
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.handleExchangeAmt = this.handleExchangeAmt.bind(this);
         this.handleAddress = this.handleAddress.bind(this);

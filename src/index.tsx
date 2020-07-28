@@ -6,7 +6,7 @@ import './main.module.scss';
 import * as serviceWorker from './serviceWorker';
 
 // Contract related Libraries
-import * as abi from './constants/abi';
+import abi from './constants/abi';
 import * as constants from './constants/constants';
 import Web3 from 'web3';
 
@@ -16,7 +16,7 @@ import { Login } from './containers/login/login';
 import { Buffer } from "./components/loader/loader";
 
 export const web3 = new Web3(constants.magic.rpcProvider);
-export var contract = new web3.eth.Contract(abi.contractAbi); // need abi of smart contract
+export var contract = new web3.eth.Contract(abi); // need abi of smart contract
 contract.options.address = constants.contractAddress;
 
 class Main extends React.Component {
@@ -53,8 +53,3 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(<Main />, document.getElementById('root') || document.createElement("div"));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();

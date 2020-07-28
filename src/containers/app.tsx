@@ -8,7 +8,7 @@ import Transactions from '../components/transactions/transactions';
 import SignAndAdd from '../components/whitelist/whitelist';
 
 
-export default class App extends React.Component {
+export default class App extends React.Component<any,any> {
     state = {
         mainElement: "Assets"
     }

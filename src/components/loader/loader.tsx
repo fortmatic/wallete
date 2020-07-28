@@ -2,7 +2,7 @@ import React from 'react';
 import loaderStyle from './loader.module.scss';
 
 
-export class Loader extends React.Component {
+export class Loader extends React.Component<any> {
 
     render() {
         const { errorMsg,
