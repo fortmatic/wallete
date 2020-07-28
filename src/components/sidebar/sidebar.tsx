@@ -4,7 +4,17 @@ import React, { Component } from 'react';
 // General function libraries
 import sidebarStyle from './sidebar.module.scss';
 
-export default class Sidebar extends Component<any> {
+interface Props {
+    changePage: (string) => void;
+}
+
+interface State {
+    assetsActive: string;
+    whitelistActive: string;
+    txActive: string;
+}
+
+export default class Sidebar extends Component<Props, State> {
     state = {
         assetsActive: "active",
         whitelistActive: "",
@@ -20,7 +30,7 @@ export default class Sidebar extends Component<any> {
 
         this.props.changePage("Transactions");
     }
-    
+
     getAssets = () => {
         this.setState({
             assetsActive: "active",
@@ -30,14 +40,14 @@ export default class Sidebar extends Component<any> {
 
         this.props.changePage("Assets");
     }
-    
+
     getSignAndAdd = () => {
         this.setState({
             assetsActive: "",
             whitelistActive: "active",
             txActive: ""
         });
-        
+
         this.props.changePage("SignAndAdd");
     }
 
