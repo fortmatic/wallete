@@ -1,8 +1,20 @@
 import React from 'react';
 import loaderStyle from './loader.module.scss';
 
+interface Props {
+    errorMsg: string;
+    successType: string;
+    title: string;
+    amount?: string;
+    toAddress?: string;
+    addedAddress?: string;
+    link?: string;
+    msg?: string;
+    hash: string;
+    close(): void;
+}
 
-export class Loader extends React.Component<any> {
+export class Loader extends React.Component<Props> {
 
     render() {
         const { errorMsg,
