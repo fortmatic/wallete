@@ -12,7 +12,12 @@ import App from './containers/app';
 import { Login } from './containers/login/login';
 import { Buffer } from "./components/loader/loader";
 
-class Main extends React.Component {
+interface State {
+    isLoggedIn: boolean;
+    isLoading: boolean;
+}
+
+class Main extends React.Component<{}, State> {
     state = {
         isLoggedIn: false,
         isLoading: true
