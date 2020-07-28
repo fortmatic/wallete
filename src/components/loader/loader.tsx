@@ -5,7 +5,7 @@ interface Props {
     errorMsg: string;
     successType: string;
     title: string;
-    amount?: string;
+    amount?: number;
     toAddress?: string;
     addedAddress?: string;
     link?: string;
