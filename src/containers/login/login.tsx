@@ -2,14 +2,26 @@
 import React, { Component } from 'react';
 
 // Function libraries
-import * as constants from '../../constants/constants';
+import { magic } from '../../constants/constants';
 import './login.scss';
 
 // React components
 import Blockies from 'react-blockies';
 
+interface Props {
+    changeStatus: (bool) => void;
+}
 
-export class Top extends Component<any, any> {
+interface topState {
+    open: boolean
+    userAddress: string
+    username: string
+    addressPart: string
+    addEnd: string
+    icon: any
+}
+
+export class Top extends Component<Props, topState> {
     state = {
         open: false,
         userAddress: "",
@@ -20,8 +32,8 @@ export class Top extends Component<any, any> {
     };
 
     async componentDidMount() {
-        const user_in = (await constants.magic.user.getMetadata()).email;
-        const address_in = (await constants.magic.user.getMetadata()).publicAddress;
+        const user_in = (await magic.user.getMetadata()).email;
+        const address_in = (await magic.user.getMetadata()).publicAddress;
         var userAdd = "";
         var addressEnd = ""
         this.setState({ userAddress: user_in });
@@ -90,27 +102,26 @@ export class Top extends Component<any, any> {
     logout = async () => {
         document.removeEventListener('mousedown', this.handleClick, false);
 
-        await constants.magic.user.logout();
+        await magic.user.logout();
 
-        this.props.changeStatus(await constants.magic.user.isLoggedIn());
+        this.props.changeStatus(await magic.user.isLoggedIn());
     }
 
     openProfile = () => {
         return (
             <div >
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
-                    {this.state.icon} 
+                    {this.state.icon}
                 </a>
                 <div className="profile-Box" ref={this.container}>
-                    <p className= "icon-display">{this.state.icon} {this.state.userAddress} 
-                        </p>
-                
+                    <p className="icon-display">{this.state.icon} {this.state.userAddress}</p>
+
                     <div>
-                        <a href="!#" id="user-Address">{this.state.addressPart } 
-                            <span className = "copy-hov">{this.state.username}</span>
+                        <a href="!#" id="user-Address">{this.state.addressPart}
+                            <span className="copy-hov">{this.state.username}</span>
                         </a>
                         <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
-                            <i className="far fa-copy"><span className = "clipboard-hov">Copy</span></i></a>
+                            <i className="far fa-copy"><span className="clipboard-hov">Copy</span></i></a>
                     </div>
                     <a href="!#" className="logout-Btn" onClick={this.logout}><i className="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
@@ -131,7 +142,12 @@ export class Top extends Component<any, any> {
 
 }
 
-export class Login extends Component<any> {
+interface loginState {
+    email: string;
+    status: string;
+}
+
+export class Login extends Component<Props, loginState> {
     state = {
         email: "",
         status: ""
@@ -166,7 +182,7 @@ export class Login extends Component<any> {
     loginAndMain = async () => {
         const email = this.state.email;
 
-        await constants.magic.auth.loginWithMagicLink({ email })
+        await magic.auth.loginWithMagicLink({ email })
             .catch((err) => (
                 this.setState({
                     status: "Incorrect Login"
@@ -174,6 +190,6 @@ export class Login extends Component<any> {
             ));
 
 
-        this.props.changeStatus(await constants.magic.user.isLoggedIn());
+        this.props.changeStatus(await magic.user.isLoggedIn());
     }
 }

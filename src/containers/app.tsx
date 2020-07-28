@@ -7,8 +7,16 @@ import Assets from "../components/assets/assets";
 import Transactions from '../components/transactions/transactions';
 import SignAndAdd from '../components/whitelist/whitelist';
 
+interface State {
+    mainElement: string;
+}
 
-export default class App extends React.Component<any,any> {
+interface Props {
+    changeStatus: (bool) => void;
+}
+
+
+export default class App extends React.Component<Props, State> {
     state = {
         mainElement: "Assets"
     }
