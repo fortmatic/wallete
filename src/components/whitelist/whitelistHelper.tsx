@@ -13,6 +13,12 @@ export let validateInputs = async (address, acctName, func) => {
     return "";
 }
 
+export interface Entry {
+    blockie: any;
+    name: string;
+    address: string;
+}
+
 export let getData = async () => {
     var pending = await contract.methods.getWhitelistAdd().call();
     var data = [];
@@ -25,6 +31,7 @@ export let getData = async () => {
             size={6}
             scale={6}>
         </Blockies>
+
         data.push({
             blockie: icon,
             name: name,

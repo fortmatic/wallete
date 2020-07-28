@@ -1,5 +1,5 @@
 // General React components
-import React, { Component } from 'react';
+import React from 'react';
 
 // General function libraries
 import { contract, web3, magic } from '../../constants/constants';
@@ -10,7 +10,18 @@ import { Loader } from '../loader/loader';
 
 import { startTxInputs, signContractInputs } from "./transactionsHelper";
 
-class TxRow extends Component<any> {
+interface txData {
+    from: string;
+    to: string;
+    amount: number;
+    nonceTrans: number;
+    threshold: number;
+    numSigs: number;
+    txHash: string;
+    complete: boolean;
+}
+
+class TxRow extends React.Component<{ data: txData, signTx: () => void }, { isExpanded: boolean }> {
     state = {
         isExpanded: false
     }
@@ -55,9 +66,22 @@ class TxRow extends Component<any> {
     }
 }
 
-export default class Transactions extends Component {
+interface txState {
+    exchangeAmt: number;
+    address: string;
+    loading: boolean;
+    hash: string;
+    errorMsg: string;
+    loadTitle: string;
+    txLink: string;
+    successType: string;
+    msg: string;
+    pending: Array<txData>;
+}
+
+export default class Transactions extends React.Component<{}, txState> {
     state = {
-        exchangeAmt: "",
+        exchangeAmt: 0,
         address: "",
         loading: false,
         hash: "",
