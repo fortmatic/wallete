@@ -6,9 +6,21 @@ import whitelistStyle from './whitelist.module.scss';
 import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader';
-import { validateInputs, getData } from './whitelistHelper';
+import { validateInputs, getData, Entry } from './whitelistHelper';
 
-export default class SignAndAdd extends Component<any>{
+interface State {
+    address: string
+    name: string
+    loading: boolean
+    hash: string
+    addedAddress: string
+    errorMsg: string
+    successType: string
+    loadTitle: string
+    data: Array<Entry>
+}
+
+export default class SignAndAdd extends Component<{}, State>{
     state = {
         address: "",
         name: "",
@@ -20,11 +32,9 @@ export default class SignAndAdd extends Component<any>{
         loadTitle: 'any',
         data: []
     };
-    private myRef;
+
     constructor(props) {
         super(props);
-
-        this.myRef = React.createRef();
 
         this.handleAddress = this.handleAddress.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -44,7 +54,7 @@ export default class SignAndAdd extends Component<any>{
             hash: "",
             addedAddress: "",
             errorMsg: "",
-            sucessType: "",
+            successType: "",
             loadTitle: ""
         });
     }
