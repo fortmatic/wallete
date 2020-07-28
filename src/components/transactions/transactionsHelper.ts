@@ -1,10 +1,10 @@
-import * as index from '../../index';
+import { web3 } from "../../constants/constants";
 
 export let startTxInputs = async (amount, sendAddress, func) => {
     if (sendAddress === "" || amount === "")
         return "Invalid Inputs";
 
-    const transactAmt = index.web3.utils.toWei(amount, "ether");
+    const transactAmt = web3.utils.toWei(amount, "ether");
 
     const status = await func(transactAmt);
 

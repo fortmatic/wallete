@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Blockies from 'react-blockies';
-import * as index from '../../index';
+import { contract } from "../../constants/constants";
 
 export let validateInputs = async (address, acctName, func) => {
     if (address === "" || acctName === "") return "Invalid Inputs";
@@ -14,7 +14,7 @@ export let validateInputs = async (address, acctName, func) => {
 }
 
 export let getData = async () => {
-    var pending = await index.contract.methods.getWhitelistAdd().call();
+    var pending = await contract.methods.getWhitelistAdd().call();
     var data = [];
 
     for (let i = pending.length - 1; i !== -1; --i) {

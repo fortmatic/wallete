@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 
 // General function libraries
-import * as index from '../../index';
-import * as constants from '../../constants/constants';
+import { contract, web3, magic } from '../../constants/constants';
 import txStyle from './transactions.module.scss';
 import mainStyle from '../../main.module.scss';
 
@@ -78,7 +77,7 @@ export default class Transactions extends Component {
     }
 
     async componentDidMount() {
-        const pending = await index.contract.methods.getTransactions().call();
+        const pending = await contract.methods.getTransactions().call();
         this.setState({ pending: pending });
     }
 
@@ -109,12 +108,12 @@ export default class Transactions extends Component {
     startTransaction = async () => {
         this.setState({ loading: true });
 
-        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
+        const userAddress = (await magic.user.getMetadata()).publicAddress;
         const { exchangeAmt, address } = this.state;
         const threshold = 3;
 
         const tmp = await startTxInputs(exchangeAmt, address, async (amt) => {
-            return await index.contract.methods.setupTransaction(address, threshold, amt).call({
+            return await contract.methods.setupTransaction(address, threshold, amt).call({
                 from: userAddress,
                 value: amt
             });
@@ -130,10 +129,10 @@ export default class Transactions extends Component {
 
         var txnHash;
 
-        const transactAmt = index.web3.utils.toWei(exchangeAmt, "ether");
+        const transactAmt = web3.utils.toWei(exchangeAmt, "ether");
 
         try {
-            await index.contract.methods.setupTransaction(address, threshold, transactAmt).send({
+            await contract.methods.setupTransaction(address, threshold, transactAmt).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '30000000000',
@@ -144,7 +143,7 @@ export default class Transactions extends Component {
                     this.setState({ hash: hash });
                 });
 
-            await index.contract.methods.setHash(txnHash).send({
+            await contract.methods.setHash(txnHash).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '30000000000'
@@ -168,11 +167,11 @@ export default class Transactions extends Component {
     signContract = async (i) => {
         this.setState({ loading: true });
 
-        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
+        const userAddress = (await magic.user.getMetadata()).publicAddress;
         let msg = "";
 
         const tmp = await signContractInputs(async () => {
-            return await index.contract.methods.signTransaction(i).call({
+            return await contract.methods.signTransaction(i).call({
                 from: userAddress
             });
         });
@@ -187,7 +186,7 @@ export default class Transactions extends Component {
         }
 
         try {
-            await index.contract.methods.signTransaction(i).send({
+            await contract.methods.signTransaction(i).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '3000000000000'

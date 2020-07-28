@@ -1,8 +1,7 @@
 // General React libraries
 import React, { Component } from 'react';
 
-import * as index from '../../index';
-import * as constants from '../../constants/constants';
+import { magic, contract } from '../../constants/constants';
 import whitelistStyle from './whitelist.module.scss';
 import mainStyle from '../../main.module.scss';
 
@@ -78,11 +77,11 @@ export default class SignAndAdd extends Component<any>{
     addToWhiteList = async () => {
         this.setState({ loading: true });
 
-        const userAddress = (await constants.magic.user.getMetadata()).publicAddress;
+        const userAddress = (await magic.user.getMetadata()).publicAddress;
         const { address, name } = this.state;
 
         let tmp = await validateInputs(address, name, async () => {
-            return await index.contract.methods.addAddress(address, name).call({
+            return await contract.methods.addAddress(address, name).call({
                 from: userAddress
             })
         });
@@ -97,7 +96,7 @@ export default class SignAndAdd extends Component<any>{
         }
 
         try {
-            await index.contract.methods.addAddress(address, name).send({
+            await contract.methods.addAddress(address, name).send({
                 from: userAddress,
                 gas: 1500000,
                 gasPrice: '3000000000000'

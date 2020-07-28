@@ -1,20 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import * as index from '../../index';
-import assetStyle from'./assets.module.scss';
+import { contract } from "../../constants/constants"
+import assetStyle from './assets.module.scss';
 import mainStyle from '../../main.module.scss'
 
-export default class Assets extends Component {
-    state = {
-        contractAddress: "",
-        eth: ""
+interface assetSate {
+    contractAddress: string;
+    eth: number;
+};
+
+export default class Assets extends React.Component<{}, assetSate>  {
+
+    constructor(props: {}) {
+        super(props);
+        this.state = {
+            contractAddress: "",
+            eth: 0
+        };
     }
 
     async componentDidMount() {
         this.setState({
-            contractAddress: index.contract.options.address
+            contractAddress: contract.options.address
         })
-        const balance = await index.contract.methods.contractBalance().call() / Math.pow(10, 18);
+        const balance = await contract.methods.contractBalance().call() / Math.pow(10, 18);
         this.setState({
             eth: balance
         });
@@ -26,7 +35,7 @@ export default class Assets extends Component {
         return (
             <div className={mainStyle.main}>
                 <div className={mainStyle.mainBlueBox}>
-                <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
+                    <h1 className="title">{"On contract " + this.state.contractAddress}</h1>
                     <table className={assetStyle.table}>
                         <tbody>
                             <tr>
