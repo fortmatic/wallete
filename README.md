@@ -52,4 +52,4 @@ Wallete has the login page which authenticates using the Magic link SDK. The DID
 This repository was produced by students from the University of Michigan in collaboration with Formatic:
 - Sangil Lee (iisangil)
 - Sai Pavan Yerra (spvyerra)
-- Helen Gao (hegao)
+- Helen Gao (hegaoo)
