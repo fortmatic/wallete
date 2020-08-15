@@ -2,15 +2,15 @@ import { startTxInputs, signContractInputs } from "../../components/transactions
 
 // START TX TESTS
 test("invalid inputs for startTxInputs", async () => {
-    await expect(startTxInputs("", "")).resolves.toMatch("Invalid Inputs");
+    await expect(startTxInputs("", "", () => { })).resolves.toMatch("Invalid Inputs");
 });
 
 test("invalid sendAddress for startTxInputs", async () => {
-    await expect(startTxInputs("4", "")).resolves.toMatch("Invalid Inputs");
+    await expect(startTxInputs("4", "", () => { })).resolves.toMatch("Invalid Inputs");
 });
 
 test("invalid amount for startTxInputs", async () => {
-    await expect(startTxInputs("", "0x575c24a1cf017179059a1CbF532A7a8f8AeE80a8")).resolves.toMatch("Invalid Inputs");
+    await expect(startTxInputs("", "0x575c24a1cf017179059a1CbF532A7a8f8AeE80a8", () => { })).resolves.toMatch("Invalid Inputs");
 });
 
 test("sending to address not on whitelist", async () => {
