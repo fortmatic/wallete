@@ -49,7 +49,7 @@ Wallete has the login page which authenticates using the [Magic SDK](https://doc
 
 ## Authors and Acknowledgment
 
-This repository was produced by students from the [University of Michigan](https://umich.edu/) in collaboration with Magic:
+This repository was produced by students from the [University of Michigan](https://umich.edu/) in collaboration with [Fortmatic](https://fortmatic.com/) (by [Magic Labs](https://trymagic.com/)):
 - Sangil Lee (iisangil) - iisangil@umich.edu
 - Sai Pavan Yerra (spvyerra) - spvyerra@umich.edu
 - Helen Gao (hegaoo) - hegao@umich.edu
