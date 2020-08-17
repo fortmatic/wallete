@@ -1,13 +1,13 @@
 # Wallete
 
-Wallete is Multi-Signature Ethereum wallet that utilizes the Magic SDK for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. The contract the web app interacts with is included in the contracts folder.
+Wallete is Multi-Signature Ethereum wallet that utilizes the [Magic SDK](https://docs.magic.link/) for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. Besides Rinkeby, Magic also supports Ropsten, Kovan, and a [custom node](https://docs.magic.link/blockchains/ethereum#use-different-networks). The contract the web app interacts with is included in the contracts folder.
 
 ## Installation
 
 Ensure that the following tools are installed:
 
 - Node Package Manager `npm`
-- Truffle `truffle` (If planning on modifying/compiling contract)
+- [Truffle](https://www.trufflesuite.com/) `truffle` (If planning on modifying/compiling contract)
 
 Then make a clean install of the npm modules:
 ```bash
@@ -18,7 +18,7 @@ yarn install
 
 Create .env file in the root folder of the project. In order to run the project you need an enviroment variable called `MagicKey`. This is where your Magic API key should go.
 
-You can create an account and get API keys from https://magic.link/
+You can create an account and get API keys from the [Magic Dashboard](http://dashboard.magic.link/)
 
 The .env should include:
 ```
@@ -37,7 +37,7 @@ This should open a webpage at http://localhost:3000/
 
 ## Features
 
-Wallete has the login page which authenticates using the Magic link SDK. The DID Token given for the session contains the information neccessary for the web app to do ether transactions.
+Wallete has the login page which authenticates using the [Magic SDK](https://docs.magic.link/). The [DID Token](https://docs.magic.link/decentralized-id) given for the session contains the information neccessary for the web app to do ether transactions.
 
 ### **Tabs**
 
@@ -65,7 +65,7 @@ yarn coverage
 
 # Authors and Acknowledgment
 
-This repository was produced by students from the University of Michigan in collaboration with Formatic:
-- Sangil Lee (iisangil)
-- Sai Pavan Yerra (spvyerra)
-- Helen Gao (hegaoo)
+This repository was produced by students from the [University of Michigan](https://umich.edu/) in collaboration with [Fortmatic](https://fortmatic.com/) (by [Magic Labs](https://trymagic.com/)):
+- Sangil Lee (iisangil) - iisangil@umich.edu
+- Sai Pavan Yerra (spvyerra) - spvyerra@umich.edu
+- Helen Gao (hegaoo) - hegao@umich.edu
