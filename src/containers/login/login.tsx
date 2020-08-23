@@ -157,6 +157,8 @@ export class Login extends Component<Props, loginState> {
         super(props);
 
         this.handleEmail = this.handleEmail.bind(this);
+        this.loginAndMain = this.loginAndMain.bind(this);
+        this.handleOAuth = this.handleOAuth.bind(this);
     }
 
     render() {
@@ -167,10 +169,18 @@ export class Login extends Component<Props, loginState> {
                     <p>Please login</p>
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
                         onChange={this.handleEmail} />
+                    <input type="submit" value="OAuth" onClick={this.handleOAuth} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
             </div>
         );
+    }
+
+    handleOAuth = async () => {
+        await magic.oauth.loginWithRedirect({
+            provider: 'google',
+            redirectURI: 'https://auth.magic.link/v1/oauth2/55A-OsQQsmQL7HM9C4g_Qt_ZCWWgvSr9uZke4tP2J8Y=/callback',
+          });
     }
 
     handleEmail = (event) => {

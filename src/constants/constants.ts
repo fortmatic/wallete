@@ -1,8 +1,10 @@
 import { Magic } from 'magic-sdk';
+import { OAuthExtension } from '@magic-ext/oauth';
 import Web3 from 'web3';
 import abi from './abi';
 
 export const magic = new Magic(process.env.MagicKey, {
+    extensions: [new OAuthExtension()],
     network: "rinkeby"
 });
 const contractAddress = '0xd959d927De283A43d36386a43367E2ca57D05104';
