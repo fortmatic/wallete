@@ -22,7 +22,6 @@ interface topState {
     addressPart: string
     addEnd: string
     icon: any,
-    metadata: any,
 }
 
 export class Top extends Component<topProps, topState> {
@@ -33,7 +32,6 @@ export class Top extends Component<topProps, topState> {
         addressPart: "",
         addEnd: "",
         icon: "",
-        metadata: null,
     };
 
     async componentDidMount() {
@@ -45,12 +43,8 @@ export class Top extends Component<topProps, topState> {
             user_in = (await magic.user.getMetadata()).email;
             address_in = (await magic.user.getMetadata()).publicAddress;
         } else {
-            user_in = (await magic.oauth.getRedirectResult()).magic.userMetadata.email;
+            user_in = (await magic.oauth.getRedirectResult()).oauth.userHandle;
             address_in = (await magic.oauth.getRedirectResult()).magic.idToken;
-            const result = await magic.oauth.getRedirectResult();
-            this.setState({
-                metadata: result.magic.userMetadata,
-            });
         }
 
         var userAdd = "";
@@ -129,7 +123,6 @@ export class Top extends Component<topProps, topState> {
     openProfile = () => {
         console.log("address:", this.state.username);
         console.log("email:", this.state.userAddress);
-        console.log("metadata:", this.state.metadata);
         return (
             <div >
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
