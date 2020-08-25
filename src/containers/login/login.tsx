@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 
 // Function libraries
 import { magic } from '../../constants/constants';
+import { OAuthExtension } from '@magic-ext/oauth';
 import './login.scss';
 
 // React components
 import Blockies from 'react-blockies';
 
-interface Props {
+interface topProps {
     changeStatus: (bool) => void;
+    changeMethod?: (bool) => void;
+    oAuth: boolean;
 }
 
 interface topState {
@@ -18,22 +21,38 @@ interface topState {
     username: string
     addressPart: string
     addEnd: string
-    icon: any
+    icon: any,
+    metadata: any,
 }
 
-export class Top extends Component<Props, topState> {
+export class Top extends Component<topProps, topState> {
     state = {
         open: false,
         userAddress: "",
         username: "",
         addressPart: "",
         addEnd: "",
-        icon: ""
+        icon: "",
+        metadata: null,
     };
 
     async componentDidMount() {
-        const user_in = (await magic.user.getMetadata()).email;
-        const address_in = (await magic.user.getMetadata()).publicAddress;
+        const { oAuth } = this.props;
+        let user_in = '';
+        let address_in = '';
+
+        if (!oAuth) {
+            user_in = (await magic.user.getMetadata()).email;
+            address_in = (await magic.user.getMetadata()).publicAddress;
+        } else {
+            user_in = (await magic.oauth.getRedirectResult()).magic.userMetadata.email;
+            address_in = (await magic.oauth.getRedirectResult()).magic.idToken;
+            const result = await magic.oauth.getRedirectResult();
+            this.setState({
+                metadata: result.magic.userMetadata,
+            });
+        }
+
         var userAdd = "";
         var addressEnd = ""
         this.setState({ userAddress: user_in });
@@ -108,6 +127,9 @@ export class Top extends Component<Props, topState> {
     }
 
     openProfile = () => {
+        console.log("address:", this.state.username);
+        console.log("email:", this.state.userAddress);
+        console.log("metadata:", this.state.metadata);
         return (
             <div >
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
@@ -142,12 +164,17 @@ export class Top extends Component<Props, topState> {
 
 }
 
+interface loginProps {
+    changeStatus: (bool) => void;
+    changeMethod?: (bool) => void;
+}
+
 interface loginState {
     email: string;
     status: string;
 }
 
-export class Login extends Component<Props, loginState> {
+export class Login extends Component<loginProps, loginState> {
     state = {
         email: "",
         status: ""
@@ -179,8 +206,12 @@ export class Login extends Component<Props, loginState> {
     handleOAuth = async () => {
         await magic.oauth.loginWithRedirect({
             provider: 'google',
-            redirectURI: 'https://auth.magic.link/v1/oauth2/55A-OsQQsmQL7HM9C4g_Qt_ZCWWgvSr9uZke4tP2J8Y=/callback',
-          });
+            redirectURI: 'http://localhost:3000/',
+        });
+        const result = await magic.oauth.getRedirectResult();
+        console.log(result.magic.userMetadata);
+        this.props.changeMethod(true);
+
     }
 
     handleEmail = (event) => {

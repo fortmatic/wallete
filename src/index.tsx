@@ -15,12 +15,14 @@ import { Buffer } from "./components/loader/loader";
 interface State {
     isLoggedIn: boolean;
     isLoading: boolean;
+    oAuth: boolean;
 }
 
 class Main extends React.Component<{}, State> {
     state = {
         isLoggedIn: false,
-        isLoading: true
+        isLoading: true,
+        oAuth: false,
     };
 
     async componentDidMount() {
@@ -29,6 +31,10 @@ class Main extends React.Component<{}, State> {
             isLoggedIn: loginStatus,
             isLoading: false
         });
+    }
+
+    handleLoginMethod = (method: boolean) => {
+        this.setState({ oAuth: method });
     }
 
     handleLoginStatus = status => {
@@ -41,9 +47,9 @@ class Main extends React.Component<{}, State> {
                 <Buffer />
             ) : (
                     (this.state.isLoggedIn) ? (
-                        <App changeStatus={this.handleLoginStatus} />
+                        <App oAuth={this.state.oAuth} changeStatus={this.handleLoginStatus} />
                     ) : (
-                            <Login changeStatus={this.handleLoginStatus} />
+                            <Login changeStatus={this.handleLoginStatus} changeMethod={this.handleLoginMethod} />
                         )
                 )
         );
