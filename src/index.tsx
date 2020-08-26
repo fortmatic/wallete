@@ -22,7 +22,7 @@ class Main extends React.Component<{}, State> {
     state = {
         isLoggedIn: false,
         isLoading: true,
-        oAuth: false,
+        oAuth: null,
     };
 
     async componentDidMount() {

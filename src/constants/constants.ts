@@ -3,7 +3,7 @@ import { OAuthExtension } from '@magic-ext/oauth';
 import Web3 from 'web3';
 import abi from './abi';
 
-export const magic = new Magic(process.env.MagicKey, {
+export const magic = new Magic("pk_test_77A011678F246927", {
     extensions: [new OAuthExtension()],
     network: "rinkeby"
 });

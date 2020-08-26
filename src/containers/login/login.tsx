@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 // Function libraries
 import { magic } from '../../constants/constants';
-import { OAuthExtension } from '@magic-ext/oauth';
 import './login.scss';
 
 // React components
@@ -22,6 +21,7 @@ interface topState {
     addressPart: string
     addEnd: string
     icon: any,
+    loginMethod: string,
 }
 
 export class Top extends Component<topProps, topState> {
@@ -32,19 +32,22 @@ export class Top extends Component<topProps, topState> {
         addressPart: "",
         addEnd: "",
         icon: "",
+        loginMethod: "",
     };
 
     async componentDidMount() {
         const { oAuth } = this.props;
-        let user_in = '';
-        let address_in = '';
+        let user_in = (await magic.user.getMetadata()).email;
+        let address_in = (await magic.user.getMetadata()).publicAddress;
 
         if (!oAuth) {
-            user_in = (await magic.user.getMetadata()).email;
-            address_in = (await magic.user.getMetadata()).publicAddress;
+            this.setState({
+                loginMethod: "email",
+            })
         } else {
-            user_in = (await magic.oauth.getRedirectResult()).oauth.userHandle;
-            address_in = (await magic.oauth.getRedirectResult()).magic.idToken;
+            this.setState({
+                loginMethod: "OAuth",
+            })
         }
 
         var userAdd = "";
@@ -132,6 +135,7 @@ export class Top extends Component<topProps, topState> {
                     <p className="icon-display">{this.state.icon} {this.state.userAddress}</p>
 
                     <div>
+                        <p id="user-Address">Logged in with {this.state.loginMethod}</p> 
                         <a href="!#" id="user-Address">{this.state.addressPart}
                             <span className="copy-hov">{this.state.username}</span>
                         </a>
@@ -201,8 +205,8 @@ export class Login extends Component<loginProps, loginState> {
             provider: 'google',
             redirectURI: 'http://localhost:3000/',
         });
-        const result = await magic.oauth.getRedirectResult();
-        console.log(result.magic.userMetadata);
+
+        this.props.changeStatus(await magic.user.isLoggedIn());
         this.props.changeMethod(true);
 
     }
@@ -225,5 +229,6 @@ export class Login extends Component<loginProps, loginState> {
 
 
         this.props.changeStatus(await magic.user.isLoggedIn());
+        this.props.changeMethod(false);
     }
 }

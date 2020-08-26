@@ -23,6 +23,12 @@ export default class App extends React.Component<Props, State> {
         method: false,
     }
 
+    constructor(props) {
+        super(props);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.handleLoginStatus = this.handleLoginStatus.bind(this);
+    }
+
     handlePageChange = newPage => {
         this.setState({ mainElement: newPage });
     }
