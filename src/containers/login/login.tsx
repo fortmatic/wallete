@@ -139,7 +139,7 @@ export class Top extends Component<topProps, topState> {
                             <span className="copy-hov">{this.state.username}</span>
                         </a>
                         <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
-                            <i className="far fa-copy"><span className="clipboard-hov">Copy</span></i></a>
+                            <i className="far fa-copy"></i></a>
                     </div>
                     <a href="!#" className="logout-Btn" onClick={this.logout}><i className="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
@@ -192,8 +192,8 @@ export class Login extends Component<loginProps, loginState> {
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
                         onChange={this.handleEmail} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
+                    <button className= "oAuth" onClick={this.handleOAuth}><i className="fab fa-google"></i> Login with Google</button>
                 </div>
-                <input type="submit" value="OAuth" onClick={this.handleOAuth} />
             </div>
         );
     }
