@@ -29,12 +29,20 @@ class Main extends React.Component<{}, State> {
         const loginStatus = (await magic.user.isLoggedIn());
         this.setState({
             isLoggedIn: loginStatus,
-            isLoading: false
+            isLoading: false,
+            oAuth: true,
         });
-    }
 
-    handleLoginMethod = (method: boolean) => {
-        this.setState({ oAuth: method });
+        try {
+            await magic.oauth.getRedirectResult();
+            this.setState({
+                oAuth: true,
+            });
+        } catch(e) {
+            this.setState({
+                oAuth: false,
+            });
+        }
     }
 
     handleLoginStatus = status => {
@@ -49,7 +57,7 @@ class Main extends React.Component<{}, State> {
                     (this.state.isLoggedIn) ? (
                         <App oAuth={this.state.oAuth} changeStatus={this.handleLoginStatus} />
                     ) : (
-                            <Login changeStatus={this.handleLoginStatus} changeMethod={this.handleLoginMethod} />
+                            <Login changeStatus={this.handleLoginStatus} />
                         )
                 )
         );

@@ -10,7 +10,6 @@ import Blockies from 'react-blockies';
 
 interface topProps {
     changeStatus: (bool) => void;
-    changeMethod?: (bool) => void;
     oAuth: boolean;
 }
 
@@ -163,7 +162,6 @@ export class Top extends Component<topProps, topState> {
 
 interface loginProps {
     changeStatus: (bool) => void;
-    changeMethod?: (bool) => void;
 }
 
 interface loginState {
@@ -193,9 +191,9 @@ export class Login extends Component<loginProps, loginState> {
                     <p>Please login</p>
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
                         onChange={this.handleEmail} />
-                    <input type="submit" value="OAuth" onClick={this.handleOAuth} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
                 </div>
+                <input type="submit" value="OAuth" onClick={this.handleOAuth} />
             </div>
         );
     }
@@ -207,7 +205,6 @@ export class Login extends Component<loginProps, loginState> {
         });
 
         this.props.changeStatus(await magic.user.isLoggedIn());
-        this.props.changeMethod(true);
 
     }
 
@@ -229,6 +226,5 @@ export class Login extends Component<loginProps, loginState> {
 
 
         this.props.changeStatus(await magic.user.isLoggedIn());
-        this.props.changeMethod(false);
     }
 }

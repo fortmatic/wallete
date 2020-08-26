@@ -20,7 +20,6 @@ interface Props {
 export default class App extends React.Component<Props, State> {
     state = {
         mainElement: "Assets",
-        method: false,
     }
 
     constructor(props) {
