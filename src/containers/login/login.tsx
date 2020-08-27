@@ -8,8 +8,9 @@ import './login.scss';
 // React components
 import Blockies from 'react-blockies';
 
-interface Props {
+interface topProps {
     changeStatus: (bool) => void;
+    oAuth: boolean;
 }
 
 interface topState {
@@ -18,22 +19,36 @@ interface topState {
     username: string
     addressPart: string
     addEnd: string
-    icon: any
+    icon: any,
+    loginMethod: string,
 }
 
-export class Top extends Component<Props, topState> {
+export class Top extends Component<topProps, topState> {
     state = {
         open: false,
         userAddress: "",
         username: "",
         addressPart: "",
         addEnd: "",
-        icon: ""
+        icon: "",
+        loginMethod: "",
     };
 
     async componentDidMount() {
-        const user_in = (await magic.user.getMetadata()).email;
-        const address_in = (await magic.user.getMetadata()).publicAddress;
+        const { oAuth } = this.props;
+        let user_in = (await magic.user.getMetadata()).email;
+        let address_in = (await magic.user.getMetadata()).publicAddress;
+
+        if (!oAuth) {
+            this.setState({
+                loginMethod: "email",
+            })
+        } else {
+            this.setState({
+                loginMethod: "OAuth",
+            })
+        }
+
         var userAdd = "";
         var addressEnd = ""
         this.setState({ userAddress: user_in });
@@ -108,6 +123,8 @@ export class Top extends Component<Props, topState> {
     }
 
     openProfile = () => {
+        console.log("address:", this.state.username);
+        console.log("email:", this.state.userAddress);
         return (
             <div >
                 <a href="!#" onClick={this.switchState} ref={node => this.node = node}>
@@ -117,11 +134,12 @@ export class Top extends Component<Props, topState> {
                     <p className="icon-display">{this.state.icon} {this.state.userAddress}</p>
 
                     <div>
+                        <p id="user-Address">Logged in with {this.state.loginMethod}</p> 
                         <a href="!#" id="user-Address">{this.state.addressPart}
                             <span className="copy-hov">{this.state.username}</span>
                         </a>
                         <a href="!#" onClick={() => navigator.clipboard.writeText(this.state.username)}>
-                            <i className="far fa-copy"><span className="clipboard-hov">Copy</span></i></a>
+                            <i className="far fa-copy"></i></a>
                     </div>
                     <a href="!#" className="logout-Btn" onClick={this.logout}><i className="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
@@ -142,12 +160,16 @@ export class Top extends Component<Props, topState> {
 
 }
 
+interface loginProps {
+    changeStatus: (bool) => void;
+}
+
 interface loginState {
     email: string;
     status: string;
 }
 
-export class Login extends Component<Props, loginState> {
+export class Login extends Component<loginProps, loginState> {
     state = {
         email: "",
         status: ""
@@ -157,6 +179,8 @@ export class Login extends Component<Props, loginState> {
         super(props);
 
         this.handleEmail = this.handleEmail.bind(this);
+        this.loginAndMain = this.loginAndMain.bind(this);
+        this.handleOAuth = this.handleOAuth.bind(this);
     }
 
     render() {
@@ -168,9 +192,20 @@ export class Login extends Component<Props, loginState> {
                     <input type="text" className="user-email" placeholder="Enter your email" value={this.state.email}
                         onChange={this.handleEmail} />
                     <a href="!#" className="log-1" onClick={this.loginAndMain}>Login</a>
+                    <button className= "oAuth" onClick={this.handleOAuth}><i className="fab fa-google"></i> Login with Google</button>
                 </div>
             </div>
         );
+    }
+
+    handleOAuth = async () => {
+        await magic.oauth.loginWithRedirect({
+            provider: 'google',
+            redirectURI: 'http://localhost:3000/',
+        });
+
+        this.props.changeStatus(await magic.user.isLoggedIn());
+
     }
 
     handleEmail = (event) => {

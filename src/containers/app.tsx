@@ -13,12 +13,19 @@ interface State {
 
 interface Props {
     changeStatus: (bool) => void;
+    oAuth: boolean,
 }
 
 
 export default class App extends React.Component<Props, State> {
     state = {
-        mainElement: "Assets"
+        mainElement: "Assets",
+    }
+
+    constructor(props) {
+        super(props);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.handleLoginStatus = this.handleLoginStatus.bind(this);
     }
 
     handlePageChange = newPage => {
@@ -32,7 +39,7 @@ export default class App extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                <Top changeStatus={this.handleLoginStatus} />
+                <Top oAuth={this.props.oAuth} changeStatus={this.handleLoginStatus} />
                 <Sidebar changePage={this.handlePageChange} />
                 <div id="main">
                     {this.state.mainElement === "Assets" && <Assets />}

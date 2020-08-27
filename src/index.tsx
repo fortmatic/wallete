@@ -15,20 +15,34 @@ import { Buffer } from "./components/loader/loader";
 interface State {
     isLoggedIn: boolean;
     isLoading: boolean;
+    oAuth: boolean;
 }
 
 class Main extends React.Component<{}, State> {
     state = {
         isLoggedIn: false,
-        isLoading: true
+        isLoading: true,
+        oAuth: null,
     };
 
     async componentDidMount() {
         const loginStatus = (await magic.user.isLoggedIn());
         this.setState({
             isLoggedIn: loginStatus,
-            isLoading: false
+            isLoading: false,
+            oAuth: true,
         });
+
+        try {
+            await magic.oauth.getRedirectResult();
+            this.setState({
+                oAuth: true,
+            });
+        } catch(e) {
+            this.setState({
+                oAuth: false,
+            });
+        }
     }
 
     handleLoginStatus = status => {
@@ -41,7 +55,7 @@ class Main extends React.Component<{}, State> {
                 <Buffer />
             ) : (
                     (this.state.isLoggedIn) ? (
-                        <App changeStatus={this.handleLoginStatus} />
+                        <App oAuth={this.state.oAuth} changeStatus={this.handleLoginStatus} />
                     ) : (
                             <Login changeStatus={this.handleLoginStatus} />
                         )
