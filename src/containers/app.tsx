@@ -5,7 +5,7 @@ import { Top } from './login/login'
 import Sidebar from "../components/sidebar/sidebar";
 import Assets from "../components/assets/assets";
 import Transactions from '../components/transactions/transactions';
-import SignAndAdd from '../components/whitelist/whitelist';
+import SignAndAdd from '../components/Allowed list/AllowedList';
 
 interface State {
     mainElement: string;
