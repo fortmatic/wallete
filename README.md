@@ -1,6 +1,6 @@
 # Wallette
 
-Wallete is Multi-Signature Ethereum wallet that utilizes the [Magic SDK](https://docs.magic.link/) for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. Besides Rinkeby, Magic also supports Ropsten, Kovan, and a [custom node](https://docs.magic.link/blockchains/ethereum#use-different-networks). The contract the web app interacts with is included in the contracts folder.
+Wallette is Multi-Signature Ethereum wallet that utilizes the [Magic SDK](https://docs.magic.link/) for the user authentication. This allows the user to interact with the Rinkeby (Ethereum testnet) without cumbersome passkeys or addresses. Besides Rinkeby, Magic also supports Ropsten, Kovan, and a [custom node](https://docs.magic.link/blockchains/ethereum#use-different-networks). The contract the web app interacts with is included in the contracts folder.
 
 ## Installation
 
@@ -37,7 +37,7 @@ This should open a webpage at http://localhost:3000/
 
 ## Features
 
-Wallete has the login page which authenticates using the [Magic SDK](https://docs.magic.link/). The [DID Token](https://docs.magic.link/decentralized-id) given for the session contains the information neccessary for the web app to do ether transactions.
+Wallette has the login page which authenticates using the [Magic SDK](https://docs.magic.link/). The [DID Token](https://docs.magic.link/decentralized-id) given for the session contains the information neccessary for the web app to do ether transactions.
 
 ### **Tabs**
 
