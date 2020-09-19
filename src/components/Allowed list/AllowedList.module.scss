@@ -1,56 +1,56 @@
 @import '../../master';
 
-.whitelistTitle {
+.allowedListTitle {
     font-size: 30px;
 }
 
-.whitelistBlockie {
+.allowedListBlockie {
     width: 6%;
     text-align: center;
 }
 
-.whitelistName {
+.allowedListName {
     width: 40%;
     font-size: 20px;
 }
 
-.whitelistAddress {
+.allowedListAddress {
     font-size: 20px;
     margin: 0 10.5em;
 }
 
 @media screen and (max-width: 990px) {
-    .whitelistName {
+    .allowedListName {
         font-size: 15px;
     }
     
-    .whitelistAddress {
+    .allowedListAddress {
         font-size: 15px;
     }
 }
 
 @media screen and (max-width: 780px) {
-    .whitelistName {
+    .allowedListName {
         font-size: 12px;
     }
     
-    .whitelistAddress {
+    .allowedListAddress {
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 680px) {
-    .whitelistName {
+    .allowedListName {
         font-size: 8px;
     }
     
-    .whitelistAddress {
+    .allowedListAddress {
         font-size: 8px;
     }
 }
 
 
-.whitelistTable {
+.allowedListTable {
     background-color: #FFFFFF;
     border-right: white;
     border-left: white;
@@ -84,13 +84,13 @@
 
 
 
-.addToWhitelist {
+.addToallowedList {
     position: relative;
 
     .addressBox {
         position: relative;
         box-sizing: content-box;
-        width: 53%;
+        width: 60%;
         margin-top: 30px;
         font-size: 30px;
         margin-left: 0px;

@@ -64,7 +64,7 @@ export default class Sidebar extends Component<Props, State> {
                         <li id="Assets" className={assetsActive === "active" ? sidebarStyle.active : ""}>
                             <a onClick={this.getAssets} href="!#">Assets</a></li>
                         <li id="Whitelist" className={whitelistActive === "active" ? sidebarStyle.active : ""}>
-                            <a onClick={this.getSignAndAdd} href="!#">Whitelist </a></li>
+                            <a onClick={this.getSignAndAdd} href="!#">Allowed List </a></li>
                         <li id="Transactions" className={txActive === "active" ? sidebarStyle.active : ""}>
                             <a onClick={this.getTransactions} href="!#">Transactions</a></li>
                     </div>

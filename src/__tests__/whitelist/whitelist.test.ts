@@ -1,4 +1,4 @@
-import { validateInputs } from '../../components/whitelist/whitelistHelper';
+import { validateInputs } from '../../components/Allowed list/AllowedListHelper';
 
 test("invalid inputs for validateInputs", () => {
     expect(validateInputs("", "", "")).resolves.toMatch("Invalid Inputs");

@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 
 import { magic, contract } from '../../constants/constants';
-import whitelistStyle from './whitelist.module.scss';
+import AllowedListStyle from './AllowedList.module.scss';
 import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader';
-import { validateInputs, getData, Entry } from './whitelistHelper';
+import { validateInputs, getData, Entry } from './AllowedListHelper';
 
 interface State {
     address: string
@@ -64,9 +64,9 @@ export default class SignAndAdd extends Component<{}, State>{
             const { blockie, name, address } = row;
             return (
                 <tr key={index}>
-                    <td className={whitelistStyle.whitelistBlockie}>{blockie}</td>
-                    <td className={whitelistStyle.whitelistName}>{name}</td>
-                    <td className={whitelistStyle.whitelistAddress}>{address}</td>
+                    <td className={AllowedListStyle.allowedListBlockie}>{blockie}</td>
+                    <td className={AllowedListStyle.allowedListName}>{name}</td>
+                    <td className={AllowedListStyle.allowedListAddress}>{address}</td>
                 </tr>
             );
         });
@@ -84,7 +84,7 @@ export default class SignAndAdd extends Component<{}, State>{
         })
     }
 
-    addToWhiteList = async () => {
+    addToAllowedList = async () => {
         this.setState({ loading: true });
 
         const userAddress = (await magic.user.getMetadata()).publicAddress;
@@ -154,27 +154,27 @@ export default class SignAndAdd extends Component<{}, State>{
                     title={loadTitle}
                 />}
                 <div className={mainStyle.mainBlueBox}>
-                    <div id={whitelistStyle.whitelist}>
-                        <h1 className={whitelistStyle.whitelistTitle}>Whitelist</h1>
-                        <table className={whitelistStyle.whitelistTable}>
+                    <div id={AllowedListStyle.allowedList}>
+                        <h1 className={AllowedListStyle.allowedListTitle}>Allowed List</h1>
+                        <table className={AllowedListStyle.allowedListTable}>
                             <tbody>
                                 <tr>
                                     <th></th>
-                                    <th className={whitelistStyle.whitelistName}>Name</th>
-                                    <th className={whitelistStyle.whitelistAddress}>Address</th>
+                                    <th className={AllowedListStyle.allowedListName}>Name</th>
+                                    <th className={AllowedListStyle.allowedListAddress}>Address</th>
                                 </tr>
                                 {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>
-                    <div className={whitelistStyle.addToWhitelist}>
-                        <h1 className={whitelistStyle.addressBox}>Add New Address to Whitelist</h1>
-                        <input className={whitelistStyle.address} type="text" placeholder="Enter Address"
+                    <div className={AllowedListStyle.addToallowedList}>
+                        <h1 className={AllowedListStyle.addressBox}>Add New Address to Allowed List</h1>
+                        <input className={AllowedListStyle.address} type="text" placeholder="Enter Address"
                             value={address} onChange={this.handleAddress} />
-                        <input className={whitelistStyle.name} type="text" placeholder="Account Name"
+                        <input className={AllowedListStyle.name} type="text" placeholder="Account Name"
                             value={name} onChange={this.handleName} />
-                        <p className={whitelistStyle.connected} id="status"></p>
-                        <button className={whitelistStyle.addBtn} onClick={this.addToWhiteList} >Add Address</button>
+                        <p className={AllowedListStyle.connected} id="status"></p>
+                        <button className={AllowedListStyle.addBtn} onClick={this.addToAllowedList} >Add Address</button>
                     </div>
                 </div>
             </div>
