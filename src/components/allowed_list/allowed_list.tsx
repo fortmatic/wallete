@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 
 import { magic, contract } from '../../constants/constants';
-import AllowedListStyle from './AllowedList.module.scss';
+import AllowedListStyle from './allowed_list.module.scss';
 import mainStyle from '../../main.module.scss';
 
 import { Loader } from '../loader/loader';
-import { validateInputs, getData, Entry } from './AllowedListHelper';
+import { validateInputs, getData, Entry } from './allowed_list_helper';
 
 interface State {
     address: string
